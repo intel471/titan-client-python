@@ -49,14 +49,14 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.AlertsApi(api_client)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
-until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-offset = 0 # int | Skip leading number of records. (optional) (default to 0)
-watcher_group = 'watcher_group_example' # str | Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. (optional)
-count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
-show_read = True # bool | Show read alerts. (optional) (default to True)
-display_watchers = False # bool | Show watcher groups info. (optional) (default to False)
-mark_as_read = False # bool | Mark displayed alerts as read. (optional) (default to False)
-sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
+    until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
+    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
+    watcher_group = 'watcher_group_example' # str | Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. (optional)
+    count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
+    show_read = True # bool | Show read alerts. (optional) (default to True)
+    display_watchers = False # bool | Show watcher groups info. (optional) (default to False)
+    mark_as_read = False # bool | Mark displayed alerts as read. (optional) (default to False)
+    sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
 
     try:
         # Get Alerts
@@ -212,7 +212,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.AlertsApi(api_client)
     endpoint = 'endpoint_example' # str | The endpoint url to receive ping notifications on new alerts. (optional)
-status = 'active' # str | Optionally specify status of the new endpoint (optional) (default to 'active')
+    status = 'active' # str | Optionally specify status of the new endpoint (optional) (default to 'active')
 
     try:
         # Alerts - Alert Subscriptions - Get

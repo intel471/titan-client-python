@@ -46,16 +46,16 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.ForumsApi(api_client)
     post = 'hacker' # str | Search text in posts and topics. (optional)
-posts_by_thread_uid = '?' # str | Search posts by thread uid. At least one of `post`, `postsByThreadUid`, `forum` is required. (optional)
-actor = 'armani' # str | Search posts authored by given actor handle. (optional)
-forum = 'opensc.ws' # str | Search posts in a given forum. (optional)
-_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
-until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
-last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
-sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
-offset = 0 # int | Skip leading number of records. (optional) (default to 0)
-count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
+    posts_by_thread_uid = '?' # str | Search posts by thread uid. At least one of `post`, `postsByThreadUid`, `forum` is required. (optional)
+    actor = 'armani' # str | Search posts authored by given actor handle. (optional)
+    forum = 'opensc.ws' # str | Search posts in a given forum. (optional)
+    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
+    last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
+    last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
+    sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
+    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
+    count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
         # Search Forum Posts
@@ -140,16 +140,16 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.ForumsApi(api_client)
     private_message = 'sell' # str | Search text in Private Messages. At least one of `privateMessage`, `privateMessageSubject`, `actor`, `forum` is required. (optional)
-private_message_subject = 'sell' # str | Search text in subjects of Private Messages. (optional)
-actor = 'schott' # str | Search messages authored or received by given actor handle. (optional)
-forum = 'opensc.ws' # str | Search messages in a given forum. (optional)
-_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
-until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
-last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
-sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
-offset = 0 # int | Skip leading number of records. (optional) (default to 0)
-count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
+    private_message_subject = 'sell' # str | Search text in subjects of Private Messages. (optional)
+    actor = 'schott' # str | Search messages authored or received by given actor handle. (optional)
+    forum = 'opensc.ws' # str | Search messages in a given forum. (optional)
+    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
+    last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
+    last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
+    sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
+    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
+    count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
         # Search Private Messages

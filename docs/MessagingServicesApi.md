@@ -45,17 +45,17 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.MessagingServicesApi(api_client)
     instant_message = 'credit card' # str | Free text instant messages search. At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required. (optional)
-instant_message_actor = 'Synthx' # str | Search instant messages by actor name (actual for the moment message was written). (optional)
-instant_message_service = 'telegram' # str | Search instant messages by service. (optional)
-instant_message_server = '?' # str | Search instant messages by server. (optional)
-instant_message_channel = 'anon-ops' # str | Search instant messages by channel. (optional)
-_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
-until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
-last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
-sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
-offset = 0 # int | Skip leading number of records. (optional) (default to 0)
-count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
+    instant_message_actor = 'Synthx' # str | Search instant messages by actor name (actual for the moment message was written). (optional)
+    instant_message_service = 'telegram' # str | Search instant messages by service. (optional)
+    instant_message_server = '?' # str | Search instant messages by server. (optional)
+    instant_message_channel = 'anon-ops' # str | Search instant messages by channel. (optional)
+    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
+    last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
+    last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
+    sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
+    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
+    count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
         # Search Instant Messages

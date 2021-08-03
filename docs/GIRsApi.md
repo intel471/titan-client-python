@@ -45,10 +45,10 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.GIRsApi(api_client)
     gir_path = '1.1.1' # str | Search GIRs by path. (optional)
-gir_name = 'Ransomware malware' # str | Search GIRs by name (optional)
-gir_description = 'unauthorized' # str | Search GIRs description (optional)
-offset = 0 # int | Skip leading number of records. (optional) (default to 0)
-count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
+    gir_name = 'Ransomware malware' # str | Search GIRs by name (optional)
+    gir_description = 'unauthorized' # str | Search GIRs description (optional)
+    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
+    count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
         # Search GIRs

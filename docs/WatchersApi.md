@@ -274,7 +274,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
     group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
-inline_object1 = titan_client.InlineObject1() # InlineObject1 | 
+    inline_object1 = titan_client.InlineObject1() # InlineObject1 | 
 
     try:
         # Put Watcher Group
@@ -424,7 +424,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
     group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
-watcher_request_body_post = titan_client.WatcherRequestBodyPost() # WatcherRequestBodyPost | JSON request body
+    watcher_request_body_post = titan_client.WatcherRequestBodyPost() # WatcherRequestBodyPost | JSON request body
 
     try:
         # Create Watcher
@@ -500,7 +500,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
     watcher_uid = '8f16dc64d43ae2492f0ecd052c05599e' # str | Unique identifier of watcher.
-group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
+    group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
 
     try:
         # Delete Watcher
@@ -574,7 +574,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
     watcher_uid = '8f16dc64d43ae2492f0ecd052c05599e' # str | Unique identifier of watcher.
-group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
+    group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
 
     try:
         # Get Watcher
@@ -650,8 +650,8 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
     watcher_uid = '8f16dc64d43ae2492f0ecd052c05599e' # str | Unique identifier of watcher.
-group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
-watcher_request_body_put = titan_client.WatcherRequestBodyPut() # WatcherRequestBodyPut | JSON request body
+    group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
+    watcher_request_body_put = titan_client.WatcherRequestBodyPut() # WatcherRequestBodyPut | JSON request body
 
     try:
         # Put Watcher
