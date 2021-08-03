@@ -1393,23 +1393,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -1477,23 +1477,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -1742,23 +1742,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -1830,23 +1830,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -2103,23 +2103,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -2189,23 +2189,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -2451,23 +2451,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.
@@ -2533,23 +2533,23 @@ class CredentialsApi(object):
         :param password_strength: Search by password strength.
         :type password_strength: str
         :param password_length_gte: Search by password complexity length field as greater then or equal to input value.
-        :type password_length_gte: float
+        :type password_length_gte: int
         :param password_lowercase_gte: Search by password complexity lowercase filed as greater then or equal to input value.
-        :type password_lowercase_gte: float
+        :type password_lowercase_gte: int
         :param password_uppercase_gte: Search by password complexity uppercase filed as greater then or equal to input value.
-        :type password_uppercase_gte: float
+        :type password_uppercase_gte: int
         :param password_numbers_gte: Search by password complexity numbers filed as greater then or equal to input value.
-        :type password_numbers_gte: float
+        :type password_numbers_gte: int
         :param password_punctuation_gte: Search by password complexity punctuation filed as greater then or equal to input value.
-        :type password_punctuation_gte: float
+        :type password_punctuation_gte: int
         :param password_symbols_gte: Search by password complexity symbols filed as greater then or equal to input value.
-        :type password_symbols_gte: float
+        :type password_symbols_gte: int
         :param password_separators_gte: Search by password complexity separators filed as greater then or equal to input value.
-        :type password_separators_gte: float
+        :type password_separators_gte: int
         :param password_other_gte: Search by password complexity other filed as greater then or equal to input value.
-        :type password_other_gte: float
+        :type password_other_gte: int
         :param password_entropy_gte: Search by password complexity entropy filed as greater then or equal to input value.
-        :type password_entropy_gte: float
+        :type password_entropy_gte: int
         :param password_plain: Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded.
         :type password_plain: str
         :param credential_login: Search by credential login.

@@ -37,15 +37,15 @@ class CredentialSchemaDataPasswordComplexity(object):
     """
     openapi_types = {
         'entropy': 'float',
-        'length': 'float',
-        'lowercase': 'float',
-        'numbers': 'float',
-        'other': 'float',
-        'punctuation_marks': 'float',
+        'length': 'int',
+        'lowercase': 'int',
+        'numbers': 'int',
+        'other': 'int',
+        'punctuation_marks': 'int',
         'score': 'float',
-        'separators': 'float',
-        'symbols': 'float',
-        'uppercase': 'float',
+        'separators': 'int',
+        'symbols': 'int',
+        'uppercase': 'int',
         'weakness': 'float'
     }
 
@@ -135,7 +135,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The length of the password.  # noqa: E501
 
         :return: The length of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._length
 
@@ -146,7 +146,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The length of the password.  # noqa: E501
 
         :param length: The length of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type length: float
+        :type length: int
         """
 
         self._length = length
@@ -158,7 +158,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of lowercase letters in the password.  # noqa: E501
 
         :return: The lowercase of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._lowercase
 
@@ -169,7 +169,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of lowercase letters in the password.  # noqa: E501
 
         :param lowercase: The lowercase of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type lowercase: float
+        :type lowercase: int
         """
 
         self._lowercase = lowercase
@@ -181,7 +181,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of digits in the password.  # noqa: E501
 
         :return: The numbers of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._numbers
 
@@ -192,7 +192,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of digits in the password.  # noqa: E501
 
         :param numbers: The numbers of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type numbers: float
+        :type numbers: int
         """
 
         self._numbers = numbers
@@ -204,7 +204,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of other characters in the password.  # noqa: E501
 
         :return: The other of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._other
 
@@ -215,7 +215,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of other characters in the password.  # noqa: E501
 
         :param other: The other of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type other: float
+        :type other: int
         """
 
         self._other = other
@@ -227,7 +227,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of punctuation marks in the password.  # noqa: E501
 
         :return: The punctuation_marks of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._punctuation_marks
 
@@ -238,7 +238,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of punctuation marks in the password.  # noqa: E501
 
         :param punctuation_marks: The punctuation_marks of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type punctuation_marks: float
+        :type punctuation_marks: int
         """
 
         self._punctuation_marks = punctuation_marks
@@ -273,7 +273,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of separators in the password.  # noqa: E501
 
         :return: The separators of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._separators
 
@@ -284,7 +284,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of separators in the password.  # noqa: E501
 
         :param separators: The separators of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type separators: float
+        :type separators: int
         """
 
         self._separators = separators
@@ -296,7 +296,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of symbols in the password.  # noqa: E501
 
         :return: The symbols of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._symbols
 
@@ -307,7 +307,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of symbols in the password.  # noqa: E501
 
         :param symbols: The symbols of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type symbols: float
+        :type symbols: int
         """
 
         self._symbols = symbols
@@ -319,7 +319,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of uppercase characters in the password.  # noqa: E501
 
         :return: The uppercase of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._uppercase
 
@@ -330,7 +330,7 @@ class CredentialSchemaDataPasswordComplexity(object):
         The number of uppercase characters in the password.  # noqa: E501
 
         :param uppercase: The uppercase of this CredentialSchemaDataPasswordComplexity.  # noqa: E501
-        :type uppercase: float
+        :type uppercase: int
         """
 
         self._uppercase = uppercase

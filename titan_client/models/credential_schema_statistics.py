@@ -36,7 +36,7 @@ class CredentialSchemaStatistics(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'accessed_urls_total_count': 'float'
+        'accessed_urls_total_count': 'int'
     }
 
     attribute_map = {
@@ -62,7 +62,7 @@ class CredentialSchemaStatistics(object):
         Number of accessed URLs.  # noqa: E501
 
         :return: The accessed_urls_total_count of this CredentialSchemaStatistics.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._accessed_urls_total_count
 
@@ -73,7 +73,7 @@ class CredentialSchemaStatistics(object):
         Number of accessed URLs.  # noqa: E501
 
         :param accessed_urls_total_count: The accessed_urls_total_count of this CredentialSchemaStatistics.  # noqa: E501
-        :type accessed_urls_total_count: float
+        :type accessed_urls_total_count: int
         """
 
         self._accessed_urls_total_count = accessed_urls_total_count

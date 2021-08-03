@@ -648,15 +648,15 @@ credential_set_uid = 'credential_set_uid_example' # str | Search by credential s
 domain = 'domain_example' # str | Search by credential domain (detection domain). (optional)
 affiliation_group = 'affiliation_group_example' # str | Search by credential affiliation group. (optional)
 password_strength = 'password_strength_example' # str | Search by password strength. (optional)
-password_length_gte = 0 # float | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
-password_lowercase_gte = 0 # float | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
-password_uppercase_gte = 0 # float | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
-password_numbers_gte = 0 # float | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
-password_punctuation_gte = 0 # float | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
-password_symbols_gte = 0 # float | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
-password_separators_gte = 0 # float | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
-password_other_gte = 0 # float | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
-password_entropy_gte = 0 # float | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
+password_length_gte = 0 # int | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
+password_lowercase_gte = 0 # int | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
+password_uppercase_gte = 0 # int | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
+password_numbers_gte = 0 # int | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
+password_punctuation_gte = 0 # int | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
+password_symbols_gte = 0 # int | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
+password_separators_gte = 0 # int | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
+password_other_gte = 0 # int | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
+password_entropy_gte = 0 # int | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
 password_plain = 'password_plain_example' # str | Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded. (optional)
 credential_login = 'credential_login_example' # str | Search by credential login. (optional)
 detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
@@ -689,15 +689,15 @@ Name | Type | Description  | Notes
  **domain** | **str**| Search by credential domain (detection domain). | [optional] 
  **affiliation_group** | **str**| Search by credential affiliation group. | [optional] 
  **password_strength** | **str**| Search by password strength. | [optional] 
- **password_length_gte** | **float**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
- **password_lowercase_gte** | **float**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_uppercase_gte** | **float**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_numbers_gte** | **float**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
- **password_punctuation_gte** | **float**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
- **password_symbols_gte** | **float**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
- **password_separators_gte** | **float**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
- **password_other_gte** | **float**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
- **password_entropy_gte** | **float**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_length_gte** | **int**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
+ **password_lowercase_gte** | **int**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_uppercase_gte** | **int**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_numbers_gte** | **int**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_punctuation_gte** | **int**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_symbols_gte** | **int**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_separators_gte** | **int**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_other_gte** | **int**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_entropy_gte** | **int**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
  **password_plain** | **str**| Search by credential plain password. Note: the value of &#39;passwordPlain&#39; parameter must be URL-encoded. | [optional] 
  **credential_login** | **str**| Search by credential login. | [optional] 
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
@@ -777,15 +777,15 @@ credential_set_uid = 'credential_set_uid_example' # str | Search by credential s
 domain = 'domain_example' # str | Search by credential domain (detection domain). (optional)
 affiliation_group = 'affiliation_group_example' # str | Search by credential affiliation group. (optional)
 password_strength = 'password_strength_example' # str | Search by password strength. (optional)
-password_length_gte = 0 # float | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
-password_lowercase_gte = 0 # float | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
-password_uppercase_gte = 0 # float | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
-password_numbers_gte = 0 # float | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
-password_punctuation_gte = 0 # float | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
-password_symbols_gte = 0 # float | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
-password_separators_gte = 0 # float | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
-password_other_gte = 0 # float | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
-password_entropy_gte = 0 # float | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
+password_length_gte = 0 # int | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
+password_lowercase_gte = 0 # int | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
+password_uppercase_gte = 0 # int | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
+password_numbers_gte = 0 # int | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
+password_punctuation_gte = 0 # int | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
+password_symbols_gte = 0 # int | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
+password_separators_gte = 0 # int | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
+password_other_gte = 0 # int | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
+password_entropy_gte = 0 # int | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
 password_plain = 'password_plain_example' # str | Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded. (optional)
 credential_login = 'credential_login_example' # str | Search by credential login. (optional)
 detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
@@ -820,15 +820,15 @@ Name | Type | Description  | Notes
  **domain** | **str**| Search by credential domain (detection domain). | [optional] 
  **affiliation_group** | **str**| Search by credential affiliation group. | [optional] 
  **password_strength** | **str**| Search by password strength. | [optional] 
- **password_length_gte** | **float**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
- **password_lowercase_gte** | **float**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_uppercase_gte** | **float**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_numbers_gte** | **float**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
- **password_punctuation_gte** | **float**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
- **password_symbols_gte** | **float**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
- **password_separators_gte** | **float**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
- **password_other_gte** | **float**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
- **password_entropy_gte** | **float**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_length_gte** | **int**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
+ **password_lowercase_gte** | **int**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_uppercase_gte** | **int**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_numbers_gte** | **int**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_punctuation_gte** | **int**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_symbols_gte** | **int**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_separators_gte** | **int**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_other_gte** | **int**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_entropy_gte** | **int**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
  **password_plain** | **str**| Search by credential plain password. Note: the value of &#39;passwordPlain&#39; parameter must be URL-encoded. | [optional] 
  **credential_login** | **str**| Search by credential login. | [optional] 
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
@@ -909,15 +909,15 @@ credential_set_uid = 'credential_set_uid_example' # str | Search by credential s
 domain = 'domain_example' # str | Search by credential domain (detection domain). (optional)
 affiliation_group = 'affiliation_group_example' # str | Search by credential affiliation group. (optional)
 password_strength = 'password_strength_example' # str | Search by password strength. (optional)
-password_length_gte = 0 # float | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
-password_lowercase_gte = 0 # float | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
-password_uppercase_gte = 0 # float | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
-password_numbers_gte = 0 # float | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
-password_punctuation_gte = 0 # float | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
-password_symbols_gte = 0 # float | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
-password_separators_gte = 0 # float | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
-password_other_gte = 0 # float | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
-password_entropy_gte = 0 # float | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
+password_length_gte = 0 # int | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
+password_lowercase_gte = 0 # int | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
+password_uppercase_gte = 0 # int | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
+password_numbers_gte = 0 # int | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
+password_punctuation_gte = 0 # int | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
+password_symbols_gte = 0 # int | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
+password_separators_gte = 0 # int | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
+password_other_gte = 0 # int | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
+password_entropy_gte = 0 # int | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
 password_plain = 'password_plain_example' # str | Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded. (optional)
 credential_login = 'credential_login_example' # str | Search by credential login. (optional)
 detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
@@ -951,15 +951,15 @@ Name | Type | Description  | Notes
  **domain** | **str**| Search by credential domain (detection domain). | [optional] 
  **affiliation_group** | **str**| Search by credential affiliation group. | [optional] 
  **password_strength** | **str**| Search by password strength. | [optional] 
- **password_length_gte** | **float**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
- **password_lowercase_gte** | **float**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_uppercase_gte** | **float**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_numbers_gte** | **float**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
- **password_punctuation_gte** | **float**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
- **password_symbols_gte** | **float**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
- **password_separators_gte** | **float**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
- **password_other_gte** | **float**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
- **password_entropy_gte** | **float**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_length_gte** | **int**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
+ **password_lowercase_gte** | **int**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_uppercase_gte** | **int**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_numbers_gte** | **int**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_punctuation_gte** | **int**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_symbols_gte** | **int**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_separators_gte** | **int**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_other_gte** | **int**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_entropy_gte** | **int**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
  **password_plain** | **str**| Search by credential plain password. Note: the value of &#39;passwordPlain&#39; parameter must be URL-encoded. | [optional] 
  **credential_login** | **str**| Search by credential login. | [optional] 
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
@@ -1038,15 +1038,15 @@ credential_set_uid = 'credential_set_uid_example' # str | Search by credential s
 domain = 'domain_example' # str | Search by credential domain (detection domain). (optional)
 affiliation_group = 'affiliation_group_example' # str | Search by credential affiliation group. (optional)
 password_strength = 'password_strength_example' # str | Search by password strength. (optional)
-password_length_gte = 0 # float | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
-password_lowercase_gte = 0 # float | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
-password_uppercase_gte = 0 # float | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
-password_numbers_gte = 0 # float | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
-password_punctuation_gte = 0 # float | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
-password_symbols_gte = 0 # float | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
-password_separators_gte = 0 # float | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
-password_other_gte = 0 # float | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
-password_entropy_gte = 0 # float | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
+password_length_gte = 0 # int | Search by password complexity length field as greater then or equal to input value. (optional) (default to 0)
+password_lowercase_gte = 0 # int | Search by password complexity lowercase filed as greater then or equal to input value. (optional) (default to 0)
+password_uppercase_gte = 0 # int | Search by password complexity uppercase filed as greater then or equal to input value. (optional) (default to 0)
+password_numbers_gte = 0 # int | Search by password complexity numbers filed as greater then or equal to input value. (optional) (default to 0)
+password_punctuation_gte = 0 # int | Search by password complexity punctuation filed as greater then or equal to input value. (optional) (default to 0)
+password_symbols_gte = 0 # int | Search by password complexity symbols filed as greater then or equal to input value. (optional) (default to 0)
+password_separators_gte = 0 # int | Search by password complexity separators filed as greater then or equal to input value. (optional) (default to 0)
+password_other_gte = 0 # int | Search by password complexity other filed as greater then or equal to input value. (optional) (default to 0)
+password_entropy_gte = 0 # int | Search by password complexity entropy filed as greater then or equal to input value. (optional) (default to 0)
 password_plain = 'password_plain_example' # str | Search by credential plain password. Note: the value of 'passwordPlain' parameter must be URL-encoded. (optional)
 credential_login = 'credential_login_example' # str | Search by credential login. (optional)
 detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
@@ -1078,15 +1078,15 @@ Name | Type | Description  | Notes
  **domain** | **str**| Search by credential domain (detection domain). | [optional] 
  **affiliation_group** | **str**| Search by credential affiliation group. | [optional] 
  **password_strength** | **str**| Search by password strength. | [optional] 
- **password_length_gte** | **float**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
- **password_lowercase_gte** | **float**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_uppercase_gte** | **float**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
- **password_numbers_gte** | **float**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
- **password_punctuation_gte** | **float**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
- **password_symbols_gte** | **float**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
- **password_separators_gte** | **float**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
- **password_other_gte** | **float**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
- **password_entropy_gte** | **float**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_length_gte** | **int**| Search by password complexity length field as greater then or equal to input value. | [optional] [default to 0]
+ **password_lowercase_gte** | **int**| Search by password complexity lowercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_uppercase_gte** | **int**| Search by password complexity uppercase filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_numbers_gte** | **int**| Search by password complexity numbers filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_punctuation_gte** | **int**| Search by password complexity punctuation filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_symbols_gte** | **int**| Search by password complexity symbols filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_separators_gte** | **int**| Search by password complexity separators filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_other_gte** | **int**| Search by password complexity other filed as greater then or equal to input value. | [optional] [default to 0]
+ **password_entropy_gte** | **int**| Search by password complexity entropy filed as greater then or equal to input value. | [optional] [default to 0]
  **password_plain** | **str**| Search by credential plain password. Note: the value of &#39;passwordPlain&#39; parameter must be URL-encoded. | [optional] 
  **credential_login** | **str**| Search by credential login. | [optional] 
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 

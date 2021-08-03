@@ -36,9 +36,9 @@ class CredentialSetSchemaStatistics(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'accessed_urls_total_count': 'float',
-        'credential_occurrences_total_count': 'float',
-        'credentials_total_count': 'float'
+        'accessed_urls_total_count': 'int',
+        'credential_occurrences_total_count': 'int',
+        'credentials_total_count': 'int'
     }
 
     attribute_map = {
@@ -72,7 +72,7 @@ class CredentialSetSchemaStatistics(object):
         Number of accessed URLs.  # noqa: E501
 
         :return: The accessed_urls_total_count of this CredentialSetSchemaStatistics.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._accessed_urls_total_count
 
@@ -83,7 +83,7 @@ class CredentialSetSchemaStatistics(object):
         Number of accessed URLs.  # noqa: E501
 
         :param accessed_urls_total_count: The accessed_urls_total_count of this CredentialSetSchemaStatistics.  # noqa: E501
-        :type accessed_urls_total_count: float
+        :type accessed_urls_total_count: int
         """
 
         self._accessed_urls_total_count = accessed_urls_total_count
@@ -95,7 +95,7 @@ class CredentialSetSchemaStatistics(object):
         Number of credential occurrences.  # noqa: E501
 
         :return: The credential_occurrences_total_count of this CredentialSetSchemaStatistics.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._credential_occurrences_total_count
 
@@ -106,7 +106,7 @@ class CredentialSetSchemaStatistics(object):
         Number of credential occurrences.  # noqa: E501
 
         :param credential_occurrences_total_count: The credential_occurrences_total_count of this CredentialSetSchemaStatistics.  # noqa: E501
-        :type credential_occurrences_total_count: float
+        :type credential_occurrences_total_count: int
         """
 
         self._credential_occurrences_total_count = credential_occurrences_total_count
@@ -118,7 +118,7 @@ class CredentialSetSchemaStatistics(object):
         Number of credentials.  # noqa: E501
 
         :return: The credentials_total_count of this CredentialSetSchemaStatistics.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._credentials_total_count
 
@@ -129,7 +129,7 @@ class CredentialSetSchemaStatistics(object):
         Number of credentials.  # noqa: E501
 
         :param credentials_total_count: The credentials_total_count of this CredentialSetSchemaStatistics.  # noqa: E501
-        :type credentials_total_count: float
+        :type credentials_total_count: int
         """
 
         self._credentials_total_count = credentials_total_count
