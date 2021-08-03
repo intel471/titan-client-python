@@ -51,7 +51,7 @@ class AlertsApi(object):
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param offset: Skip leading number of records.
-        :type offset: float
+        :type offset: int
         :param watcher_group: Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed.
         :type watcher_group: str
         :param count: Returns given number of records starting from `offset` position.
@@ -97,7 +97,7 @@ class AlertsApi(object):
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param offset: Skip leading number of records.
-        :type offset: float
+        :type offset: int
         :param watcher_group: Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed.
         :type watcher_group: str
         :param count: Returns given number of records starting from `offset` position.

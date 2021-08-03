@@ -47,7 +47,7 @@ with titan_client.ApiClient(configuration) as api_client:
     gir_path = '1.1.1' # str | Search GIRs by path. (optional)
 gir_name = 'Ransomware malware' # str | Search GIRs by name (optional)
 gir_description = 'unauthorized' # str | Search GIRs description (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
  **gir_path** | **str**| Search GIRs by path. | [optional] 
  **gir_name** | **str**| Search GIRs by name | [optional] 
  **gir_description** | **str**| Search GIRs description | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type

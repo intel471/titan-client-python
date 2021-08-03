@@ -50,7 +50,7 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.AlertsApi(api_client)
     _from = '1day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
 until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 watcher_group = 'watcher_group_example' # str | Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. (optional)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 show_read = True # bool | Show read alerts. (optional) (default to True)
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **watcher_group** | **str**| Show &#x60;Alerts&#x60; from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. | [optional] 
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
  **show_read** | **bool**| Show read alerts. | [optional] [default to True]

@@ -65,7 +65,7 @@ last_updated_from = '1day' # str | Long unix time or string time range. Search d
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
 filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type
@@ -262,7 +262,7 @@ last_updated_from = '1day' # str | Long unix time or string time range. Search d
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
 filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type
@@ -455,7 +455,7 @@ last_updated_from = '1day' # str | Long unix time or string time range. Search d
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
 filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type
@@ -667,7 +667,7 @@ last_updated_from = '1day' # str | Long unix time or string time range. Search d
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
 filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -708,7 +708,7 @@ Name | Type | Description  | Notes
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type
@@ -797,7 +797,7 @@ last_updated_from = '1day' # str | Long unix time or string time range. Search d
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
 filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -840,7 +840,7 @@ Name | Type | Description  | Notes
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type

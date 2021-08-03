@@ -75,7 +75,7 @@ class NIDsApi(object):
         :param filter_by_gir_set: Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required
         :type filter_by_gir_set: str
         :param offset: Skip leading number of records.
-        :type offset: float
+        :type offset: int
         :param count: Returns given number of records starting from `offset` position.
         :type count: int
         :param async_req: Whether to execute the request asynchronously.
@@ -135,7 +135,7 @@ class NIDsApi(object):
         :param filter_by_gir_set: Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required
         :type filter_by_gir_set: str
         :param offset: Skip leading number of records.
-        :type offset: float
+        :type offset: int
         :param count: Returns given number of records starting from `offset` position.
         :type count: int
         :param async_req: Whether to execute the request asynchronously.

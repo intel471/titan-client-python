@@ -51,7 +51,7 @@ until = '1day' # str | Long unix time or string time range. Search data ending b
 last_updated_from = '1day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
-offset = 0 # float | Skip leading number of records. (optional) (default to 0)
+offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **sort** | **str**| Sort results by relevance or by the object&#39;s native time in descending (latest) or ascending (earliest) order. | [optional] [default to &#39;relevance&#39;]
- **offset** | **float**| Skip leading number of records. | [optional] [default to 0]
+ **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type
