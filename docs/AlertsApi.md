@@ -48,7 +48,7 @@ configuration = titan_client.Configuration(
 with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.AlertsApi(api_client)
-    _from = '1day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
 until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
 offset = 0 # int | Skip leading number of records. (optional) (default to 0)
 watcher_group = 'watcher_group_example' # str | Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. (optional)

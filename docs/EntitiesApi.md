@@ -46,9 +46,9 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.EntitiesApi(api_client)
     entity = 'syntax' # str | Search for all entities.
 entity_type = 'EmailAddress' # str | Search for all entities by entity type. (optional)
-_from = '1day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
 until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-last_updated_from = '1day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
+last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
 last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
 sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
 offset = 0 # int | Skip leading number of records. (optional) (default to 0)
