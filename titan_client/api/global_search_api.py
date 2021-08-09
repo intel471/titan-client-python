@@ -136,6 +136,8 @@ class GlobalSearchApi(object):
         :type instant_message_server: str
         :param instant_message_channel: Search instant messages by channel name.
         :type instant_message_channel: str
+        :param entity_type: Search by entity type.
+        :type entity_type: str
         :param gir: Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program.
         :type gir: str
         :param credential_uid: Search by credential uid.
@@ -306,6 +308,8 @@ class GlobalSearchApi(object):
         :type instant_message_server: str
         :param instant_message_channel: Search instant messages by channel name.
         :type instant_message_channel: str
+        :param entity_type: Search by entity type.
+        :type entity_type: str
         :param gir: Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program.
         :type gir: str
         :param credential_uid: Search by credential uid.
@@ -429,6 +433,7 @@ class GlobalSearchApi(object):
             'instant_message_service',
             'instant_message_server',
             'instant_message_channel',
+            'entity_type',
             'gir',
             'credential_uid',
             'credential_set_name',
@@ -596,6 +601,8 @@ class GlobalSearchApi(object):
             query_params.append(('instantMessageServer', local_var_params['instant_message_server']))  # noqa: E501
         if 'instant_message_channel' in local_var_params and local_var_params['instant_message_channel'] is not None:  # noqa: E501
             query_params.append(('instantMessageChannel', local_var_params['instant_message_channel']))  # noqa: E501
+        if 'entity_type' in local_var_params and local_var_params['entity_type'] is not None:  # noqa: E501
+            query_params.append(('entityType', local_var_params['entity_type']))  # noqa: E501
         if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
         if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
