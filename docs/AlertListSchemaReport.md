@@ -5,7 +5,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**admiralty_code** | **str** | Code as described [here](http://en.wikipedia.org/wiki/Admiralty_code). All Fintel reports have admiraltyCode&#x3D;&#x60;A1&#x60;. | 
+**admiralty_code** | **str** | Code as described [here](http://en.wikipedia.org/wiki/Admiralty_code). All Fintel reports have admiraltyCode&#x3D;&#x60;A1&#x60;. | [optional] 
 **date_of_information** | **int** | &#x60;Date of information&#x60; as Epoch Time. | 
 **motivation** | **list[str]** | &#x60;Actor&#x60;&#39;s &#x60;motivation&#x60;. CC for Cyber Crime, CE for Cyber Espionage, HA for Hacktivism. | 
 **portal_report_url** | **str** | URL to the report on the portal. | 

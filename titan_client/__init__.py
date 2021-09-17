@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "1.16.1"
+__version__ = "1.16.1.1"
 
 # import apis into sdk package
 from titan_client.api.actors_api import ActorsApi
