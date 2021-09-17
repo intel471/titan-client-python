@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "Titan Client"
-VERSION = "1.16.1"
+VERSION = "1.16.1.1"
 # To install the library, run the following
 #
 # python setup.py install
