@@ -57,7 +57,7 @@ with titan_client.ApiClient(configuration) as api_client:
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
-    sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
+    sort = 'latest' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'latest')
     filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
     offset = 0 # int | Skip leading number of records. (optional) (default to 0)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
- **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
+ **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;latest&#39;]
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
  **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]

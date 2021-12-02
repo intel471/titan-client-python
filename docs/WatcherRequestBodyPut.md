@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **notification_frequency** | **str** | Notification frequency. Applicable to &#x60;email&#x60; channel only. | [optional] 
 **patterns** | [**list[WatcherRequestBodyPatterns]**](WatcherRequestBodyPatterns.md) | Extended form of adding search patterns to a &#x60;search&#x60; type watcher. Used to specify search pattern type (handle, IP address, hash, etc.). | [optional] 
 **thread_uid** | **str** | Forum thread identifier. Applicable only for &#x60;thread&#x60; watcher type. | [optional] 
+**muted** | **bool** | Watcher&#39;s mute status (if a watcher is muted, no alerts are received during its mute period) | [optional] 
 **type** | **str** | Watcher type.&lt;br /&gt;Only watchers of type &#x60;search&#x60; can be edited. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

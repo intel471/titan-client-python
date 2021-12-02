@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **link** | [**SituationReportSchemaDataSituationReportLink**](SituationReportSchemaDataSituationReportLink.md) |  | 
 **related_reports** | **list[str]** | Situation report links to related reports like \&quot;Information Report\&quot; or \&quot;Malware Report\&quot;. | [optional] 
 **released_at** | **int** | Situation report released date. | 
+**sensitive_source** | **bool** | Indicates if the document contains sensitive source derived information. | [optional] 
 **text** | **str** | Situation report text. | 
 **title** | **str** | Situation report title. | [optional] 
 **victims** | [**list[SituationReportSchemaDataSituationReportVictims]**](SituationReportSchemaDataSituationReportVictims.md) | Purported victims list. | [optional] 

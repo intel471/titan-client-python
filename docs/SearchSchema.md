@@ -28,6 +28,8 @@ Name | Type | Description | Notes
 **iocs** | [**list[IocSchema]**](IocSchema.md) | List of [Indicators of compromise](#tag/Indicators/paths/~1indicators/get). | [optional] 
 **malware_report_total_count** | **int** | Total count of matched malware reports. | 
 **malware_reports** | [**list[MalwareReportsSearchSchema]**](MalwareReportsSearchSchema.md) | List of [Malware Reports](#tag/Malware/paths/~1malwareReports/get). | [optional] 
+**news** | [**list[NewsSchema]**](NewsSchema.md) | List of [News](#tag/News/paths/~1news/get). | [optional] 
+**news_total_count** | **int** | Total count of matched news. | 
 **nids_list** | [**NIDSSearchSchema**](NIDSSearchSchema.md) |  | [optional] 
 **nids_total_count** | **int** | Total count of matched nids. | 
 **post_total_count** | **int** | Total count of matched posts. | 

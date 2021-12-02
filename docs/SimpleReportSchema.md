@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **related_reports** | [**list[SimpleReportSchemaRelatedReports]**](SimpleReportSchemaRelatedReports.md) | List of related reports. | [optional] 
 **released** | **int** | Date the report was &#x60;released&#x60; as Epoch Time. | [optional] 
 **report_attachments** | [**list[SimpleReportSchemaReportAttachments]**](SimpleReportSchemaReportAttachments.md) | List of report attachments. | [optional] 
+**sensitive_source** | **bool** | Indicates if the document contains sensitive source derived information. | [optional] 
 **source_characterization** | **str** | Source characterization. | [optional] 
 **sources** | [**list[SimpleReportSchemaSources]**](SimpleReportSchemaSources.md) | List of &#x60;sources&#x60;. | [optional] 
 **subject** | **str** | Report&#39;s &#x60;subject&#x60;. | 
