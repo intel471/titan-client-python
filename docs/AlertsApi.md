@@ -56,7 +56,7 @@ with titan_client.ApiClient(configuration) as api_client:
     show_read = True # bool | Show read alerts. (optional) (default to True)
     display_watchers = False # bool | Show watcher groups info. (optional) (default to False)
     mark_as_read = False # bool | Mark displayed alerts as read. (optional) (default to False)
-    sort = 'relevance' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'relevance')
+    sort = 'latest' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'latest')
 
     try:
         # Get Alerts
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
  **show_read** | **bool**| Show read alerts. | [optional] [default to True]
  **display_watchers** | **bool**| Show watcher groups info. | [optional] [default to False]
  **mark_as_read** | **bool**| Mark displayed alerts as read. | [optional] [default to False]
- **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;relevance&#39;]
+ **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;latest&#39;]
 
 ### Return type
 

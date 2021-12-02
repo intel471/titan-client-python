@@ -15,6 +15,7 @@ from titan_client.api.iocs_api import IOCsApi
 from titan_client.api.indicators_api import IndicatorsApi
 from titan_client.api.messaging_services_api import MessagingServicesApi
 from titan_client.api.nids_api import NIDsApi
+from titan_client.api.news_api import NewsApi
 from titan_client.api.pcap_api import PCAPApi
 from titan_client.api.reports_api import ReportsApi
 from titan_client.api.tags_api import TagsApi

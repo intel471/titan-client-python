@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **links** | [**list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks]**](SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks.md) | Links to any other entity in portal, like Post, Thread or external &#x60;resource&#x60;. | [optional] 
 **related_reports** | **list[str]** | Spot report links to related reports like \&quot;Information Report\&quot; or \&quot;Malware Report\&quot;. | [optional] 
 **released_at** | **int** | Spot report released date. | 
+**sensitive_source** | **bool** | Indicates if the document contains sensitive source derived information. | [optional] 
 **text** | **str** | Spot report text. | 
 **title** | **str** | Spot report title. | [optional] 
 **version** | **str** | Spot report release &#x60;version&#x60;. | 

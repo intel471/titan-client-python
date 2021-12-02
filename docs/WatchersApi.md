@@ -617,7 +617,7 @@ Name | Type | Description  | Notes
 
 Put Watcher
 
-Editing of existing watcher in a given Watcher group from a json object supplied in request body. Whole watcher body should be supplied
+Editing of existing watcher in a given Watcher group from a json object supplied in request body. Whole watcher body should be supplied (watcher may be muted separately, without specifying the whole watcher body) 
 
 ### Example
 
