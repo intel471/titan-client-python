@@ -8,8 +8,6 @@ docs/AlertListSchemaChunks.md
 docs/AlertListSchemaHighlights.md
 docs/AlertListSchemaReport.md
 docs/AlertListSchemaResponse.md
-docs/AlertSubscriptionSchema.md
-docs/AlertSubscriptionSubscribeResponse.md
 docs/AlertsApi.md
 docs/CredentialAccessedUrlSchema.md
 docs/CredentialAccessedUrlSchemaActivity.md
@@ -66,6 +64,7 @@ docs/EntitiesSchemaLinks.md
 docs/EntitiesSchemaLinksActors.md
 docs/EntitiesSchemaLinksReports.md
 docs/EventSchema.md
+docs/EventSchemaActivity.md
 docs/EventSchemaData.md
 docs/EventSchemaDataEventData.md
 docs/EventSchemaDataEventDataController.md
@@ -85,6 +84,7 @@ docs/EventsApi.md
 docs/EventsResponse.md
 docs/ForumsApi.md
 docs/FullBreachAlertSchema.md
+docs/FullBreachAlertSchemaAllOf.md
 docs/FullCveSchema.md
 docs/FullNewsSchema.md
 docs/FullReportSchema.md
@@ -143,14 +143,6 @@ docs/MalwareReportsSearchSchemaDataThreat.md
 docs/MalwareReportsSearchSchemaDataThreatData.md
 docs/MessagingServicesApi.md
 docs/MessagingServicesResponse.md
-docs/NIDSSearchResponse.md
-docs/NIDSSearchSchema.md
-docs/NIDSSearchSchemaActivity.md
-docs/NIDSSearchSchemaData.md
-docs/NIDSSearchSchemaDataThreat.md
-docs/NIDSSearchSchemaDataThreatData.md
-docs/NIDSSearchSchemaMeta.md
-docs/NIDsApi.md
 docs/NewsApi.md
 docs/NewsSchema.md
 docs/NewsSchemaActivity.md
@@ -191,6 +183,7 @@ docs/SimpleBreachAlertSchemaDataBreachAlert.md
 docs/SimpleBreachAlertSchemaDataBreachAlertConfidence.md
 docs/SimpleBreachAlertSchemaDataBreachAlertSources.md
 docs/SimpleBreachAlertSchemaDataBreachAlertVictim.md
+docs/SimpleBreachAlertSchemaDataBreachAlertVictimIndustries.md
 docs/SimpleBreachAlertSchemaDataEntities.md
 docs/SimpleBreachAlertSchemaDataGeoInfo.md
 docs/SimpleCveSchema.md
@@ -273,6 +266,9 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_event_schema_activity.py
+test/test_full_breach_alert_schema_all_of.py
+test/test_simple_breach_alert_schema_data_breach_alert_victim_industries.py
 titan_client/__init__.py
 titan_client/api/__init__.py
 titan_client/api/actors_api.py
@@ -287,7 +283,6 @@ titan_client/api/indicators_api.py
 titan_client/api/iocs_api.py
 titan_client/api/messaging_services_api.py
 titan_client/api/news_api.py
-titan_client/api/nids_api.py
 titan_client/api/pcap_api.py
 titan_client/api/reports_api.py
 titan_client/api/tags_api.py
@@ -303,8 +298,6 @@ titan_client/models/alert_list_schema_chunks.py
 titan_client/models/alert_list_schema_highlights.py
 titan_client/models/alert_list_schema_report.py
 titan_client/models/alert_list_schema_response.py
-titan_client/models/alert_subscription_schema.py
-titan_client/models/alert_subscription_subscribe_response.py
 titan_client/models/credential_accessed_url_schema.py
 titan_client/models/credential_accessed_url_schema_activity.py
 titan_client/models/credential_accessed_url_schema_classification.py
@@ -358,6 +351,7 @@ titan_client/models/entities_schema_links.py
 titan_client/models/entities_schema_links_actors.py
 titan_client/models/entities_schema_links_reports.py
 titan_client/models/event_schema.py
+titan_client/models/event_schema_activity.py
 titan_client/models/event_schema_data.py
 titan_client/models/event_schema_data_event_data.py
 titan_client/models/event_schema_data_event_data_controller.py
@@ -375,6 +369,7 @@ titan_client/models/event_schema_meta.py
 titan_client/models/event_stream_response.py
 titan_client/models/events_response.py
 titan_client/models/full_breach_alert_schema.py
+titan_client/models/full_breach_alert_schema_all_of.py
 titan_client/models/full_cve_schema.py
 titan_client/models/full_news_schema.py
 titan_client/models/full_report_schema.py
@@ -432,13 +427,6 @@ titan_client/models/news_schema.py
 titan_client/models/news_schema_activity.py
 titan_client/models/news_schema_data.py
 titan_client/models/news_schema_data_attachments.py
-titan_client/models/nids_search_response.py
-titan_client/models/nids_search_schema.py
-titan_client/models/nids_search_schema_activity.py
-titan_client/models/nids_search_schema_data.py
-titan_client/models/nids_search_schema_data_threat.py
-titan_client/models/nids_search_schema_data_threat_data.py
-titan_client/models/nids_search_schema_meta.py
 titan_client/models/pcap_response.py
 titan_client/models/pcap_schema.py
 titan_client/models/pcap_schema_data.py
@@ -472,6 +460,7 @@ titan_client/models/simple_breach_alert_schema_data_breach_alert.py
 titan_client/models/simple_breach_alert_schema_data_breach_alert_confidence.py
 titan_client/models/simple_breach_alert_schema_data_breach_alert_sources.py
 titan_client/models/simple_breach_alert_schema_data_breach_alert_victim.py
+titan_client/models/simple_breach_alert_schema_data_breach_alert_victim_industries.py
 titan_client/models/simple_breach_alert_schema_data_entities.py
 titan_client/models/simple_breach_alert_schema_data_geo_info.py
 titan_client/models/simple_cve_schema.py

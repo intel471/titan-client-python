@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **document_family** | **str** | Document family. | [optional] 
 **document_type** | **str** | Document type. | [optional] 
 **entities** | [**list[SimpleReportSchemaEntities]**](SimpleReportSchemaEntities.md) | List of entities. | [optional] 
-**executive_summary** | **str** | Executive summary in HTML format. | [optional] 
 **last_updated** | **int** | Last modification date as Epoch Time. | [optional] 
 **locations** | [**list[SimpleReportSchemaLocations]**](SimpleReportSchemaLocations.md) | Report &#x60;locations&#x60;. | [optional] 
 **motivation** | **list[str]** | Actor&#39;s &#x60;motivation&#x60;. CC for Cyber Crime, CE for Cyber Espionage, HA for Hacktivism. | [optional] 
@@ -28,6 +27,7 @@ Name | Type | Description | Notes
 **tags** | **list[str]** | Report&#39;s assigned &#x60;tags&#x60;. | [optional] 
 **uid** | **str** | Unique report identifier. | 
 **victims** | [**list[SimpleReportSchemaVictims]**](SimpleReportSchemaVictims.md) | Purported victims list. | [optional] 
+**executive_summary** | **str** | Executive summary in HTML format. | [optional] 
 **raw_text** | **str** | Raw text in HTML format. | 
 **raw_text_translated** | **str** | Translated text in HTML format. | [optional] 
 **researcher_comments** | **str** | Researcher&#39;s comments in HTML format. | [optional] 

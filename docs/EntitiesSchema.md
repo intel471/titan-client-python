@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**active_from** | **int** | Date first seen. | [optional] 
+**active_till** | **int** | Date last seen. | [optional] 
 **last_updated** | **int** | Last modification date. | [optional] 
 **links** | [**EntitiesSchemaLinks**](EntitiesSchemaLinks.md) |  | 
 **type** | **str** | Entity &#x60;type&#x60;. | 

@@ -53,7 +53,7 @@ configuration = titan_client.Configuration(
 with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
-    section = 'section_example' # str | Shows watcher groups from defined section. (optional)
+    section = 'myGroups' # str | Shows watcher groups from defined section. (optional) (default to 'myGroups')
 
     try:
         # Get Watcher Group List
@@ -67,7 +67,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **section** | **str**| Shows watcher groups from defined section. | [optional] 
+ **section** | **str**| Shows watcher groups from defined section. | [optional] [default to &#39;myGroups&#39;]
 
 ### Return type
 

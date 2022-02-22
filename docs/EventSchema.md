@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**activity** | [**SimpleCveSchemaActivity**](SimpleCveSchemaActivity.md) |  | 
+**activity** | [**EventSchemaActivity**](EventSchemaActivity.md) |  | 
 **data** | [**EventSchemaData**](EventSchemaData.md) |  | 
 **last_updated** | **int** | Event last modification date. | 
 **meta** | [**EventSchemaMeta**](EventSchemaMeta.md) |  | 
