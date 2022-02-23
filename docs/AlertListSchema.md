@@ -1,6 +1,6 @@
 # AlertListSchema
 
-Returns list of Alerts matching filter criteria excluding the following types: Malware reports, YARA, NIDS.
+Returns list of Alerts matching filter criteria excluding the following types: Malware reports, YARA
 
 ## Properties
 Name | Type | Description | Notes

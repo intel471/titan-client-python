@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **document_family** | **str** | Document family. | [optional] 
 **document_type** | **str** | Document type. | [optional] 
 **entities** | [**list[SimpleReportSchemaEntities]**](SimpleReportSchemaEntities.md) | List of entities. | [optional] 
-**executive_summary** | **str** | Executive summary in HTML format. | [optional] 
 **last_updated** | **int** | Last modification date as Epoch Time. | [optional] 
 **locations** | [**list[SimpleReportSchemaLocations]**](SimpleReportSchemaLocations.md) | Report &#x60;locations&#x60;. | [optional] 
 **motivation** | **list[str]** | Actor&#39;s &#x60;motivation&#x60;. CC for Cyber Crime, CE for Cyber Espionage, HA for Hacktivism. | [optional] 

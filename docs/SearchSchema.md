@@ -30,8 +30,6 @@ Name | Type | Description | Notes
 **malware_reports** | [**list[MalwareReportsSearchSchema]**](MalwareReportsSearchSchema.md) | List of [Malware Reports](#tag/Malware/paths/~1malwareReports/get). | [optional] 
 **news** | [**list[NewsSchema]**](NewsSchema.md) | List of [News](#tag/News/paths/~1news/get). | [optional] 
 **news_total_count** | **int** | Total count of matched news. | 
-**nids_list** | [**NIDSSearchSchema**](NIDSSearchSchema.md) |  | [optional] 
-**nids_total_count** | **int** | Total count of matched nids. | 
 **post_total_count** | **int** | Total count of matched posts. | 
 **posts** | [**list[PostSchema]**](PostSchema.md) | List of [Posts](#tag/Forums/paths/~1posts/get). | [optional] 
 **private_message_total_count** | **int** | Total count of matched private messages. | 
