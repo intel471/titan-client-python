@@ -61,7 +61,8 @@ class PrivateMessageSchemaLinks(object):
 
         self.author_actor = author_actor
         self.forum = forum
-        self.recipient_actor = recipient_actor
+        if recipient_actor is not None:
+            self.recipient_actor = recipient_actor
 
     @property
     def author_actor(self):
@@ -127,6 +128,7 @@ class PrivateMessageSchemaLinks(object):
         :param recipient_actor: The recipient_actor of this PrivateMessageSchemaLinks.  # noqa: E501
         :type recipient_actor: PrivateMessageSchemaLinksRecipientActor
         """
+
         self._recipient_actor = recipient_actor
 
     def to_dict(self, serialize=False):

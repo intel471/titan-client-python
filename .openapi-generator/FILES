@@ -266,9 +266,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_event_schema_activity.py
-test/test_full_breach_alert_schema_all_of.py
-test/test_simple_breach_alert_schema_data_breach_alert_victim_industries.py
 titan_client/__init__.py
 titan_client/api/__init__.py
 titan_client/api/actors_api.py
