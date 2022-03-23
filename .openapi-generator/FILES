@@ -214,6 +214,7 @@ docs/SimpleReportsResponse.md
 docs/SimpleSpotReportSchema.md
 docs/SimpleSpotReportSchemaActivity.md
 docs/SimpleSpotReportSchemaData.md
+docs/SimpleSpotReportSchemaDataEntities.md
 docs/SimpleSpotReportSchemaDataSpotReport.md
 docs/SimpleSpotReportSchemaDataSpotReportSpotReportData.md
 docs/SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks.md
@@ -266,6 +267,7 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_simple_spot_report_schema_data_entities.py
 titan_client/__init__.py
 titan_client/api/__init__.py
 titan_client/api/actors_api.py
@@ -488,6 +490,7 @@ titan_client/models/simple_reports_response.py
 titan_client/models/simple_spot_report_schema.py
 titan_client/models/simple_spot_report_schema_activity.py
 titan_client/models/simple_spot_report_schema_data.py
+titan_client/models/simple_spot_report_schema_data_entities.py
 titan_client/models/simple_spot_report_schema_data_spot_report.py
 titan_client/models/simple_spot_report_schema_data_spot_report_spot_report_data.py
 titan_client/models/simple_spot_report_schema_data_spot_report_spot_report_data_links.py
