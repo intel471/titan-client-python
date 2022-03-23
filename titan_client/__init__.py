@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "1.19.0"
+__version__ = "1.19.0.1"
 
 # import apis into sdk package
 from titan_client.api.actors_api import ActorsApi
@@ -244,6 +244,7 @@ from titan_client.models.simple_reports_response import SimpleReportsResponse
 from titan_client.models.simple_spot_report_schema import SimpleSpotReportSchema
 from titan_client.models.simple_spot_report_schema_activity import SimpleSpotReportSchemaActivity
 from titan_client.models.simple_spot_report_schema_data import SimpleSpotReportSchemaData
+from titan_client.models.simple_spot_report_schema_data_entities import SimpleSpotReportSchemaDataEntities
 from titan_client.models.simple_spot_report_schema_data_spot_report import SimpleSpotReportSchemaDataSpotReport
 from titan_client.models.simple_spot_report_schema_data_spot_report_spot_report_data import SimpleSpotReportSchemaDataSpotReportSpotReportData
 from titan_client.models.simple_spot_report_schema_data_spot_report_spot_report_data_links import SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks

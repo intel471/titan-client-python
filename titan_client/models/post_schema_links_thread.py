@@ -63,7 +63,8 @@ class PostSchemaLinksThread(object):
         self.discriminator = None
 
         self.count = count
-        self.topic = topic
+        if topic is not None:
+            self.topic = topic
         if topic_original is not None:
             self.topic_original = topic_original
         self.uid = uid
@@ -113,8 +114,6 @@ class PostSchemaLinksThread(object):
         :param topic: The topic of this PostSchemaLinksThread.  # noqa: E501
         :type topic: str
         """
-        if self.local_vars_configuration.client_side_validation and topic is None:  # noqa: E501
-            raise ValueError("Invalid value for `topic`, must not be `None`")  # noqa: E501
 
         self._topic = topic
 

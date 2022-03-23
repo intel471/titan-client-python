@@ -6,7 +6,7 @@ Thread in which the post was found.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** | &#x60;Count&#x60; of posts in thread. | 
-**topic** | **str** | Thread &#x60;topic&#x60;. If post topic is translated, this parameter contains translated topic, if not — original. | 
+**topic** | **str** | Thread &#x60;topic&#x60;. If post topic is translated, this parameter contains translated topic, if not — original. | [optional] 
 **topic_original** | **str** | Original thread topic. This parameter is active if post topic is translated. | [optional] 
 **uid** | **str** | Unique thread identifier. | 
 
