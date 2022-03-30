@@ -1,7 +1,8 @@
 import datetime
 import logging
 
-from stix2 import Bundle, Indicator, Report
+from pytz import UTC
+from stix2 import Bundle, Indicator, Report, TLP_AMBER
 
 from titan_client.titan_stix.patterning import STIXPatterningMapper
 from titan_client.titan_stix.mappers.reports import ReportMapper
@@ -13,7 +14,7 @@ log = logging.getLogger(__name__)
 @StixMapper.register("iocs", lambda x: "iocTotalCount" in x)
 class IOCMapper(BaseMapper):
 
-    def map(self, source: dict) -> Bundle:
+    def map(self, source: dict, girs_names: dict = None) -> Bundle:
         container = {}
         items = source.get("iocs") or [] if "iocTotalCount" in source else [source]
         for item in items:
@@ -21,12 +22,13 @@ class IOCMapper(BaseMapper):
             ioc_value = item["value"]
             ioc_id = item["uid"]
             report_sources = item["links"].get("reports") or []
-            valid_from = datetime.datetime.fromtimestamp(item["activeFrom"] / 1000)
-            valid_until = datetime.datetime.fromtimestamp(item["activeTill"] / 1000)
+            valid_from = datetime.datetime.fromtimestamp(item["activeFrom"] / 1000, UTC)
+            valid_until = datetime.datetime.fromtimestamp(item["activeTill"] / 1000, UTC)
             if valid_from == valid_until:
                 valid_until = None
 
-            if pattern_mapper := getattr(STIXPatterningMapper, f"map_{ioc_type}", None):
+            pattern_mapper = getattr(STIXPatterningMapper, f"map_{ioc_type}", None)
+            if pattern_mapper:
                 stix_pattern = pattern_mapper(ioc_value)
                 indicator = Indicator(id=generate_id(Indicator, pattern=stix_pattern),
                                       indicator_types=["malicious-activity"],
@@ -35,9 +37,11 @@ class IOCMapper(BaseMapper):
                                       valid_from=valid_from,
                                       valid_until=valid_until,
                                       created_by_ref=author_identity,
+                                      object_marking_refs=[TLP_AMBER],
                                       custom_properties={"x_intel471_com_uid": ioc_id})
 
                 container[indicator.id] = indicator
+                container[TLP_AMBER.id] = TLP_AMBER
                 for uid, stix_object in self.map_reports(report_sources, indicator).items():
                     if isinstance(stix_object, Report) and uid in container:
                         stix_object.object_refs.extend(container[uid].object_refs)

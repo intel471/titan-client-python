@@ -267,7 +267,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_simple_spot_report_schema_data_entities.py
 titan_client/__init__.py
 titan_client/api/__init__.py
 titan_client/api/actors_api.py
