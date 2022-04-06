@@ -71,8 +71,10 @@ class AlertListSchemaReport(object):
         self._uid = None
         self.discriminator = None
 
-        self.admiralty_code = admiralty_code
-        self.date_of_information = date_of_information
+        if admiralty_code is not None:
+            self.admiralty_code = admiralty_code
+        if date_of_information is not None:
+            self.date_of_information = date_of_information
         self.motivation = motivation
         self.portal_report_url = portal_report_url
         self.source_characterization = source_characterization
@@ -99,8 +101,6 @@ class AlertListSchemaReport(object):
         :param admiralty_code: The admiralty_code of this AlertListSchemaReport.  # noqa: E501
         :type admiralty_code: str
         """
-        if self.local_vars_configuration.client_side_validation and admiralty_code is None:  # noqa: E501
-            raise ValueError("Invalid value for `admiralty_code`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 admiralty_code is not None and not re.search(r'^[A-F][1-6]$', admiralty_code)):  # noqa: E501
             raise ValueError(r"Invalid value for `admiralty_code`, must be a follow pattern or equal to `/^[A-F][1-6]$/`")  # noqa: E501
@@ -127,8 +127,6 @@ class AlertListSchemaReport(object):
         :param date_of_information: The date_of_information of this AlertListSchemaReport.  # noqa: E501
         :type date_of_information: int
         """
-        if self.local_vars_configuration.client_side_validation and date_of_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `date_of_information`, must not be `None`")  # noqa: E501
 
         self._date_of_information = date_of_information
 

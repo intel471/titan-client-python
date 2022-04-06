@@ -135,12 +135,14 @@ class FullReportSchema(object):
             self.actor_handle = actor_handle
         if actor_subject_of_report is not None:
             self.actor_subject_of_report = actor_subject_of_report
-        self.admiralty_code = admiralty_code
+        if admiralty_code is not None:
+            self.admiralty_code = admiralty_code
         if classification is not None:
             self.classification = classification
         if created is not None:
             self.created = created
-        self.date_of_information = date_of_information
+        if date_of_information is not None:
+            self.date_of_information = date_of_information
         if document_family is not None:
             self.document_family = document_family
         if document_type is not None:
@@ -246,8 +248,6 @@ class FullReportSchema(object):
         :param admiralty_code: The admiralty_code of this FullReportSchema.  # noqa: E501
         :type admiralty_code: str
         """
-        if self.local_vars_configuration.client_side_validation and admiralty_code is None:  # noqa: E501
-            raise ValueError("Invalid value for `admiralty_code`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 admiralty_code is not None and not re.search(r'^[A-F][1-6]$', admiralty_code)):  # noqa: E501
             raise ValueError(r"Invalid value for `admiralty_code`, must be a follow pattern or equal to `/^[A-F][1-6]$/`")  # noqa: E501
@@ -318,8 +318,6 @@ class FullReportSchema(object):
         :param date_of_information: The date_of_information of this FullReportSchema.  # noqa: E501
         :type date_of_information: int
         """
-        if self.local_vars_configuration.client_side_validation and date_of_information is None:  # noqa: E501
-            raise ValueError("Invalid value for `date_of_information`, must not be `None`")  # noqa: E501
 
         self._date_of_information = date_of_information
 
