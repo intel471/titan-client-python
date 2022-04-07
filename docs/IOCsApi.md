@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **iocs_get**
-> IocsResponse iocs_get(ioc, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> IocsResponse iocs_get(ioc, ioc_type=ioc_type, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Indicator of Compromise (IoC)
 
@@ -45,6 +45,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.IOCsApi(api_client)
     ioc = '.com' # str | Search for all IOCs.
+    ioc_type = 'MaliciousURL' # str | Search by IOC type. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
@@ -55,7 +56,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Indicator of Compromise (IoC)
-        api_response = api_instance.iocs_get(ioc, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.iocs_get(ioc, ioc_type=ioc_type, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling IOCsApi->iocs_get: %s\n" % e)
@@ -66,6 +67,7 @@ with titan_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ioc** | **str**| Search for all IOCs. | 
+ **ioc_type** | **str**| Search by IOC type. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
