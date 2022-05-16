@@ -5,6 +5,7 @@ Purported victim information.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**country** | **str** | Purported victim&#39;s &#x60;country&#x60;. | [optional] 
 **industries** | [**list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustries]**](SimpleBreachAlertSchemaDataBreachAlertVictimIndustries.md) | Purported victim&#39;s &#x60;industries&#x60;. | 
 **name** | **str** | Purported victim&#39;s &#x60;name&#x60;. | 
 **region** | **str** | Purported victim&#39;s &#x60;region&#x60;. | 
