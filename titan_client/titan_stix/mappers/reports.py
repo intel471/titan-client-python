@@ -1,11 +1,13 @@
 import datetime
 import logging
+import re
 from typing import List
 
 from pytz import UTC
 from stix2 import Bundle, Report, ExternalReference, TLP_AMBER
 
-from titan_client.titan_stix.mappers.common import StixMapper, BaseMapper, generate_id, author_identity
+from .common import StixMapper, BaseMapper, generate_id
+from .. import author_identity
 
 log = logging.getLogger(__name__)
 
@@ -71,7 +73,7 @@ class AbstractReportMapper(BaseMapper):
         "vulnerabilities & exploits": "vulnerability",
     }
 
-    def map(self, source: dict, girs_names: dict = None) -> Bundle:
+    def map(self, source: dict) -> Bundle:
         container = self.map_reports(source)
         if container:
             bundle = Bundle(*container.values(), allow_custom=True)
@@ -106,20 +108,79 @@ class AbstractReportMapper(BaseMapper):
         return value.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
 
-@StixMapper.register("reports", lambda x: "reportTotalCount" in x)
-@StixMapper.register("report", lambda x: "subject" in x and "portalReportUrl" in x)
+# @StixMapper.register("reports", lambda x: "reportTotalCount" in x)
+# @StixMapper.register("report", lambda x: "subject" in x and "portalReportUrl" in x)
 class ReportMapper(AbstractReportMapper):
+
+    remove_html = re.compile("<.*?>")
+
+    def __init__(self, titan_client, api_client):
+        super().__init__(titan_client, api_client)
+        self.full_reports_cache = {}
+        self.portal2api_map = {
+            "inforep": ("ReportsApi", "reports_uid_get", "raw_text"),
+            "fintel": ("ReportsApi", "reports_uid_get", "raw_text"),
+            "breach_alert": (
+                "ReportsApi",
+                "breach_alerts_uid_get",
+                "data.breach_alert.summary",
+            ),
+            "spotrep": (
+                "ReportsApi",
+                "spot_reports_uid_get",
+                "data.spot_report.spot_report_data.text",
+            ),
+            "malrep": (
+                "ReportsApi",
+                "malware_reports_uid_get",
+                "data.malware_report_data.text",
+            ),
+            "sitrep": (
+                "ReportsApi",
+                "situation_reports_report_uid_get",
+                "data.situation_report.text",
+            ),
+            "cve": (
+                "VulnerabilitiesApi",
+                "cve_reports_uid_get",
+                "data.cve_report.summary",
+            ),
+        }
+
+    def _get_description(self, report_url: str):
+        if not all([self.titan_client, self.api_client]):
+            return None
+        if report_url not in self.full_reports_cache:
+            _, _, _, _, report_type, uid = report_url.split("/")
+            api_cls, api_method, content_field = self.portal2api_map.get(report_type)
+            api_instance = getattr(self.titan_client, api_cls)(self.api_client)
+            api_response = getattr(api_instance, api_method)(uid)
+            item = api_response
+            for i in content_field.split("."):
+                item = getattr(item, i, "")
+            self.full_reports_cache[report_url] = re.sub(self.remove_html, "", item)
+        return self.full_reports_cache[report_url]
+
     def map_reports(self, source: dict, object_refs: dict = None) -> dict:
         container = {}
-        items = source.get("reports") or [] if "reportTotalCount" in source else [source]
+        items = (
+            source.get("reports") or [] if "reportTotalCount" in source else [source]
+        )
         for item in items:
             report_uid = item["uid"]
             report_family = item.get("documentFamily")
             report_type = item.get("documentType")
-            report_subject = item["subject"]
             report_url = item["portalReportUrl"]
+            report_subject = item["subject"]
+            try:
+                report_description = self._get_description(report_url) or report_subject
+            except Exception as e:
+                log.warning("Cannot build the report's description. Error: %s", e)
+                report_description = report_subject
             report_types = self.map_report_types(item.get("tags") or [])
-            created = datetime.datetime.fromtimestamp(item.get("released", item.get("created")) / 1000, UTC)
+            created = datetime.datetime.fromtimestamp(
+                item.get("released", item.get("created")) / 1000, UTC
+            )
 
             collected_object_refs = {}
             if object_refs:
@@ -129,20 +190,31 @@ class ReportMapper(AbstractReportMapper):
                 if entity:
                     collected_object_refs[entity.id] = entity
             for location_source in item.get("locations") or []:
-                location = self.map_location(location_source.get("region"), location_source.get("country"))
+                location = self.map_location(
+                    location_source.get("region"), location_source.get("country")
+                )
                 if location:
                     collected_object_refs[location.id] = location
             if collected_object_refs:
                 name = self.get_name(report_subject, report_family, report_type)
-                report = Report(id=generate_id(Report, name=name.strip().lower(), published=self.format_published(created)),
-                                name=name,
-                                report_types=report_types,
-                                published=self.format_published(created),
-                                object_refs=collected_object_refs.values(),
-                                external_references=[ExternalReference(source_name="Titan URL", url=report_url)],
-                                created_by_ref=author_identity,
-                                object_marking_refs=[TLP_AMBER],
-                                custom_properties={"x_intel471_com_uid": report_uid})
+                report = Report(
+                    id=generate_id(
+                        Report,
+                        name=name.strip().lower(),
+                        published=self.format_published(created),
+                    ),
+                    name=name,
+                    description=report_description,
+                    report_types=report_types,
+                    published=self.format_published(created),
+                    object_refs=collected_object_refs.values(),
+                    external_references=[
+                        ExternalReference(source_name="Titan URL", url=report_url)
+                    ],
+                    created_by_ref=author_identity,
+                    object_marking_refs=[TLP_AMBER],
+                    custom_properties={"x_intel471_com_uid": report_uid},
+                )
                 container[report.id] = report
                 container[author_identity.id] = author_identity
                 container[TLP_AMBER.id] = TLP_AMBER

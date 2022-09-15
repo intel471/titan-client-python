@@ -397,7 +397,7 @@ configuration = titan_client.Configuration(
 with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.ReportsApi(api_client)
-    report = ['[\"]ransomware-as-a-service\"]'] # list[str] | Search text in reports, subjects, and entities. (optional)
+    report = 'ransomware-as-a-service' # str | Search text in reports, subjects, and entities. (optional)
     report_location = 'Pakistan' # str | Country or region. (optional)
     report_tag = 'E-commerce' # str | Tag. (optional)
     report_admiralty_code = 'A6' # str | Search reports by admiralty code. (optional)
@@ -427,7 +427,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **report** | [**list[str]**](str.md)| Search text in reports, subjects, and entities. | [optional] 
+ **report** | **str**| Search text in reports, subjects, and entities. | [optional] 
  **report_location** | **str**| Country or region. | [optional] 
  **report_tag** | **str**| Tag. | [optional] 
  **report_admiralty_code** | **str**| Search reports by admiralty code. | [optional] 
