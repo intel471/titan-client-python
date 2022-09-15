@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **alerts_get**
-> AlertListSchemaResponse alerts_get(_from=_from, until=until, offset=offset, watcher_group=watcher_group, count=count, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
+> AlertListSchemaResponse alerts_get(_from=_from, until=until, count=count, offset=offset, watcher_group=watcher_group, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
 
 Get Alerts
 
@@ -46,9 +46,9 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.AlertsApi(api_client)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
-    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
-    watcher_group = 'watcher_group_example' # str | Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. (optional)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
+    offset = 'offset_example' # str | UID of the latest already acquired alert (optional)
+    watcher_group = 'watcher_group_example' # str | Show `Alerts` from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. (optional)
     show_read = True # bool | Show read alerts. (optional) (default to True)
     display_watchers = False # bool | Show watcher groups info. (optional) (default to False)
     mark_as_read = False # bool | Mark displayed alerts as read. (optional) (default to False)
@@ -56,7 +56,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Get Alerts
-        api_response = api_instance.alerts_get(_from=_from, until=until, offset=offset, watcher_group=watcher_group, count=count, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
+        api_response = api_instance.alerts_get(_from=_from, until=until, count=count, offset=offset, watcher_group=watcher_group, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_get: %s\n" % e)
@@ -68,9 +68,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
- **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
- **watcher_group** | **str**| Show &#x60;Alerts&#x60; from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. | [optional] 
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
+ **offset** | **str**| UID of the latest already acquired alert | [optional] 
+ **watcher_group** | **str**| Show &#x60;Alerts&#x60; from specified watcher group only. Object field: watcherGroupUid. Multiple values allowed. | [optional] 
  **show_read** | **bool**| Show read alerts. | [optional] [default to True]
  **display_watchers** | **bool**| Show watcher groups info. | [optional] [default to False]
  **mark_as_read** | **bool**| Mark displayed alerts as read. | [optional] [default to False]

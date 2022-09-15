@@ -266,7 +266,6 @@ requirements.txt
 setup.cfg
 setup.py
 test-requirements.txt
-test/__init__.py
 titan_client/__init__.py
 titan_client/api/__init__.py
 titan_client/api/actors_api.py

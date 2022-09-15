@@ -1,41 +1,33 @@
 import abc
 import datetime
 import logging
-import uuid
 from abc import ABC
-from collections import Callable
-from typing import Union
-
-from stix2 import Relationship, EmailAddress, File, ThreatActor, IPv4Address, URL, Location, DomainName, Bundle, \
-    Identity
-from stix2.base import _DomainObject, _Observable
-from stix2.canonicalization.Canonicalize import canonicalize
-
-from titan_client.titan_stix.exceptions import EmptyBundle, StixMapperNotFound
-
-NAMESPACE_OASIS = uuid.UUID("00abedb4-aa42-466c-9c01-fed23315a9b7")
+from collections import Callable, namedtuple
+from stix2 import (
+    EmailAddress,
+    File,
+    ThreatActor,
+    IPv4Address,
+    URL,
+    Location,
+    DomainName,
+    Bundle
+)
+from .. import generate_id
+from ..exceptions import EmptyBundle, StixMapperNotFound
 
 log = logging.getLogger(__name__)
 
 
-def generate_id(stix_class: Union[_DomainObject, Relationship, _Observable], **id_contributing_properties: str):
-    if id_contributing_properties:
-        name = canonicalize(id_contributing_properties, utf8=False)
-        return f"{stix_class._type}--{uuid.uuid5(NAMESPACE_OASIS, name)}"
-    return f"{stix_class._type}--{uuid.uuid4()}"
-
-
-author_name = "Intel 471 Inc."
-author_identity = Identity(
-    id=generate_id(Identity, name=author_name.lower(), identity_class="organization"),
-    name=author_name,
-    identity_class="organization",
-    created=datetime.datetime(2022, 1, 1),
-    modified=datetime.datetime(2022, 1, 1)
+MappingConfig = namedtuple(
+    "MappingConfig", ["patterning_mapper", "observable_mapper", "kwargs_extractor"]
 )
 
 
 class StixMapper:
+    def __init__(self, titan_client=None, api_client=None):
+        self.titan_client = titan_client
+        self.api_client = api_client
 
     mappers = {}
 
@@ -54,32 +46,36 @@ class StixMapper:
                           to determine if given mapper should be used or not
 
         """
+
         def inner_wrapper(wrapped_class: Callable) -> Callable:
             if name in cls.mappers:
                 log.info(f"Mapper for {name} already exists. Will replace it")
             cls.mappers[name] = (condition, wrapped_class)
             return wrapped_class
+
         return inner_wrapper
 
-    @classmethod
-    def map(cls, source: dict, stix_version: str = "2.1", girs_names: dict = None) -> Bundle:
+    def map(self, source: dict, stix_version: str = "2.1") -> Bundle:
         log.info(f"Initializing converter. STIX version {stix_version}.")
-        for name, (condition, mapper_class) in cls.mappers.items():
+        for name, (condition, mapper_class) in self.mappers.items():
             if condition(source):
                 log.info(f"Mapping Titan payload for {name}.")
-                mapper = mapper_class()
-                bundle = mapper.map(source, girs_names)
+                mapper = mapper_class(self.titan_client, self.api_client)
+                bundle = mapper.map(source)
                 if bundle:
                     return bundle
                 else:
                     raise EmptyBundle("STIX Mapper produced an empty bundle.")
-        raise StixMapperNotFound(f"STIX Mapper for this payload is not available (keys: {', '.join(source.keys())}).")
+        raise StixMapperNotFound(
+            f"STIX Mapper for this payload is not available (keys: {', '.join(source.keys())})."
+        )
 
 
 class BaseMapper(ABC):
-
-    def __init__(self):
+    def __init__(self, titan_client, api_client):
         self.now = datetime.datetime.utcnow()
+        self.titan_client = titan_client
+        self.api_client = api_client
 
     @abc.abstractmethod
     def map(self, source: dict) -> Bundle:
@@ -127,3 +123,16 @@ class BaseMapper(ABC):
             while text[-1] != " ":
                 text = text[:-1]
         return text.strip()
+
+    def get_girs_names(self):
+        girs_names = {}
+        if not all([self.titan_client, self.api_client]):
+            return girs_names
+        api_instance = self.titan_client.GIRsApi(self.api_client)
+        for offset in range(0, 1000, 100):
+            api_response = api_instance.girs_get(count=100, offset=offset)
+            if not api_response.girs:
+                break
+            for gir in api_response.girs:
+                girs_names[gir.data.gir.path] = gir.data.gir.name
+        return girs_names

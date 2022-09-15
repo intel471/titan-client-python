@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor_handle** | **str** | Actor&#39;s handle | [optional] 
 **actor_subject_of_report** | [**list[SimpleReportSchemaActorSubjectOfReport]**](SimpleReportSchemaActorSubjectOfReport.md) | List of actors mentioned in report subject. | [optional] 
-**admiralty_code** | **str** | Code as described [here](http://en.wikipedia.org/wiki/Admiralty_code). All Fintel reports have admiraltyCode&#x3D;&#x60;A1&#x60;. | 
+**admiralty_code** | **str** | Code as described [here](http://en.wikipedia.org/wiki/Admiralty_code). All Fintel reports have admiraltyCode&#x3D;&#x60;A1&#x60;. | [optional] 
 **classification** | [**SimpleReportSchemaClassification**](SimpleReportSchemaClassification.md) |  | [optional] 
 **created** | **int** | Date the report was &#x60;created&#x60; as Epoch Time. | [optional] 
-**date_of_information** | **int** | Date of information as Epoch Time. | 
+**date_of_information** | **int** | Date of information as Epoch Time. | [optional] 
 **document_family** | **str** | Document family. | [optional] 
 **document_type** | **str** | Document type. | [optional] 
 **entities** | [**list[SimpleReportSchemaEntities]**](SimpleReportSchemaEntities.md) | List of entities. | [optional] 
