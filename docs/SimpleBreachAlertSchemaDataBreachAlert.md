@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **intel_requirements** | **list[str]** | General Intel Requirements (GIR). | [optional] 
 **released_at** | **int** | Breach Alert&#39;s release date. | 
 **sensitive_source** | **bool** | Indicates if the document contains sensitive source derived information. | [optional] 
-**sources** | [**list[SimpleBreachAlertSchemaDataBreachAlertSources]**](SimpleBreachAlertSchemaDataBreachAlertSources.md) | Sources for this alert, either from Titan or external &#x60;resources&#x60;. | [optional] 
+**sources** | [**list[SimpleBreachAlertSchemaDataBreachAlertSourcesInner]**](SimpleBreachAlertSchemaDataBreachAlertSourcesInner.md) | Sources for this alert, either from Titan or external &#x60;resources&#x60;. | [optional] 
 **title** | **str** | Breach Alert&#39;s title. | 
 **victim** | [**SimpleBreachAlertSchemaDataBreachAlertVictim**](SimpleBreachAlertSchemaDataBreachAlertVictim.md) |  | 
 

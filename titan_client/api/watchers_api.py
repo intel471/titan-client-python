@@ -95,6 +95,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -112,7 +113,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -130,10 +133,10 @@ class WatchersApi(object):
         path_params = {}
 
         query_params = []
-        if 'section' in local_var_params and local_var_params['section'] is not None:  # noqa: E501
+        if local_var_params.get('section') is not None:  # noqa: E501
             query_params.append(('section', local_var_params['section']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -145,7 +148,7 @@ class WatchersApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "WatcherGroupResponse",
         }
@@ -226,6 +229,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -243,7 +247,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -256,8 +262,7 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_delete`")  # noqa: E501
 
         collection_formats = {}
@@ -268,7 +273,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -280,7 +285,7 @@ class WatchersApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {}
 
         return self.api_client.call_api(
@@ -359,6 +364,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -376,7 +382,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -389,8 +397,7 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -401,7 +408,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -413,7 +420,7 @@ class WatchersApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleWatcherGroupSchema",
             404: "str",
@@ -436,20 +443,20 @@ class WatchersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def watcher_groups_group_uid_put(self, group_uid, inline_object1, **kwargs):  # noqa: E501
+    def watcher_groups_group_uid_put(self, group_uid, watcher_groups_group_uid_delete_request, **kwargs):  # noqa: E501
         """Put Watcher Group  # noqa: E501
 
         Update watcher group's name or description. Only groups of type `owned_by_me` are allowed to be updated.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.watcher_groups_group_uid_put(group_uid, inline_object1, async_req=True)
+        >>> thread = api.watcher_groups_group_uid_put(group_uid, watcher_groups_group_uid_delete_request, async_req=True)
         >>> result = thread.get()
 
         :param group_uid: Watcher group identifier. (required)
         :type group_uid: str
-        :param inline_object1: (required)
-        :type inline_object1: InlineObject1
+        :param watcher_groups_group_uid_delete_request: JSON request body (required)
+        :type watcher_groups_group_uid_delete_request: WatcherGroupsGroupUidDeleteRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -466,22 +473,22 @@ class WatchersApi(object):
         :rtype: SimpleWatcherGroupSchema
         """
         kwargs['_return_http_data_only'] = True
-        return self.watcher_groups_group_uid_put_with_http_info(group_uid, inline_object1, **kwargs)  # noqa: E501
+        return self.watcher_groups_group_uid_put_with_http_info(group_uid, watcher_groups_group_uid_delete_request, **kwargs)  # noqa: E501
 
-    def watcher_groups_group_uid_put_with_http_info(self, group_uid, inline_object1, **kwargs):  # noqa: E501
+    def watcher_groups_group_uid_put_with_http_info(self, group_uid, watcher_groups_group_uid_delete_request, **kwargs):  # noqa: E501
         """Put Watcher Group  # noqa: E501
 
         Update watcher group's name or description. Only groups of type `owned_by_me` are allowed to be updated.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.watcher_groups_group_uid_put_with_http_info(group_uid, inline_object1, async_req=True)
+        >>> thread = api.watcher_groups_group_uid_put_with_http_info(group_uid, watcher_groups_group_uid_delete_request, async_req=True)
         >>> result = thread.get()
 
         :param group_uid: Watcher group identifier. (required)
         :type group_uid: str
-        :param inline_object1: (required)
-        :type inline_object1: InlineObject1
+        :param watcher_groups_group_uid_delete_request: JSON request body (required)
+        :type watcher_groups_group_uid_delete_request: WatcherGroupsGroupUidDeleteRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -499,6 +506,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -509,7 +517,7 @@ class WatchersApi(object):
 
         all_params = [
             'group_uid',
-            'inline_object1'
+            'watcher_groups_group_uid_delete_request'
         ]
         all_params.extend(
             [
@@ -517,7 +525,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -530,13 +540,11 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_put`")  # noqa: E501
-        # verify the required parameter 'inline_object1' is set
-        if self.api_client.client_side_validation and ('inline_object1' not in local_var_params or  # noqa: E501
-                                                        local_var_params['inline_object1'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `inline_object1` when calling `watcher_groups_group_uid_put`")  # noqa: E501
+        # verify the required parameter 'watcher_groups_group_uid_delete_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('watcher_groups_group_uid_delete_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `watcher_groups_group_uid_delete_request` when calling `watcher_groups_group_uid_put`")  # noqa: E501
 
         collection_formats = {}
 
@@ -546,25 +554,29 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'inline_object1' in local_var_params:
-            body_params = local_var_params['inline_object1']
+        if 'watcher_groups_group_uid_delete_request' in local_var_params:
+            body_params = local_var_params['watcher_groups_group_uid_delete_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json', 'text/plain'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleWatcherGroupSchema",
             404: "str",
@@ -646,6 +658,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -663,7 +676,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -676,8 +691,7 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_watchers_get`")  # noqa: E501
 
         collection_formats = {}
@@ -688,7 +702,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -700,7 +714,7 @@ class WatchersApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "WatcherSchemaResponse",
             404: "str",
@@ -786,6 +800,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -804,7 +819,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -817,12 +834,10 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_watchers_post`")  # noqa: E501
         # verify the required parameter 'watcher_request_body_post' is set
-        if self.api_client.client_side_validation and ('watcher_request_body_post' not in local_var_params or  # noqa: E501
-                                                        local_var_params['watcher_request_body_post'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('watcher_request_body_post') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `watcher_request_body_post` when calling `watcher_groups_group_uid_watchers_post`")  # noqa: E501
 
         collection_formats = {}
@@ -833,7 +848,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -846,15 +861,19 @@ class WatchersApi(object):
             ['application/json', 'text/plain'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "WatcherSchema",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstring",
+            412: "WatcherGroupsGroupUidWatchersGet412Response",
         }
 
         return self.api_client.call_api(
@@ -937,6 +956,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -955,7 +975,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -968,12 +990,10 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'watcher_uid' is set
-        if self.api_client.client_side_validation and ('watcher_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['watcher_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('watcher_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `watcher_uid` when calling `watcher_groups_group_uid_watchers_watcher_uid_delete`")  # noqa: E501
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_watchers_watcher_uid_delete`")  # noqa: E501
 
         collection_formats = {}
@@ -986,7 +1006,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -994,7 +1014,7 @@ class WatchersApi(object):
         body_params = None
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {}
 
         return self.api_client.call_api(
@@ -1077,6 +1097,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1095,7 +1116,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1108,12 +1131,10 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'watcher_uid' is set
-        if self.api_client.client_side_validation and ('watcher_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['watcher_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('watcher_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `watcher_uid` when calling `watcher_groups_group_uid_watchers_watcher_uid_get`")  # noqa: E501
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_watchers_watcher_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -1126,7 +1147,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1138,7 +1159,7 @@ class WatchersApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "WatcherSchema",
             404: "str",
@@ -1228,6 +1249,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1247,7 +1269,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1260,16 +1284,13 @@ class WatchersApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'watcher_uid' is set
-        if self.api_client.client_side_validation and ('watcher_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['watcher_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('watcher_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `watcher_uid` when calling `watcher_groups_group_uid_watchers_watcher_uid_put`")  # noqa: E501
         # verify the required parameter 'group_uid' is set
-        if self.api_client.client_side_validation and ('group_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['group_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('group_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `group_uid` when calling `watcher_groups_group_uid_watchers_watcher_uid_put`")  # noqa: E501
         # verify the required parameter 'watcher_request_body_put' is set
-        if self.api_client.client_side_validation and ('watcher_request_body_put' not in local_var_params or  # noqa: E501
-                                                        local_var_params['watcher_request_body_put'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('watcher_request_body_put') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `watcher_request_body_put` when calling `watcher_groups_group_uid_watchers_watcher_uid_put`")  # noqa: E501
 
         collection_formats = {}
@@ -1282,7 +1303,7 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1295,15 +1316,19 @@ class WatchersApi(object):
             ['application/json', 'text/plain'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json'],
+                'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "WatcherSchema",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstring",
+            412: "WatcherGroupsGroupUidWatchersGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1323,18 +1348,18 @@ class WatchersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def watcher_groups_post(self, inline_object, **kwargs):  # noqa: E501
+    def watcher_groups_post(self, watcher_groups_get_request, **kwargs):  # noqa: E501
         """Create Watcher Group  # noqa: E501
 
         Create watcher group from json object supplied in a request body which contains name and description  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.watcher_groups_post(inline_object, async_req=True)
+        >>> thread = api.watcher_groups_post(watcher_groups_get_request, async_req=True)
         >>> result = thread.get()
 
-        :param inline_object: (required)
-        :type inline_object: InlineObject
+        :param watcher_groups_get_request: JSON request body (required)
+        :type watcher_groups_get_request: WatcherGroupsGetRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1351,20 +1376,20 @@ class WatchersApi(object):
         :rtype: SimpleWatcherGroupSchema
         """
         kwargs['_return_http_data_only'] = True
-        return self.watcher_groups_post_with_http_info(inline_object, **kwargs)  # noqa: E501
+        return self.watcher_groups_post_with_http_info(watcher_groups_get_request, **kwargs)  # noqa: E501
 
-    def watcher_groups_post_with_http_info(self, inline_object, **kwargs):  # noqa: E501
+    def watcher_groups_post_with_http_info(self, watcher_groups_get_request, **kwargs):  # noqa: E501
         """Create Watcher Group  # noqa: E501
 
         Create watcher group from json object supplied in a request body which contains name and description  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.watcher_groups_post_with_http_info(inline_object, async_req=True)
+        >>> thread = api.watcher_groups_post_with_http_info(watcher_groups_get_request, async_req=True)
         >>> result = thread.get()
 
-        :param inline_object: (required)
-        :type inline_object: InlineObject
+        :param watcher_groups_get_request: JSON request body (required)
+        :type watcher_groups_get_request: WatcherGroupsGetRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1382,6 +1407,7 @@ class WatchersApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1391,7 +1417,7 @@ class WatchersApi(object):
         local_var_params = locals()
 
         all_params = [
-            'inline_object'
+            'watcher_groups_get_request'
         ]
         all_params.extend(
             [
@@ -1399,7 +1425,9 @@ class WatchersApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1411,10 +1439,9 @@ class WatchersApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'inline_object' is set
-        if self.api_client.client_side_validation and ('inline_object' not in local_var_params or  # noqa: E501
-                                                        local_var_params['inline_object'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `inline_object` when calling `watcher_groups_post`")  # noqa: E501
+        # verify the required parameter 'watcher_groups_get_request' is set
+        if self.api_client.client_side_validation and local_var_params.get('watcher_groups_get_request') is None:  # noqa: E501
+            raise ApiValueError("Missing the required parameter `watcher_groups_get_request` when calling `watcher_groups_post`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1422,28 +1449,32 @@ class WatchersApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'inline_object' in local_var_params:
-            body_params = local_var_params['inline_object']
+        if 'watcher_groups_get_request' in local_var_params:
+            body_params = local_var_params['watcher_groups_get_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json', 'text/plain'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        content_types_list = local_var_params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json'],
+                'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleWatcherGroupSchema",
-            412: "OneOfstringstring",
+            412: "WatcherGroupsGet412Response",
         }
 
         return self.api_client.call_api(

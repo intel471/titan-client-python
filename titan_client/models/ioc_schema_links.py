@@ -38,9 +38,9 @@ class IocSchemaLinks(object):
     """
     openapi_types = {
         'actor_total_count': 'int',
-        'actors': 'list[IocSchemaLinksActors]',
+        'actors': 'list[IocSchemaLinksActorsInner]',
         'report_total_count': 'int',
-        'reports': 'list[IocSchemaLinksReports]'
+        'reports': 'list[IocSchemaLinksReportsInner]'
     }
 
     attribute_map = {
@@ -101,7 +101,7 @@ class IocSchemaLinks(object):
         List of `Actors` <br />`Array` of simple `Actor`. Contains only `uid`, `handles` from [Actors]().  # noqa: E501
 
         :return: The actors of this IocSchemaLinks.  # noqa: E501
-        :rtype: list[IocSchemaLinksActors]
+        :rtype: list[IocSchemaLinksActorsInner]
         """
         return self._actors
 
@@ -112,7 +112,7 @@ class IocSchemaLinks(object):
         List of `Actors` <br />`Array` of simple `Actor`. Contains only `uid`, `handles` from [Actors]().  # noqa: E501
 
         :param actors: The actors of this IocSchemaLinks.  # noqa: E501
-        :type actors: list[IocSchemaLinksActors]
+        :type actors: list[IocSchemaLinksActorsInner]
         """
 
         self._actors = actors
@@ -149,7 +149,7 @@ class IocSchemaLinks(object):
         Linked `reports` Array of simplified version of one of the following: `Information Report`, `Fintel Report`, `Malware Report`, `Spot Report`, `Situation Report`, `Breach Alert`.  # noqa: E501
 
         :return: The reports of this IocSchemaLinks.  # noqa: E501
-        :rtype: list[IocSchemaLinksReports]
+        :rtype: list[IocSchemaLinksReportsInner]
         """
         return self._reports
 
@@ -160,7 +160,7 @@ class IocSchemaLinks(object):
         Linked `reports` Array of simplified version of one of the following: `Information Report`, `Fintel Report`, `Malware Report`, `Spot Report`, `Situation Report`, `Breach Alert`.  # noqa: E501
 
         :param reports: The reports of this IocSchemaLinks.  # noqa: E501
-        :type reports: list[IocSchemaLinksReports]
+        :type reports: list[IocSchemaLinksReportsInner]
         """
 
         self._reports = reports

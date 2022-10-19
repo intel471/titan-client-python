@@ -38,7 +38,7 @@ class SimpleBreachAlertSchemaData(object):
     """
     openapi_types = {
         'breach_alert': 'SimpleBreachAlertSchemaDataBreachAlert',
-        'entities': 'list[SimpleBreachAlertSchemaDataEntities]'
+        'entities': 'list[SimpleBreachAlertSchemaDataEntitiesInner]'
     }
 
     attribute_map = {
@@ -90,7 +90,7 @@ class SimpleBreachAlertSchemaData(object):
         List of `entities`.  # noqa: E501
 
         :return: The entities of this SimpleBreachAlertSchemaData.  # noqa: E501
-        :rtype: list[SimpleBreachAlertSchemaDataEntities]
+        :rtype: list[SimpleBreachAlertSchemaDataEntitiesInner]
         """
         return self._entities
 
@@ -101,7 +101,7 @@ class SimpleBreachAlertSchemaData(object):
         List of `entities`.  # noqa: E501
 
         :param entities: The entities of this SimpleBreachAlertSchemaData.  # noqa: E501
-        :type entities: list[SimpleBreachAlertSchemaDataEntities]
+        :type entities: list[SimpleBreachAlertSchemaDataEntitiesInner]
         """
 
         self._entities = entities

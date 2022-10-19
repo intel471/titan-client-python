@@ -139,6 +139,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -167,7 +168,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -193,32 +196,32 @@ class ReportsApi(object):
         path_params = {}
 
         query_params = []
-        if 'breach_alert' in local_var_params and local_var_params['breach_alert'] is not None:  # noqa: E501
+        if local_var_params.get('breach_alert') is not None:  # noqa: E501
             query_params.append(('breachAlert', local_var_params['breach_alert']))  # noqa: E501
-        if 'actor' in local_var_params and local_var_params['actor'] is not None:  # noqa: E501
+        if local_var_params.get('actor') is not None:  # noqa: E501
             query_params.append(('actor', local_var_params['actor']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -230,10 +233,10 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleBreachAlertResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "BreachAlertsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -312,6 +315,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -329,7 +333,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -342,8 +348,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'uid' is set
-        if self.api_client.client_side_validation and ('uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `uid` when calling `breach_alerts_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -354,7 +359,7 @@ class ReportsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -366,7 +371,7 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "FullBreachAlertSchema",
             404: "str",
@@ -500,6 +505,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -530,7 +536,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -556,36 +564,36 @@ class ReportsApi(object):
         path_params = {}
 
         query_params = []
-        if 'malware_report' in local_var_params and local_var_params['malware_report'] is not None:  # noqa: E501
+        if local_var_params.get('malware_report') is not None:  # noqa: E501
             query_params.append(('malwareReport', local_var_params['malware_report']))  # noqa: E501
-        if 'threat_type' in local_var_params and local_var_params['threat_type'] is not None:  # noqa: E501
+        if local_var_params.get('threat_type') is not None:  # noqa: E501
             query_params.append(('threatType', local_var_params['threat_type']))  # noqa: E501
-        if 'report_title' in local_var_params and local_var_params['report_title'] is not None:  # noqa: E501
+        if local_var_params.get('report_title') is not None:  # noqa: E501
             query_params.append(('reportTitle', local_var_params['report_title']))  # noqa: E501
-        if 'malware_family' in local_var_params and local_var_params['malware_family'] is not None:  # noqa: E501
+        if local_var_params.get('malware_family') is not None:  # noqa: E501
             query_params.append(('malwareFamily', local_var_params['malware_family']))  # noqa: E501
-        if 'malware_family_profile_uid' in local_var_params and local_var_params['malware_family_profile_uid'] is not None:  # noqa: E501
+        if local_var_params.get('malware_family_profile_uid') is not None:  # noqa: E501
             query_params.append(('malwareFamilyProfileUid', local_var_params['malware_family_profile_uid']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -597,10 +605,10 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "MalwareReportsSearchResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "BreachAlertsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -679,6 +687,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -696,7 +705,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -709,8 +720,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'uid' is set
-        if self.api_client.client_side_validation and ('uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `uid` when calling `malware_reports_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -721,7 +731,7 @@ class ReportsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -733,7 +743,7 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "MalwareReportsSearchSchema",
             404: "str",
@@ -879,6 +889,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -912,7 +923,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -938,42 +951,42 @@ class ReportsApi(object):
         path_params = {}
 
         query_params = []
-        if 'report' in local_var_params and local_var_params['report'] is not None:  # noqa: E501
+        if local_var_params.get('report') is not None:  # noqa: E501
             query_params.append(('report', local_var_params['report']))  # noqa: E501
-        if 'report_location' in local_var_params and local_var_params['report_location'] is not None:  # noqa: E501
+        if local_var_params.get('report_location') is not None:  # noqa: E501
             query_params.append(('reportLocation', local_var_params['report_location']))  # noqa: E501
-        if 'report_tag' in local_var_params and local_var_params['report_tag'] is not None:  # noqa: E501
+        if local_var_params.get('report_tag') is not None:  # noqa: E501
             query_params.append(('reportTag', local_var_params['report_tag']))  # noqa: E501
-        if 'report_admiralty_code' in local_var_params and local_var_params['report_admiralty_code'] is not None:  # noqa: E501
+        if local_var_params.get('report_admiralty_code') is not None:  # noqa: E501
             query_params.append(('reportAdmiraltyCode', local_var_params['report_admiralty_code']))  # noqa: E501
-        if 'report_title' in local_var_params and local_var_params['report_title'] is not None:  # noqa: E501
+        if local_var_params.get('report_title') is not None:  # noqa: E501
             query_params.append(('reportTitle', local_var_params['report_title']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if 'document_type' in local_var_params and local_var_params['document_type'] is not None:  # noqa: E501
+        if local_var_params.get('document_type') is not None:  # noqa: E501
             query_params.append(('documentType', local_var_params['document_type']))  # noqa: E501
-        if 'document_family' in local_var_params and local_var_params['document_family'] is not None:  # noqa: E501
+        if local_var_params.get('document_family') is not None:  # noqa: E501
             query_params.append(('documentFamily', local_var_params['document_family']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -985,10 +998,10 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleReportsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "ReportsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1067,6 +1080,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1084,7 +1098,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1097,8 +1113,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'uid' is set
-        if self.api_client.client_side_validation and ('uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `uid` when calling `reports_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -1109,7 +1124,7 @@ class ReportsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1121,7 +1136,7 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "FullReportSchema",
             412: "str",
@@ -1243,6 +1258,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1270,7 +1286,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1283,8 +1301,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'situation_report' is set
-        if self.api_client.client_side_validation and ('situation_report' not in local_var_params or  # noqa: E501
-                                                        local_var_params['situation_report'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('situation_report') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `situation_report` when calling `situation_reports_get`")  # noqa: E501
 
         if self.api_client.client_side_validation and 'offset' in local_var_params and local_var_params['offset'] > 1000:  # noqa: E501
@@ -1300,30 +1317,30 @@ class ReportsApi(object):
         path_params = {}
 
         query_params = []
-        if 'situation_report' in local_var_params and local_var_params['situation_report'] is not None:  # noqa: E501
+        if local_var_params.get('situation_report') is not None:  # noqa: E501
             query_params.append(('situationReport', local_var_params['situation_report']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1335,10 +1352,10 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SituationReportResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CveReportsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1417,6 +1434,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1434,7 +1452,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1447,8 +1467,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'report_uid' is set
-        if self.api_client.client_side_validation and ('report_uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['report_uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('report_uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `report_uid` when calling `situation_reports_report_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -1459,7 +1478,7 @@ class ReportsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1471,7 +1490,7 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SituationReportSchema",
             404: "str",
@@ -1593,6 +1612,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1620,7 +1640,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1633,8 +1655,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'spot_report' is set
-        if self.api_client.client_side_validation and ('spot_report' not in local_var_params or  # noqa: E501
-                                                        local_var_params['spot_report'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('spot_report') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `spot_report` when calling `spot_reports_get`")  # noqa: E501
 
         if self.api_client.client_side_validation and 'offset' in local_var_params and local_var_params['offset'] > 1000:  # noqa: E501
@@ -1650,30 +1671,30 @@ class ReportsApi(object):
         path_params = {}
 
         query_params = []
-        if 'spot_report' in local_var_params and local_var_params['spot_report'] is not None:  # noqa: E501
+        if local_var_params.get('spot_report') is not None:  # noqa: E501
             query_params.append(('spotReport', local_var_params['spot_report']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1685,10 +1706,10 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleSpotReportsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "BreachAlertsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1767,6 +1788,7 @@ class ReportsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1784,7 +1806,9 @@ class ReportsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1797,8 +1821,7 @@ class ReportsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'uid' is set
-        if self.api_client.client_side_validation and ('uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `uid` when calling `spot_reports_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -1809,7 +1832,7 @@ class ReportsApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1821,7 +1844,7 @@ class ReportsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "FullSpotReportSchema",
             404: "str",

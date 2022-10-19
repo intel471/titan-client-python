@@ -38,7 +38,7 @@ class SimpleCveSchemaDataCveReport(object):
     """
     openapi_types = {
         'activity_location': 'SimpleCveSchemaDataCveReportActivityLocation',
-        'counter_measure_links': 'list[SimpleCveSchemaDataCveReportCounterMeasureLinks]',
+        'counter_measure_links': 'list[SimpleCveSchemaDataCveReportCounterMeasureLinksInner]',
         'counter_measures': 'str',
         'cpe': 'object',
         'cve_status': 'str',
@@ -48,14 +48,14 @@ class SimpleCveSchemaDataCveReport(object):
         'exploit_status': 'SimpleCveSchemaDataCveReportExploitStatus',
         'interest_level': 'SimpleCveSchemaDataCveReportInterestLevel',
         'name': 'str',
-        'patch_links': 'list[SimpleCveSchemaDataCveReportPatchLinks]',
+        'patch_links': 'list[SimpleCveSchemaDataCveReportPatchLinksInner]',
         'patch_status': 'str',
         'poc': 'str',
-        'poc_links': 'list[SimpleCveSchemaDataCveReportPocLinks]',
+        'poc_links': 'list[SimpleCveSchemaDataCveReportPocLinksInner]',
         'product_name': 'str',
         'risk_level': 'str',
         'summary': 'str',
-        'titan_links': 'list[SimpleCveSchemaDataCveReportTitanLinks]',
+        'titan_links': 'list[SimpleCveSchemaDataCveReportTitanLinksInner]',
         'underground_activity': 'str',
         'underground_activity_summary': 'str',
         'vendor_name': 'str'
@@ -184,7 +184,7 @@ class SimpleCveSchemaDataCveReport(object):
         Titled URLs to countermeasure information to protect against the CVE.  # noqa: E501
 
         :return: The counter_measure_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :rtype: list[SimpleCveSchemaDataCveReportCounterMeasureLinks]
+        :rtype: list[SimpleCveSchemaDataCveReportCounterMeasureLinksInner]
         """
         return self._counter_measure_links
 
@@ -195,7 +195,7 @@ class SimpleCveSchemaDataCveReport(object):
         Titled URLs to countermeasure information to protect against the CVE.  # noqa: E501
 
         :param counter_measure_links: The counter_measure_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :type counter_measure_links: list[SimpleCveSchemaDataCveReportCounterMeasureLinks]
+        :type counter_measure_links: list[SimpleCveSchemaDataCveReportCounterMeasureLinksInner]
         """
 
         self._counter_measure_links = counter_measure_links
@@ -414,7 +414,7 @@ class SimpleCveSchemaDataCveReport(object):
         Titled URLs to available CVE patch.  # noqa: E501
 
         :return: The patch_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :rtype: list[SimpleCveSchemaDataCveReportPatchLinks]
+        :rtype: list[SimpleCveSchemaDataCveReportPatchLinksInner]
         """
         return self._patch_links
 
@@ -425,7 +425,7 @@ class SimpleCveSchemaDataCveReport(object):
         Titled URLs to available CVE patch.  # noqa: E501
 
         :param patch_links: The patch_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :type patch_links: list[SimpleCveSchemaDataCveReportPatchLinks]
+        :type patch_links: list[SimpleCveSchemaDataCveReportPatchLinksInner]
         """
 
         self._patch_links = patch_links
@@ -485,7 +485,7 @@ class SimpleCveSchemaDataCveReport(object):
         Titled URLs to Proofs of Concept of the CVE.  # noqa: E501
 
         :return: The poc_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :rtype: list[SimpleCveSchemaDataCveReportPocLinks]
+        :rtype: list[SimpleCveSchemaDataCveReportPocLinksInner]
         """
         return self._poc_links
 
@@ -496,7 +496,7 @@ class SimpleCveSchemaDataCveReport(object):
         Titled URLs to Proofs of Concept of the CVE.  # noqa: E501
 
         :param poc_links: The poc_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :type poc_links: list[SimpleCveSchemaDataCveReportPocLinks]
+        :type poc_links: list[SimpleCveSchemaDataCveReportPocLinksInner]
         """
 
         self._poc_links = poc_links
@@ -579,7 +579,7 @@ class SimpleCveSchemaDataCveReport(object):
         Links to the related titan items.  # noqa: E501
 
         :return: The titan_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :rtype: list[SimpleCveSchemaDataCveReportTitanLinks]
+        :rtype: list[SimpleCveSchemaDataCveReportTitanLinksInner]
         """
         return self._titan_links
 
@@ -590,7 +590,7 @@ class SimpleCveSchemaDataCveReport(object):
         Links to the related titan items.  # noqa: E501
 
         :param titan_links: The titan_links of this SimpleCveSchemaDataCveReport.  # noqa: E501
-        :type titan_links: list[SimpleCveSchemaDataCveReportTitanLinks]
+        :type titan_links: list[SimpleCveSchemaDataCveReportTitanLinksInner]
         """
 
         self._titan_links = titan_links

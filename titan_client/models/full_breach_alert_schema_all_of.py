@@ -37,7 +37,7 @@ class FullBreachAlertSchemaAllOf(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'data': 'object'
+        'data': 'FullBreachAlertSchemaAllOfData'
     }
 
     attribute_map = {
@@ -62,7 +62,7 @@ class FullBreachAlertSchemaAllOf(object):
 
 
         :return: The data of this FullBreachAlertSchemaAllOf.  # noqa: E501
-        :rtype: object
+        :rtype: FullBreachAlertSchemaAllOfData
         """
         return self._data
 
@@ -72,7 +72,7 @@ class FullBreachAlertSchemaAllOf(object):
 
 
         :param data: The data of this FullBreachAlertSchemaAllOf.  # noqa: E501
-        :type data: object
+        :type data: FullBreachAlertSchemaAllOfData
         """
 
         self._data = data

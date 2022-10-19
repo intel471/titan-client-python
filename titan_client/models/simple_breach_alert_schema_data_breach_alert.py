@@ -43,7 +43,7 @@ class SimpleBreachAlertSchemaDataBreachAlert(object):
         'intel_requirements': 'list[str]',
         'released_at': 'int',
         'sensitive_source': 'bool',
-        'sources': 'list[SimpleBreachAlertSchemaDataBreachAlertSources]',
+        'sources': 'list[SimpleBreachAlertSchemaDataBreachAlertSourcesInner]',
         'title': 'str',
         'victim': 'SimpleBreachAlertSchemaDataBreachAlertVictim'
     }
@@ -241,7 +241,7 @@ class SimpleBreachAlertSchemaDataBreachAlert(object):
         Sources for this alert, either from Titan or external `resources`.  # noqa: E501
 
         :return: The sources of this SimpleBreachAlertSchemaDataBreachAlert.  # noqa: E501
-        :rtype: list[SimpleBreachAlertSchemaDataBreachAlertSources]
+        :rtype: list[SimpleBreachAlertSchemaDataBreachAlertSourcesInner]
         """
         return self._sources
 
@@ -252,7 +252,7 @@ class SimpleBreachAlertSchemaDataBreachAlert(object):
         Sources for this alert, either from Titan or external `resources`.  # noqa: E501
 
         :param sources: The sources of this SimpleBreachAlertSchemaDataBreachAlert.  # noqa: E501
-        :type sources: list[SimpleBreachAlertSchemaDataBreachAlertSources]
+        :type sources: list[SimpleBreachAlertSchemaDataBreachAlertSourcesInner]
         """
 
         self._sources = sources

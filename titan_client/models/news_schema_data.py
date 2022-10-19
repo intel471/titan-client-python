@@ -37,7 +37,7 @@ class NewsSchemaData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'attachments': 'list[NewsSchemaDataAttachments]',
+        'attachments': 'list[NewsSchemaDataAttachmentsInner]',
         'released': 'int',
         'text': 'str',
         'topic': 'str',
@@ -86,7 +86,7 @@ class NewsSchemaData(object):
         News `attachments` list  # noqa: E501
 
         :return: The attachments of this NewsSchemaData.  # noqa: E501
-        :rtype: list[NewsSchemaDataAttachments]
+        :rtype: list[NewsSchemaDataAttachmentsInner]
         """
         return self._attachments
 
@@ -97,7 +97,7 @@ class NewsSchemaData(object):
         News `attachments` list  # noqa: E501
 
         :param attachments: The attachments of this NewsSchemaData.  # noqa: E501
-        :type attachments: list[NewsSchemaDataAttachments]
+        :type attachments: list[NewsSchemaDataAttachmentsInner]
         """
 
         self._attachments = attachments

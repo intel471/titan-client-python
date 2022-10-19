@@ -2,7 +2,8 @@ import abc
 import datetime
 import logging
 from abc import ABC
-from collections import Callable, namedtuple
+from collections import namedtuple
+from collections.abc import Callable
 from stix2 import (
     EmailAddress,
     File,

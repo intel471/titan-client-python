@@ -39,14 +39,14 @@ class SimpleSpotReportSchemaDataSpotReportSpotReportData(object):
     openapi_types = {
         'date_of_information': 'int',
         'intel_requirements': 'list[str]',
-        'links': 'list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks]',
+        'links': 'list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinksInner]',
         'related_reports': 'list[str]',
         'released_at': 'int',
         'sensitive_source': 'bool',
         'text': 'str',
         'title': 'str',
         'version': 'str',
-        'victims': 'list[SimpleSpotReportSchemaDataSpotReportSpotReportDataVictims]'
+        'victims': 'list[SimpleSpotReportSchemaDataSpotReportSpotReportDataVictimsInner]'
     }
 
     attribute_map = {
@@ -152,7 +152,7 @@ class SimpleSpotReportSchemaDataSpotReportSpotReportData(object):
         Links to any other entity in portal, like Post, Thread or external `resource`.  # noqa: E501
 
         :return: The links of this SimpleSpotReportSchemaDataSpotReportSpotReportData.  # noqa: E501
-        :rtype: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks]
+        :rtype: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinksInner]
         """
         return self._links
 
@@ -163,7 +163,7 @@ class SimpleSpotReportSchemaDataSpotReportSpotReportData(object):
         Links to any other entity in portal, like Post, Thread or external `resource`.  # noqa: E501
 
         :param links: The links of this SimpleSpotReportSchemaDataSpotReportSpotReportData.  # noqa: E501
-        :type links: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinks]
+        :type links: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataLinksInner]
         """
 
         self._links = links
@@ -319,7 +319,7 @@ class SimpleSpotReportSchemaDataSpotReportSpotReportData(object):
         List of purported `victims`.  # noqa: E501
 
         :return: The victims of this SimpleSpotReportSchemaDataSpotReportSpotReportData.  # noqa: E501
-        :rtype: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataVictims]
+        :rtype: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataVictimsInner]
         """
         return self._victims
 
@@ -330,7 +330,7 @@ class SimpleSpotReportSchemaDataSpotReportSpotReportData(object):
         List of purported `victims`.  # noqa: E501
 
         :param victims: The victims of this SimpleSpotReportSchemaDataSpotReportSpotReportData.  # noqa: E501
-        :type victims: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataVictims]
+        :type victims: list[SimpleSpotReportSchemaDataSpotReportSpotReportDataVictimsInner]
         """
 
         self._victims = victims

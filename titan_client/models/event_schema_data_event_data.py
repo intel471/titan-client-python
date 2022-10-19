@@ -42,19 +42,19 @@ class EventSchemaDataEventData(object):
         'component_type': 'str',
         'config_file': 'str',
         'controller': 'EventSchemaDataEventDataController',
-        'controllers': 'list[EventSchemaDataEventDataControllers]',
-        'encryption': 'list[EventSchemaDataEventDataEncryption]',
+        'controllers': 'list[EventSchemaDataEventDataControllersInner]',
+        'encryption': 'list[EventSchemaDataEventDataEncryptionInner]',
         'exfil_location': 'str',
         'file': 'EventSchemaDataEventDataFile',
         'inject_type': 'str',
         'location': 'EventSchemaDataEventDataLocation',
         'plugin_name': 'str',
         'plugin_type': 'str',
-        'recipient_domains': 'list[EventSchemaDataEventDataRecipientDomains]',
+        'recipient_domains': 'list[EventSchemaDataEventDataRecipientDomainsInner]',
         'senders': 'list[str]',
         'settings': 'list[object]',
         'target_type': 'str',
-        'triggers': 'list[EventSchemaDataEventDataTriggers]'
+        'triggers': 'list[EventSchemaDataEventDataTriggersInner]'
     }
 
     attribute_map = {
@@ -261,7 +261,7 @@ class EventSchemaDataEventData(object):
         An array of objects, each containing an individual controller's url.  # noqa: E501
 
         :return: The controllers of this EventSchemaDataEventData.  # noqa: E501
-        :rtype: list[EventSchemaDataEventDataControllers]
+        :rtype: list[EventSchemaDataEventDataControllersInner]
         """
         return self._controllers
 
@@ -272,7 +272,7 @@ class EventSchemaDataEventData(object):
         An array of objects, each containing an individual controller's url.  # noqa: E501
 
         :param controllers: The controllers of this EventSchemaDataEventData.  # noqa: E501
-        :type controllers: list[EventSchemaDataEventDataControllers]
+        :type controllers: list[EventSchemaDataEventDataControllersInner]
         """
 
         self._controllers = controllers
@@ -284,7 +284,7 @@ class EventSchemaDataEventData(object):
         An array of `encryption` meta data.  # noqa: E501
 
         :return: The encryption of this EventSchemaDataEventData.  # noqa: E501
-        :rtype: list[EventSchemaDataEventDataEncryption]
+        :rtype: list[EventSchemaDataEventDataEncryptionInner]
         """
         return self._encryption
 
@@ -295,7 +295,7 @@ class EventSchemaDataEventData(object):
         An array of `encryption` meta data.  # noqa: E501
 
         :param encryption: The encryption of this EventSchemaDataEventData.  # noqa: E501
-        :type encryption: list[EventSchemaDataEventDataEncryption]
+        :type encryption: list[EventSchemaDataEventDataEncryptionInner]
         """
 
         self._encryption = encryption
@@ -441,7 +441,7 @@ class EventSchemaDataEventData(object):
         Recipient domains.  # noqa: E501
 
         :return: The recipient_domains of this EventSchemaDataEventData.  # noqa: E501
-        :rtype: list[EventSchemaDataEventDataRecipientDomains]
+        :rtype: list[EventSchemaDataEventDataRecipientDomainsInner]
         """
         return self._recipient_domains
 
@@ -452,7 +452,7 @@ class EventSchemaDataEventData(object):
         Recipient domains.  # noqa: E501
 
         :param recipient_domains: The recipient_domains of this EventSchemaDataEventData.  # noqa: E501
-        :type recipient_domains: list[EventSchemaDataEventDataRecipientDomains]
+        :type recipient_domains: list[EventSchemaDataEventDataRecipientDomainsInner]
         """
 
         self._recipient_domains = recipient_domains
@@ -533,7 +533,7 @@ class EventSchemaDataEventData(object):
         An array of objects, each containing the field `trigger`.  # noqa: E501
 
         :return: The triggers of this EventSchemaDataEventData.  # noqa: E501
-        :rtype: list[EventSchemaDataEventDataTriggers]
+        :rtype: list[EventSchemaDataEventDataTriggersInner]
         """
         return self._triggers
 
@@ -544,7 +544,7 @@ class EventSchemaDataEventData(object):
         An array of objects, each containing the field `trigger`.  # noqa: E501
 
         :param triggers: The triggers of this EventSchemaDataEventData.  # noqa: E501
-        :type triggers: list[EventSchemaDataEventDataTriggers]
+        :type triggers: list[EventSchemaDataEventDataTriggersInner]
         """
 
         self._triggers = triggers

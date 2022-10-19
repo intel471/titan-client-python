@@ -46,7 +46,7 @@ class AlertListSchema(object):
         'entity': 'EntitiesSchema',
         'event': 'EventSchema',
         'found_time': 'int',
-        'highlights': 'list[AlertListSchemaHighlights]',
+        'highlights': 'list[AlertListSchemaHighlightsInner]',
         'indicator': 'IndicatorSearchSchema',
         'instant_message': 'InstantMessageSchema',
         'post': 'PostSchema',
@@ -343,7 +343,7 @@ class AlertListSchema(object):
         Text snippets with `highlights` matching search terms.  # noqa: E501
 
         :return: The highlights of this AlertListSchema.  # noqa: E501
-        :rtype: list[AlertListSchemaHighlights]
+        :rtype: list[AlertListSchemaHighlightsInner]
         """
         return self._highlights
 
@@ -354,7 +354,7 @@ class AlertListSchema(object):
         Text snippets with `highlights` matching search terms.  # noqa: E501
 
         :param highlights: The highlights of this AlertListSchema.  # noqa: E501
-        :type highlights: list[AlertListSchemaHighlights]
+        :type highlights: list[AlertListSchemaHighlightsInner]
         """
 
         self._highlights = highlights

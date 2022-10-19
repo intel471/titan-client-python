@@ -38,7 +38,7 @@ class FullBreachAlertSchema(object):
     """
     openapi_types = {
         'activity': 'SimpleBreachAlertSchemaActivity',
-        'data': 'object',
+        'data': 'FullBreachAlertSchemaAllOfData',
         'last_updated': 'int',
         'uid': 'str'
     }
@@ -96,7 +96,7 @@ class FullBreachAlertSchema(object):
 
 
         :return: The data of this FullBreachAlertSchema.  # noqa: E501
-        :rtype: object
+        :rtype: FullBreachAlertSchemaAllOfData
         """
         return self._data
 
@@ -106,7 +106,7 @@ class FullBreachAlertSchema(object):
 
 
         :param data: The data of this FullBreachAlertSchema.  # noqa: E501
-        :type data: object
+        :type data: FullBreachAlertSchemaAllOfData
         """
         if self.local_vars_configuration.client_side_validation and data is None:  # noqa: E501
             raise ValueError("Invalid value for `data`, must not be `None`")  # noqa: E501

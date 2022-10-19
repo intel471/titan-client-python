@@ -37,14 +37,14 @@ class SituationReportSchemaDataSituationReport(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'entities': 'list[SituationReportSchemaDataSituationReportEntities]',
+        'entities': 'list[SituationReportSchemaDataSituationReportEntitiesInner]',
         'link': 'SituationReportSchemaDataSituationReportLink',
         'related_reports': 'list[str]',
         'released_at': 'int',
         'sensitive_source': 'bool',
         'text': 'str',
         'title': 'str',
-        'victims': 'list[SituationReportSchemaDataSituationReportVictims]'
+        'victims': 'list[SituationReportSchemaDataSituationReportVictimsInner]'
     }
 
     attribute_map = {
@@ -95,7 +95,7 @@ class SituationReportSchemaDataSituationReport(object):
         List of entities. Contains the type and value fields of an `entity` object from the entities endpoint.  # noqa: E501
 
         :return: The entities of this SituationReportSchemaDataSituationReport.  # noqa: E501
-        :rtype: list[SituationReportSchemaDataSituationReportEntities]
+        :rtype: list[SituationReportSchemaDataSituationReportEntitiesInner]
         """
         return self._entities
 
@@ -106,7 +106,7 @@ class SituationReportSchemaDataSituationReport(object):
         List of entities. Contains the type and value fields of an `entity` object from the entities endpoint.  # noqa: E501
 
         :param entities: The entities of this SituationReportSchemaDataSituationReport.  # noqa: E501
-        :type entities: list[SituationReportSchemaDataSituationReportEntities]
+        :type entities: list[SituationReportSchemaDataSituationReportEntitiesInner]
         """
 
         self._entities = entities
@@ -260,7 +260,7 @@ class SituationReportSchemaDataSituationReport(object):
         Purported victims list.  # noqa: E501
 
         :return: The victims of this SituationReportSchemaDataSituationReport.  # noqa: E501
-        :rtype: list[SituationReportSchemaDataSituationReportVictims]
+        :rtype: list[SituationReportSchemaDataSituationReportVictimsInner]
         """
         return self._victims
 
@@ -271,7 +271,7 @@ class SituationReportSchemaDataSituationReport(object):
         Purported victims list.  # noqa: E501
 
         :param victims: The victims of this SituationReportSchemaDataSituationReport.  # noqa: E501
-        :type victims: list[SituationReportSchemaDataSituationReportVictims]
+        :type victims: list[SituationReportSchemaDataSituationReportVictimsInner]
         """
 
         self._victims = victims

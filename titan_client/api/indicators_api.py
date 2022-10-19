@@ -155,6 +155,7 @@ class IndicatorsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -187,7 +188,9 @@ class IndicatorsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -213,40 +216,40 @@ class IndicatorsApi(object):
         path_params = {}
 
         query_params = []
-        if 'indicator' in local_var_params and local_var_params['indicator'] is not None:  # noqa: E501
+        if local_var_params.get('indicator') is not None:  # noqa: E501
             query_params.append(('indicator', local_var_params['indicator']))  # noqa: E501
-        if 'indicator_type' in local_var_params and local_var_params['indicator_type'] is not None:  # noqa: E501
+        if local_var_params.get('indicator_type') is not None:  # noqa: E501
             query_params.append(('indicatorType', local_var_params['indicator_type']))  # noqa: E501
-        if 'threat_type' in local_var_params and local_var_params['threat_type'] is not None:  # noqa: E501
+        if local_var_params.get('threat_type') is not None:  # noqa: E501
             query_params.append(('threatType', local_var_params['threat_type']))  # noqa: E501
-        if 'threat_uid' in local_var_params and local_var_params['threat_uid'] is not None:  # noqa: E501
+        if local_var_params.get('threat_uid') is not None:  # noqa: E501
             query_params.append(('threatUid', local_var_params['threat_uid']))  # noqa: E501
-        if 'malware_family' in local_var_params and local_var_params['malware_family'] is not None:  # noqa: E501
+        if local_var_params.get('malware_family') is not None:  # noqa: E501
             query_params.append(('malwareFamily', local_var_params['malware_family']))  # noqa: E501
-        if 'malware_family_profile_uid' in local_var_params and local_var_params['malware_family_profile_uid'] is not None:  # noqa: E501
+        if local_var_params.get('malware_family_profile_uid') is not None:  # noqa: E501
             query_params.append(('malwareFamilyProfileUid', local_var_params['malware_family_profile_uid']))  # noqa: E501
-        if 'confidence' in local_var_params and local_var_params['confidence'] is not None:  # noqa: E501
+        if local_var_params.get('confidence') is not None:  # noqa: E501
             query_params.append(('confidence', local_var_params['confidence']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -258,10 +261,10 @@ class IndicatorsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "IndicatorSearchResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CveReportsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -400,6 +403,7 @@ class IndicatorsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -432,7 +436,9 @@ class IndicatorsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -458,40 +464,40 @@ class IndicatorsApi(object):
         path_params = {}
 
         query_params = []
-        if 'indicator' in local_var_params and local_var_params['indicator'] is not None:  # noqa: E501
+        if local_var_params.get('indicator') is not None:  # noqa: E501
             query_params.append(('indicator', local_var_params['indicator']))  # noqa: E501
-        if 'indicator_type' in local_var_params and local_var_params['indicator_type'] is not None:  # noqa: E501
+        if local_var_params.get('indicator_type') is not None:  # noqa: E501
             query_params.append(('indicatorType', local_var_params['indicator_type']))  # noqa: E501
-        if 'threat_type' in local_var_params and local_var_params['threat_type'] is not None:  # noqa: E501
+        if local_var_params.get('threat_type') is not None:  # noqa: E501
             query_params.append(('threatType', local_var_params['threat_type']))  # noqa: E501
-        if 'threat_uid' in local_var_params and local_var_params['threat_uid'] is not None:  # noqa: E501
+        if local_var_params.get('threat_uid') is not None:  # noqa: E501
             query_params.append(('threatUid', local_var_params['threat_uid']))  # noqa: E501
-        if 'malware_family' in local_var_params and local_var_params['malware_family'] is not None:  # noqa: E501
+        if local_var_params.get('malware_family') is not None:  # noqa: E501
             query_params.append(('malwareFamily', local_var_params['malware_family']))  # noqa: E501
-        if 'malware_family_profile_uid' in local_var_params and local_var_params['malware_family_profile_uid'] is not None:  # noqa: E501
+        if local_var_params.get('malware_family_profile_uid') is not None:  # noqa: E501
             query_params.append(('malwareFamilyProfileUid', local_var_params['malware_family_profile_uid']))  # noqa: E501
-        if 'confidence' in local_var_params and local_var_params['confidence'] is not None:  # noqa: E501
+        if local_var_params.get('confidence') is not None:  # noqa: E501
             query_params.append(('confidence', local_var_params['confidence']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'cursor' in local_var_params and local_var_params['cursor'] is not None:  # noqa: E501
+        if local_var_params.get('cursor') is not None:  # noqa: E501
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -503,10 +509,10 @@ class IndicatorsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "IndicatorStreamResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "EventsStreamGet412Response",
         }
 
         return self.api_client.call_api(
