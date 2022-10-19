@@ -147,6 +147,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -177,7 +178,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -203,36 +206,36 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'accessed_url' in local_var_params and local_var_params['accessed_url'] is not None:  # noqa: E501
+        if local_var_params.get('accessed_url') is not None:  # noqa: E501
             query_params.append(('accessedUrl', local_var_params['accessed_url']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -244,10 +247,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialSetsAccessedUrlsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialSetsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -374,6 +377,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -403,7 +407,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -425,34 +431,34 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'accessed_url' in local_var_params and local_var_params['accessed_url'] is not None:  # noqa: E501
+        if local_var_params.get('accessed_url') is not None:  # noqa: E501
             query_params.append(('accessedUrl', local_var_params['accessed_url']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'cursor' in local_var_params and local_var_params['cursor'] is not None:  # noqa: E501
+        if local_var_params.get('cursor') is not None:  # noqa: E501
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -464,10 +470,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialSetsAccessedUrlsStreamResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialSetsStreamGet412Response",
         }
 
         return self.api_client.call_api(
@@ -594,6 +600,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -623,7 +630,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -649,34 +658,34 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -688,10 +697,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialSetsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialSetsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -810,6 +819,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -837,7 +847,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -859,30 +871,30 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if 'victim' in local_var_params and local_var_params['victim'] is not None:  # noqa: E501
+        if local_var_params.get('victim') is not None:  # noqa: E501
             query_params.append(('victim', local_var_params['victim']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'cursor' in local_var_params and local_var_params['cursor'] is not None:  # noqa: E501
+        if local_var_params.get('cursor') is not None:  # noqa: E501
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -894,10 +906,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialSetsStreamResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialSetsStreamGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1028,6 +1040,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1058,7 +1071,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1084,36 +1099,36 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_uid') is not None:  # noqa: E501
             query_params.append(('credentialUid', local_var_params['credential_uid']))  # noqa: E501
-        if 'accessed_url' in local_var_params and local_var_params['accessed_url'] is not None:  # noqa: E501
+        if local_var_params.get('accessed_url') is not None:  # noqa: E501
             query_params.append(('accessedUrl', local_var_params['accessed_url']))  # noqa: E501
-        if 'domain' in local_var_params and local_var_params['domain'] is not None:  # noqa: E501
+        if local_var_params.get('domain') is not None:  # noqa: E501
             query_params.append(('domain', local_var_params['domain']))  # noqa: E501
-        if 'affiliation_group' in local_var_params and local_var_params['affiliation_group'] is not None:  # noqa: E501
+        if local_var_params.get('affiliation_group') is not None:  # noqa: E501
             query_params.append(('affiliationGroup', local_var_params['affiliation_group']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1125,10 +1140,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialAccessedUrlsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1255,6 +1270,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1284,7 +1300,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1306,34 +1324,34 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_uid') is not None:  # noqa: E501
             query_params.append(('credentialUid', local_var_params['credential_uid']))  # noqa: E501
-        if 'accessed_url' in local_var_params and local_var_params['accessed_url'] is not None:  # noqa: E501
+        if local_var_params.get('accessed_url') is not None:  # noqa: E501
             query_params.append(('accessedUrl', local_var_params['accessed_url']))  # noqa: E501
-        if 'domain' in local_var_params and local_var_params['domain'] is not None:  # noqa: E501
+        if local_var_params.get('domain') is not None:  # noqa: E501
             query_params.append(('domain', local_var_params['domain']))  # noqa: E501
-        if 'affiliation_group' in local_var_params and local_var_params['affiliation_group'] is not None:  # noqa: E501
+        if local_var_params.get('affiliation_group') is not None:  # noqa: E501
             query_params.append(('affiliationGroup', local_var_params['affiliation_group']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'cursor' in local_var_params and local_var_params['cursor'] is not None:  # noqa: E501
+        if local_var_params.get('cursor') is not None:  # noqa: E501
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1345,10 +1363,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialAccessedUrlsStreamResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialsStreamGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1535,6 +1553,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1579,7 +1598,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1623,64 +1644,64 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_uid') is not None:  # noqa: E501
             query_params.append(('credentialUid', local_var_params['credential_uid']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'domain' in local_var_params and local_var_params['domain'] is not None:  # noqa: E501
+        if local_var_params.get('domain') is not None:  # noqa: E501
             query_params.append(('domain', local_var_params['domain']))  # noqa: E501
-        if 'affiliation_group' in local_var_params and local_var_params['affiliation_group'] is not None:  # noqa: E501
+        if local_var_params.get('affiliation_group') is not None:  # noqa: E501
             query_params.append(('affiliationGroup', local_var_params['affiliation_group']))  # noqa: E501
-        if 'password_strength' in local_var_params and local_var_params['password_strength'] is not None:  # noqa: E501
+        if local_var_params.get('password_strength') is not None:  # noqa: E501
             query_params.append(('passwordStrength', local_var_params['password_strength']))  # noqa: E501
-        if 'password_length_gte' in local_var_params and local_var_params['password_length_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_length_gte') is not None:  # noqa: E501
             query_params.append(('passwordLengthGte', local_var_params['password_length_gte']))  # noqa: E501
-        if 'password_lowercase_gte' in local_var_params and local_var_params['password_lowercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_lowercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordLowercaseGte', local_var_params['password_lowercase_gte']))  # noqa: E501
-        if 'password_uppercase_gte' in local_var_params and local_var_params['password_uppercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_uppercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordUppercaseGte', local_var_params['password_uppercase_gte']))  # noqa: E501
-        if 'password_numbers_gte' in local_var_params and local_var_params['password_numbers_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_numbers_gte') is not None:  # noqa: E501
             query_params.append(('passwordNumbersGte', local_var_params['password_numbers_gte']))  # noqa: E501
-        if 'password_punctuation_gte' in local_var_params and local_var_params['password_punctuation_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_punctuation_gte') is not None:  # noqa: E501
             query_params.append(('passwordPunctuationGte', local_var_params['password_punctuation_gte']))  # noqa: E501
-        if 'password_symbols_gte' in local_var_params and local_var_params['password_symbols_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_symbols_gte') is not None:  # noqa: E501
             query_params.append(('passwordSymbolsGte', local_var_params['password_symbols_gte']))  # noqa: E501
-        if 'password_separators_gte' in local_var_params and local_var_params['password_separators_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_separators_gte') is not None:  # noqa: E501
             query_params.append(('passwordSeparatorsGte', local_var_params['password_separators_gte']))  # noqa: E501
-        if 'password_other_gte' in local_var_params and local_var_params['password_other_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_other_gte') is not None:  # noqa: E501
             query_params.append(('passwordOtherGte', local_var_params['password_other_gte']))  # noqa: E501
-        if 'password_entropy_gte' in local_var_params and local_var_params['password_entropy_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_entropy_gte') is not None:  # noqa: E501
             query_params.append(('passwordEntropyGte', local_var_params['password_entropy_gte']))  # noqa: E501
-        if 'password_plain' in local_var_params and local_var_params['password_plain'] is not None:  # noqa: E501
+        if local_var_params.get('password_plain') is not None:  # noqa: E501
             query_params.append(('passwordPlain', local_var_params['password_plain']))  # noqa: E501
-        if 'credential_login' in local_var_params and local_var_params['credential_login'] is not None:  # noqa: E501
+        if local_var_params.get('credential_login') is not None:  # noqa: E501
             query_params.append(('credentialLogin', local_var_params['credential_login']))  # noqa: E501
-        if 'detected_malware' in local_var_params and local_var_params['detected_malware'] is not None:  # noqa: E501
+        if local_var_params.get('detected_malware') is not None:  # noqa: E501
             query_params.append(('detectedMalware', local_var_params['detected_malware']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -1692,10 +1713,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -1890,6 +1911,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1936,7 +1958,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -1980,68 +2004,68 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_occurrence_uid' in local_var_params and local_var_params['credential_occurrence_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_occurrence_uid') is not None:  # noqa: E501
             query_params.append(('credentialOccurrenceUid', local_var_params['credential_occurrence_uid']))  # noqa: E501
-        if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_uid') is not None:  # noqa: E501
             query_params.append(('credentialUid', local_var_params['credential_uid']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'domain' in local_var_params and local_var_params['domain'] is not None:  # noqa: E501
+        if local_var_params.get('domain') is not None:  # noqa: E501
             query_params.append(('domain', local_var_params['domain']))  # noqa: E501
-        if 'affiliation_group' in local_var_params and local_var_params['affiliation_group'] is not None:  # noqa: E501
+        if local_var_params.get('affiliation_group') is not None:  # noqa: E501
             query_params.append(('affiliationGroup', local_var_params['affiliation_group']))  # noqa: E501
-        if 'password_strength' in local_var_params and local_var_params['password_strength'] is not None:  # noqa: E501
+        if local_var_params.get('password_strength') is not None:  # noqa: E501
             query_params.append(('passwordStrength', local_var_params['password_strength']))  # noqa: E501
-        if 'password_length_gte' in local_var_params and local_var_params['password_length_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_length_gte') is not None:  # noqa: E501
             query_params.append(('passwordLengthGte', local_var_params['password_length_gte']))  # noqa: E501
-        if 'password_lowercase_gte' in local_var_params and local_var_params['password_lowercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_lowercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordLowercaseGte', local_var_params['password_lowercase_gte']))  # noqa: E501
-        if 'password_uppercase_gte' in local_var_params and local_var_params['password_uppercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_uppercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordUppercaseGte', local_var_params['password_uppercase_gte']))  # noqa: E501
-        if 'password_numbers_gte' in local_var_params and local_var_params['password_numbers_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_numbers_gte') is not None:  # noqa: E501
             query_params.append(('passwordNumbersGte', local_var_params['password_numbers_gte']))  # noqa: E501
-        if 'password_punctuation_gte' in local_var_params and local_var_params['password_punctuation_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_punctuation_gte') is not None:  # noqa: E501
             query_params.append(('passwordPunctuationGte', local_var_params['password_punctuation_gte']))  # noqa: E501
-        if 'password_symbols_gte' in local_var_params and local_var_params['password_symbols_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_symbols_gte') is not None:  # noqa: E501
             query_params.append(('passwordSymbolsGte', local_var_params['password_symbols_gte']))  # noqa: E501
-        if 'password_separators_gte' in local_var_params and local_var_params['password_separators_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_separators_gte') is not None:  # noqa: E501
             query_params.append(('passwordSeparatorsGte', local_var_params['password_separators_gte']))  # noqa: E501
-        if 'password_other_gte' in local_var_params and local_var_params['password_other_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_other_gte') is not None:  # noqa: E501
             query_params.append(('passwordOtherGte', local_var_params['password_other_gte']))  # noqa: E501
-        if 'password_entropy_gte' in local_var_params and local_var_params['password_entropy_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_entropy_gte') is not None:  # noqa: E501
             query_params.append(('passwordEntropyGte', local_var_params['password_entropy_gte']))  # noqa: E501
-        if 'password_plain' in local_var_params and local_var_params['password_plain'] is not None:  # noqa: E501
+        if local_var_params.get('password_plain') is not None:  # noqa: E501
             query_params.append(('passwordPlain', local_var_params['password_plain']))  # noqa: E501
-        if 'credential_login' in local_var_params and local_var_params['credential_login'] is not None:  # noqa: E501
+        if local_var_params.get('credential_login') is not None:  # noqa: E501
             query_params.append(('credentialLogin', local_var_params['credential_login']))  # noqa: E501
-        if 'detected_malware' in local_var_params and local_var_params['detected_malware'] is not None:  # noqa: E501
+        if local_var_params.get('detected_malware') is not None:  # noqa: E501
             query_params.append(('detectedMalware', local_var_params['detected_malware']))  # noqa: E501
-        if 'accessed_url' in local_var_params and local_var_params['accessed_url'] is not None:  # noqa: E501
+        if local_var_params.get('accessed_url') is not None:  # noqa: E501
             query_params.append(('accessedUrl', local_var_params['accessed_url']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -2053,10 +2077,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialOccurrencesResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -2247,6 +2271,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2292,7 +2317,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2332,66 +2359,66 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_occurrence_uid' in local_var_params and local_var_params['credential_occurrence_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_occurrence_uid') is not None:  # noqa: E501
             query_params.append(('credentialOccurrenceUid', local_var_params['credential_occurrence_uid']))  # noqa: E501
-        if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_uid') is not None:  # noqa: E501
             query_params.append(('credentialUid', local_var_params['credential_uid']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'domain' in local_var_params and local_var_params['domain'] is not None:  # noqa: E501
+        if local_var_params.get('domain') is not None:  # noqa: E501
             query_params.append(('domain', local_var_params['domain']))  # noqa: E501
-        if 'affiliation_group' in local_var_params and local_var_params['affiliation_group'] is not None:  # noqa: E501
+        if local_var_params.get('affiliation_group') is not None:  # noqa: E501
             query_params.append(('affiliationGroup', local_var_params['affiliation_group']))  # noqa: E501
-        if 'password_strength' in local_var_params and local_var_params['password_strength'] is not None:  # noqa: E501
+        if local_var_params.get('password_strength') is not None:  # noqa: E501
             query_params.append(('passwordStrength', local_var_params['password_strength']))  # noqa: E501
-        if 'password_length_gte' in local_var_params and local_var_params['password_length_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_length_gte') is not None:  # noqa: E501
             query_params.append(('passwordLengthGte', local_var_params['password_length_gte']))  # noqa: E501
-        if 'password_lowercase_gte' in local_var_params and local_var_params['password_lowercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_lowercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordLowercaseGte', local_var_params['password_lowercase_gte']))  # noqa: E501
-        if 'password_uppercase_gte' in local_var_params and local_var_params['password_uppercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_uppercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordUppercaseGte', local_var_params['password_uppercase_gte']))  # noqa: E501
-        if 'password_numbers_gte' in local_var_params and local_var_params['password_numbers_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_numbers_gte') is not None:  # noqa: E501
             query_params.append(('passwordNumbersGte', local_var_params['password_numbers_gte']))  # noqa: E501
-        if 'password_punctuation_gte' in local_var_params and local_var_params['password_punctuation_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_punctuation_gte') is not None:  # noqa: E501
             query_params.append(('passwordPunctuationGte', local_var_params['password_punctuation_gte']))  # noqa: E501
-        if 'password_symbols_gte' in local_var_params and local_var_params['password_symbols_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_symbols_gte') is not None:  # noqa: E501
             query_params.append(('passwordSymbolsGte', local_var_params['password_symbols_gte']))  # noqa: E501
-        if 'password_separators_gte' in local_var_params and local_var_params['password_separators_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_separators_gte') is not None:  # noqa: E501
             query_params.append(('passwordSeparatorsGte', local_var_params['password_separators_gte']))  # noqa: E501
-        if 'password_other_gte' in local_var_params and local_var_params['password_other_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_other_gte') is not None:  # noqa: E501
             query_params.append(('passwordOtherGte', local_var_params['password_other_gte']))  # noqa: E501
-        if 'password_entropy_gte' in local_var_params and local_var_params['password_entropy_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_entropy_gte') is not None:  # noqa: E501
             query_params.append(('passwordEntropyGte', local_var_params['password_entropy_gte']))  # noqa: E501
-        if 'password_plain' in local_var_params and local_var_params['password_plain'] is not None:  # noqa: E501
+        if local_var_params.get('password_plain') is not None:  # noqa: E501
             query_params.append(('passwordPlain', local_var_params['password_plain']))  # noqa: E501
-        if 'credential_login' in local_var_params and local_var_params['credential_login'] is not None:  # noqa: E501
+        if local_var_params.get('credential_login') is not None:  # noqa: E501
             query_params.append(('credentialLogin', local_var_params['credential_login']))  # noqa: E501
-        if 'detected_malware' in local_var_params and local_var_params['detected_malware'] is not None:  # noqa: E501
+        if local_var_params.get('detected_malware') is not None:  # noqa: E501
             query_params.append(('detectedMalware', local_var_params['detected_malware']))  # noqa: E501
-        if 'accessed_url' in local_var_params and local_var_params['accessed_url'] is not None:  # noqa: E501
+        if local_var_params.get('accessed_url') is not None:  # noqa: E501
             query_params.append(('accessedUrl', local_var_params['accessed_url']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'cursor' in local_var_params and local_var_params['cursor'] is not None:  # noqa: E501
+        if local_var_params.get('cursor') is not None:  # noqa: E501
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -2403,10 +2430,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialOccurrencesStreamResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialsStreamGet412Response",
         }
 
         return self.api_client.call_api(
@@ -2589,6 +2616,7 @@ class CredentialsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2632,7 +2660,9 @@ class CredentialsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -2672,62 +2702,62 @@ class CredentialsApi(object):
         path_params = {}
 
         query_params = []
-        if 'text' in local_var_params and local_var_params['text'] is not None:  # noqa: E501
+        if local_var_params.get('text') is not None:  # noqa: E501
             query_params.append(('text', local_var_params['text']))  # noqa: E501
-        if 'credential_uid' in local_var_params and local_var_params['credential_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_uid') is not None:  # noqa: E501
             query_params.append(('credentialUid', local_var_params['credential_uid']))  # noqa: E501
-        if 'credential_set_name' in local_var_params and local_var_params['credential_set_name'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_name') is not None:  # noqa: E501
             query_params.append(('credentialSetName', local_var_params['credential_set_name']))  # noqa: E501
-        if 'credential_set_uid' in local_var_params and local_var_params['credential_set_uid'] is not None:  # noqa: E501
+        if local_var_params.get('credential_set_uid') is not None:  # noqa: E501
             query_params.append(('credentialSetUid', local_var_params['credential_set_uid']))  # noqa: E501
-        if 'domain' in local_var_params and local_var_params['domain'] is not None:  # noqa: E501
+        if local_var_params.get('domain') is not None:  # noqa: E501
             query_params.append(('domain', local_var_params['domain']))  # noqa: E501
-        if 'affiliation_group' in local_var_params and local_var_params['affiliation_group'] is not None:  # noqa: E501
+        if local_var_params.get('affiliation_group') is not None:  # noqa: E501
             query_params.append(('affiliationGroup', local_var_params['affiliation_group']))  # noqa: E501
-        if 'password_strength' in local_var_params and local_var_params['password_strength'] is not None:  # noqa: E501
+        if local_var_params.get('password_strength') is not None:  # noqa: E501
             query_params.append(('passwordStrength', local_var_params['password_strength']))  # noqa: E501
-        if 'password_length_gte' in local_var_params and local_var_params['password_length_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_length_gte') is not None:  # noqa: E501
             query_params.append(('passwordLengthGte', local_var_params['password_length_gte']))  # noqa: E501
-        if 'password_lowercase_gte' in local_var_params and local_var_params['password_lowercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_lowercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordLowercaseGte', local_var_params['password_lowercase_gte']))  # noqa: E501
-        if 'password_uppercase_gte' in local_var_params and local_var_params['password_uppercase_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_uppercase_gte') is not None:  # noqa: E501
             query_params.append(('passwordUppercaseGte', local_var_params['password_uppercase_gte']))  # noqa: E501
-        if 'password_numbers_gte' in local_var_params and local_var_params['password_numbers_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_numbers_gte') is not None:  # noqa: E501
             query_params.append(('passwordNumbersGte', local_var_params['password_numbers_gte']))  # noqa: E501
-        if 'password_punctuation_gte' in local_var_params and local_var_params['password_punctuation_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_punctuation_gte') is not None:  # noqa: E501
             query_params.append(('passwordPunctuationGte', local_var_params['password_punctuation_gte']))  # noqa: E501
-        if 'password_symbols_gte' in local_var_params and local_var_params['password_symbols_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_symbols_gte') is not None:  # noqa: E501
             query_params.append(('passwordSymbolsGte', local_var_params['password_symbols_gte']))  # noqa: E501
-        if 'password_separators_gte' in local_var_params and local_var_params['password_separators_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_separators_gte') is not None:  # noqa: E501
             query_params.append(('passwordSeparatorsGte', local_var_params['password_separators_gte']))  # noqa: E501
-        if 'password_other_gte' in local_var_params and local_var_params['password_other_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_other_gte') is not None:  # noqa: E501
             query_params.append(('passwordOtherGte', local_var_params['password_other_gte']))  # noqa: E501
-        if 'password_entropy_gte' in local_var_params and local_var_params['password_entropy_gte'] is not None:  # noqa: E501
+        if local_var_params.get('password_entropy_gte') is not None:  # noqa: E501
             query_params.append(('passwordEntropyGte', local_var_params['password_entropy_gte']))  # noqa: E501
-        if 'password_plain' in local_var_params and local_var_params['password_plain'] is not None:  # noqa: E501
+        if local_var_params.get('password_plain') is not None:  # noqa: E501
             query_params.append(('passwordPlain', local_var_params['password_plain']))  # noqa: E501
-        if 'credential_login' in local_var_params and local_var_params['credential_login'] is not None:  # noqa: E501
+        if local_var_params.get('credential_login') is not None:  # noqa: E501
             query_params.append(('credentialLogin', local_var_params['credential_login']))  # noqa: E501
-        if 'detected_malware' in local_var_params and local_var_params['detected_malware'] is not None:  # noqa: E501
+        if local_var_params.get('detected_malware') is not None:  # noqa: E501
             query_params.append(('detectedMalware', local_var_params['detected_malware']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'cursor' in local_var_params and local_var_params['cursor'] is not None:  # noqa: E501
+        if local_var_params.get('cursor') is not None:  # noqa: E501
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -2739,10 +2769,10 @@ class CredentialsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "CredentialsStreamResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CredentialsStreamGet412Response",
         }
 
         return self.api_client.call_api(

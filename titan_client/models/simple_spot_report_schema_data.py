@@ -37,7 +37,7 @@ class SimpleSpotReportSchemaData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'entities': 'list[SimpleSpotReportSchemaDataEntities]',
+        'entities': 'list[SimpleSpotReportSchemaDataEntitiesInner]',
         'spot_report': 'SimpleSpotReportSchemaDataSpotReport'
     }
 
@@ -67,7 +67,7 @@ class SimpleSpotReportSchemaData(object):
         List of `entities`.  # noqa: E501
 
         :return: The entities of this SimpleSpotReportSchemaData.  # noqa: E501
-        :rtype: list[SimpleSpotReportSchemaDataEntities]
+        :rtype: list[SimpleSpotReportSchemaDataEntitiesInner]
         """
         return self._entities
 
@@ -78,7 +78,7 @@ class SimpleSpotReportSchemaData(object):
         List of `entities`.  # noqa: E501
 
         :param entities: The entities of this SimpleSpotReportSchemaData.  # noqa: E501
-        :type entities: list[SimpleSpotReportSchemaDataEntities]
+        :type entities: list[SimpleSpotReportSchemaDataEntitiesInner]
         """
 
         self._entities = entities

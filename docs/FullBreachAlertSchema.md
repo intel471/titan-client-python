@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **activity** | [**SimpleBreachAlertSchemaActivity**](SimpleBreachAlertSchemaActivity.md) |  | 
-**data** | **object** |  | 
+**data** | [**FullBreachAlertSchemaAllOfData**](FullBreachAlertSchemaAllOfData.md) |  | 
 **last_updated** | **int** | Breach Alert last modification date. | 
 **uid** | **str** | Unique Breach Alert identifier. | 
 

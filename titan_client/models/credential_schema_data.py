@@ -40,7 +40,7 @@ class CredentialSchemaData(object):
         'affiliations': 'list[str]',
         'credential_domain': 'str',
         'credential_login': 'str',
-        'credential_sets': 'list[CredentialSchemaDataCredentialSets]',
+        'credential_sets': 'list[CredentialSchemaDataCredentialSetsInner]',
         'detected_malware': 'list[Malware]',
         'detection_domain': 'str',
         'password': 'CredentialSchemaDataPassword'
@@ -162,7 +162,7 @@ class CredentialSchemaData(object):
         Credential sets associated with the credential.  # noqa: E501
 
         :return: The credential_sets of this CredentialSchemaData.  # noqa: E501
-        :rtype: list[CredentialSchemaDataCredentialSets]
+        :rtype: list[CredentialSchemaDataCredentialSetsInner]
         """
         return self._credential_sets
 
@@ -173,7 +173,7 @@ class CredentialSchemaData(object):
         Credential sets associated with the credential.  # noqa: E501
 
         :param credential_sets: The credential_sets of this CredentialSchemaData.  # noqa: E501
-        :type credential_sets: list[CredentialSchemaDataCredentialSets]
+        :type credential_sets: list[CredentialSchemaDataCredentialSetsInner]
         """
 
         self._credential_sets = credential_sets

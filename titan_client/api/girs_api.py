@@ -111,6 +111,7 @@ class GIRsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -132,7 +133,9 @@ class GIRsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -158,18 +161,18 @@ class GIRsApi(object):
         path_params = {}
 
         query_params = []
-        if 'gir_path' in local_var_params and local_var_params['gir_path'] is not None:  # noqa: E501
+        if local_var_params.get('gir_path') is not None:  # noqa: E501
             query_params.append(('girPath', local_var_params['gir_path']))  # noqa: E501
-        if 'gir_name' in local_var_params and local_var_params['gir_name'] is not None:  # noqa: E501
+        if local_var_params.get('gir_name') is not None:  # noqa: E501
             query_params.append(('girName', local_var_params['gir_name']))  # noqa: E501
-        if 'gir_description' in local_var_params and local_var_params['gir_description'] is not None:  # noqa: E501
+        if local_var_params.get('gir_description') is not None:  # noqa: E501
             query_params.append(('girDescription', local_var_params['gir_description']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -181,10 +184,10 @@ class GIRsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "GirsResponse",
-            412: "OneOfstringstringstringstring",
+            412: "GirsGet412Response",
         }
 
         return self.api_client.call_api(

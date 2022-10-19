@@ -127,6 +127,7 @@ class AlertsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -152,7 +153,9 @@ class AlertsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -174,26 +177,26 @@ class AlertsApi(object):
         path_params = {}
 
         query_params = []
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'watcher_group' in local_var_params and local_var_params['watcher_group'] is not None:  # noqa: E501
+        if local_var_params.get('watcher_group') is not None:  # noqa: E501
             query_params.append(('watcherGroup', local_var_params['watcher_group']))  # noqa: E501
-        if 'show_read' in local_var_params and local_var_params['show_read'] is not None:  # noqa: E501
+        if local_var_params.get('show_read') is not None:  # noqa: E501
             query_params.append(('showRead', local_var_params['show_read']))  # noqa: E501
-        if 'display_watchers' in local_var_params and local_var_params['display_watchers'] is not None:  # noqa: E501
+        if local_var_params.get('display_watchers') is not None:  # noqa: E501
             query_params.append(('displayWatchers', local_var_params['display_watchers']))  # noqa: E501
-        if 'mark_as_read' in local_var_params and local_var_params['mark_as_read'] is not None:  # noqa: E501
+        if local_var_params.get('mark_as_read') is not None:  # noqa: E501
             query_params.append(('markAsRead', local_var_params['mark_as_read']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -205,10 +208,10 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "AlertListSchemaResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstring",
+            412: "AlertsGet412Response",
         }
 
         return self.api_client.call_api(

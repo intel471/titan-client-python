@@ -40,13 +40,13 @@ class WatcherSchema(object):
         'data_sets': 'list[str]',
         'description': 'str',
         'filter_by_gir_set': 'str',
-        'filters': 'list[WatcherSchemaFilters]',
+        'filters': 'list[WatcherSchemaFiltersInner]',
         'girs': 'list[str]',
-        'links': 'list[WatcherSchemaLinks]',
+        'links': 'list[WatcherSchemaLinksInner]',
         'muted': 'bool',
         'notification_channel': 'str',
         'notification_frequency': 'str',
-        'patterns': 'list[WatcherSchemaPatterns]',
+        'patterns': 'list[WatcherSchemaPatternsInner]',
         'type': 'str',
         'uid': 'str'
     }
@@ -188,7 +188,7 @@ class WatcherSchema(object):
         Search filter of `search` watcher.  # noqa: E501
 
         :return: The filters of this WatcherSchema.  # noqa: E501
-        :rtype: list[WatcherSchemaFilters]
+        :rtype: list[WatcherSchemaFiltersInner]
         """
         return self._filters
 
@@ -199,7 +199,7 @@ class WatcherSchema(object):
         Search filter of `search` watcher.  # noqa: E501
 
         :param filters: The filters of this WatcherSchema.  # noqa: E501
-        :type filters: list[WatcherSchemaFilters]
+        :type filters: list[WatcherSchemaFiltersInner]
         """
 
         self._filters = filters
@@ -234,7 +234,7 @@ class WatcherSchema(object):
         Links to the Forum and Thread of the `thread` type watcher.  # noqa: E501
 
         :return: The links of this WatcherSchema.  # noqa: E501
-        :rtype: list[WatcherSchemaLinks]
+        :rtype: list[WatcherSchemaLinksInner]
         """
         return self._links
 
@@ -245,7 +245,7 @@ class WatcherSchema(object):
         Links to the Forum and Thread of the `thread` type watcher.  # noqa: E501
 
         :param links: The links of this WatcherSchema.  # noqa: E501
-        :type links: list[WatcherSchemaLinks]
+        :type links: list[WatcherSchemaLinksInner]
         """
 
         self._links = links
@@ -344,7 +344,7 @@ class WatcherSchema(object):
         Search query patterns applicable to a watcher of the `search` type.  # noqa: E501
 
         :return: The patterns of this WatcherSchema.  # noqa: E501
-        :rtype: list[WatcherSchemaPatterns]
+        :rtype: list[WatcherSchemaPatternsInner]
         """
         return self._patterns
 
@@ -355,7 +355,7 @@ class WatcherSchema(object):
         Search query patterns applicable to a watcher of the `search` type.  # noqa: E501
 
         :param patterns: The patterns of this WatcherSchema.  # noqa: E501
-        :type patterns: list[WatcherSchemaPatterns]
+        :type patterns: list[WatcherSchemaPatternsInner]
         """
 
         self._patterns = patterns

@@ -95,6 +95,7 @@ class TagsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -112,7 +113,9 @@ class TagsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -130,10 +133,10 @@ class TagsApi(object):
         path_params = {}
 
         query_params = []
-        if 'used' in local_var_params and local_var_params['used'] is not None:  # noqa: E501
+        if local_var_params.get('used') is not None:  # noqa: E501
             query_params.append(('used', local_var_params['used']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -145,7 +148,7 @@ class TagsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "TagResponse",
         }

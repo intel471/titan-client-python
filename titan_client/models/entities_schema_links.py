@@ -38,9 +38,9 @@ class EntitiesSchemaLinks(object):
     """
     openapi_types = {
         'actor_total_count': 'int',
-        'actors': 'list[EntitiesSchemaLinksActors]',
+        'actors': 'list[EntitiesSchemaLinksActorsInner]',
         'report_total_count': 'int',
-        'reports': 'list[EntitiesSchemaLinksReports]'
+        'reports': 'list[EntitiesSchemaLinksReportsInner]'
     }
 
     attribute_map = {
@@ -101,7 +101,7 @@ class EntitiesSchemaLinks(object):
         List of `Actors` <br />`Array` of simple `Actor`. Contains only `uid`, `handles` from [Actors]().  # noqa: E501
 
         :return: The actors of this EntitiesSchemaLinks.  # noqa: E501
-        :rtype: list[EntitiesSchemaLinksActors]
+        :rtype: list[EntitiesSchemaLinksActorsInner]
         """
         return self._actors
 
@@ -112,7 +112,7 @@ class EntitiesSchemaLinks(object):
         List of `Actors` <br />`Array` of simple `Actor`. Contains only `uid`, `handles` from [Actors]().  # noqa: E501
 
         :param actors: The actors of this EntitiesSchemaLinks.  # noqa: E501
-        :type actors: list[EntitiesSchemaLinksActors]
+        :type actors: list[EntitiesSchemaLinksActorsInner]
         """
 
         self._actors = actors
@@ -147,7 +147,7 @@ class EntitiesSchemaLinks(object):
         Linked `reports` Array of simplified version of one of the following: `Information Report`, `Fintel Report`, `Malware Report`, `Spot Report`, `Situation Report`, `Breach Alert`.  # noqa: E501
 
         :return: The reports of this EntitiesSchemaLinks.  # noqa: E501
-        :rtype: list[EntitiesSchemaLinksReports]
+        :rtype: list[EntitiesSchemaLinksReportsInner]
         """
         return self._reports
 
@@ -158,7 +158,7 @@ class EntitiesSchemaLinks(object):
         Linked `reports` Array of simplified version of one of the following: `Information Report`, `Fintel Report`, `Malware Report`, `Spot Report`, `Situation Report`, `Breach Alert`.  # noqa: E501
 
         :param reports: The reports of this EntitiesSchemaLinks.  # noqa: E501
-        :type reports: list[EntitiesSchemaLinksReports]
+        :type reports: list[EntitiesSchemaLinksReportsInner]
         """
 
         self._reports = reports

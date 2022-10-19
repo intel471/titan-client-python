@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **entity** | [**EntitiesSchema**](EntitiesSchema.md) |  | [optional] 
 **event** | [**EventSchema**](EventSchema.md) |  | [optional] 
 **found_time** | **int** | Date when alert was created. | 
-**highlights** | [**list[AlertListSchemaHighlights]**](AlertListSchemaHighlights.md) | Text snippets with &#x60;highlights&#x60; matching search terms. | [optional] 
+**highlights** | [**list[AlertListSchemaHighlightsInner]**](AlertListSchemaHighlightsInner.md) | Text snippets with &#x60;highlights&#x60; matching search terms. | [optional] 
 **indicator** | [**IndicatorSearchSchema**](IndicatorSearchSchema.md) |  | [optional] 
 **instant_message** | [**InstantMessageSchema**](InstantMessageSchema.md) |  | [optional] 
 **post** | [**PostSchema**](PostSchema.md) |  | [optional] 

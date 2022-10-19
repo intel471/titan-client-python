@@ -127,6 +127,7 @@ class IOCsApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -152,7 +153,9 @@ class IOCsApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -165,8 +168,7 @@ class IOCsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'ioc' is set
-        if self.api_client.client_side_validation and ('ioc' not in local_var_params or  # noqa: E501
-                                                        local_var_params['ioc'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('ioc') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `ioc` when calling `iocs_get`")  # noqa: E501
 
         if self.api_client.client_side_validation and 'offset' in local_var_params and local_var_params['offset'] > 1000:  # noqa: E501
@@ -182,26 +184,26 @@ class IOCsApi(object):
         path_params = {}
 
         query_params = []
-        if 'ioc' in local_var_params and local_var_params['ioc'] is not None:  # noqa: E501
+        if local_var_params.get('ioc') is not None:  # noqa: E501
             query_params.append(('ioc', local_var_params['ioc']))  # noqa: E501
-        if 'ioc_type' in local_var_params and local_var_params['ioc_type'] is not None:  # noqa: E501
+        if local_var_params.get('ioc_type') is not None:  # noqa: E501
             query_params.append(('iocType', local_var_params['ioc_type']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -213,10 +215,10 @@ class IOCsApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "IocsResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "ActorsGet412Response",
         }
 
         return self.api_client.call_api(

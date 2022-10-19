@@ -38,28 +38,28 @@ class SimpleReportSchema(object):
     """
     openapi_types = {
         'actor_handle': 'str',
-        'actor_subject_of_report': 'list[SimpleReportSchemaActorSubjectOfReport]',
+        'actor_subject_of_report': 'list[SimpleReportSchemaActorSubjectOfReportInner]',
         'admiralty_code': 'str',
         'classification': 'SimpleReportSchemaClassification',
         'created': 'int',
         'date_of_information': 'int',
         'document_family': 'str',
         'document_type': 'str',
-        'entities': 'list[SimpleReportSchemaEntities]',
+        'entities': 'list[SimpleReportSchemaEntitiesInner]',
         'last_updated': 'int',
-        'locations': 'list[SimpleReportSchemaLocations]',
+        'locations': 'list[SimpleReportSchemaLocationsInner]',
         'motivation': 'list[str]',
         'portal_report_url': 'str',
-        'related_reports': 'list[SimpleReportSchemaRelatedReports]',
+        'related_reports': 'list[SimpleReportSchemaRelatedReportsInner]',
         'released': 'int',
-        'report_attachments': 'list[SimpleReportSchemaReportAttachments]',
+        'report_attachments': 'list[SimpleReportSchemaReportAttachmentsInner]',
         'sensitive_source': 'bool',
         'source_characterization': 'str',
-        'sources': 'list[SimpleReportSchemaSources]',
+        'sources': 'list[SimpleReportSchemaSourcesInner]',
         'subject': 'str',
         'tags': 'list[str]',
         'uid': 'str',
-        'victims': 'list[SimpleReportSchemaVictims]'
+        'victims': 'list[SimpleReportSchemaVictimsInner]'
     }
 
     attribute_map = {
@@ -193,7 +193,7 @@ class SimpleReportSchema(object):
         List of actors mentioned in report subject.  # noqa: E501
 
         :return: The actor_subject_of_report of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaActorSubjectOfReport]
+        :rtype: list[SimpleReportSchemaActorSubjectOfReportInner]
         """
         return self._actor_subject_of_report
 
@@ -204,7 +204,7 @@ class SimpleReportSchema(object):
         List of actors mentioned in report subject.  # noqa: E501
 
         :param actor_subject_of_report: The actor_subject_of_report of this SimpleReportSchema.  # noqa: E501
-        :type actor_subject_of_report: list[SimpleReportSchemaActorSubjectOfReport]
+        :type actor_subject_of_report: list[SimpleReportSchemaActorSubjectOfReportInner]
         """
 
         self._actor_subject_of_report = actor_subject_of_report
@@ -355,7 +355,7 @@ class SimpleReportSchema(object):
         List of entities.  # noqa: E501
 
         :return: The entities of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaEntities]
+        :rtype: list[SimpleReportSchemaEntitiesInner]
         """
         return self._entities
 
@@ -366,7 +366,7 @@ class SimpleReportSchema(object):
         List of entities.  # noqa: E501
 
         :param entities: The entities of this SimpleReportSchema.  # noqa: E501
-        :type entities: list[SimpleReportSchemaEntities]
+        :type entities: list[SimpleReportSchemaEntitiesInner]
         """
 
         self._entities = entities
@@ -401,7 +401,7 @@ class SimpleReportSchema(object):
         Report `locations`.  # noqa: E501
 
         :return: The locations of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaLocations]
+        :rtype: list[SimpleReportSchemaLocationsInner]
         """
         return self._locations
 
@@ -412,7 +412,7 @@ class SimpleReportSchema(object):
         Report `locations`.  # noqa: E501
 
         :param locations: The locations of this SimpleReportSchema.  # noqa: E501
-        :type locations: list[SimpleReportSchemaLocations]
+        :type locations: list[SimpleReportSchemaLocationsInner]
         """
 
         self._locations = locations
@@ -472,7 +472,7 @@ class SimpleReportSchema(object):
         List of related reports.  # noqa: E501
 
         :return: The related_reports of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaRelatedReports]
+        :rtype: list[SimpleReportSchemaRelatedReportsInner]
         """
         return self._related_reports
 
@@ -483,7 +483,7 @@ class SimpleReportSchema(object):
         List of related reports.  # noqa: E501
 
         :param related_reports: The related_reports of this SimpleReportSchema.  # noqa: E501
-        :type related_reports: list[SimpleReportSchemaRelatedReports]
+        :type related_reports: list[SimpleReportSchemaRelatedReportsInner]
         """
 
         self._related_reports = related_reports
@@ -518,7 +518,7 @@ class SimpleReportSchema(object):
         List of report attachments.  # noqa: E501
 
         :return: The report_attachments of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaReportAttachments]
+        :rtype: list[SimpleReportSchemaReportAttachmentsInner]
         """
         return self._report_attachments
 
@@ -529,7 +529,7 @@ class SimpleReportSchema(object):
         List of report attachments.  # noqa: E501
 
         :param report_attachments: The report_attachments of this SimpleReportSchema.  # noqa: E501
-        :type report_attachments: list[SimpleReportSchemaReportAttachments]
+        :type report_attachments: list[SimpleReportSchemaReportAttachmentsInner]
         """
 
         self._report_attachments = report_attachments
@@ -587,7 +587,7 @@ class SimpleReportSchema(object):
         List of `sources`.  # noqa: E501
 
         :return: The sources of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaSources]
+        :rtype: list[SimpleReportSchemaSourcesInner]
         """
         return self._sources
 
@@ -598,7 +598,7 @@ class SimpleReportSchema(object):
         List of `sources`.  # noqa: E501
 
         :param sources: The sources of this SimpleReportSchema.  # noqa: E501
-        :type sources: list[SimpleReportSchemaSources]
+        :type sources: list[SimpleReportSchemaSourcesInner]
         """
 
         self._sources = sources
@@ -683,7 +683,7 @@ class SimpleReportSchema(object):
         Purported victims list.  # noqa: E501
 
         :return: The victims of this SimpleReportSchema.  # noqa: E501
-        :rtype: list[SimpleReportSchemaVictims]
+        :rtype: list[SimpleReportSchemaVictimsInner]
         """
         return self._victims
 
@@ -694,7 +694,7 @@ class SimpleReportSchema(object):
         Purported victims list.  # noqa: E501
 
         :param victims: The victims of this SimpleReportSchema.  # noqa: E501
-        :type victims: list[SimpleReportSchemaVictims]
+        :type victims: list[SimpleReportSchemaVictimsInner]
         """
 
         self._victims = victims

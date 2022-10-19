@@ -40,12 +40,12 @@ class WatcherRequestBodyPut(object):
         'data_sets': 'list[str]',
         'description': 'str',
         'filter_by_gir_set': 'str',
-        'filters': 'list[WatcherRequestBodyFilters]',
+        'filters': 'list[WatcherRequestBodyFiltersInner]',
         'free_text_pattern': 'str',
         'girs': 'list[str]',
         'notification_channel': 'str',
         'notification_frequency': 'str',
-        'patterns': 'list[WatcherRequestBodyPatterns]',
+        'patterns': 'list[WatcherRequestBodyPatternsInner]',
         'thread_uid': 'str',
         'muted': 'bool',
         'type': 'str'
@@ -201,7 +201,7 @@ class WatcherRequestBodyPut(object):
         Search filters. Can be used with `search` watchers for narrowing results. More information about search filter types and their compatibility with search pattern types is [here](https://titan.intel471.com/api/docs/#api-_footer).  # noqa: E501
 
         :return: The filters of this WatcherRequestBodyPut.  # noqa: E501
-        :rtype: list[WatcherRequestBodyFilters]
+        :rtype: list[WatcherRequestBodyFiltersInner]
         """
         return self._filters
 
@@ -212,7 +212,7 @@ class WatcherRequestBodyPut(object):
         Search filters. Can be used with `search` watchers for narrowing results. More information about search filter types and their compatibility with search pattern types is [here](https://titan.intel471.com/api/docs/#api-_footer).  # noqa: E501
 
         :param filters: The filters of this WatcherRequestBodyPut.  # noqa: E501
-        :type filters: list[WatcherRequestBodyFilters]
+        :type filters: list[WatcherRequestBodyFiltersInner]
         """
 
         self._filters = filters
@@ -328,7 +328,7 @@ class WatcherRequestBodyPut(object):
         Extended form of adding search patterns to a `search` type watcher. Used to specify search pattern type (handle, IP address, hash, etc.).  # noqa: E501
 
         :return: The patterns of this WatcherRequestBodyPut.  # noqa: E501
-        :rtype: list[WatcherRequestBodyPatterns]
+        :rtype: list[WatcherRequestBodyPatternsInner]
         """
         return self._patterns
 
@@ -339,7 +339,7 @@ class WatcherRequestBodyPut(object):
         Extended form of adding search patterns to a `search` type watcher. Used to specify search pattern type (handle, IP address, hash, etc.).  # noqa: E501
 
         :param patterns: The patterns of this WatcherRequestBodyPut.  # noqa: E501
-        :type patterns: list[WatcherRequestBodyPatterns]
+        :type patterns: list[WatcherRequestBodyPatternsInner]
         """
 
         self._patterns = patterns

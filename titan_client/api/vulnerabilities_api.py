@@ -159,6 +159,7 @@ class VulnerabilitiesApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -192,7 +193,9 @@ class VulnerabilitiesApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -218,42 +221,42 @@ class VulnerabilitiesApi(object):
         path_params = {}
 
         query_params = []
-        if 'cve_report' in local_var_params and local_var_params['cve_report'] is not None:  # noqa: E501
+        if local_var_params.get('cve_report') is not None:  # noqa: E501
             query_params.append(('cveReport', local_var_params['cve_report']))  # noqa: E501
-        if 'cve_type' in local_var_params and local_var_params['cve_type'] is not None:  # noqa: E501
+        if local_var_params.get('cve_type') is not None:  # noqa: E501
             query_params.append(('cveType', local_var_params['cve_type']))  # noqa: E501
-        if 'cve_status' in local_var_params and local_var_params['cve_status'] is not None:  # noqa: E501
+        if local_var_params.get('cve_status') is not None:  # noqa: E501
             query_params.append(('cveStatus', local_var_params['cve_status']))  # noqa: E501
-        if 'cve_name' in local_var_params and local_var_params['cve_name'] is not None:  # noqa: E501
+        if local_var_params.get('cve_name') is not None:  # noqa: E501
             query_params.append(('cveName', local_var_params['cve_name']))  # noqa: E501
-        if 'risk_level' in local_var_params and local_var_params['risk_level'] is not None:  # noqa: E501
+        if local_var_params.get('risk_level') is not None:  # noqa: E501
             query_params.append(('riskLevel', local_var_params['risk_level']))  # noqa: E501
-        if 'patch_status' in local_var_params and local_var_params['patch_status'] is not None:  # noqa: E501
+        if local_var_params.get('patch_status') is not None:  # noqa: E501
             query_params.append(('patchStatus', local_var_params['patch_status']))  # noqa: E501
-        if 'vendor_name' in local_var_params and local_var_params['vendor_name'] is not None:  # noqa: E501
+        if local_var_params.get('vendor_name') is not None:  # noqa: E501
             query_params.append(('vendorName', local_var_params['vendor_name']))  # noqa: E501
-        if 'product_name' in local_var_params and local_var_params['product_name'] is not None:  # noqa: E501
+        if local_var_params.get('product_name') is not None:  # noqa: E501
             query_params.append(('productName', local_var_params['product_name']))  # noqa: E501
-        if 'gir' in local_var_params and local_var_params['gir'] is not None:  # noqa: E501
+        if local_var_params.get('gir') is not None:  # noqa: E501
             query_params.append(('gir', local_var_params['gir']))  # noqa: E501
-        if '_from' in local_var_params and local_var_params['_from'] is not None:  # noqa: E501
+        if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
-        if 'until' in local_var_params and local_var_params['until'] is not None:  # noqa: E501
+        if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
-        if 'last_updated_from' in local_var_params and local_var_params['last_updated_from'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_from') is not None:  # noqa: E501
             query_params.append(('lastUpdatedFrom', local_var_params['last_updated_from']))  # noqa: E501
-        if 'last_updated_until' in local_var_params and local_var_params['last_updated_until'] is not None:  # noqa: E501
+        if local_var_params.get('last_updated_until') is not None:  # noqa: E501
             query_params.append(('lastUpdatedUntil', local_var_params['last_updated_until']))  # noqa: E501
-        if 'sort' in local_var_params and local_var_params['sort'] is not None:  # noqa: E501
+        if local_var_params.get('sort') is not None:  # noqa: E501
             query_params.append(('sort', local_var_params['sort']))  # noqa: E501
-        if 'filter_by_gir_set' in local_var_params and local_var_params['filter_by_gir_set'] is not None:  # noqa: E501
+        if local_var_params.get('filter_by_gir_set') is not None:  # noqa: E501
             query_params.append(('filterByGirSet', local_var_params['filter_by_gir_set']))  # noqa: E501
-        if 'offset' in local_var_params and local_var_params['offset'] is not None:  # noqa: E501
+        if local_var_params.get('offset') is not None:  # noqa: E501
             query_params.append(('offset', local_var_params['offset']))  # noqa: E501
-        if 'count' in local_var_params and local_var_params['count'] is not None:  # noqa: E501
+        if local_var_params.get('count') is not None:  # noqa: E501
             query_params.append(('count', local_var_params['count']))  # noqa: E501
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -265,10 +268,10 @@ class VulnerabilitiesApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "SimpleCvesResponse",
-            412: "OneOfstringstringstringstringstringstringstringstringstringstringstringstringstring",
+            412: "CveReportsGet412Response",
         }
 
         return self.api_client.call_api(
@@ -347,6 +350,7 @@ class VulnerabilitiesApi(object):
                               request; this effectively ignores the authentication
                               in the spec for a single request.
         :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
@@ -364,7 +368,9 @@ class VulnerabilitiesApi(object):
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
-                '_request_auth'
+                '_request_auth',
+                '_content_type',
+                '_headers'
             ]
         )
 
@@ -377,8 +383,7 @@ class VulnerabilitiesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'uid' is set
-        if self.api_client.client_side_validation and ('uid' not in local_var_params or  # noqa: E501
-                                                        local_var_params['uid'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('uid') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `uid` when calling `cve_reports_uid_get`")  # noqa: E501
 
         collection_formats = {}
@@ -389,7 +394,7 @@ class VulnerabilitiesApi(object):
 
         query_params = []
 
-        header_params = {}
+        header_params = dict(local_var_params.get('_headers', {}))
 
         form_params = []
         local_var_files = {}
@@ -401,7 +406,7 @@ class VulnerabilitiesApi(object):
 
         # Authentication setting
         auth_settings = ['BasicAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "FullCveSchema",
             404: "str",

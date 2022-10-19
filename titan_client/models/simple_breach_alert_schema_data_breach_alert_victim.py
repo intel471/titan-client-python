@@ -38,7 +38,7 @@ class SimpleBreachAlertSchemaDataBreachAlertVictim(object):
     """
     openapi_types = {
         'country': 'str',
-        'industries': 'list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustries]',
+        'industries': 'list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustriesInner]',
         'name': 'str',
         'region': 'str',
         'revenue': 'str',
@@ -106,7 +106,7 @@ class SimpleBreachAlertSchemaDataBreachAlertVictim(object):
         Purported victim's `industries`.  # noqa: E501
 
         :return: The industries of this SimpleBreachAlertSchemaDataBreachAlertVictim.  # noqa: E501
-        :rtype: list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustries]
+        :rtype: list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustriesInner]
         """
         return self._industries
 
@@ -117,7 +117,7 @@ class SimpleBreachAlertSchemaDataBreachAlertVictim(object):
         Purported victim's `industries`.  # noqa: E501
 
         :param industries: The industries of this SimpleBreachAlertSchemaDataBreachAlertVictim.  # noqa: E501
-        :type industries: list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustries]
+        :type industries: list[SimpleBreachAlertSchemaDataBreachAlertVictimIndustriesInner]
         """
         if self.local_vars_configuration.client_side_validation and industries is None:  # noqa: E501
             raise ValueError("Invalid value for `industries`, must not be `None`")  # noqa: E501

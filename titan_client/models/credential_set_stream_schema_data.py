@@ -41,11 +41,11 @@ class CredentialSetStreamSchemaData(object):
         'collection_date': 'int',
         'description': 'str',
         'disclosure_date': 'int',
-        'external_sources': 'list[CredentialSetSchemaDataExternalSources]',
-        'internal_sources': 'list[CredentialSetSchemaDataInternalSources]',
+        'external_sources': 'list[CredentialSetSchemaDataExternalSourcesInner]',
+        'internal_sources': 'list[CredentialSetSchemaDataInternalSourcesInner]',
         'name': 'str',
         'record_count': 'int',
-        'victims': 'list[CredentialSetSchemaDataVictims]'
+        'victims': 'list[CredentialSetSchemaDataVictimsInner]'
     }
 
     attribute_map = {
@@ -194,7 +194,7 @@ class CredentialSetStreamSchemaData(object):
         List of external sources.  # noqa: E501
 
         :return: The external_sources of this CredentialSetStreamSchemaData.  # noqa: E501
-        :rtype: list[CredentialSetSchemaDataExternalSources]
+        :rtype: list[CredentialSetSchemaDataExternalSourcesInner]
         """
         return self._external_sources
 
@@ -205,7 +205,7 @@ class CredentialSetStreamSchemaData(object):
         List of external sources.  # noqa: E501
 
         :param external_sources: The external_sources of this CredentialSetStreamSchemaData.  # noqa: E501
-        :type external_sources: list[CredentialSetSchemaDataExternalSources]
+        :type external_sources: list[CredentialSetSchemaDataExternalSourcesInner]
         """
 
         self._external_sources = external_sources
@@ -217,7 +217,7 @@ class CredentialSetStreamSchemaData(object):
         List of internal sources.  # noqa: E501
 
         :return: The internal_sources of this CredentialSetStreamSchemaData.  # noqa: E501
-        :rtype: list[CredentialSetSchemaDataInternalSources]
+        :rtype: list[CredentialSetSchemaDataInternalSourcesInner]
         """
         return self._internal_sources
 
@@ -228,7 +228,7 @@ class CredentialSetStreamSchemaData(object):
         List of internal sources.  # noqa: E501
 
         :param internal_sources: The internal_sources of this CredentialSetStreamSchemaData.  # noqa: E501
-        :type internal_sources: list[CredentialSetSchemaDataInternalSources]
+        :type internal_sources: list[CredentialSetSchemaDataInternalSourcesInner]
         """
 
         self._internal_sources = internal_sources
@@ -288,7 +288,7 @@ class CredentialSetStreamSchemaData(object):
         List of purported victims.  # noqa: E501
 
         :return: The victims of this CredentialSetStreamSchemaData.  # noqa: E501
-        :rtype: list[CredentialSetSchemaDataVictims]
+        :rtype: list[CredentialSetSchemaDataVictimsInner]
         """
         return self._victims
 
@@ -299,7 +299,7 @@ class CredentialSetStreamSchemaData(object):
         List of purported victims.  # noqa: E501
 
         :param victims: The victims of this CredentialSetStreamSchemaData.  # noqa: E501
-        :type victims: list[CredentialSetSchemaDataVictims]
+        :type victims: list[CredentialSetSchemaDataVictimsInner]
         """
 
         self._victims = victims

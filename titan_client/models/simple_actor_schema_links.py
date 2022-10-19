@@ -40,10 +40,10 @@ class SimpleActorSchemaLinks(object):
         'forum_post_total_count': 'int',
         'forum_private_message_total_count': 'int',
         'forum_total_count': 'int',
-        'forums': 'list[SimpleActorSchemaLinksForums]',
+        'forums': 'list[SimpleActorSchemaLinksForumsInner]',
         'instant_message_channel_total_count': 'int',
         'instant_message_server_total_count': 'int',
-        'instant_message_servers': 'list[SimpleActorSchemaLinksInstantMessageServers]',
+        'instant_message_servers': 'list[SimpleActorSchemaLinksInstantMessageServersInner]',
         'instant_message_total_count': 'int',
         'report_total_count': 'int',
         'reports': 'list[SimpleReportSchema]'
@@ -176,7 +176,7 @@ class SimpleActorSchemaLinks(object):
         Linked forums.  # noqa: E501
 
         :return: The forums of this SimpleActorSchemaLinks.  # noqa: E501
-        :rtype: list[SimpleActorSchemaLinksForums]
+        :rtype: list[SimpleActorSchemaLinksForumsInner]
         """
         return self._forums
 
@@ -187,7 +187,7 @@ class SimpleActorSchemaLinks(object):
         Linked forums.  # noqa: E501
 
         :param forums: The forums of this SimpleActorSchemaLinks.  # noqa: E501
-        :type forums: list[SimpleActorSchemaLinksForums]
+        :type forums: list[SimpleActorSchemaLinksForumsInner]
         """
 
         self._forums = forums
@@ -249,7 +249,7 @@ class SimpleActorSchemaLinks(object):
         Linked instant messaging servers.  # noqa: E501
 
         :return: The instant_message_servers of this SimpleActorSchemaLinks.  # noqa: E501
-        :rtype: list[SimpleActorSchemaLinksInstantMessageServers]
+        :rtype: list[SimpleActorSchemaLinksInstantMessageServersInner]
         """
         return self._instant_message_servers
 
@@ -260,7 +260,7 @@ class SimpleActorSchemaLinks(object):
         Linked instant messaging servers.  # noqa: E501
 
         :param instant_message_servers: The instant_message_servers of this SimpleActorSchemaLinks.  # noqa: E501
-        :type instant_message_servers: list[SimpleActorSchemaLinksInstantMessageServers]
+        :type instant_message_servers: list[SimpleActorSchemaLinksInstantMessageServersInner]
         """
 
         self._instant_message_servers = instant_message_servers

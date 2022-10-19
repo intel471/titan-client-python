@@ -37,7 +37,7 @@ class InstantMessageSchemaDataMessage(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'attachments': 'list[InstantMessageSchemaDataMessageAttachments]',
+        'attachments': 'list[InstantMessageSchemaDataMessageAttachmentsInner]',
         'reply_uid': 'str',
         'text': 'str',
         'uid': 'str'
@@ -76,7 +76,7 @@ class InstantMessageSchemaDataMessage(object):
         Message attachment.  # noqa: E501
 
         :return: The attachments of this InstantMessageSchemaDataMessage.  # noqa: E501
-        :rtype: list[InstantMessageSchemaDataMessageAttachments]
+        :rtype: list[InstantMessageSchemaDataMessageAttachmentsInner]
         """
         return self._attachments
 
@@ -87,7 +87,7 @@ class InstantMessageSchemaDataMessage(object):
         Message attachment.  # noqa: E501
 
         :param attachments: The attachments of this InstantMessageSchemaDataMessage.  # noqa: E501
-        :type attachments: list[InstantMessageSchemaDataMessageAttachments]
+        :type attachments: list[InstantMessageSchemaDataMessageAttachmentsInner]
         """
 
         self._attachments = attachments
