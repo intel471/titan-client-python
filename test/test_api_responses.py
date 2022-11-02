@@ -1,7 +1,7 @@
 import json
-import pytest
 from unittest.mock import MagicMock, patch
 
+import pytest
 import titan_client
 from .test_params import test_params
 
