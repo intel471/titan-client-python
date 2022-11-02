@@ -1,0 +1,270 @@
+{
+    "reportPartialResult": null,
+    "reportTotalCount": 10196,
+    "reports": [
+        {
+            "actorHandle": null,
+            "actorSubjectOfReport": null,
+            "admiraltyCode": "A1",
+            "classification": {
+                "intelRequirements": [
+                    "8.7.3",
+                    "3.5.2",
+                    "6.9.3",
+                    "1.9.7",
+                    "4.3.1",
+                    "8.9.4",
+                    "4.1.9",
+                    "5.9.7",
+                    "7.3.6",
+                    "3.6.9",
+                    "1.9.5",
+                    "2.1.7",
+                    "4.3.4",
+                    "2.7.1",
+                    "7.9.7",
+                    "6.5.5",
+                    "7.2.2",
+                    "9.7.2",
+                    "6.8.6",
+                    "2.4.1",
+                    "2.3.9",
+                    "9.6.1",
+                    "5.1.5",
+                    "1.2.8",
+                    "4.5.4",
+                    "8.8.2",
+                    "3.5.2",
+                    "7.6.9",
+                    "7.2.9",
+                    "7.7.7",
+                    "1.2.3",
+                    "3.3.5"
+                ]
+            },
+            "created": 1646682116000,
+            "dateOfInformation": 1631676725000,
+            "documentFamily": "JaOfphgGMnpqkxIdSvnG",
+            "documentType": "KxgIzWEGUqcMl",
+            "entities": [
+                {
+                    "type": "Handle",
+                    "value": "HaHkMXluUVhB"
+                },
+                {
+                    "type": "Handle",
+                    "value": "BDdDYUz"
+                },
+                {
+                    "type": "Handle",
+                    "value": "wZHuotmbNcyUisL"
+                },
+                {
+                    "type": "Handle",
+                    "value": "rnHsJunF"
+                },
+                {
+                    "type": "Handle",
+                    "value": "pneQilzA"
+                },
+                {
+                    "type": "Handle",
+                    "value": "aPZFINBbLj"
+                },
+                {
+                    "type": "Handle",
+                    "value": "GvHlxi"
+                },
+                {
+                    "type": "Handle",
+                    "value": "ypzAakOEFKz"
+                },
+                {
+                    "type": "Handle",
+                    "value": "WaQswFjxhlYdf"
+                },
+                {
+                    "type": "Handle",
+                    "value": "kYYqdXwqHHSop"
+                },
+                {
+                    "type": "Handle",
+                    "value": "zjyWvzvP"
+                },
+                {
+                    "type": "Handle",
+                    "value": "OVHhtfxgY"
+                }
+            ],
+            "lastUpdated": 256672206000,
+            "locations": [
+                {
+                    "country": "GKqpVrUMydqYrSDZ",
+                    "link": "NOLphDsXSIuJ",
+                    "region": "gGKXLHeWlBia"
+                },
+                {
+                    "country": "TABvhlwuIzOQQJMxam",
+                    "link": "uOZkRImpAWnznQJZT",
+                    "region": "JwETIfWyRVv"
+                },
+                {
+                    "country": "StwcoqgkGoDdAIJLyVW",
+                    "link": "SiKZYJEtJwfFksviT",
+                    "region": "tvyeaKtSD"
+                },
+                {
+                    "country": "IccdlrL",
+                    "link": "JaxeXJ",
+                    "region": "ZPnVusQQSlRtGwzdHMEv"
+                },
+                {
+                    "country": "bLTRVdlWZgXpopEZiLr",
+                    "link": "ywjEdNqrN",
+                    "region": "ZVfZoEnqCKgQ"
+                },
+                {
+                    "country": "nNIrZIfbuLuaI",
+                    "link": "rDveCZxakGL",
+                    "region": "EStRxsKF"
+                }
+            ],
+            "motivation": null,
+            "portalReportUrl": "https://www.lucas.com/search/posts/privacy/",
+            "relatedReports": [
+                {
+                    "documentFamily": "YtjCvi",
+                    "uid": "3d15b2b5fc9c11e31ea09e2d05b4553e"
+                }
+            ],
+            "released": null,
+            "reportAttachments": null,
+            "sensitiveSource": null,
+            "sourceCharacterization": null,
+            "sources": [
+                {
+                    "index": 1,
+                    "title": "xZWtXrddLRnJz",
+                    "type": "Forum Post",
+                    "url": "https://oliver.info/"
+                },
+                {
+                    "index": 2,
+                    "title": "MoUMPfXpS",
+                    "type": "Forum Post",
+                    "url": "https://www.cook-macdonald.info/faq.php"
+                },
+                {
+                    "index": 3,
+                    "title": "fbZLcPYBK",
+                    "type": "Forum Post",
+                    "url": "http://ward-johns.com/categories/blog/categories/search/"
+                },
+                {
+                    "index": 4,
+                    "title": "jEgzTfjFhAAQ",
+                    "type": "Forum Post",
+                    "url": "https://www.ballard-walker.com/home/"
+                },
+                {
+                    "index": 5,
+                    "title": "KKIwRwFmArifE",
+                    "type": "Forum Post",
+                    "url": "http://www.obrien.com/tag/tags/explore/register/"
+                },
+                {
+                    "index": 6,
+                    "title": "noOZwDCIkI",
+                    "type": "Forum Post",
+                    "url": "https://www.hayes-taylor.com/index/"
+                },
+                {
+                    "index": 7,
+                    "title": "eubOncyi",
+                    "type": "Forum Post",
+                    "url": "https://www.smith-stewart.com/search/homepage/"
+                },
+                {
+                    "index": 8,
+                    "title": "QqIEfQavSnRktUzMl",
+                    "type": "Forum Post",
+                    "url": "https://www.johns-murphy.com/search/search/search/main/"
+                },
+                {
+                    "index": 9,
+                    "title": "kiFPm",
+                    "type": "Forum Post",
+                    "url": "http://moreno.com/main.htm"
+                },
+                {
+                    "index": 10,
+                    "title": "TJennrNewWzi",
+                    "type": "Forum Post",
+                    "url": "http://www.davis-lyons.biz/post.php"
+                },
+                {
+                    "index": 11,
+                    "title": "NhfbadPiIuTrjiPl",
+                    "type": "Forum Post",
+                    "url": "https://washington-manning.com/tags/tag/main/homepage/"
+                },
+                {
+                    "index": 12,
+                    "title": "XpSGjUdc",
+                    "type": "Forum Post",
+                    "url": "http://carson.org/"
+                },
+                {
+                    "index": 13,
+                    "title": "waiIDhSwOpn",
+                    "type": "Forum Post",
+                    "url": "https://rios.com/"
+                }
+            ],
+            "subject": "PlGDeJZryNLiCCSa ep TN q ExnhZA tUGxereFUB rOfyFKSlL LJxvkPXFdug YkTubgRabWtvo VlNXFJNJXbbPcQih OUlSjyBRad mFvKmfm djMBpHPJSUv sSEvrLjeQqXZIYe AYkdYgwXKAjAnRN lQCqvcxbh Z DSKMoiNcttG efL CezvGqbDo pjgErYjo gpP wUURujgJQFYMKM ru m PWBRm NHCvCXUCn",
+            "tags": [
+                "DeLdFHmMYgkGDZMZtgQi",
+                "BIUoGiEqTBdZdSFqbxAR",
+                "JvETAAwUejAqQgTyjepB",
+                "xmQPSGOfoknRDLvsXlRv",
+                "ecVNIMHUiPKIsThYZPyA",
+                "RZrEOsrKRqCRadFALRgW",
+                "kOdHVfpRHzcAxTZQBudG",
+                "JyLleDCkpnCvSsFhpueT",
+                "eWGZpCmutPglOlQSoZJg",
+                "KnnAHcFoeXVRGGzxTQoG",
+                "HUWLSAGwXjeuHFyyJrwy",
+                "MLOJbnnUbwKnAdjodUEA",
+                "QKkfsuNxLEXPbIRjHLJk",
+                "hEueJTWCWXTARFoqccAB",
+                "VaycVXxFaMERiaLNvtxm",
+                "MLkHiqhuwLQCbogWcRtq",
+                "BcVlnWoljmDRuNrgtUoX",
+                "oLIRAAxeqKowUTbtRlJb",
+                "xxKUmLziJZossbEDMnUh",
+                "jtkIsjVowXNYFjvklvGs"
+            ],
+            "uid": "fe80d3f6f8cd0887d39c6d68a768fefd",
+            "victims": [
+                {
+                    "name": "AXYShDhpthVRgjPjh",
+                    "urls": [
+                        "KSWfXqSzpnZaNgrGHPyK"
+                    ]
+                },
+                {
+                    "name": "ryRmTawvf",
+                    "urls": [
+                        "uUZkYjRlsSOGjsdsemvU"
+                    ]
+                },
+                {
+                    "name": "daqtiXAT",
+                    "urls": [
+                        "tWECynKQuZUmkfPlIuHR"
+                    ]
+                }
+            ]
+        }
+    ]
+}
