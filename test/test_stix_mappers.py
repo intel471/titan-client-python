@@ -5,7 +5,7 @@ import pytest
 from titan_client.titan_stix.mappers.common import StixMapper
 
 
-here = os.path.abspath(os.path.dirname(__file__))
+prefix = os.path.abspath(os.path.dirname(__file__))
 fixtures = {
     'test_indicators': ("indicators_input.json", "indicators_stix.json"),
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
@@ -28,9 +28,9 @@ class TestStixMappers:
     @pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
     def test_stix_mappers(self, fixtures):
         in_fixture, out_fixture  = fixtures
-        with open(os.path.join(here, "fixtures", in_fixture)) as fh:
+        with open(f'{prefix}/fixtures/{in_fixture}') as fh:
             api_response = json.load(fh)
-        with open(os.path.join(here, "fixtures", out_fixture)) as fh:
+        with open(f'{prefix}/fixtures/{out_fixture}') as fh:
             expected_result = json.load(fh)
         mapper = StixMapper()
         result = mapper.map(api_response)

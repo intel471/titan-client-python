@@ -1,10 +1,12 @@
 import json
+import os
 from unittest.mock import MagicMock, patch
 
 import pytest
 import titan_client
 from .test_params import test_params
 
+prefix = os.path.abspath(os.path.dirname(__file__))
 
 class TestAPIResponses:
     configuration = titan_client.Configuration()
@@ -16,7 +18,7 @@ class TestAPIResponses:
         rest_client_response.status = 200
         rest_client_response.reason = 'OK'
         rest_client_response.getheader.return_value = 'application/json; charset=utf-8'
-        with open(f'fixtures/api_responses/{filename}.json', 'r') as f:
+        with open(f'{prefix}/fixtures/api_responses/{filename}.json', 'r') as f:
             response = json.load(f)
         rest_client_response.data = json.dumps(response).encode('utf-8')
 
