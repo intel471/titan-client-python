@@ -13,26 +13,23 @@ fixtures = {
     'test_cves': ("cves_input.json", "cves_stix.json")
 }
 
+def strip_random_values(bundle: dict) -> dict:
+    bundle["id"] = None
+    for i, o in enumerate(bundle["objects"]):
+        bundle["objects"][i]["created"] = None
+        bundle["objects"][i]["modified"] = None
+        if o["id"].startswith("relationship--"):
+            bundle["objects"][i]["id"] = None
+    return bundle
 
-class TestStixMappers:
-    @staticmethod
-    def strip_random_values(bundle: dict) -> dict:
-        bundle["id"] = None
-        for i, o in enumerate(bundle["objects"]):
-            bundle["objects"][i]["created"] = None
-            bundle["objects"][i]["modified"] = None
-            if o["id"].startswith("relationship--"):
-                bundle["objects"][i]["id"] = None
-        return bundle
-
-    @pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
-    def test_stix_mappers(self, fixtures):
-        in_fixture, out_fixture  = fixtures
-        with open(f'{prefix}/fixtures/{in_fixture}') as fh:
-            api_response = json.load(fh)
-        with open(f'{prefix}/fixtures/{out_fixture}') as fh:
-            expected_result = json.load(fh)
-        mapper = StixMapper()
-        result = mapper.map(api_response)
-        expected = self.strip_random_values(expected_result)
-        assert expected == self.strip_random_values(json.loads(result.serialize()))
+@pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
+def test_stix_mappers(fixtures):
+    in_fixture, out_fixture  = fixtures
+    with open(f'{prefix}/fixtures/{in_fixture}') as fh:
+        api_response = json.load(fh)
+    with open(f'{prefix}/fixtures/{out_fixture}') as fh:
+        expected_result = json.load(fh)
+    mapper = StixMapper()
+    result = mapper.map(api_response)
+    expected = strip_random_values(expected_result)
+    assert expected == strip_random_values(json.loads(result.serialize()))
