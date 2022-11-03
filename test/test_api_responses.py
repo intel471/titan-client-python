@@ -65,9 +65,9 @@ def test_api_responses(rest_client_class_mock, api_cls_name, method_name, kwargs
     with titan_client.ApiClient(configuration) as api_client:
         api_instance = getattr(titan_client, api_cls_name)(api_client)
         api_response = getattr(api_instance, method_name)(**kwargs)
-        assert rest_client_instance_mock.GET.mock_calls[0].args[0] == query_url
+        assert rest_client_instance_mock.GET.call_args_list[0][0][0] == query_url
         if 'uid' in method_name:
-            assert rest_client_instance_mock.GET.mock_calls[0].kwargs['query_params'] == []
+            assert rest_client_instance_mock.GET.call_args_list[0][1]['query_params'] == []
         else:
-            assert rest_client_instance_mock.GET.mock_calls[0].kwargs['query_params'] == [(re.sub('_.',lambda x: x.group()[1].upper(), k), v) for k,v in kwargs.items()]
+            assert rest_client_instance_mock.GET.call_args_list[0][1]['query_params'] == [(re.sub('_.',lambda x: x.group()[1].upper(), k), v) for k,v in kwargs.items()]
         assert api_response.to_dict(serialize=True) == response
