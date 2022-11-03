@@ -1,11 +1,10 @@
 import json
-import os
 
 import pytest
 from titan_client.titan_stix.mappers.common import StixMapper
 
+from .conftest import PREFIX, read_fixture
 
-prefix = os.path.abspath(os.path.dirname(__file__))
 fixtures = {
     'test_indicators': ("indicators_input.json", "indicators_stix.json"),
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
@@ -25,10 +24,8 @@ def strip_random_values(bundle: dict) -> dict:
 @pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
 def test_stix_mappers(fixtures):
     in_fixture, out_fixture  = fixtures
-    with open(f'{prefix}/fixtures/{in_fixture}') as fh:
-        api_response = json.load(fh)
-    with open(f'{prefix}/fixtures/{out_fixture}') as fh:
-        expected_result = json.load(fh)
+    api_response = read_fixture(f'{PREFIX}/fixtures/{in_fixture}')
+    expected_result = read_fixture(f'{PREFIX}/fixtures/{out_fixture}')
     mapper = StixMapper()
     result = mapper.map(api_response)
     expected = strip_random_values(expected_result)
