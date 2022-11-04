@@ -1,0 +1,26 @@
+{
+    "dataSets": [
+        "bPgYYJSmYrKcmtRIMQft",
+        "KNTpCVlHBKtZfpaRRrWv",
+        "mjDODkcPVMYeKKboybMs",
+        "iTNPpvQvZqCyGDRtPEsx",
+        "eKuibINTkoEZXhUnFCUq",
+        "zZwGgYXdRvUcbeZSqLmI"
+    ],
+    "description": null,
+    "filterByGirSet": null,
+    "filters": null,
+    "girs": null,
+    "links": null,
+    "muted": false,
+    "notificationChannel": "website",
+    "notificationFrequency": "immediately",
+    "patterns": [
+        {
+            "pattern": "ddEhxzpprQZSsIOssn",
+            "types": "GolFngQelJfE"
+        }
+    ],
+    "type": "search",
+    "uid": "af63a26f291c0a370797682042771535"
+}

@@ -1,0 +1,54 @@
+{
+    "indicatorPartialResult": null,
+    "indicatorTotalCount": 2914966,
+    "indicators": [
+        {
+            "activity": {
+                "first": 969399066000,
+                "last": 88182390000
+            },
+            "data": {
+                "confidence": "iPiMukbIKFBlzZh",
+                "context": {
+                    "description": "y JKpOZMlKe RCplEpAQcSnG ouQhSrzOMm CaAIWNgxR IqFtyNqtHmcB jYWg SpWvUZSQHpcoF DejcZJXFtxK SFgXs fSoxdPhySyczs xeIbVDPhgLUwNnGh k IJQRC KdiOqOTOiBCgIBNq PybeEvClnehpeMFv YjDGTNfsSz BZtC QjpZoQNJph cC ejsAQoUfySk mhxXWJy NOIWZTpNfcGkCSA vlJOtjreQWkbwdvR MDVbBCt ipjzEMcP W HtnWbMXHWtjnIL oRuIlKDrErUygHRH PyjuZzHskefQ RYlUvfqnLIRhuyL AkxkVoHlfEAR dfJQJtCkeFKC WXp hsMmOuzjWlf Kl hBFUYWpnuOOTeO NTGrM Urnip t"
+                },
+                "expiration": 1698767180000,
+                "indicator_data": {
+                    "address": null,
+                    "file": {
+                        "download_url": "https://www.randall-parks.biz/category/blog/login.htm",
+                        "md5": "ff7b02d1bd68b7a676184d5ad3bfa012",
+                        "sha1": "504ac73448ad894be6eea1071196cf8d80b157ee",
+                        "sha256": "5685737f985f73ea76f3c2c94cc7999d17256b4051d6ef296849c9f91318969b",
+                        "size": 275456,
+                        "ssdeep": "sYJFTea",
+                        "type": "PEEXE_x86"
+                    },
+                    "geo_ip": null,
+                    "url": null
+                },
+                "indicator_type": "InCozr",
+                "intel_requirements": [
+                    "5.5.6"
+                ],
+                "mitre_tactics": "RQprBlaZbwMUGEIDp",
+                "threat": {
+                    "data": {
+                        "family": "YlpZnOsLSscQesopp",
+                        "malware_family_profile_uid": "a4879d2ca52bf298defb2c4803d4dfca",
+                        "variant": null,
+                        "version": null
+                    },
+                    "type": "malware",
+                    "uid": "b7407a017064ddaf33364b172f433faa"
+                },
+                "uid": "8b119a56389cb54e0908c4b1ff0b59fb"
+            },
+            "last_updated": 88409337000,
+            "meta": {
+                "version": "yBvxBUkwMjPdbvmeDVy"
+            },
+            "uid": "818b4f436375a722cbbb5bb1884628a2"
+        }
+    ]
+}

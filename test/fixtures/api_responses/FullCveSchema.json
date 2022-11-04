@@ -1,0 +1,68 @@
+{
+    "activity": {
+        "first": 1506335207000,
+        "last": 402764273000
+    },
+    "classification": {
+        "intel_requirements": [
+            "8.1.9",
+            "4.9.9",
+            "5.6.4",
+            "3.5.7"
+        ]
+    },
+    "data": {
+        "cve_report": {
+            "activity_location": {
+                "location_opensource": true,
+                "location_private": false,
+                "location_underground": true
+            },
+            "counter_measure_links": null,
+            "counter_measures": "DNqLxjZZlRYGUucG",
+            "cpe": null,
+            "cve_status": "CYFTPsfmyzsfnAGet",
+            "cve_type": "tFhEJZWPGJnwlowAFNf",
+            "cvss_score": {
+                "v2": 773.0,
+                "v3": 226.7
+            },
+            "detection": null,
+            "exploit_status": {
+                "available": true,
+                "not_observed": null,
+                "productized": false,
+                "weaponized": true
+            },
+            "interest_level": {
+                "disclosed_publicly": true,
+                "exploit_sought": false,
+                "researched_publicly": true
+            },
+            "name": "sorpQWQNLnGtTtTFlMmh",
+            "patch_links": null,
+            "patch_status": "hPxBEN",
+            "poc": "gDOAAhTtl",
+            "poc_links": [
+                {
+                    "title": "yWBAcLaDyxoozKUy",
+                    "url": "https://www.martinez.info/privacy.php"
+                }
+            ],
+            "product_name": "ApTfPrUdVNFJEQgqWv",
+            "risk_level": "DznFxBZlZwcAqwlQ",
+            "summary": "eCvvPidmLp",
+            "titan_links": [
+                {
+                    "title": "HlKCmMz",
+                    "url": "https://www.simon.com/blog/explore/search/index/"
+                }
+            ],
+            "underground_activity": "DMYQfsCsWRges",
+            "underground_activity_summary": "uTLXqOnCEAurIbE",
+            "vendor_name": "ZYIVWWwEsqTZTJcEDw"
+        }
+    },
+    "last_updated": 27580743000,
+    "uid": "d7c6e8092b8961e39ae7d3be9bfa7e67"
+}

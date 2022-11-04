@@ -1,0 +1,32 @@
+{
+    "watcherTotalCount": 1,
+    "watchers": [
+        {
+            "dataSets": [
+                "vDpzWicNFJwfurLdFsBX",
+                "vygLfGsYoYRczekgXRAG",
+                "lqBDvpadgzRtapbYikMu",
+                "MtunDhowjZHdsrfvTZMz",
+                "ipwONXrnbyMGZpTdhTFr",
+                "JZkhovBpvPkoyDdpOYKq",
+                "JgfUQEuEbjpzarCEcfgP"
+            ],
+            "description": null,
+            "filterByGirSet": null,
+            "filters": null,
+            "girs": null,
+            "links": null,
+            "muted": false,
+            "notificationChannel": "website",
+            "notificationFrequency": "immediately",
+            "patterns": [
+                {
+                    "pattern": "TFVoPiscRXwHpMWnRJjt",
+                    "types": "GSaHJZhhcBlOVqYoaC"
+                }
+            ],
+            "type": "search",
+            "uid": "086f1fa1e5ab0e78580c8448b6306835"
+        }
+    ]
+}

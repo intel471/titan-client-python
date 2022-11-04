@@ -1,42 +1,32 @@
 import json
-import os
-import unittest
 
+import pytest
 from titan_client.titan_stix.mappers.common import StixMapper
 
+from .conftest import PREFIX, read_fixture
 
-here = os.path.abspath(os.path.dirname(__file__))
-fixtures = (("indicators_input.json", "indicators_stix.json"),
-            ("iocs_input.json", "iocs_stix.json"),
-            ("yara_input.json", "yara_stix.json"),
-            ("cves_input.json", "cves_stix.json")
-            )
+fixtures = {
+    'test_indicators': ("indicators_input.json", "indicators_stix.json"),
+    'test_iocs': ("iocs_input.json", "iocs_stix.json"),
+    'test_yara': ("yara_input.json", "yara_stix.json"),
+    'test_cves': ("cves_input.json", "cves_stix.json")
+}
 
+def strip_random_values(bundle: dict) -> dict:
+    bundle["id"] = None
+    for i, o in enumerate(bundle["objects"]):
+        bundle["objects"][i]["created"] = None
+        bundle["objects"][i]["modified"] = None
+        if o["id"].startswith("relationship--"):
+            bundle["objects"][i]["id"] = None
+    return bundle
 
-class TestStixMappers(unittest.TestCase):
-
-    @staticmethod
-    def strip_random_values(bundle: dict) -> dict:
-        bundle["id"] = None
-        for i, o in enumerate(bundle["objects"]):
-            bundle["objects"][i]["created"] = None
-            bundle["objects"][i]["modified"] = None
-            if o["id"].startswith("relationship--"):
-                bundle["objects"][i]["id"] = None
-        return bundle
-
-    def testMappers(self):
-        for in_fixture, out_fixture in fixtures:
-            with self.subTest():
-                with open(os.path.join(here, "fixtures", in_fixture)) as fh:
-                    api_response = json.load(fh)
-                with open(os.path.join(here, "fixtures", out_fixture)) as fh:
-                    expected_result = json.load(fh)
-                mapper = StixMapper()
-                result = mapper.map(api_response)
-                expected = self.strip_random_values(expected_result)
-                self.assertEqual(expected, self.strip_random_values(json.loads(result.serialize())))
-
-
-if __name__ == '__main__':
-    unittest.main()
+@pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
+def test_stix_mappers(fixtures):
+    in_fixture, out_fixture  = fixtures
+    api_response = read_fixture(f'{PREFIX}/fixtures/{in_fixture}')
+    expected_result = read_fixture(f'{PREFIX}/fixtures/{out_fixture}')
+    mapper = StixMapper()
+    result = mapper.map(api_response)
+    expected = strip_random_values(expected_result)
+    assert expected == strip_random_values(json.loads(result.serialize()))

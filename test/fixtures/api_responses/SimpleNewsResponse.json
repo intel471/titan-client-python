@@ -1,0 +1,20 @@
+{
+    "news": [
+        {
+            "activity": {
+                "first": 1127236111000,
+                "last": 205452852000
+            },
+            "data": {
+                "attachments": null,
+                "released": 1666783790000,
+                "text": null,
+                "topic": "sKBdSOfHauSIgpqKC",
+                "type": "BLOG",
+                "uid": "267dfca5fbc8ccb9a5fa479b3bb04baa"
+            },
+            "last_updated": 665845073000
+        }
+    ],
+    "newsTotalCount": 288
+}
