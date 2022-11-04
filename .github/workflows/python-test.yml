@@ -1,0 +1,28 @@
+# This workflow will install Python dependencies and run tests with tox
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#running-tests-with-tox
+
+name: Titan Client
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.6", "3.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirments.txt
+      - name: Run tox
+        # Run tox using the version of Python in `PATH`
+        run: tox -e py
