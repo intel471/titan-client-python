@@ -24,6 +24,7 @@ test_params = {
     'IOCsApi:iocs_get': ('IOCsApi', 'iocs_get', {'ioc': '.com', 'count': 1}, 'IocsResponse', 'https://api.intel471.com/v1/iocs'),
     'IndicatorsApi:indicators_get': ('IndicatorsApi', 'indicators_get', {'count': 1}, 'IndicatorSearchResponse', 'https://api.intel471.com/v1/indicators'),
     'IndicatorsApi:indicators_stream_get': ('IndicatorsApi', 'indicators_stream_get', {'count': 1}, 'IndicatorStreamResponse', 'https://api.intel471.com/v1/indicators/stream'),
+    'MalwareFamiliesApi:malware_families_get':('MalwareFamiliesApi', 'malware_families_get', {'count': 1}, 'MalwareFamilySearchResponse', 'https://api.intel471.com/v1/malwareFamilies'),
     'MessagingServicesApi:messaging_services_instant_messages_get': ('MessagingServicesApi', 'messaging_services_instant_messages_get', {'instant_message_service': 'telegram', 'count': 1}, 'MessagingServicesResponse', 'https://api.intel471.com/v1/messagingServices/instantMessages'),
     'NewsApi:news_get': ('NewsApi', 'news_get', {'count': 1}, 'SimpleNewsResponse', 'https://api.intel471.com/v1/news'),
     'NewsApi:news_uid_get': ('NewsApi', 'news_uid_get', {'uid': '1c6c177fb29b4e896b4753a4d7c010b2'}, 'FullNewsSchema', 'https://api.intel471.com/v1/news/1c6c177fb29b4e896b4753a4d7c010b2'),
