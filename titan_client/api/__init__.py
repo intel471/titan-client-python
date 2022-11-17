@@ -13,6 +13,7 @@ from titan_client.api.girs_api import GIRsApi
 from titan_client.api.global_search_api import GlobalSearchApi
 from titan_client.api.iocs_api import IOCsApi
 from titan_client.api.indicators_api import IndicatorsApi
+from titan_client.api.malware_families_api import MalwareFamiliesApi
 from titan_client.api.messaging_services_api import MessagingServicesApi
 from titan_client.api.news_api import NewsApi
 from titan_client.api.pcap_api import PCAPApi

@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **breach_alerts_get**
-> SimpleBreachAlertResponse breach_alerts_get(breach_alert=breach_alert, actor=actor, victim=victim, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> SimpleBreachAlertResponse breach_alerts_get(breach_alert=breach_alert, actor=actor, victim=victim, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search Breach Alerts
 
@@ -56,6 +56,7 @@ with titan_client.ApiClient(configuration) as api_client:
     breach_alert = 'Communications' # str | Free text reports search - all fields included. At least one of `breachAlert`, `actor`, `victim` is required. (optional)
     actor = 'hakkr' # str | Search by actor or actor group names. At least one of `breachAlert`, `actor`, `victim` is required. (optional)
     victim = 'BCN Telecom' # str | Search by victim. At least one of `breachAlert`, `actor`, `victim` is required. (optional)
+    confidence = 'confidence_example' # str | Search by confidence level (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
@@ -68,7 +69,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Breach Alerts
-        api_response = api_instance.breach_alerts_get(breach_alert=breach_alert, actor=actor, victim=victim, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.breach_alerts_get(breach_alert=breach_alert, actor=actor, victim=victim, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ReportsApi->breach_alerts_get: %s\n" % e)
@@ -81,6 +82,7 @@ Name | Type | Description  | Notes
  **breach_alert** | **str**| Free text reports search - all fields included. At least one of &#x60;breachAlert&#x60;, &#x60;actor&#x60;, &#x60;victim&#x60; is required. | [optional] 
  **actor** | **str**| Search by actor or actor group names. At least one of &#x60;breachAlert&#x60;, &#x60;actor&#x60;, &#x60;victim&#x60; is required. | [optional] 
  **victim** | **str**| Search by victim. At least one of &#x60;breachAlert&#x60;, &#x60;actor&#x60;, &#x60;victim&#x60; is required. | [optional] 
+ **confidence** | **str**| Search by confidence level | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 

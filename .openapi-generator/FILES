@@ -142,6 +142,11 @@ docs/IocSchemaLinksActorsInner.md
 docs/IocSchemaLinksReportsInner.md
 docs/IocsResponse.md
 docs/Malware.md
+docs/MalwareFamiliesApi.md
+docs/MalwareFamiliesGet412Response.md
+docs/MalwareFamilySearchResponse.md
+docs/MalwareFamilySearchSchema.md
+docs/MalwareFamilySearchSchemaActivity.md
 docs/MalwarePcapsGet412Response.md
 docs/MalwareReportsSearchResponse.md
 docs/MalwareReportsSearchSchema.md
@@ -295,6 +300,7 @@ titan_client/api/girs_api.py
 titan_client/api/global_search_api.py
 titan_client/api/indicators_api.py
 titan_client/api/iocs_api.py
+titan_client/api/malware_families_api.py
 titan_client/api/messaging_services_api.py
 titan_client/api/news_api.py
 titan_client/api/pcap_api.py
@@ -437,6 +443,10 @@ titan_client/models/ioc_schema_links_actors_inner.py
 titan_client/models/ioc_schema_links_reports_inner.py
 titan_client/models/iocs_response.py
 titan_client/models/malware.py
+titan_client/models/malware_families_get412_response.py
+titan_client/models/malware_family_search_response.py
+titan_client/models/malware_family_search_schema.py
+titan_client/models/malware_family_search_schema_activity.py
 titan_client/models/malware_pcaps_get412_response.py
 titan_client/models/malware_reports_search_response.py
 titan_client/models/malware_reports_search_schema.py

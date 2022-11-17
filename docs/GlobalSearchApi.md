@@ -74,7 +74,7 @@ with titan_client.ApiClient(configuration) as api_client:
     threat_uid = 'threat_uid_example' # str | Search events, indicators, YARAs and malware reports by threat uid. (optional)
     malware_family = 'malware_family_example' # str | Search events, indicators, YARAs and malware reports by malware family (optional)
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search events, indicators, YARAs and malware reports by malware family profile UID (optional)
-    confidence = 'confidence_example' # str | Search indicators and YARAs by confidence (optional)
+    confidence = 'confidence_example' # str | Search indicators, YARAs, breach alerts and NIDS by confidence (optional)
     cve_report = 'cve_report_example' # str | Free text CVE reports search. (optional)
     cve_type = 'cve_type_example' # str | Search CVE reports by type. (optional)
     cve_name = 'cve_name_example' # str | Search CVE reports by name. (optional)
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
  **threat_uid** | **str**| Search events, indicators, YARAs and malware reports by threat uid. | [optional] 
  **malware_family** | **str**| Search events, indicators, YARAs and malware reports by malware family | [optional] 
  **malware_family_profile_uid** | **str**| Search events, indicators, YARAs and malware reports by malware family profile UID | [optional] 
- **confidence** | **str**| Search indicators and YARAs by confidence | [optional] 
+ **confidence** | **str**| Search indicators, YARAs, breach alerts and NIDS by confidence | [optional] 
  **cve_report** | **str**| Free text CVE reports search. | [optional] 
  **cve_type** | **str**| Search CVE reports by type. | [optional] 
  **cve_name** | **str**| Search CVE reports by name. | [optional] 
