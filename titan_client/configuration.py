@@ -405,7 +405,7 @@ conf = titan_client.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.19.3\n"\
-               "SDK Package Version: 1.19.3".\
+               "SDK Package Version: 1.19.3.1".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

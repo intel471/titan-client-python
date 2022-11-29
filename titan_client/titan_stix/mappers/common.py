@@ -1,9 +1,14 @@
 import abc
 import datetime
+import json
 import logging
+import os
+import tempfile
 from abc import ABC
 from collections import namedtuple
 from collections.abc import Callable
+from functools import wraps
+
 from stix2 import (
     EmailAddress,
     File,
@@ -72,6 +77,42 @@ class StixMapper:
         )
 
 
+def cached(key):
+    def decorate(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            ttl_seconds = 10 * 60 * 60  # 10 hours by default
+            try:
+                ttl_seconds = int(os.getenv("I471_TITAN_CLIENT_CACHE_TTL"))
+            except (TypeError, ValueError):
+                pass
+            if ttl_seconds == 0:
+                return func(*args, **kwargs)
+            tempdir = tempfile.gettempdir()
+            cache_postfix = int(datetime.datetime.utcnow().timestamp() / ttl_seconds)
+            cache_path = os.path.join(tempdir, f"{key}{cache_postfix}")
+            result = {}
+            try:
+                with open(cache_path) as fh:
+                    result = json.load(fh)
+            except Exception as e:
+                try:
+                    result = func(*args, **kwargs)
+                    try:
+                        for tmpfile in list(os.walk(tempdir))[0][2]:
+                            if tmpfile.startswith(key):
+                                os.remove(os.path.join(tempdir, tmpfile))
+                    except Exception:
+                        pass
+                    with open(cache_path, 'w') as fh:
+                        json.dump(result, fh)
+                except Exception as e:
+                    pass
+            return result
+        return wrapper
+    return decorate
+
+
 class BaseMapper(ABC):
     def __init__(self, titan_client, api_client):
         self.now = datetime.datetime.utcnow()
@@ -125,6 +166,7 @@ class BaseMapper(ABC):
                 text = text[:-1]
         return text.strip()
 
+    @cached("i471titanclientgirs")
     def get_girs_names(self):
         girs_names = {}
         if not all([self.titan_client, self.api_client]):
