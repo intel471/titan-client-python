@@ -35,6 +35,8 @@ test_params = {
     'MessagingServicesApi:messaging_services_instant_messages_get': ('MessagingServicesApi', 'messaging_services_instant_messages_get', {'instant_message_service': 'telegram', 'count': 1}, 'MessagingServicesResponse', 'https://api.intel471.com/v1/messagingServices/instantMessages'),
     'NewsApi:news_get': ('NewsApi', 'news_get', {'count': 1}, 'SimpleNewsResponse', 'https://api.intel471.com/v1/news'),
     'NewsApi:news_uid_get': ('NewsApi', 'news_uid_get', {'uid': '1c6c177fb29b4e896b4753a4d7c010b2'}, 'FullNewsSchema', 'https://api.intel471.com/v1/news/1c6c177fb29b4e896b4753a4d7c010b2'),
+    'ReportsApi:breach_alerts_get': ('ReportsApi', 'breach_alerts_get', {'breach_alert': 'lock', 'count': 1}, 'SimpleBreachAlertResponse', 'https://api.intel471.com/v1/breachAlerts'),
+    'ReportsApi:breach_alerts_uid_get': ('ReportsApi', 'breach_alerts_uid_get', {'uid': 'b43a4f4171a94aee7822dc4bd34b60b3'}, 'SimpleBreachAlertSchema', 'https://api.intel471.com/v1/breachAlerts/b43a4f4171a94aee7822dc4bd34b60b3'),
     'ReportsApi:malware_reports_get': ('ReportsApi', 'malware_reports_get', {'threat_type': 'malware', 'count': 1}, 'MalwareReportsSearchResponse', 'https://api.intel471.com/v1/malwareReports'),
     'ReportsApi:malware_reports_uid_get': ('ReportsApi', 'malware_reports_uid_get', {'uid': '05b23856b7d609aee914b870ea579cd8'}, 'MalwareReportsSearchSchema', 'https://api.intel471.com/v1/malwareReports/05b23856b7d609aee914b870ea579cd8'),
     'ReportsApi:reports_get': ('ReportsApi', 'reports_get', {'count': 1}, 'SimpleReportsResponse', 'https://api.intel471.com/v1/reports'),

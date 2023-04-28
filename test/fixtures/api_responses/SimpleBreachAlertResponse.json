@@ -1,0 +1,79 @@
+{
+    "breach_alerts": [
+        {
+            "activity": {
+                "first": 652971571000,
+                "last": 1093724050000
+            },
+            "data": {
+                "breach_alert": {
+                    "actor_or_group": "wkhdUMPtKIoVhxzAAmp",
+                    "confidence": {
+                        "description": "LEsPnDEFEbtdbeNU qbyQyDwx CpGhHvH MG hYwgKGh mHpZNI voqVjE Jp SvrnrD hFVEHR PJJW IBDhWiIOysbImn wcKnLKd NaAFWdFVnytTlJ iyORKdzTojCMF ltKvTuXcrdbkba b NYIKiQWEZUe IZp hcTzNMw Et LmHUtWLKdUxZGr z ruwzrWzprVeVx tciwMGtDILTBHAm uMINZE eOowuupdBbkdWF RfUo qlJepJVMk gEMbRGHUtTDBwv zKBrSboUrqTsvdxH NORdEfWb",
+                        "level": "low"
+                    },
+                    "date_of_information": 644552110000,
+                    "intel_requirements": [
+                        "3.8.1",
+                        "6.6.4",
+                        "6.5.7",
+                        "2.8.3",
+                        "8.6.7",
+                        "9.9.9",
+                        "5.2.3",
+                        "5.3.9",
+                        "7.4.1",
+                        "8.3.8",
+                        "1.2.4",
+                        "1.3.5",
+                        "8.4.3"
+                    ],
+                    "released_at": 1679484647000,
+                    "sensitive_source": null,
+                    "sources": [
+                        {
+                            "date": 1676851200000,
+                            "source_type": "sachSLrcwnLctuL",
+                            "title": "PGNjkqPeZ",
+                            "type": "internal",
+                            "url": "http://wilson.net/"
+                        }
+                    ],
+                    "summary": "izPSPOPIRkJZeO",
+                    "title": "kpZaPuawm",
+                    "victim": {
+                        "country": "zsAAiSlBwdwdSZQO",
+                        "industries": [
+                            {
+                                "industry": "VAIkOREpw",
+                                "sector": "oMFmJWhJFvfnOc"
+                            },
+                            {
+                                "industry": "oUQYMhChZnFJLzj",
+                                "sector": "uxxFctDjIztLfZAxjae"
+                            }
+                        ],
+                        "name": "rooDjAJGocZNknWNPvia",
+                        "region": "DdwhAdxIqHAdOIGww",
+                        "revenue": "SSJOxUqwgYroO",
+                        "urls": [
+                            "iaHgSPJScKgBUJiecWEW"
+                        ]
+                    }
+                },
+                "entities": [
+                    {
+                        "description": null,
+                        "geo_info": null,
+                        "type": "Handle",
+                        "value": "blwlVkqQFnc"
+                    }
+                ]
+            },
+            "last_updated": 999296540000,
+            "uid": "3440f51a5b304bbe705f3acd727fc78d"
+        }
+    ],
+    "breach_alerts_total_count": 1,
+    "partial_result": null
+}
