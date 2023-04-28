@@ -68,12 +68,18 @@ class MarketplaceProductOtherProductSchema(object):
         self._title = None
         self.discriminator = None
 
-        self.availability = availability
-        self.categories = categories
-        self.description = description
-        self.marketplace = marketplace
-        self.product_type = product_type
-        self.title = title
+        if availability is not None:
+            self.availability = availability
+        if categories is not None:
+            self.categories = categories
+        if description is not None:
+            self.description = description
+        if marketplace is not None:
+            self.marketplace = marketplace
+        if product_type is not None:
+            self.product_type = product_type
+        if title is not None:
+            self.title = title
 
     @property
     def availability(self):
@@ -93,8 +99,6 @@ class MarketplaceProductOtherProductSchema(object):
         :param availability: The availability of this MarketplaceProductOtherProductSchema.  # noqa: E501
         :type availability: MarketplaceProductAvailabilitySchema
         """
-        if self.local_vars_configuration.client_side_validation and availability is None:  # noqa: E501
-            raise ValueError("Invalid value for `availability`, must not be `None`")  # noqa: E501
 
         self._availability = availability
 
@@ -118,8 +122,6 @@ class MarketplaceProductOtherProductSchema(object):
         :param categories: The categories of this MarketplaceProductOtherProductSchema.  # noqa: E501
         :type categories: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and categories is None:  # noqa: E501
-            raise ValueError("Invalid value for `categories`, must not be `None`")  # noqa: E501
 
         self._categories = categories
 
@@ -143,8 +145,6 @@ class MarketplaceProductOtherProductSchema(object):
         :param description: The description of this MarketplaceProductOtherProductSchema.  # noqa: E501
         :type description: str
         """
-        if self.local_vars_configuration.client_side_validation and description is None:  # noqa: E501
-            raise ValueError("Invalid value for `description`, must not be `None`")  # noqa: E501
 
         self._description = description
 
@@ -166,8 +166,6 @@ class MarketplaceProductOtherProductSchema(object):
         :param marketplace: The marketplace of this MarketplaceProductOtherProductSchema.  # noqa: E501
         :type marketplace: MarketplaceProductMarketplaceSchema
         """
-        if self.local_vars_configuration.client_side_validation and marketplace is None:  # noqa: E501
-            raise ValueError("Invalid value for `marketplace`, must not be `None`")  # noqa: E501
 
         self._marketplace = marketplace
 
@@ -189,8 +187,6 @@ class MarketplaceProductOtherProductSchema(object):
         :param product_type: The product_type of this MarketplaceProductOtherProductSchema.  # noqa: E501
         :type product_type: MarketplaceProductTypeSchema
         """
-        if self.local_vars_configuration.client_side_validation and product_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `product_type`, must not be `None`")  # noqa: E501
 
         self._product_type = product_type
 
@@ -214,8 +210,6 @@ class MarketplaceProductOtherProductSchema(object):
         :param title: The title of this MarketplaceProductOtherProductSchema.  # noqa: E501
         :type title: str
         """
-        if self.local_vars_configuration.client_side_validation and title is None:  # noqa: E501
-            raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
 
         self._title = title
 

@@ -71,14 +71,20 @@ class MarketplaceProductCreditCardSchema(object):
         self._victim = None
         self.discriminator = None
 
-        self.availability = availability
+        if availability is not None:
+            self.availability = availability
         if card_number is not None:
             self.card_number = card_number
-        self.card_type = card_type
-        self.expiration = expiration
-        self.marketplace = marketplace
-        self.product_type = product_type
-        self.victim = victim
+        if card_type is not None:
+            self.card_type = card_type
+        if expiration is not None:
+            self.expiration = expiration
+        if marketplace is not None:
+            self.marketplace = marketplace
+        if product_type is not None:
+            self.product_type = product_type
+        if victim is not None:
+            self.victim = victim
 
     @property
     def availability(self):
@@ -98,8 +104,6 @@ class MarketplaceProductCreditCardSchema(object):
         :param availability: The availability of this MarketplaceProductCreditCardSchema.  # noqa: E501
         :type availability: MarketplaceProductAvailabilitySchema
         """
-        if self.local_vars_configuration.client_side_validation and availability is None:  # noqa: E501
-            raise ValueError("Invalid value for `availability`, must not be `None`")  # noqa: E501
 
         self._availability = availability
 
@@ -146,8 +150,6 @@ class MarketplaceProductCreditCardSchema(object):
         :param card_type: The card_type of this MarketplaceProductCreditCardSchema.  # noqa: E501
         :type card_type: str
         """
-        if self.local_vars_configuration.client_side_validation and card_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `card_type`, must not be `None`")  # noqa: E501
 
         self._card_type = card_type
 
@@ -171,8 +173,6 @@ class MarketplaceProductCreditCardSchema(object):
         :param expiration: The expiration of this MarketplaceProductCreditCardSchema.  # noqa: E501
         :type expiration: str
         """
-        if self.local_vars_configuration.client_side_validation and expiration is None:  # noqa: E501
-            raise ValueError("Invalid value for `expiration`, must not be `None`")  # noqa: E501
 
         self._expiration = expiration
 
@@ -194,8 +194,6 @@ class MarketplaceProductCreditCardSchema(object):
         :param marketplace: The marketplace of this MarketplaceProductCreditCardSchema.  # noqa: E501
         :type marketplace: MarketplaceProductMarketplaceSchema
         """
-        if self.local_vars_configuration.client_side_validation and marketplace is None:  # noqa: E501
-            raise ValueError("Invalid value for `marketplace`, must not be `None`")  # noqa: E501
 
         self._marketplace = marketplace
 
@@ -217,8 +215,6 @@ class MarketplaceProductCreditCardSchema(object):
         :param product_type: The product_type of this MarketplaceProductCreditCardSchema.  # noqa: E501
         :type product_type: MarketplaceProductTypeSchema
         """
-        if self.local_vars_configuration.client_side_validation and product_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `product_type`, must not be `None`")  # noqa: E501
 
         self._product_type = product_type
 
@@ -240,8 +236,6 @@ class MarketplaceProductCreditCardSchema(object):
         :param victim: The victim of this MarketplaceProductCreditCardSchema.  # noqa: E501
         :type victim: MarketplaceProductCreditCardSchemaVictim
         """
-        if self.local_vars_configuration.client_side_validation and victim is None:  # noqa: E501
-            raise ValueError("Invalid value for `victim`, must not be `None`")  # noqa: E501
 
         self._victim = victim
 

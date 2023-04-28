@@ -86,19 +86,30 @@ class MarketplaceProductSearchSchemaData(object):
         self._description = None
         self.discriminator = None
 
-        self.availability = availability
+        if availability is not None:
+            self.availability = availability
         if card_number is not None:
             self.card_number = card_number
-        self.card_type = card_type
-        self.expiration = expiration
-        self.marketplace = marketplace
-        self.product_type = product_type
-        self.victim = victim
-        self.installed_at = installed_at
-        self.stolen_by_form_stealers = stolen_by_form_stealers
-        self.title = title
-        self.categories = categories
-        self.description = description
+        if card_type is not None:
+            self.card_type = card_type
+        if expiration is not None:
+            self.expiration = expiration
+        if marketplace is not None:
+            self.marketplace = marketplace
+        if product_type is not None:
+            self.product_type = product_type
+        if victim is not None:
+            self.victim = victim
+        if installed_at is not None:
+            self.installed_at = installed_at
+        if stolen_by_form_stealers is not None:
+            self.stolen_by_form_stealers = stolen_by_form_stealers
+        if title is not None:
+            self.title = title
+        if categories is not None:
+            self.categories = categories
+        if description is not None:
+            self.description = description
 
     @property
     def availability(self):
@@ -118,8 +129,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param availability: The availability of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type availability: MarketplaceProductAvailabilitySchema
         """
-        if self.local_vars_configuration.client_side_validation and availability is None:  # noqa: E501
-            raise ValueError("Invalid value for `availability`, must not be `None`")  # noqa: E501
 
         self._availability = availability
 
@@ -166,8 +175,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param card_type: The card_type of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type card_type: str
         """
-        if self.local_vars_configuration.client_side_validation and card_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `card_type`, must not be `None`")  # noqa: E501
 
         self._card_type = card_type
 
@@ -191,8 +198,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param expiration: The expiration of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type expiration: str
         """
-        if self.local_vars_configuration.client_side_validation and expiration is None:  # noqa: E501
-            raise ValueError("Invalid value for `expiration`, must not be `None`")  # noqa: E501
 
         self._expiration = expiration
 
@@ -214,8 +219,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param marketplace: The marketplace of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type marketplace: MarketplaceProductMarketplaceSchema
         """
-        if self.local_vars_configuration.client_side_validation and marketplace is None:  # noqa: E501
-            raise ValueError("Invalid value for `marketplace`, must not be `None`")  # noqa: E501
 
         self._marketplace = marketplace
 
@@ -237,8 +240,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param product_type: The product_type of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type product_type: MarketplaceProductTypeSchema
         """
-        if self.local_vars_configuration.client_side_validation and product_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `product_type`, must not be `None`")  # noqa: E501
 
         self._product_type = product_type
 
@@ -260,8 +261,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param victim: The victim of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type victim: MarketplaceProductCredentialSchemaVictim
         """
-        if self.local_vars_configuration.client_side_validation and victim is None:  # noqa: E501
-            raise ValueError("Invalid value for `victim`, must not be `None`")  # noqa: E501
 
         self._victim = victim
 
@@ -285,8 +284,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param installed_at: The installed_at of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type installed_at: int
         """
-        if self.local_vars_configuration.client_side_validation and installed_at is None:  # noqa: E501
-            raise ValueError("Invalid value for `installed_at`, must not be `None`")  # noqa: E501
 
         self._installed_at = installed_at
 
@@ -310,8 +307,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param stolen_by_form_stealers: The stolen_by_form_stealers of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type stolen_by_form_stealers: int
         """
-        if self.local_vars_configuration.client_side_validation and stolen_by_form_stealers is None:  # noqa: E501
-            raise ValueError("Invalid value for `stolen_by_form_stealers`, must not be `None`")  # noqa: E501
 
         self._stolen_by_form_stealers = stolen_by_form_stealers
 
@@ -335,8 +330,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param title: The title of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type title: str
         """
-        if self.local_vars_configuration.client_side_validation and title is None:  # noqa: E501
-            raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
 
         self._title = title
 
@@ -360,8 +353,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param categories: The categories of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type categories: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and categories is None:  # noqa: E501
-            raise ValueError("Invalid value for `categories`, must not be `None`")  # noqa: E501
 
         self._categories = categories
 
@@ -385,8 +376,6 @@ class MarketplaceProductSearchSchemaData(object):
         :param description: The description of this MarketplaceProductSearchSchemaData.  # noqa: E501
         :type description: str
         """
-        if self.local_vars_configuration.client_side_validation and description is None:  # noqa: E501
-            raise ValueError("Invalid value for `description`, must not be `None`")  # noqa: E501
 
         self._description = description
 

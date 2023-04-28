@@ -1,0 +1,41 @@
+{
+    "products": [
+        {
+            "activity": {
+                "first": 1283338881000,
+                "last": 1587045595000
+            },
+            "data": {
+                "availability": "dFJysIKgJOHThMeMvXan",
+                "cardNumber": null,
+                "cardType": "tZKrV",
+                "expiration": "GkGPCCwIk",
+                "marketplace": {
+                    "name": "WfinCetvbPjyoph",
+                    "price": "YEGVhTPKhvwQ",
+                    "uid": "e28f78732ec1e3620fb85130ef055dc7"
+                },
+                "productType": "TQwEwxYf",
+                "victim": {
+                    "country": null,
+                    "ipAddress": null,
+                    "os": null
+                },
+                "installedAt": null,
+                "stolenByFormStealers": null,
+                "title": null,
+                "categories": null,
+                "description": null
+            },
+            "lastUpdated": 1405467676000,
+            "uid": "ec4492d5e6e29942d9e7609d878540d9"
+        }
+    ],
+    "productsCount": 3214194,
+    "productsPartialResult": null,
+    "statistics": {
+        "credentialsTotalCount": 433771,
+        "creditCardsTotalCount": 7022001,
+        "otherProductsTotalCount": 31716
+    }
+}

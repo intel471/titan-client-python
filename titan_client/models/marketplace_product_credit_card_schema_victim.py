@@ -62,10 +62,14 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         self._ssn = None
         self.discriminator = None
 
-        self.dob = dob
-        self.full = full
-        self.pin = pin
-        self.ssn = ssn
+        if dob is not None:
+            self.dob = dob
+        if full is not None:
+            self.full = full
+        if pin is not None:
+            self.pin = pin
+        if ssn is not None:
+            self.ssn = ssn
 
     @property
     def dob(self):
@@ -87,8 +91,6 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         :param dob: The dob of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
         :type dob: bool
         """
-        if self.local_vars_configuration.client_side_validation and dob is None:  # noqa: E501
-            raise ValueError("Invalid value for `dob`, must not be `None`")  # noqa: E501
 
         self._dob = dob
 
@@ -112,8 +114,6 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         :param full: The full of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
         :type full: bool
         """
-        if self.local_vars_configuration.client_side_validation and full is None:  # noqa: E501
-            raise ValueError("Invalid value for `full`, must not be `None`")  # noqa: E501
 
         self._full = full
 
@@ -137,8 +137,6 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         :param pin: The pin of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
         :type pin: bool
         """
-        if self.local_vars_configuration.client_side_validation and pin is None:  # noqa: E501
-            raise ValueError("Invalid value for `pin`, must not be `None`")  # noqa: E501
 
         self._pin = pin
 
@@ -162,8 +160,6 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         :param ssn: The ssn of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
         :type ssn: bool
         """
-        if self.local_vars_configuration.client_side_validation and ssn is None:  # noqa: E501
-            raise ValueError("Invalid value for `ssn`, must not be `None`")  # noqa: E501
 
         self._ssn = ssn
 

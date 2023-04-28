@@ -59,10 +59,12 @@ class MarketplaceProductCredentialSchemaVictim(object):
         self._os = None
         self.discriminator = None
 
-        self.country = country
+        if country is not None:
+            self.country = country
         if ip_address is not None:
             self.ip_address = ip_address
-        self.os = os
+        if os is not None:
+            self.os = os
 
     @property
     def country(self):
@@ -84,8 +86,6 @@ class MarketplaceProductCredentialSchemaVictim(object):
         :param country: The country of this MarketplaceProductCredentialSchemaVictim.  # noqa: E501
         :type country: str
         """
-        if self.local_vars_configuration.client_side_validation and country is None:  # noqa: E501
-            raise ValueError("Invalid value for `country`, must not be `None`")  # noqa: E501
 
         self._country = country
 
@@ -132,8 +132,6 @@ class MarketplaceProductCredentialSchemaVictim(object):
         :param os: The os of this MarketplaceProductCredentialSchemaVictim.  # noqa: E501
         :type os: str
         """
-        if self.local_vars_configuration.client_side_validation and os is None:  # noqa: E501
-            raise ValueError("Invalid value for `os`, must not be `None`")  # noqa: E501
 
         self._os = os
 
