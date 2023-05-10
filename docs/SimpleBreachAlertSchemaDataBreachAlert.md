@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **released_at** | **int** | Breach Alert&#39;s release date. | 
 **sensitive_source** | **bool** | Indicates if the document contains sensitive source derived information. | [optional] 
 **sources** | [**list[SimpleBreachAlertSchemaDataBreachAlertSourcesInner]**](SimpleBreachAlertSchemaDataBreachAlertSourcesInner.md) | Sources for this alert, either from Titan or external &#x60;resources&#x60;. | [optional] 
+**summary** | **str** | Breach Alert&#39;s summary - raw text in HTML format. | [optional] 
 **title** | **str** | Breach Alert&#39;s title. | 
 **victim** | [**SimpleBreachAlertSchemaDataBreachAlertVictim**](SimpleBreachAlertSchemaDataBreachAlertVictim.md) |  | 
 

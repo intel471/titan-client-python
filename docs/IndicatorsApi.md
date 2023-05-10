@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **indicators_stream_get**
-> IndicatorStreamResponse indicators_stream_get(indicator=indicator, indicator_type=indicator_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> IndicatorStreamResponse indicators_stream_get(indicator=indicator, indicator_type=indicator_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
 
 Stream Malware Intelligence Indicators
 
@@ -163,12 +163,11 @@ with titan_client.ApiClient(configuration) as api_client:
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
     cursor = 'cursor_example' # str | Continue scrolling from cursor. (optional)
     filter_by_gir_set = 'filter_by_gir_set_example' # str | Filters results by user's GIRs (General intel requirements) or user's company PIRs (Prioritized intel requirements) if present. Dedicated user features are required (optional)
-    offset = 0 # int | Skip leading number of records. (optional) (default to 0)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
 
     try:
         # Stream Malware Intelligence Indicators
-        api_response = api_instance.indicators_stream_get(indicator=indicator, indicator_type=indicator_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.indicators_stream_get(indicator=indicator, indicator_type=indicator_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling IndicatorsApi->indicators_stream_get: %s\n" % e)
@@ -192,7 +191,6 @@ Name | Type | Description  | Notes
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
  **cursor** | **str**| Continue scrolling from cursor. | [optional] 
  **filter_by_gir_set** | **str**| Filters results by user&#39;s GIRs (General intel requirements) or user&#39;s company PIRs (Prioritized intel requirements) if present. Dedicated user features are required | [optional] 
- **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
 
 ### Return type

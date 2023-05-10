@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **watcher_groups_group_uid_put**
-> SimpleWatcherGroupSchema watcher_groups_group_uid_put(group_uid, watcher_groups_group_uid_delete_request)
+> SimpleWatcherGroupSchema watcher_groups_group_uid_put(group_uid, watcher_groups_group_uid_put_request)
 
 Put Watcher Group
 
@@ -274,11 +274,11 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
     group_uid = '5e375ff0-7f0d-4703-83de-d2fea5620335' # str | Watcher group identifier.
-    watcher_groups_group_uid_delete_request = {"$ref":"../components/examples/watcher_groups.yaml#/WatcherGroupRequestBodyExample"} # WatcherGroupsGroupUidDeleteRequest | JSON request body
+    watcher_groups_group_uid_put_request = {"$ref":"../components/examples/watcher_groups.yaml#/WatcherGroupRequestBodyExample"} # WatcherGroupsGroupUidPutRequest | JSON request body
 
     try:
         # Put Watcher Group
-        api_response = api_instance.watcher_groups_group_uid_put(group_uid, watcher_groups_group_uid_delete_request)
+        api_response = api_instance.watcher_groups_group_uid_put(group_uid, watcher_groups_group_uid_put_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling WatchersApi->watcher_groups_group_uid_put: %s\n" % e)
@@ -289,7 +289,7 @@ with titan_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_uid** | **str**| Watcher group identifier. | 
- **watcher_groups_group_uid_delete_request** | [**WatcherGroupsGroupUidDeleteRequest**](WatcherGroupsGroupUidDeleteRequest.md)| JSON request body | 
+ **watcher_groups_group_uid_put_request** | [**WatcherGroupsGroupUidPutRequest**](WatcherGroupsGroupUidPutRequest.md)| JSON request body | 
 
 ### Return type
 
@@ -691,7 +691,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **watcher_groups_post**
-> SimpleWatcherGroupSchema watcher_groups_post(watcher_groups_get_request)
+> SimpleWatcherGroupSchema watcher_groups_post(watcher_groups_post_request)
 
 Create Watcher Group
 
@@ -727,11 +727,11 @@ configuration = titan_client.Configuration(
 with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.WatchersApi(api_client)
-    watcher_groups_get_request = {"$ref":"../components/examples/watcher_groups.yaml#/WatcherGroupCreateRequestBodyExample"} # WatcherGroupsGetRequest | JSON request body
+    watcher_groups_post_request = {"$ref":"../components/examples/watcher_groups.yaml#/WatcherGroupCreateRequestBodyExample"} # WatcherGroupsPostRequest | JSON request body
 
     try:
         # Create Watcher Group
-        api_response = api_instance.watcher_groups_post(watcher_groups_get_request)
+        api_response = api_instance.watcher_groups_post(watcher_groups_post_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling WatchersApi->watcher_groups_post: %s\n" % e)
@@ -741,7 +741,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **watcher_groups_get_request** | [**WatcherGroupsGetRequest**](WatcherGroupsGetRequest.md)| JSON request body | 
+ **watcher_groups_post_request** | [**WatcherGroupsPostRequest**](WatcherGroupsPostRequest.md)| JSON request body | 
 
 ### Return type
 

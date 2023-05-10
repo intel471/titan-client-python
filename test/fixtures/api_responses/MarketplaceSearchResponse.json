@@ -1,0 +1,24 @@
+{
+    "marketplaces": [
+        {
+            "activity": {
+                "first": 678415513000,
+                "last": 171531889000
+            },
+            "data": {
+                "description": "khOiMzLjqP drtJetxoDE qwuavInaxmmx JzXVHHR nDQgCF FFdXvaDHH uSfkx fCKAidqxSJyCzrPm DLGkrGmwH eYX cKvKgfe VuyvLnXX lqCewuIsOTPmVOP M HKpoaVHF VEANrjbaBXeKjXZQ Yb yeqYF azcgVgKeImIj U qeq JWvdjFwmgvrbgBl JaWPRIjCtG jTCeiTEbYdkDTxW gyKwHrbRbniaFe V",
+                "name": "RQTdpvJqRI",
+                "tier": "1",
+                "url": "https://www.nguyen.com/category.jsp"
+            },
+            "lastUpdated": 137593611000,
+            "statistics": {
+                "productsTotalCount": 291735,
+                "vendorsTotalCount": 0
+            },
+            "uid": "a96cc6b6118f130f4249a32f652a9469"
+        }
+    ],
+    "marketplacesCount": 3,
+    "marketplacesPartialResult": null
+}

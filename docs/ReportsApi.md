@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **breach_alerts_uid_get**
-> FullBreachAlertSchema breach_alerts_uid_get(uid)
+> SimpleBreachAlertSchema breach_alerts_uid_get(uid)
 
 Get Breach Alert
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FullBreachAlertSchema**](FullBreachAlertSchema.md)
+[**SimpleBreachAlertSchema**](SimpleBreachAlertSchema.md)
 
 ### Authorization
 
