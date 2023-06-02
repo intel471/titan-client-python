@@ -3,11 +3,13 @@ import datetime
 import json
 import logging
 import os
+import re
 import tempfile
 from abc import ABC
 from collections import namedtuple
 from collections.abc import Callable
 from functools import wraps
+from typing import Union
 
 from stix2 import (
     EmailAddress,
@@ -123,36 +125,20 @@ class BaseMapper(ABC):
     def map(self, source: dict) -> Bundle:
         raise NotImplementedError
 
-    def map_entity(self, type_: str, value: str):
-        entity2stix = {
-            "EmailAddress": [EmailAddress, {"value": value}],
-            "SHA256": [File, {"hashes": {"SHA256": value}}],
-            "Handle": [ThreatActor, {"name": value}],
-            "IPAddress": [IPv4Address, {"value": value}],
-            "MaliciousURL": [URL, {"value": value}],
-            "MaliciousDomain": [DomainName, {"value": value}],
-        }
-        try:
-            klass, kwargs = entity2stix[type_]
-        except KeyError:
-            log.warning(f"Cannot map entity. Unknown type `{type_}`")
-            return None
-        else:
-            return klass(**kwargs)
+    def map_confidence(self, confidence: Union[str, None]):
+        # There are two confidence scales used in Titan: https://en.wikipedia.org/wiki/Admiralty_code and low/medium/high
+        # This function handles both according to
+        # [STIX confidence scales](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_1v6elyto0uqg)
 
-    def map_location(self, region: str = None, country: str = None):
-        region_kwargs = {}
-        if region:
-            # TODO: map to region-ov.
-            region_kwargs["region"] = region
-        if country:
-            region_kwargs["country"] = country
-        if region_kwargs:
-            return Location(id=generate_id(Location, **region_kwargs), **region_kwargs)
-        return None
+        # If it's Admiralty_code we're interested in the second part only (Credibility), which is a number between 1 and 6.
+        value = re.sub(r"^[A-F]([1-6])$", "\\1", confidence or "", re.IGNORECASE)
 
-    def map_confidence(self, confidence: str):
-        return {"low": 15, "medium": 50, "high": 85}.get(confidence, 0)
+        # If there's no match, we expect a word from low/medium/high scale.
+        # If for any reason it's not the case either, we set confidence as not specified (`None`)
+        return {
+            "6": None, "5": 10, "4": 30, "3": 50, "2": 70, "1": 90,
+            "low": 15, "medium": 50, "high": 85
+        }.get(value, None)
 
     def map_tactic(self, tactic: str):
         if tactic and len(tactic) > 0:
