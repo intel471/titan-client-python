@@ -6,8 +6,8 @@ from pytz import UTC
 from stix2 import Bundle, Indicator, Report, TLP_AMBER, DomainName, URL, Relationship
 
 from .. import author_identity
-from ..patterning import create_domain_pattern, create_url_pattern
-from ..observables import create_domain, create_url
+from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern
+from ..observables import create_domain, create_url, create_ipv4
 from .reports import ReportMapper
 from .common import StixMapper, BaseMapper, generate_id, MappingConfig
 
@@ -27,6 +27,11 @@ class IOCMapper(BaseMapper):
             patterning_mapper=create_domain_pattern,
             observable_mapper=create_domain,
             kwargs_extractor=lambda i: {"value": i["value"].split("://")[-1]},
+        ),
+        "IPAddress": MappingConfig(
+            patterning_mapper=create_ipv4_pattern,
+            observable_mapper=create_ipv4,
+            kwargs_extractor=lambda i: {"value": i["value"]},
         ),
     }
 
@@ -85,7 +90,7 @@ class IOCMapper(BaseMapper):
         container = {}
         for report_source in report_sources:
             container.update(
-                report_mapper.map_reports(
+                report_mapper.map_shortened_report(
                     report_source,
                     object_refs={indicator.id: indicator, observable.id: observable},
                 )
