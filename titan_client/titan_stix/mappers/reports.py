@@ -159,7 +159,7 @@ class ReportMapper(BaseMapper):
         report_settings = self.reports_settings.get(self._get_type(source))
         description_field = report_settings.description_field
         for i in description_field.split("."):
-            source = source.get(i, "")
+            source = source.get(i, {})
         if source:
             return re.sub(self.remove_html_regex, "", source)
         return subject

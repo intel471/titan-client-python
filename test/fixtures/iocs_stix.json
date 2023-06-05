@@ -1,14 +1,14 @@
 {
   "type": "bundle",
-  "id": "bundle--656cb83d-38b8-4185-b426-5f8be1cc8b5d",
+  "id": "bundle--abab82e4-9839-442a-ad8c-8391ceba9a25",
   "objects": [
     {
       "type": "indicator",
       "spec_version": "2.1",
       "id": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-06-07T09:28:27.636046Z",
-      "modified": "2022-06-07T09:28:27.636046Z",
+      "created": "2023-06-05T14:32:19.117507Z",
+      "modified": "2023-06-05T14:32:19.117507Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -32,10 +32,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--46de13af-e22f-40bd-8d64-08005ca9e8a8",
+      "id": "relationship--e3798cf7-9a66-452d-84a7-5e1bddb86f80",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-06-07T09:28:27.637615Z",
-      "modified": "2022-06-07T09:28:27.637615Z",
+      "created": "2023-06-05T14:32:19.122774Z",
+      "modified": "2023-06-05T14:32:19.122774Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
       "target_ref": "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984"
@@ -65,12 +65,12 @@
       "spec_version": "2.1",
       "id": "report--a1f3eeb8-c6f0-5c2e-960b-5a5787a2197d",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-06-07T09:28:27.638586Z",
-      "modified": "2022-06-07T09:28:27.638586Z",
+      "created": "2023-06-05T14:32:21.194183Z",
+      "modified": "2023-06-05T14:32:21.194183Z",
       "name": "Lorem ipsum",
       "description": "Lorem ipsum",
       "report_types": [
-        "miscellaneous"
+        "spotrep"
       ],
       "published": "2021-09-02T09:33:53Z",
       "object_refs": [
@@ -86,15 +86,15 @@
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "x_intel471_com_uid": "14796d40bf40721ed6eab8f54d9402e2"
+      "x_intel471_com_uid": "4c4712a4141d261ec0ca8f9037950685"
     },
     {
       "type": "indicator",
       "spec_version": "2.1",
       "id": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-06-07T09:28:27.639674Z",
-      "modified": "2022-06-07T09:28:27.639674Z",
+      "created": "2023-06-05T14:32:21.19705Z",
+      "modified": "2023-06-05T14:32:21.19705Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -118,10 +118,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--479a8158-5613-42eb-bf1b-da75216c447d",
+      "id": "relationship--69e809f0-c985-4d5d-9014-233f6b042695",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-06-07T09:28:27.641117Z",
-      "modified": "2022-06-07T09:28:27.641117Z",
+      "created": "2023-06-05T14:32:21.200209Z",
+      "modified": "2023-06-05T14:32:21.200209Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
       "target_ref": "url--b7a2c682-5608-5ade-aa12-5fde0aa49984"
@@ -131,12 +131,12 @@
       "spec_version": "2.1",
       "id": "report--69cb0bf4-2762-5f7d-bde4-456e38252b5d",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-06-07T09:28:27.64199Z",
-      "modified": "2022-06-07T09:28:27.64199Z",
+      "created": "2023-06-05T14:32:21.201255Z",
+      "modified": "2023-06-05T14:32:21.201255Z",
       "name": "The quick brown fox",
       "description": "The quick brown fox",
       "report_types": [
-        "miscellaneous"
+        "inforep"
       ],
       "published": "2021-09-02T09:33:53Z",
       "object_refs": [
@@ -152,7 +152,73 @@
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "x_intel471_com_uid": "14796d40bf40721ed6eab8f54d9402e2"
+      "x_intel471_com_uid": "4c4712a4141d261ec0ca8f9037950686"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2023-06-05T14:32:21.202527Z",
+      "modified": "2023-06-05T14:32:21.202527Z",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '127.0.0.1']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2021-09-02T09:33:53Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ]
+    },
+    {
+      "type": "ipv4-addr",
+      "spec_version": "2.1",
+      "id": "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b",
+      "value": "127.0.0.1",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--3ba2b328-4a79-478a-918a-033ac77d5c19",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2023-06-05T14:32:21.205792Z",
+      "modified": "2023-06-05T14:32:21.205792Z",
+      "relationship_type": "based-on",
+      "source_ref": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
+      "target_ref": "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--e2f8cf2b-85c9-51ea-b7cf-6bb80fa2e53e",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2023-06-05T14:32:21.206919Z",
+      "modified": "2023-06-05T14:32:21.206919Z",
+      "name": "NVM, will be skipped anyways",
+      "description": "NVM, will be skipped anyways",
+      "report_types": [
+        "spotrep"
+      ],
+      "published": "2021-09-02T09:33:53Z",
+      "object_refs": [
+        "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
+        "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b"
+      ],
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950686"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "x_intel471_com_uid": "4c4712a4141d261ec0ca8f9037950686"
     }
   ]
 }
