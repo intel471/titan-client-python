@@ -1,13 +1,13 @@
 import datetime
 import logging
 import re
-from typing import List, Union, NamedTuple
+from typing import Union, NamedTuple
 
 from pytz import UTC
 from stix2 import Bundle, Report, ExternalReference, TLP_AMBER
 
-from .common import StixMapper, BaseMapper, generate_id
-from .. import author_identity
+from .common import BaseMapper
+from .. import author_identity, generate_id
 
 log = logging.getLogger(__name__)
 

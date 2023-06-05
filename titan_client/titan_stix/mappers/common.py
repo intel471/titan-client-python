@@ -11,17 +11,7 @@ from collections.abc import Callable
 from functools import wraps
 from typing import Union
 
-from stix2 import (
-    EmailAddress,
-    File,
-    ThreatActor,
-    IPv4Address,
-    URL,
-    Location,
-    DomainName,
-    Bundle
-)
-from .. import generate_id
+from stix2 import Bundle
 from ..exceptions import EmptyBundle, StixMapperNotFound
 
 log = logging.getLogger(__name__)

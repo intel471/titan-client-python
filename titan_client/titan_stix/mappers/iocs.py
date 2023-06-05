@@ -5,11 +5,11 @@ from typing import Union
 from pytz import UTC
 from stix2 import Bundle, Indicator, Report, TLP_AMBER, DomainName, URL, Relationship
 
-from .. import author_identity
-from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern
-from ..observables import create_domain, create_url, create_ipv4
+from .. import author_identity, generate_id
+from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern, create_file_pattern
+from ..observables import create_domain, create_url, create_ipv4, create_file
 from .reports import ReportMapper
-from .common import StixMapper, BaseMapper, generate_id, MappingConfig
+from .common import StixMapper, BaseMapper, MappingConfig
 
 log = logging.getLogger(__name__)
 
@@ -32,6 +32,21 @@ class IOCMapper(BaseMapper):
             patterning_mapper=create_ipv4_pattern,
             observable_mapper=create_ipv4,
             kwargs_extractor=lambda i: {"value": i["value"]},
+        ),
+        "MD5": MappingConfig(
+            patterning_mapper=create_file_pattern,
+            observable_mapper=create_file,
+            kwargs_extractor=lambda i: {"md5": i["value"]},
+        ),
+        "SHA1": MappingConfig(
+            patterning_mapper=create_file_pattern,
+            observable_mapper=create_file,
+            kwargs_extractor=lambda i: {"sha1": i["value"]},
+        ),
+        "SHA256": MappingConfig(
+            patterning_mapper=create_file_pattern,
+            observable_mapper=create_file,
+            kwargs_extractor=lambda i: {"sha256": i["value"]},
         ),
     }
 
