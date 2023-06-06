@@ -126,9 +126,9 @@ class BaseMapper(ABC):
         # If there's no match, we expect a word from low/medium/high scale.
         # If for any reason it's not the case either, we set confidence as not specified (`None`)
         return {
-            "6": None, "5": 10, "4": 30, "3": 50, "2": 70, "1": 90,
+            "6": 0, "5": 10, "4": 30, "3": 50, "2": 70, "1": 90,
             "low": 15, "medium": 50, "high": 85
-        }.get(value, None)
+        }.get(value, 0)
 
     def map_tactic(self, tactic: str):
         if tactic and len(tactic) > 0:
