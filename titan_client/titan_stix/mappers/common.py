@@ -12,6 +12,8 @@ from functools import wraps
 from typing import Union
 
 from stix2 import Bundle
+
+from .. import STIXMapperSettings
 from ..exceptions import EmptyBundle, StixMapperNotFound
 
 log = logging.getLogger(__name__)
@@ -23,9 +25,8 @@ MappingConfig = namedtuple(
 
 
 class StixMapper:
-    def __init__(self, titan_client=None, api_client=None):
-        self.titan_client = titan_client
-        self.api_client = api_client
+    def __init__(self, settings: STIXMapperSettings = None):
+        self.settings = settings if settings else STIXMapperSettings()
 
     mappers = {}
 
@@ -58,7 +59,7 @@ class StixMapper:
         for name, (condition, mapper_class) in self.mappers.items():
             if condition(source):
                 log.info(f"Mapping Titan payload for {name}.")
-                mapper = mapper_class(self.titan_client, self.api_client)
+                mapper = mapper_class(self.settings)
                 bundle = mapper.map(source)
                 if bundle:
                     return bundle
@@ -106,10 +107,9 @@ def cached(key):
 
 
 class BaseMapper(ABC):
-    def __init__(self, titan_client, api_client):
+    def __init__(self, settings: STIXMapperSettings):
         self.now = datetime.datetime.utcnow()
-        self.titan_client = titan_client
-        self.api_client = api_client
+        self.settings = settings
 
     @abc.abstractmethod
     def map(self, source: dict) -> Bundle:
@@ -145,9 +145,9 @@ class BaseMapper(ABC):
     @cached("i471titanclientgirs")
     def get_girs_names(self):
         girs_names = {}
-        if not all([self.titan_client, self.api_client]):
+        if not all([self.settings.titan_client, self.settings.api_client, self.settings.girs_names]):
             return girs_names
-        api_instance = self.titan_client.GIRsApi(self.api_client)
+        api_instance = self.settings.titan_client.GIRsApi(self.settings.api_client)
         for offset in range(0, 1000, 100):
             api_response = api_instance.girs_get(count=100, offset=offset)
             if not api_response.girs:

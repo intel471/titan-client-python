@@ -52,7 +52,7 @@ class IOCMapper(BaseMapper):
 
     def map(self, source: dict) -> Bundle:
         container = {}
-        report_mapper = ReportMapper(self.titan_client, self.api_client)
+        report_mapper = ReportMapper(self.settings)
         items = source.get("iocs") or [] if "iocTotalCount" in source else [source]
         for item in items:
             ioc_type = item["type"]

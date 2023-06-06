@@ -1,11 +1,22 @@
 import datetime
 import uuid
-from typing import Union
+from typing import Union, NamedTuple
 
 from stix2 import Relationship, base, Identity
 from stix2.base import _DomainObject, _Observable
 from stix2.canonicalization.Canonicalize import canonicalize
 
+
+class STIXMapperSettings(NamedTuple):
+    titan_client: Union['titan_client', None] = None
+    api_client: Union['ApiClient', None] = None
+    # Resolve GIRs numbers into full names
+    girs_names: bool = True
+    # Get full reports' descriptions
+    report_description: bool = True
+    # Get HTML representation of reports contents and return them in a format
+    # understandable for OpenCTI (base64 encoded, inside specific JSON structure)
+    report_attachments_opencti: bool = False
 
 def generate_id(
     stix_class: Union[_DomainObject, Relationship, _Observable],
