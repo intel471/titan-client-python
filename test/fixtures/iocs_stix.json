@@ -1,14 +1,14 @@
 {
   "type": "bundle",
-  "id": "bundle--c44cae8a-f51e-4ca8-a9a5-879ef61e921b",
+  "id": "bundle--5a810231-7d91-4960-8656-0632416fe15c",
   "objects": [
     {
       "type": "indicator",
       "spec_version": "2.1",
       "id": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.157959Z",
-      "modified": "2023-06-05T15:11:52.157959Z",
+      "created": "2023-06-06T12:14:11.273922Z",
+      "modified": "2023-06-06T12:14:11.273922Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -32,10 +32,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--189c2191-02bb-46a1-9537-00f1debf9f9f",
+      "id": "relationship--29cf64a5-8933-4e49-850c-562c17cc0f48",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.165765Z",
-      "modified": "2023-06-05T15:11:52.165765Z",
+      "created": "2023-06-06T12:14:11.279487Z",
+      "modified": "2023-06-06T12:14:11.279487Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
       "target_ref": "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984"
@@ -65,8 +65,8 @@
       "spec_version": "2.1",
       "id": "report--a1f3eeb8-c6f0-5c2e-960b-5a5787a2197d",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.167175Z",
-      "modified": "2023-06-05T15:11:52.167175Z",
+      "created": "2023-06-06T12:14:11.28057Z",
+      "modified": "2023-06-06T12:14:11.28057Z",
       "name": "Lorem ipsum",
       "description": "Lorem ipsum",
       "report_types": [
@@ -77,6 +77,7 @@
         "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
         "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984"
       ],
+      "confidence": 0,
       "external_references": [
         {
           "source_name": "Titan URL",
@@ -93,8 +94,8 @@
       "spec_version": "2.1",
       "id": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.169652Z",
-      "modified": "2023-06-05T15:11:52.169652Z",
+      "created": "2023-06-06T12:14:11.282395Z",
+      "modified": "2023-06-06T12:14:11.282395Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -118,10 +119,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--09383798-fc8a-4cd4-bed0-5958ad998d7a",
+      "id": "relationship--04029216-057a-45d0-a258-05fe82d151c6",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.172791Z",
-      "modified": "2023-06-05T15:11:52.172791Z",
+      "created": "2023-06-06T12:14:11.284963Z",
+      "modified": "2023-06-06T12:14:11.284963Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
       "target_ref": "url--b7a2c682-5608-5ade-aa12-5fde0aa49984"
@@ -131,8 +132,8 @@
       "spec_version": "2.1",
       "id": "report--69cb0bf4-2762-5f7d-bde4-456e38252b5d",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.173885Z",
-      "modified": "2023-06-05T15:11:52.173885Z",
+      "created": "2023-06-06T12:14:11.285837Z",
+      "modified": "2023-06-06T12:14:11.285837Z",
       "name": "The quick brown fox",
       "description": "The quick brown fox",
       "report_types": [
@@ -143,6 +144,7 @@
         "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
         "url--b7a2c682-5608-5ade-aa12-5fde0aa49984"
       ],
+      "confidence": 0,
       "external_references": [
         {
           "source_name": "Titan URL",
@@ -159,8 +161,8 @@
       "spec_version": "2.1",
       "id": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.175329Z",
-      "modified": "2023-06-05T15:11:52.175329Z",
+      "created": "2023-06-06T12:14:11.287048Z",
+      "modified": "2023-06-06T12:14:11.287048Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -184,10 +186,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--966a8f3b-144a-4d1a-bb4f-c67fa1575b2c",
+      "id": "relationship--33ffaab8-8c2b-4c40-9591-9fb0c81a67db",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.178357Z",
-      "modified": "2023-06-05T15:11:52.178357Z",
+      "created": "2023-06-06T12:14:11.28966Z",
+      "modified": "2023-06-06T12:14:11.28966Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
       "target_ref": "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b"
@@ -197,8 +199,8 @@
       "spec_version": "2.1",
       "id": "report--e2f8cf2b-85c9-51ea-b7cf-6bb80fa2e53e",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.197698Z",
-      "modified": "2023-06-05T15:11:52.197698Z",
+      "created": "2023-06-06T12:14:11.306469Z",
+      "modified": "2023-06-06T12:14:11.306469Z",
       "name": "NVM, will be skipped anyways",
       "description": "NVM, will be skipped anyways",
       "report_types": [
@@ -215,6 +217,7 @@
         "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
         "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b"
       ],
+      "confidence": 0,
       "external_references": [
         {
           "source_name": "Titan URL",
@@ -231,8 +234,8 @@
       "spec_version": "2.1",
       "id": "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.180872Z",
-      "modified": "2023-06-05T15:11:52.180872Z",
+      "created": "2023-06-06T12:14:11.292002Z",
+      "modified": "2023-06-06T12:14:11.292002Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -258,10 +261,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--19a05fad-fcb9-4322-ba2b-b5cd73b85544",
+      "id": "relationship--4fbfcde2-aa12-4891-80b1-8652895b7251",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.184254Z",
-      "modified": "2023-06-05T15:11:52.184254Z",
+      "created": "2023-06-06T12:14:11.294861Z",
+      "modified": "2023-06-06T12:14:11.294861Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
       "target_ref": "file--85995aa9-36db-5c5b-b620-270b86ac82b3"
@@ -271,8 +274,8 @@
       "spec_version": "2.1",
       "id": "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.186675Z",
-      "modified": "2023-06-05T15:11:52.186675Z",
+      "created": "2023-06-06T12:14:11.29689Z",
+      "modified": "2023-06-06T12:14:11.29689Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -298,10 +301,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--ad1be13d-0c5d-4dbf-ab26-0042fbe049d1",
+      "id": "relationship--a847b217-8a67-47de-857f-3c30be89fd29",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.190069Z",
-      "modified": "2023-06-05T15:11:52.190069Z",
+      "created": "2023-06-06T12:14:11.299963Z",
+      "modified": "2023-06-06T12:14:11.299963Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
       "target_ref": "file--f11f895a-307f-5fab-8888-75291f2bae81"
@@ -311,8 +314,8 @@
       "spec_version": "2.1",
       "id": "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.192325Z",
-      "modified": "2023-06-05T15:11:52.192325Z",
+      "created": "2023-06-06T12:14:11.302682Z",
+      "modified": "2023-06-06T12:14:11.302682Z",
       "indicator_types": [
         "malicious-activity"
       ],
@@ -338,10 +341,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--0f402bf4-27e5-462b-812e-950f7c5f346f",
+      "id": "relationship--4c2e3a37-1be6-4239-a822-aeb94ac14f55",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2023-06-05T15:11:52.195959Z",
-      "modified": "2023-06-05T15:11:52.195959Z",
+      "created": "2023-06-06T12:14:11.305714Z",
+      "modified": "2023-06-06T12:14:11.305714Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
       "target_ref": "file--842a90f8-17e2-5b7c-a356-cafacff88ab8"
