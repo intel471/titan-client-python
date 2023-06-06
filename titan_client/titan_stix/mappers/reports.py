@@ -139,7 +139,7 @@ class ReportMapper(BaseMapper):
             report_settings = self.reports_settings.get(report_type)
             api_instance = getattr(self.settings.titan_client, report_settings.api_class)(self.settings.api_client)
             api_response = getattr(api_instance, report_settings.method_name)(report_uid)
-            self.cache[report_url] = api_response.to_dict(serialize=False)
+            self.cache[report_url] = api_response.to_dict(serialize=True)
         return self.cache[report_url]
 
     def _format_published(self, epoch_millis: int):
