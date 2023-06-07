@@ -122,16 +122,19 @@ bundle = api_response.to_stix()
 json_repr = bundle.serialize()
 ```
 
-Some responses can be enriched with extra details coming from additional API calls. For example reports associated with IoCs can get the full content fetched
-and ingested into the `description` field. In order to enable the enrichment, pass `titan_client` package and initialised `api_client` into the `to_stix()` method:
+Some responses can be enriched with extra details coming from additional API calls. For example reports associated with IoCs can get the full description fetched
+and ingested into the `description` field. In order to enable the enrichment, pass an instance of `titan_client.titan_stix.STIXMapperSettings` class into the `to_stix()` method.
+It should be initialised with at least `titan_client` package and initialised `api_client`. By default it will enable enrichment for full GiRs names and for reports descriptions.
+For the full list of settings please refer to the [implementation of STIXMapperSettings class](titan_client/titan_stix/__init__.py).
 
 ```
 import titan_client
+from titan_client.titan_stix import STIXMapperSettings
 configuration = titan_client.Configuration(...)
 with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.IOCsApi(api_client)
     api_response = api_instance.iocs_get(ioc="*", ioc_type="maliciousDomain")
-    bundle = api_response.to_stix(titan_client, api_client)
+    bundle = api_response.to_stix(STIXMapperSettings(titan_client, api_client))
 ```
 
 The most common enrichment is expanding Intel Requirements' IDs into full names using `/girs` endpoint. As the GiRs do not change too often, the response is cached
@@ -141,12 +144,12 @@ If the objects returned by the endpoint for some reason can't be mapped into STI
 
 At the moment following API methods provide the response in STIX format:
 
-API endpoints | Client's classes/methods | Produced outcome | Available enrichment | Additional info
--------------|------------------------|------------------|-----------------|---
-`/indicators`, `/indicators/stream`, |  `IndicatorsApi#indicators_get`, `IndicatorsApi#indicators_stream_get` | `Indicator` and `Malware` SDOs related using `Relationship` object; `URL`, `IPv4Address` or `File` Observable related with the `Indicator` SDO using `Relationship` object | Full names of Intel Requirements | - |
-`/iocs`      |  `IOCsApi#iocs_get`    | `Indicator` and `Report` SDOs and either `URL` or `DomainName` Observable. Both `Indicator` and Observable objects are related with the `Report` using `Report`'s internal property `object_refs`. Observable and `Indicator` objects also are related using `Relationship` object | Full contents of associated reports | Only indicators of type `MaliciousDomain` and `MaliciousURL` |
-`/yara`      |  `YARAApi#yara_get`    | `Indicator` and `Malware` SDOs related using `Relationship` object | Full names of Intel Requirements | - |
-`/cve/reports`, `/cve/reports/{uid}`      |  `VulnerabilitiesApi#cve_reports_get`, `VulnerabilitiesApi#cve_reports_uid_get`    | `Vulnerability` SDOs | Full names of Intel Requirements | - |
+API endpoints | Client's classes/methods | Produced outcome                                                                                                                                                                                                                                                                               | Available enrichment                                                                   | Additional info
+-------------|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------
+`/indicators`, `/indicators/stream`, |  `IndicatorsApi#indicators_get`, `IndicatorsApi#indicators_stream_get` | `Indicator` and `Malware` SDOs related using `Relationship` object; `URL`, `IPv4Address` or `File` Observable related with the `Indicator` SDO using `Relationship` object                                                                                                                     | Full names of Intel Requirements                                                       | -                                                                                                  |
+`/iocs`      |  `IOCsApi#iocs_get`    | `Indicator` and `Report` SDOs and either `URL`, `DomainName`, `IPv4Address` or `File` Observable. Both `Indicator` and Observable objects are related with the `Report` using `Report`'s internal property `object_refs`. Observable and `Indicator` objects also are related using `Relationship` object | Full descriptions of associated reports; attachments in format compatible with OpenCTI | Only indicators of type `MaliciousDomain`, `MaliciousURL`, `IPAddress`, `MD5`, `SHA1` and `SHA256` |
+`/yara`      |  `YARAApi#yara_get`    | `Indicator` and `Malware` SDOs related using `Relationship` object                                                                                                                                                                                                                             | Full names of Intel Requirements                                                       | -                                                                                                  |
+`/cve/reports`, `/cve/reports/{uid}`      |  `VulnerabilitiesApi#cve_reports_get`, `VulnerabilitiesApi#cve_reports_uid_get`    | `Vulnerability` SDOs                                                                                                                                                                                                                                                                           | Full names of Intel Requirements                                                       | -                                                                                                  |
 
 *Please note that STIX mapping is an experimental feature. Not all the endpoints are mapped yet and those that are mapped might have issues and might be a subject of further re-modelling.*
 *If `to_stix()` method is called on a response from the endpoint that is not mapped yet, `StixMapperNotFound` exception will be raised.*

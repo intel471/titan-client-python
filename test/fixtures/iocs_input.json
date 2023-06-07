@@ -60,6 +60,66 @@
             "uid": "4c4712a4141d261ec0ca8f9037950685",
             "type": "IPAddress",
             "value": "127.0.0.1"
+        },
+        {
+            "lastUpdated": 1630575235898,
+            "links": {
+                "actorTotalCount": 0,
+                "reportTotalCount": 1,
+                "reports": [
+                    {
+                        "subject": "NVM, will be skipped anyways",
+                        "released": 1630575233000,
+                        "portalReportUrl": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950686",
+                        "uid": "14796d40bf40721ed6eab8f54d9402e2"
+                    }
+                ]
+            },
+            "activeFrom": 1630575233000,
+            "activeTill": 1630575233000,
+            "uid": "a649d6e9b946d8334d335f71ee3da857",
+            "type": "MD5",
+            "value": "1bec8600cb85bcbeed8b9992a0b87ae4"
+        },
+        {
+            "lastUpdated": 1630575235898,
+            "links": {
+                "actorTotalCount": 0,
+                "reportTotalCount": 1,
+                "reports": [
+                    {
+                        "subject": "NVM, will be skipped anyways",
+                        "released": 1630575233000,
+                        "portalReportUrl": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950686",
+                        "uid": "14796d40bf40721ed6eab8f54d9402e2"
+                    }
+                ]
+            },
+            "activeFrom": 1630575233000,
+            "activeTill": 1630575233000,
+            "uid": "a649d6e9b946d8334d335f71ee3da858",
+            "type": "SHA1",
+            "value": "d520bb6cd46674b9f29ec5fa3280d678b635ecd8"
+        },
+        {
+            "lastUpdated": 1630575235898,
+            "links": {
+                "actorTotalCount": 0,
+                "reportTotalCount": 1,
+                "reports": [
+                    {
+                        "subject": "NVM, will be skipped anyways",
+                        "released": 1630575233000,
+                        "portalReportUrl": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950686",
+                        "uid": "14796d40bf40721ed6eab8f54d9402e2"
+                    }
+                ]
+            },
+            "activeFrom": 1630575233000,
+            "activeTill": 1630575233000,
+            "uid": "a649d6e9b946d8334d335f71ee3da859",
+            "type": "SHA256",
+            "value": "7623def2702a70942c6a0335f3fff55710c8effc18ed9a6bd2896a4c1f66b752"
         }
     ]
 }

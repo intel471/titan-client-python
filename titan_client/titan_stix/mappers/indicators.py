@@ -4,8 +4,8 @@ import yaml
 from pytz import UTC
 from stix2 import Indicator, Bundle, Relationship, KillChainPhase, TLP_AMBER
 
-from .. import author_identity
-from .common import StixMapper, BaseMapper, generate_id, MappingConfig
+from .. import author_identity, generate_id
+from .common import StixMapper, BaseMapper, MappingConfig
 from ..patterning import create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..observables import create_url, create_ipv4, create_file
 from ..sdo import create_malware

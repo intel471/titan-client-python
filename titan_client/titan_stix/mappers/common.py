@@ -3,23 +3,17 @@ import datetime
 import json
 import logging
 import os
+import re
 import tempfile
 from abc import ABC
 from collections import namedtuple
 from collections.abc import Callable
 from functools import wraps
+from typing import Union
 
-from stix2 import (
-    EmailAddress,
-    File,
-    ThreatActor,
-    IPv4Address,
-    URL,
-    Location,
-    DomainName,
-    Bundle
-)
-from .. import generate_id
+from stix2 import Bundle
+
+from .. import STIXMapperSettings
 from ..exceptions import EmptyBundle, StixMapperNotFound
 
 log = logging.getLogger(__name__)
@@ -31,9 +25,8 @@ MappingConfig = namedtuple(
 
 
 class StixMapper:
-    def __init__(self, titan_client=None, api_client=None):
-        self.titan_client = titan_client
-        self.api_client = api_client
+    def __init__(self, settings: STIXMapperSettings = None):
+        self.settings = settings if settings else STIXMapperSettings()
 
     mappers = {}
 
@@ -66,7 +59,7 @@ class StixMapper:
         for name, (condition, mapper_class) in self.mappers.items():
             if condition(source):
                 log.info(f"Mapping Titan payload for {name}.")
-                mapper = mapper_class(self.titan_client, self.api_client)
+                mapper = mapper_class(self.settings)
                 bundle = mapper.map(source)
                 if bundle:
                     return bundle
@@ -114,45 +107,28 @@ def cached(key):
 
 
 class BaseMapper(ABC):
-    def __init__(self, titan_client, api_client):
+    def __init__(self, settings: STIXMapperSettings):
         self.now = datetime.datetime.utcnow()
-        self.titan_client = titan_client
-        self.api_client = api_client
+        self.settings = settings
 
     @abc.abstractmethod
     def map(self, source: dict) -> Bundle:
         raise NotImplementedError
 
-    def map_entity(self, type_: str, value: str):
-        entity2stix = {
-            "EmailAddress": [EmailAddress, {"value": value}],
-            "SHA256": [File, {"hashes": {"SHA256": value}}],
-            "Handle": [ThreatActor, {"name": value}],
-            "IPAddress": [IPv4Address, {"value": value}],
-            "MaliciousURL": [URL, {"value": value}],
-            "MaliciousDomain": [DomainName, {"value": value}],
-        }
-        try:
-            klass, kwargs = entity2stix[type_]
-        except KeyError:
-            log.warning(f"Cannot map entity. Unknown type `{type_}`")
-            return None
-        else:
-            return klass(**kwargs)
+    def map_confidence(self, confidence: Union[str, None]):
+        # There are two confidence scales used in Titan: https://en.wikipedia.org/wiki/Admiralty_code and low/medium/high
+        # This function handles both according to
+        # [STIX confidence scales](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_1v6elyto0uqg)
 
-    def map_location(self, region: str = None, country: str = None):
-        region_kwargs = {}
-        if region:
-            # TODO: map to region-ov.
-            region_kwargs["region"] = region
-        if country:
-            region_kwargs["country"] = country
-        if region_kwargs:
-            return Location(id=generate_id(Location, **region_kwargs), **region_kwargs)
-        return None
+        # If it's Admiralty_code we're interested in the second part only (Credibility), which is a number between 1 and 6.
+        value = re.sub(r"^[A-F]([1-6])$", "\\1", confidence or "", re.IGNORECASE)
 
-    def map_confidence(self, confidence: str):
-        return {"low": 15, "medium": 50, "high": 85}.get(confidence, 0)
+        # If there's no match, we expect a word from low/medium/high scale.
+        # If for any reason it's not the case either, we set confidence as not specified (`None`)
+        return {
+            "6": 0, "5": 10, "4": 30, "3": 50, "2": 70, "1": 90,
+            "low": 15, "medium": 50, "high": 85
+        }.get(value, 0)
 
     def map_tactic(self, tactic: str):
         if tactic and len(tactic) > 0:
@@ -169,9 +145,9 @@ class BaseMapper(ABC):
     @cached("i471titanclientgirs")
     def get_girs_names(self):
         girs_names = {}
-        if not all([self.titan_client, self.api_client]):
+        if not all([self.settings.titan_client, self.settings.api_client, self.settings.girs_names]):
             return girs_names
-        api_instance = self.titan_client.GIRsApi(self.api_client)
+        api_instance = self.settings.titan_client.GIRsApi(self.settings.api_client)
         for offset in range(0, 1000, 100):
             api_response = api_instance.girs_get(count=100, offset=offset)
             if not api_response.girs:

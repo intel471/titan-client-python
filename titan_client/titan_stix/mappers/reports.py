@@ -1,224 +1,195 @@
 import datetime
 import logging
 import re
-from typing import List
+from typing import Union, NamedTuple, List, Callable
+import base64
 
 from pytz import UTC
 from stix2 import Bundle, Report, ExternalReference, TLP_AMBER
 
-from .common import StixMapper, BaseMapper, generate_id
-from .. import author_identity
+from .common import BaseMapper
+from .. import author_identity, generate_id, STIXMapperSettings
 
 log = logging.getLogger(__name__)
 
 
-class AbstractReportMapper(BaseMapper):
-    report_type_ov = {
-        "account checking": "",
-        "actor profile": "threat-actor",
-        "airlines": "",
-        "ajax security team": "",
-        "anonymous": "",
-        "atms": "",
-        "banking & finance": "",
-        "blackhat seo": "",
-        "bulletproof hosting": "tool",
-        "cashout & moneymules": "",
-        "click fraud": "",
-        "credit card fraud": "",
-        "crypters & packers": "",
-        "cryptocurrency": "",
-        "database dumps": "",
-        "denial of service": "tool",
-        "document fraud": "",
-        "drops - accounts": "",
-        "drops - mail": "",
-        "e-commerce": "",
-        "exploit kit": "tool",
-        "exploit kit - usage": "tool",
-        "extortion": "",
-        "gaming": "",
-        "government & defense industrial base": "",
-        "hack the planet": "",
-        "healthcare": "",
-        "industrial espionage": "",
-        "infrastructure": "",
-        "injects": "",
-        "insider": "",
-        "iot (internet of things)": "",
-        "law firms & legal": "",
-        "lizard squad": "",
-        "malware": "malware",
-        "malware - technical": "malware",
-        "malware - usage": "malware",
-        "mobile": "",
-        "new tag1": "",
-        "new tag2": "",
-        "phishing": "",
-        "pii & fullz": "",
-        "pos": "",
-        "ransomware": "",
-        "resources & mining": "",
-        "retail": "",
-        "shipping service": "",
-        "skimmers": "tool",
-        "social networking": "",
-        "spam": "",
-        "sport industry": "",
-        "syrian electronic army": "",
-        "targeted attack": "",
-        "tickets, hotel and travel": "",
-        "tools": "tool",
-        "ttps": "",
-        "vulnerabilities & exploits": "vulnerability",
+class ReportSettings(NamedTuple):
+    api_class: str
+    method_name: str
+    # either JSON path to the field or a function that extracts value from provided source
+    description_source: Union[str, Callable[[dict], str]]
+    attachments_fields: Union[List[str], None] = None
+
+
+class ReportMapper(BaseMapper):
+    remove_html_regex = re.compile(r"<.*?>")
+    reports_settings = {
+        "breach_alert": ReportSettings(
+            "ReportsApi",
+            "breach_alerts_uid_get",
+            "data.breach_alert.summary",  # good for description
+        ),
+        # breach_alert example
+        # titan 'iocs?ioc=akiral2iz6a7qgd3ayp3l6yub7xx2uep76idk3u2kollpj5z3z636bad.onion'
+        # titan breachAlerts/fae604164acb6a34983d3684ecb83d7e
+        "inforep": ReportSettings(
+            "ReportsApi",
+            "reports_uid_get",
+            "executive_summary",
+            ["rawText", "rawTextTranslated", "researcherComments"]
+        ),
+        # inforep example
+        # titan 'iocs?ioc=sldltcn2d6mgtp66vgmvjptdtwgqyyewsjgwkzjybq3x55plzw4tefid.onion'
+        # titan reports/1d2d1de3603abf9503471b7f882c47e83e50fa42ad7588fc5d43a7cde1ff8bb4
+        "spotrep": ReportSettings(
+            "ReportsApi",
+            "spot_reports_uid_get",
+            "data.spot_report.spot_report_data.text"
+        ),
+        # spotrep example
+        # titan 'iocs?ioc=22d90ad1a0e5220ec0772918fa6efdb54604bddab1d5f15156ead1acd5d7aa37'
+        # titan spotReports/5f486c27fb68281e23aa6d2c3b0d2b59
+        "fintel": ReportSettings(
+            "ReportsApi",
+            "reports_uid_get",
+            # There's no summary or anything similar. Try to extract contents of the first paragraph <h2>...</h2><p>get-this</p>...
+            lambda x: re.split(r'</?p>', re.sub(r'^.*?<p>', '', x.get("rawText") or ""))[0],
+            ["rawText"]
+        ),
+        # fintel example
+        # titan 'iocs?ioc=http://162.55.187.234'
+        "malrep": ReportSettings(
+            "ReportsApi",
+            "malware_reports_uid_get",
+            "data.malware_report_data.text",
+        ),
+        "sitrep": ReportSettings(
+            "ReportsApi",
+            "situation_reports_report_uid_get",
+            "data.situation_report.text",
+        ),
+        "cve": ReportSettings(
+            "VulnerabilitiesApi",
+            "cve_reports_uid_get",
+            "data.cve_report.summary",
+        )
     }
 
+    def __init__(self, settings: STIXMapperSettings):
+        super().__init__(settings)
+        self.cache = {}
+
     def map(self, source: dict) -> Bundle:
-        container = self.map_reports(source)
-        if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
-            return bundle
+        return Bundle()
 
-    def map_reports(self, source: dict, object_refs: dict = None) -> dict:
-        raise NotImplementedError
+    def map_shortened_report(self, source: dict, object_refs: dict) -> dict:
+        """
+        Handles shortened representation of reports attached to IOCs in the response of /iocs endpoint
+        {"iocs": [{"links": {"reports": [{"uid": "123", "subject": "foo", ... }]}}]}
+        """
+        container = {}
+        if all([self.settings.titan_client, self.settings.api_client]) and \
+           any([self.settings.report_description, self.settings.report_attachments_opencti]):
+            try:
+                full_source = self._get_full_source(source)
+                if full_source:
+                    # Need to merge instead of using full_source only as subjects are consistently stored
+                    # under `subject` field only in shortened version
+                    source = {**source, **full_source}
+            except Exception as e:
+                log.warning("Unable to fetch or process full report source. Falling back to shortened version. Error: %s", e)
+        # TODO: researcher comments/attachments
+        # TODO: Proxy setup
+        report_kwargs = self._map_report_kwargs(source, object_refs)
+        report = Report(**report_kwargs)
+        container[report.id] = report
+        return container
 
-    def get_name(self, subject, *categories):
-        categories = [i for i in categories if i]
-        if categories:
-            name = f"[{'/'.join(categories)}] {subject}"
-        else:
-            name = subject
-        return self.shorten(name, 128)
+    def _map_report_kwargs(self, source: dict, object_refs: dict):
+        time_published = self._format_published(source.get("released") or source.get("created"))
+        return {
+            "id": generate_id(
+                Report,
+                name=self.shorten(source["subject"], 128).strip().lower(),
+                published=time_published,
+            ),
+            "name": source["subject"],
+            "description": self._get_description(source),
+            "report_types": [self._get_type(source)],
+            "confidence": self.map_confidence(source.get("admiraltyCode") or source.get("data", {}).get("breach_alert", {}).get("confidence", {}).get("level")),
+            "published": time_published,
+            "labels": self._get_malware_families(source),
+            "object_refs": object_refs.values(),
+            "external_references": [
+                ExternalReference(source_name="Titan URL", url=self._get_url(source))
+            ],
+            "created_by_ref": author_identity,
+            "object_marking_refs": [TLP_AMBER],
+            "custom_properties": {
+                "x_intel471_com_uid": self._get_uid(source),
+                "x_opencti_files": self._get_opencti_files(source)
+            }
+        }
 
-    def map_report_types(self, tags: List[str]) -> List[str]:
-        types = set()
-        for tag in tags:
-            ov_type = self.report_type_ov.get(tag.lower())
-            if ov_type:
-                types.add(ov_type)
-        if not types:
-            types.add("miscellaneous")
-        return sorted(list(types))
+    def _get_full_source(self, source: dict) -> Union[dict, None]:
+        report_url = self._get_url(source)
+        report_type = self._get_type(source)
+        report_uid = self._get_uid(source)
+        if report_url not in self.cache:
+            report_settings = self.reports_settings.get(report_type)
+            api_instance = getattr(self.settings.titan_client, report_settings.api_class)(self.settings.api_client)
+            api_response = getattr(api_instance, report_settings.method_name)(report_uid)
+            self.cache[report_url] = api_response.to_dict(serialize=True)
+        return self.cache[report_url]
 
-    def format_published(self, value: datetime):
+    def _format_published(self, epoch_millis: int):
         """
         Formatting datetime object for use as ID contributing property in a same way as it's done by OpenCTI
         to have the same ID here and in OpenCTI.
         """
-        return value.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
+        parsed = datetime.datetime.fromtimestamp(epoch_millis / 1000, UTC)
+        return parsed.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
+    @staticmethod
+    def _get_url(source: dict):
+        return source["portalReportUrl"]
 
-# @StixMapper.register("reports", lambda x: "reportTotalCount" in x)
-# @StixMapper.register("report", lambda x: "subject" in x and "portalReportUrl" in x)
-class ReportMapper(AbstractReportMapper):
+    def _get_uid(self, source: dict):
+        return self._get_url(source).split("/")[-1]
 
-    remove_html = re.compile("<.*?>")
+    def _get_type(self, source: dict):
+        return self._get_url(source).split("/")[-2]
 
-    def __init__(self, titan_client, api_client):
-        super().__init__(titan_client, api_client)
-        self.full_reports_cache = {}
-        self.portal2api_map = {
-            "inforep": ("ReportsApi", "reports_uid_get", "raw_text"),
-            "fintel": ("ReportsApi", "reports_uid_get", "raw_text"),
-            "breach_alert": (
-                "ReportsApi",
-                "breach_alerts_uid_get",
-                "data.breach_alert.summary",
-            ),
-            "spotrep": (
-                "ReportsApi",
-                "spot_reports_uid_get",
-                "data.spot_report.spot_report_data.text",
-            ),
-            "malrep": (
-                "ReportsApi",
-                "malware_reports_uid_get",
-                "data.malware_report_data.text",
-            ),
-            "sitrep": (
-                "ReportsApi",
-                "situation_reports_report_uid_get",
-                "data.situation_report.text",
-            ),
-            "cve": (
-                "VulnerabilitiesApi",
-                "cve_reports_uid_get",
-                "data.cve_report.summary",
-            ),
-        }
+    def _get_malware_families(self, source: dict):
+        return [i.get("value") for i in (source.get("entities") or []) if i.get("type") == "MalwareFamily"]
 
-    def _get_description(self, report_url: str):
-        if not all([self.titan_client, self.api_client]):
-            return None
-        if report_url not in self.full_reports_cache:
-            _, _, _, _, report_type, uid = report_url.split("/")
-            api_cls, api_method, content_field = self.portal2api_map.get(report_type)
-            api_instance = getattr(self.titan_client, api_cls)(self.api_client)
-            api_response = getattr(api_instance, api_method)(uid)
-            item = api_response
-            for i in content_field.split("."):
-                item = getattr(item, i, "")
-            self.full_reports_cache[report_url] = re.sub(self.remove_html, "", item)
-        return self.full_reports_cache[report_url]
+    def _get_description(self, source: dict):
+        subject = source.get("subject")
+        report_settings = self.reports_settings.get(self._get_type(source))
+        description_source = report_settings.description_source
 
-    def map_reports(self, source: dict, object_refs: dict = None) -> dict:
-        container = {}
-        items = (
-            source.get("reports") or [] if "reportTotalCount" in source else [source]
-        )
-        for item in items:
-            report_uid = item["uid"]
-            report_family = item.get("documentFamily")
-            report_type = item.get("documentType")
-            report_url = item["portalReportUrl"]
-            report_subject = item["subject"]
-            try:
-                report_description = self._get_description(report_url) or report_subject
-            except Exception as e:
-                log.warning("Cannot build the report's description. Error: %s", e)
-                report_description = report_subject
-            report_types = self.map_report_types(item.get("tags") or [])
-            created = datetime.datetime.fromtimestamp(
-                item.get("released", item.get("created")) / 1000, UTC
-            )
+        if isinstance(description_source, Callable):
+            source = description_source(source)
+        else:
+            for i in description_source.split("."):
+                source = source.get(i, {})
 
-            collected_object_refs = {}
-            if object_refs:
-                collected_object_refs.update(object_refs)
-            for entity_source in item.get("entities") or []:
-                entity = self.map_entity(entity_source["type"], entity_source["value"])
-                if entity:
-                    collected_object_refs[entity.id] = entity
-            for location_source in item.get("locations") or []:
-                location = self.map_location(
-                    location_source.get("region"), location_source.get("country")
-                )
-                if location:
-                    collected_object_refs[location.id] = location
-            if collected_object_refs:
-                name = self.get_name(report_subject, report_family, report_type)
-                report = Report(
-                    id=generate_id(
-                        Report,
-                        name=name.strip().lower(),
-                        published=self.format_published(created),
-                    ),
-                    name=name,
-                    description=report_description,
-                    report_types=report_types,
-                    published=self.format_published(created),
-                    object_refs=collected_object_refs.values(),
-                    external_references=[
-                        ExternalReference(source_name="Titan URL", url=report_url)
-                    ],
-                    created_by_ref=author_identity,
-                    object_marking_refs=[TLP_AMBER],
-                    custom_properties={"x_intel471_com_uid": report_uid},
-                )
-                container[report.id] = report
-                container[author_identity.id] = author_identity
-                container[TLP_AMBER.id] = TLP_AMBER
-                container.update(collected_object_refs)
-            else:
-                log.warning(f"Can't map any entities from report {report_uid}")
-        return container
+        if source:
+            return re.sub(self.remove_html_regex, "", source)
+        return subject
+
+    def _get_opencti_files(self, source: dict):
+        if not self.settings.report_attachments_opencti:
+            return []
+        opencti_files = []
+        report_settings = self.reports_settings.get(self._get_type(source))
+        attachments_fields = report_settings.attachments_fields or []
+        for field_name in attachments_fields:
+            value = source.get(field_name)
+            if isinstance(value, str):
+                opencti_files.append({
+                    "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]),
+                    "mime_type": "text/html",
+                    "data": base64.b64encode(bytes(value, "utf-8")).decode("utf-8")
+                })
+        return opencti_files
