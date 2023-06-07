@@ -7,35 +7,36 @@
             },
             "data": {
                 "availability": "dFJysIKgJOHThMeMvXan",
-                "cardNumber": null,
-                "cardType": "tZKrV",
+                "card_number": null,
+                "card_type": "tZKrV",
                 "expiration": "GkGPCCwIk",
                 "marketplace": {
                     "name": "WfinCetvbPjyoph",
                     "price": "YEGVhTPKhvwQ",
                     "uid": "e28f78732ec1e3620fb85130ef055dc7"
                 },
-                "productType": "TQwEwxYf",
+                "product_type": "TQwEwxYf",
                 "victim": {
                     "country": null,
-                    "ipAddress": null,
+                    "ip_address": null,
                     "os": null
                 },
-                "installedAt": null,
-                "stolenByFormStealers": null,
+                "installed_at": null,
+                "issuer": null,
+                "stolen_by_form_stealers": null,
                 "title": null,
                 "categories": null,
                 "description": null
             },
-            "lastUpdated": 1405467676000,
+            "last_updated": 1405467676000,
             "uid": "ec4492d5e6e29942d9e7609d878540d9"
         }
     ],
-    "productsCount": 3214194,
+    "products_count": 3214194,
     "productsPartialResult": null,
     "statistics": {
-        "credentialsTotalCount": 433771,
-        "creditCardsTotalCount": 7022001,
-        "otherProductsTotalCount": 31716
+        "credentials_total_count": 433771,
+        "credit_cards_total_count": 7022001,
+        "other_products_total_count": 31716
     }
 }

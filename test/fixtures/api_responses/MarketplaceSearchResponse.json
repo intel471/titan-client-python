@@ -11,14 +11,14 @@
                 "tier": "1",
                 "url": "https://www.nguyen.com/category.jsp"
             },
-            "lastUpdated": 137593611000,
+            "last_updated": 137593611000,
             "statistics": {
-                "productsTotalCount": 291735,
-                "vendorsTotalCount": 0
+                "products_total_count": 291735,
+                "vendors_total_count": 0
             },
-            "uid": "a96cc6b6118f130f4249a32f652a9469"
+            "uid": "a87ff679a2f3e71d9181a67b7542122c"
         }
     ],
-    "marketplacesCount": 3,
-    "marketplacesPartialResult": null
+    "marketplaces_count": 3,
+    "marketplaces_partial_result": null
 }
