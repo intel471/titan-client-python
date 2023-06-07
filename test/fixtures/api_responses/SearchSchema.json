@@ -211,6 +211,7 @@
                 },
                 "message": {
                     "attachments": null,
+                    "originalImages": null,
                     "replyUid": "96bfd764ee4f5076accb1c5f36ea7787",
                     "text": "woqWQUItkrA bxQfDt YVCCGAEWHcZGAtH vgKCausyIFe IlmuW kUTMWDMg uMhYy HeYxKIAOAlzclwGS zKszThShEv OqSoCVuQv YSqhLfKwnEXRXQT HcJUXHX bgzruOrQlTew jePzNudXaOHnw LzXDVHnlpz jpLfdxQCSzzFWYr BaoMRsnkdPdJto",
                     "uid": "b0298b03f570dc4b8a5f98777332b78c"
@@ -245,6 +246,7 @@
                     "name": "AJsPkZyvNU",
                     "uid": "2c6ea25fe8fd8fb6d21bb517e26ff9ff"
                 },
+                "originalImages": null,
                 "thread": {
                     "count": 4,
                     "topic": "yyXrrdHkStthr",
@@ -272,6 +274,7 @@
                     "name": "vevSlpSCVZzhUy",
                     "uid": "9d22a7288db1aa882c30cd7486d85d4c"
                 },
+                "originalImages": null,
                 "recipientActor": {
                     "handle": "FurnHl",
                     "uid": "b0e855942b869446373be7e65ce22b12"

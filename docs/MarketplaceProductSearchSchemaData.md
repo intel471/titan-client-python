@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **card_number** | **str** | Credit card number. | [optional] 
 **card_type** | **str** | Credit card type. | [optional] 
 **expiration** | **str** | Credit card expiration date. | [optional] 
+**issuer** | **str** | Credit card issuer. | [optional] 
 **marketplace** | [**MarketplaceProductMarketplaceSchema**](MarketplaceProductMarketplaceSchema.md) |  | [optional] 
 **product_type** | [**MarketplaceProductTypeSchema**](MarketplaceProductTypeSchema.md) |  | [optional] 
 **victim** | [**MarketplaceProductCredentialSchemaVictim**](MarketplaceProductCredentialSchemaVictim.md) |  | [optional] 
