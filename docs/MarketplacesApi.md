@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_products_get**
-> MarketplaceProductSearchResponse marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> MarketplaceProductSearchResponse marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Products
 
@@ -146,6 +146,7 @@ with titan_client.ApiClient(configuration) as api_client:
     availability = 'availability_example' # str | Availability status of product. (optional)
     product_type = 'product_type_example' # str | Type of product (optional)
     vendor_uid = '147540e129e096fa91700e9db6588354' # str | Vendor unique identifier. (optional)
+    bin = '4543' # str | Search by product BIN. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
@@ -156,7 +157,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Products
-        api_response = api_instance.marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_products_get: %s\n" % e)
@@ -170,6 +171,7 @@ Name | Type | Description  | Notes
  **availability** | **str**| Availability status of product. | [optional] 
  **product_type** | **str**| Type of product | [optional] 
  **vendor_uid** | **str**| Vendor unique identifier. | [optional] 
+ **bin** | **str**| Search by product BIN. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
@@ -200,7 +202,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_products_stream_get**
-> MarketplaceProductStreamResponse marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+> MarketplaceProductStreamResponse marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
 
 Products stream
 
@@ -241,6 +243,7 @@ with titan_client.ApiClient(configuration) as api_client:
     product_type = 'product_type_example' # str | Type of product (optional)
     vendor_uid = '147540e129e096fa91700e9db6588354' # str | Vendor unique identifier. (optional)
     cursor = 'cursor_example' # str | Continue scrolling from cursor. (optional)
+    bin = '4543' # str | Search by product BIN. (optional)
     _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
@@ -249,7 +252,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Products stream
-        api_response = api_instance.marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+        api_response = api_instance.marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_products_stream_get: %s\n" % e)
@@ -264,6 +267,7 @@ Name | Type | Description  | Notes
  **product_type** | **str**| Type of product | [optional] 
  **vendor_uid** | **str**| Vendor unique identifier. | [optional] 
  **cursor** | **str**| Continue scrolling from cursor. | [optional] 
+ **bin** | **str**| Search by product BIN. | [optional] 
  **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 

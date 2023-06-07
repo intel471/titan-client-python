@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **author_actor** | [**PrivateMessageSchemaLinksAuthorActor**](PrivateMessageSchemaLinksAuthorActor.md) |  | 
 **forum** | [**PrivateMessageSchemaLinksForum**](PrivateMessageSchemaLinksForum.md) |  | 
+**original_images** | **list[str]** | Array of original image urls (if present). | [optional] 
 **recipient_actor** | [**PrivateMessageSchemaLinksRecipientActor**](PrivateMessageSchemaLinksRecipientActor.md) |  | [optional] 
 **thread** | [**PrivateMessageSchemaLinksThread**](PrivateMessageSchemaLinksThread.md) |  | 
 
