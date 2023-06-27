@@ -50,7 +50,7 @@ class IndicatorsApi(object):
         :type indicator: str
         :param indicator_type: Search indicators by type (e.g. `file`, `ipv4`, `url`).
         :type indicator_type: str
-        :param threat_type: Search indicators by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`).
+        :param threat_type: Search indicators by threat type.
         :type threat_type: str
         :param threat_uid: Search indicators by threat UID.
         :type threat_uid: str
@@ -110,7 +110,7 @@ class IndicatorsApi(object):
         :type indicator: str
         :param indicator_type: Search indicators by type (e.g. `file`, `ipv4`, `url`).
         :type indicator_type: str
-        :param threat_type: Search indicators by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`).
+        :param threat_type: Search indicators by threat type.
         :type threat_type: str
         :param threat_uid: Search indicators by threat UID.
         :type threat_uid: str
@@ -298,7 +298,7 @@ class IndicatorsApi(object):
         :type indicator: str
         :param indicator_type: Search indicators by type (e.g. `file`, `ipv4`, `url`).
         :type indicator_type: str
-        :param threat_type: Search indicators by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`).
+        :param threat_type: Search indicators by threat type.
         :type threat_type: str
         :param threat_uid: Search indicators by threat UID.
         :type threat_uid: str
@@ -356,7 +356,7 @@ class IndicatorsApi(object):
         :type indicator: str
         :param indicator_type: Search indicators by type (e.g. `file`, `ipv4`, `url`).
         :type indicator_type: str
-        :param threat_type: Search indicators by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`).
+        :param threat_type: Search indicators by threat type.
         :type threat_type: str
         :param threat_uid: Search indicators by threat UID.
         :type threat_uid: str
