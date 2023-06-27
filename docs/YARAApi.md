@@ -45,7 +45,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.YARAApi(api_client)
     yara = 'yara_example' # str | Free text YARA search (all fields included). At least one of `yara`, `threatType`, `threatUid`, `malwareFamily`, `malwareFamilyProfileUid` or `confidence` is required. (optional)
-    threat_type = 'threat_type_example' # str | Search `YARA` by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`) (optional)
+    threat_type = 'malware' # str | Search `YARA` by threat type (optional)
     threat_uid = 'threat_uid_example' # str | Search YARA by threat UID (optional)
     malware_family = 'malware_family_example' # str | Search YARA by malware family (e.g. `gozi_isfb`, `smokeloader`, `trickbot`) (optional)
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search YARA by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid=d073f7352b82c1b8eedda381590adced (optional)
@@ -73,7 +73,7 @@ with titan_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **yara** | **str**| Free text YARA search (all fields included). At least one of &#x60;yara&#x60;, &#x60;threatType&#x60;, &#x60;threatUid&#x60;, &#x60;malwareFamily&#x60;, &#x60;malwareFamilyProfileUid&#x60; or &#x60;confidence&#x60; is required. | [optional] 
- **threat_type** | **str**| Search &#x60;YARA&#x60; by threat type (e.g. &#x60;malware&#x60;, &#x60;bulletproof_hosting&#x60;, &#x60;proxy_service&#x60;) | [optional] 
+ **threat_type** | **str**| Search &#x60;YARA&#x60; by threat type | [optional] 
  **threat_uid** | **str**| Search YARA by threat UID | [optional] 
  **malware_family** | **str**| Search YARA by malware family (e.g. &#x60;gozi_isfb&#x60;, &#x60;smokeloader&#x60;, &#x60;trickbot&#x60;) | [optional] 
  **malware_family_profile_uid** | **str**| Search YARA by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid&#x3D;d073f7352b82c1b8eedda381590adced | [optional] 

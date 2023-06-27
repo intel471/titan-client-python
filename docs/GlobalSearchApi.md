@@ -76,7 +76,7 @@ with titan_client.ApiClient(configuration) as api_client:
     event_type = 'event_type_example' # str | Search events by type. (optional)
     indicator_type = 'indicator_type_example' # str | Search indicators by type. (optional)
     nids_type = 'nids_type_example' # str | Search NIDS by type. (optional)
-    threat_type = 'threat_type_example' # str | Search events, indicators, YARAs and malware reports by threat type. (optional)
+    threat_type = 'malware' # str | Search events, indicators, YARAs and malware reports by threat type. (optional)
     threat_uid = 'threat_uid_example' # str | Search events, indicators, YARAs and malware reports by threat uid. (optional)
     malware_family = 'malware_family_example' # str | Search events, indicators, YARAs and malware reports by malware family (optional)
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search events, indicators, YARAs and malware reports by malware family profile UID (optional)

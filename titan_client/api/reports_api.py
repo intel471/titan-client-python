@@ -413,7 +413,7 @@ class ReportsApi(object):
 
         :param malware_report: Free text Malware reports search (all fields included). At least one of `malwareReport`, `threatType`, `reportTitle`, `malwareFamily`, 'malwareFamilyProfileUid` is required.
         :type malware_report: str
-        :param threat_type: Search Malware reports by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`)
+        :param threat_type: Search Malware reports by threat type
         :type threat_type: str
         :param report_title: Search Malware reports by threat UID
         :type report_title: str
@@ -469,7 +469,7 @@ class ReportsApi(object):
 
         :param malware_report: Free text Malware reports search (all fields included). At least one of `malwareReport`, `threatType`, `reportTitle`, `malwareFamily`, 'malwareFamilyProfileUid` is required.
         :type malware_report: str
-        :param threat_type: Search Malware reports by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`)
+        :param threat_type: Search Malware reports by threat type
         :type threat_type: str
         :param report_title: Search Malware reports by threat UID
         :type report_title: str

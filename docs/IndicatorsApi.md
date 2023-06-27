@@ -47,7 +47,7 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.IndicatorsApi(api_client)
     indicator = 'indicator_example' # str | Free text indicator search (all fields included). (optional)
     indicator_type = 'indicator_type_example' # str | Search indicators by type (e.g. `file`, `ipv4`, `url`). (optional)
-    threat_type = 'threat_type_example' # str | Search indicators by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`). (optional)
+    threat_type = 'malware' # str | Search indicators by threat type. (optional)
     threat_uid = 'threat_uid_example' # str | Search indicators by threat UID. (optional)
     malware_family = 'malware_family_example' # str | Search indicators by malware family (e.g. `gozi_isfb`, `smokeloader`, `trickbot`). (optional)
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search indicators by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid=d073f7352b82c1b8eedda381590adced. (optional)
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **indicator** | **str**| Free text indicator search (all fields included). | [optional] 
  **indicator_type** | **str**| Search indicators by type (e.g. &#x60;file&#x60;, &#x60;ipv4&#x60;, &#x60;url&#x60;). | [optional] 
- **threat_type** | **str**| Search indicators by threat type (e.g. &#x60;malware&#x60;, &#x60;bulletproof_hosting&#x60;, &#x60;proxy_service&#x60;). | [optional] 
+ **threat_type** | **str**| Search indicators by threat type. | [optional] 
  **threat_uid** | **str**| Search indicators by threat UID. | [optional] 
  **malware_family** | **str**| Search indicators by malware family (e.g. &#x60;gozi_isfb&#x60;, &#x60;smokeloader&#x60;, &#x60;trickbot&#x60;). | [optional] 
  **malware_family_profile_uid** | **str**| Search indicators by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid&#x3D;d073f7352b82c1b8eedda381590adced. | [optional] 
@@ -151,7 +151,7 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.IndicatorsApi(api_client)
     indicator = 'indicator_example' # str | Free text indicator search (all fields included). (optional)
     indicator_type = 'indicator_type_example' # str | Search indicators by type (e.g. `file`, `ipv4`, `url`). (optional)
-    threat_type = 'threat_type_example' # str | Search indicators by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`). (optional)
+    threat_type = 'malware' # str | Search indicators by threat type. (optional)
     threat_uid = 'threat_uid_example' # str | Search indicators by threat UID. (optional)
     malware_family = 'malware_family_example' # str | Search indicators by malware family (e.g. `gozi_isfb`, `smokeloader`, `trickbot`). (optional)
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search indicators by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid=d073f7352b82c1b8eedda381590adced. (optional)
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **indicator** | **str**| Free text indicator search (all fields included). | [optional] 
  **indicator_type** | **str**| Search indicators by type (e.g. &#x60;file&#x60;, &#x60;ipv4&#x60;, &#x60;url&#x60;). | [optional] 
- **threat_type** | **str**| Search indicators by threat type (e.g. &#x60;malware&#x60;, &#x60;bulletproof_hosting&#x60;, &#x60;proxy_service&#x60;). | [optional] 
+ **threat_type** | **str**| Search indicators by threat type. | [optional] 
  **threat_uid** | **str**| Search indicators by threat UID. | [optional] 
  **malware_family** | **str**| Search indicators by malware family (e.g. &#x60;gozi_isfb&#x60;, &#x60;smokeloader&#x60;, &#x60;trickbot&#x60;). | [optional] 
  **malware_family_profile_uid** | **str**| Search indicators by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid&#x3D;d073f7352b82c1b8eedda381590adced. | [optional] 

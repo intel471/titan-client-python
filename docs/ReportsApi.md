@@ -226,7 +226,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.ReportsApi(api_client)
     malware_report = 'malware_report_example' # str | Free text Malware reports search (all fields included). At least one of `malwareReport`, `threatType`, `reportTitle`, `malwareFamily`, 'malwareFamilyProfileUid` is required. (optional)
-    threat_type = 'threat_type_example' # str | Search Malware reports by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`) (optional)
+    threat_type = 'malware' # str | Search Malware reports by threat type (optional)
     report_title = 'report_title_example' # str | Search Malware reports by threat UID (optional)
     malware_family = 'malware_family_example' # str | Search Malware reports by malware family (e.g. `gozi_isfb`, `smokeloader`, `trickbot`). (optional)
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search Malware reports by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid=20eb1f82621001883ea0c2085aff5729. (optional)
@@ -253,7 +253,7 @@ with titan_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **malware_report** | **str**| Free text Malware reports search (all fields included). At least one of &#x60;malwareReport&#x60;, &#x60;threatType&#x60;, &#x60;reportTitle&#x60;, &#x60;malwareFamily&#x60;, &#39;malwareFamilyProfileUid&#x60; is required. | [optional] 
- **threat_type** | **str**| Search Malware reports by threat type (e.g. &#x60;malware&#x60;, &#x60;bulletproof_hosting&#x60;, &#x60;proxy_service&#x60;) | [optional] 
+ **threat_type** | **str**| Search Malware reports by threat type | [optional] 
  **report_title** | **str**| Search Malware reports by threat UID | [optional] 
  **malware_family** | **str**| Search Malware reports by malware family (e.g. &#x60;gozi_isfb&#x60;, &#x60;smokeloader&#x60;, &#x60;trickbot&#x60;). | [optional] 
  **malware_family_profile_uid** | **str**| Search Malware reports by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid&#x3D;20eb1f82621001883ea0c2085aff5729. | [optional] 

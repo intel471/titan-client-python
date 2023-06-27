@@ -48,7 +48,7 @@ class YARAApi(object):
 
         :param yara: Free text YARA search (all fields included). At least one of `yara`, `threatType`, `threatUid`, `malwareFamily`, `malwareFamilyProfileUid` or `confidence` is required.
         :type yara: str
-        :param threat_type: Search `YARA` by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`)
+        :param threat_type: Search `YARA` by threat type
         :type threat_type: str
         :param threat_uid: Search YARA by threat UID
         :type threat_uid: str
@@ -106,7 +106,7 @@ class YARAApi(object):
 
         :param yara: Free text YARA search (all fields included). At least one of `yara`, `threatType`, `threatUid`, `malwareFamily`, `malwareFamilyProfileUid` or `confidence` is required.
         :type yara: str
-        :param threat_type: Search `YARA` by threat type (e.g. `malware`, `bulletproof_hosting`, `proxy_service`)
+        :param threat_type: Search `YARA` by threat type
         :type threat_type: str
         :param threat_uid: Search YARA by threat UID
         :type threat_uid: str
