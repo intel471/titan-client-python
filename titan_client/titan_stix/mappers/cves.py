@@ -38,12 +38,11 @@ class CveMapper(BaseMapper):
                     )
                 }
             )
-            girs_paths = item["classification"]["intel_requirements"]
+            description = f"{summary}\n\n{underground_activity_summary}\n\n### Properties\n\n```yaml\n{extras}```"
+            girs_paths = (item.get("classification") or {}).get("intel_requirements") or []
             girs = [{"path": i, "name": girs_names.get(i, i)} for i in girs_paths]
-            description = (
-                f"{summary}\n\n{underground_activity_summary}\n\n### Properties\n\n```yaml\n{extras}```"
-                f"\n\n### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
-            )
+            if girs:
+                description += f"\n\n### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
             cvss3_score = (item["data"]["cve_report"].get("cvss_score") or {}).get("v3")
             external_references = []
             for link_type, key in (
