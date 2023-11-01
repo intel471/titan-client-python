@@ -39,54 +39,74 @@ class MarketplaceProductCreditCardSchema(object):
     """
     openapi_types = {
         'availability': 'MarketplaceProductAvailabilitySchema',
+        'base': 'str',
+        'card_holder': 'str',
         'card_number': 'str',
         'card_type': 'str',
+        'cvv': 'str',
         'expiration': 'str',
         'issuer': 'str',
         'marketplace': 'MarketplaceProductMarketplaceSchema',
+        'obfuscated_number': 'str',
         'product_type': 'MarketplaceProductTypeSchema',
         'victim': 'MarketplaceProductCreditCardSchemaVictim'
     }
 
     attribute_map = {
         'availability': 'availability',
+        'base': 'base',
+        'card_holder': 'card_holder',
         'card_number': 'card_number',
         'card_type': 'card_type',
+        'cvv': 'cvv',
         'expiration': 'expiration',
         'issuer': 'issuer',
         'marketplace': 'marketplace',
+        'obfuscated_number': 'obfuscated_number',
         'product_type': 'product_type',
         'victim': 'victim'
     }
 
-    def __init__(self, availability=None, card_number=None, card_type=None, expiration=None, issuer=None, marketplace=None, product_type=None, victim=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, availability=None, base=None, card_holder=None, card_number=None, card_type=None, cvv=None, expiration=None, issuer=None, marketplace=None, obfuscated_number=None, product_type=None, victim=None, local_vars_configuration=None):  # noqa: E501
         """MarketplaceProductCreditCardSchema - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._availability = None
+        self._base = None
+        self._card_holder = None
         self._card_number = None
         self._card_type = None
+        self._cvv = None
         self._expiration = None
         self._issuer = None
         self._marketplace = None
+        self._obfuscated_number = None
         self._product_type = None
         self._victim = None
         self.discriminator = None
 
         if availability is not None:
             self.availability = availability
+        if base is not None:
+            self.base = base
+        if card_holder is not None:
+            self.card_holder = card_holder
         if card_number is not None:
             self.card_number = card_number
         if card_type is not None:
             self.card_type = card_type
+        if cvv is not None:
+            self.cvv = cvv
         if expiration is not None:
             self.expiration = expiration
         if issuer is not None:
             self.issuer = issuer
         if marketplace is not None:
             self.marketplace = marketplace
+        if obfuscated_number is not None:
+            self.obfuscated_number = obfuscated_number
         if product_type is not None:
             self.product_type = product_type
         if victim is not None:
@@ -112,6 +132,52 @@ class MarketplaceProductCreditCardSchema(object):
         """
 
         self._availability = availability
+
+    @property
+    def base(self):
+        """Gets the base of this MarketplaceProductCreditCardSchema.  # noqa: E501
+
+        Base dump name.  # noqa: E501
+
+        :return: The base of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :rtype: str
+        """
+        return self._base
+
+    @base.setter
+    def base(self, base):
+        """Sets the base of this MarketplaceProductCreditCardSchema.
+
+        Base dump name.  # noqa: E501
+
+        :param base: The base of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :type base: str
+        """
+
+        self._base = base
+
+    @property
+    def card_holder(self):
+        """Gets the card_holder of this MarketplaceProductCreditCardSchema.  # noqa: E501
+
+        Credit card holder.  # noqa: E501
+
+        :return: The card_holder of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :rtype: str
+        """
+        return self._card_holder
+
+    @card_holder.setter
+    def card_holder(self, card_holder):
+        """Sets the card_holder of this MarketplaceProductCreditCardSchema.
+
+        Credit card holder.  # noqa: E501
+
+        :param card_holder: The card_holder of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :type card_holder: str
+        """
+
+        self._card_holder = card_holder
 
     @property
     def card_number(self):
@@ -158,6 +224,29 @@ class MarketplaceProductCreditCardSchema(object):
         """
 
         self._card_type = card_type
+
+    @property
+    def cvv(self):
+        """Gets the cvv of this MarketplaceProductCreditCardSchema.  # noqa: E501
+
+        Credit card cvv.  # noqa: E501
+
+        :return: The cvv of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :rtype: str
+        """
+        return self._cvv
+
+    @cvv.setter
+    def cvv(self, cvv):
+        """Sets the cvv of this MarketplaceProductCreditCardSchema.
+
+        Credit card cvv.  # noqa: E501
+
+        :param cvv: The cvv of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :type cvv: str
+        """
+
+        self._cvv = cvv
 
     @property
     def expiration(self):
@@ -225,6 +314,29 @@ class MarketplaceProductCreditCardSchema(object):
         """
 
         self._marketplace = marketplace
+
+    @property
+    def obfuscated_number(self):
+        """Gets the obfuscated_number of this MarketplaceProductCreditCardSchema.  # noqa: E501
+
+        Obfuscated credit card number.  # noqa: E501
+
+        :return: The obfuscated_number of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :rtype: str
+        """
+        return self._obfuscated_number
+
+    @obfuscated_number.setter
+    def obfuscated_number(self, obfuscated_number):
+        """Sets the obfuscated_number of this MarketplaceProductCreditCardSchema.
+
+        Obfuscated credit card number.  # noqa: E501
+
+        :param obfuscated_number: The obfuscated_number of this MarketplaceProductCreditCardSchema.  # noqa: E501
+        :type obfuscated_number: str
+        """
+
+        self._obfuscated_number = obfuscated_number
 
     @property
     def product_type(self):

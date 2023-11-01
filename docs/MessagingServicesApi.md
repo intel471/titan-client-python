@@ -44,7 +44,7 @@ configuration = titan_client.Configuration(
 with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.MessagingServicesApi(api_client)
-    instant_message = 'credit card' # str | Free text instant messages search. At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required. (optional)
+    instant_message = 'credit card' # str | Free text instant messages search (including images via OCR). At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required. (optional)
     instant_message_actor = 'Synthx' # str | Search instant messages by actor name (actual for the moment message was written). (optional)
     instant_message_service = 'telegram' # str | Search instant messages by service. (optional)
     instant_message_server = '?' # str | Search instant messages by server. (optional)
@@ -71,7 +71,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instant_message** | **str**| Free text instant messages search. At least one of &#x60;instantMessage&#x60;, &#x60;instantMessageActor&#x60;, &#x60;instantMessageService&#x60;, &#x60;instantMessageServer&#x60;, &#x60;instantMessageChannel&#x60; is required. | [optional] 
+ **instant_message** | **str**| Free text instant messages search (including images via OCR). At least one of &#x60;instantMessage&#x60;, &#x60;instantMessageActor&#x60;, &#x60;instantMessageService&#x60;, &#x60;instantMessageServer&#x60;, &#x60;instantMessageChannel&#x60; is required. | [optional] 
  **instant_message_actor** | **str**| Search instant messages by actor name (actual for the moment message was written). | [optional] 
  **instant_message_service** | **str**| Search instant messages by service. | [optional] 
  **instant_message_server** | **str**| Search instant messages by server. | [optional] 

@@ -46,7 +46,7 @@ class MarketplaceProductStreamResponse(object):
     }
 
     attribute_map = {
-        'cursor_next': 'cursorNext',
+        'cursor_next': 'cursor_next',
         'products': 'products',
         'products_partial_result': 'productsPartialResult',
         'products_count': 'products_count',
