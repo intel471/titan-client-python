@@ -54,7 +54,7 @@ class GlobalSearchApi(object):
         :type url: str
         :param contact_info_email: E-mail address search.
         :type contact_info_email: str
-        :param post: Forum post search.
+        :param post: Forum post search (including images via OCR).
         :type post: str
         :param private_message: Forum private message search.
         :type private_message: str
@@ -136,7 +136,7 @@ class GlobalSearchApi(object):
         :type vendor_name: str
         :param product_name: Search CVE reports by product name.
         :type product_name: str
-        :param instant_message: Free text instant messages search.
+        :param instant_message: Free text instant messages search (including images via OCR).
         :type instant_message: str
         :param instant_message_actor: Search instant messages by author handle (actual for the moment message was written).
         :type instant_message_actor: str
@@ -248,7 +248,7 @@ class GlobalSearchApi(object):
         :type url: str
         :param contact_info_email: E-mail address search.
         :type contact_info_email: str
-        :param post: Forum post search.
+        :param post: Forum post search (including images via OCR).
         :type post: str
         :param private_message: Forum private message search.
         :type private_message: str
@@ -330,7 +330,7 @@ class GlobalSearchApi(object):
         :type vendor_name: str
         :param product_name: Search CVE reports by product name.
         :type product_name: str
-        :param instant_message: Free text instant messages search.
+        :param instant_message: Free text instant messages search (including images via OCR).
         :type instant_message: str
         :param instant_message_actor: Search instant messages by author handle (actual for the moment message was written).
         :type instant_message_actor: str

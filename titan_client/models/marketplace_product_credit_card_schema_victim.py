@@ -38,6 +38,7 @@ class MarketplaceProductCreditCardSchemaVictim(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'address': 'str',
         'city': 'str',
         'country': 'str',
         'dob': 'bool',
@@ -49,6 +50,7 @@ class MarketplaceProductCreditCardSchemaVictim(object):
     }
 
     attribute_map = {
+        'address': 'address',
         'city': 'city',
         'country': 'country',
         'dob': 'dob',
@@ -59,12 +61,13 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         'zip': 'zip'
     }
 
-    def __init__(self, city=None, country=None, dob=None, full=None, pin=None, ssn=None, state=None, zip=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, address=None, city=None, country=None, dob=None, full=None, pin=None, ssn=None, state=None, zip=None, local_vars_configuration=None):  # noqa: E501
         """MarketplaceProductCreditCardSchemaVictim - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._address = None
         self._city = None
         self._country = None
         self._dob = None
@@ -75,6 +78,8 @@ class MarketplaceProductCreditCardSchemaVictim(object):
         self._zip = None
         self.discriminator = None
 
+        if address is not None:
+            self.address = address
         if city is not None:
             self.city = city
         if country is not None:
@@ -91,6 +96,27 @@ class MarketplaceProductCreditCardSchemaVictim(object):
             self.state = state
         if zip is not None:
             self.zip = zip
+
+    @property
+    def address(self):
+        """Gets the address of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
+
+
+        :return: The address of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
+        :rtype: str
+        """
+        return self._address
+
+    @address.setter
+    def address(self, address):
+        """Sets the address of this MarketplaceProductCreditCardSchemaVictim.
+
+
+        :param address: The address of this MarketplaceProductCreditCardSchemaVictim.  # noqa: E501
+        :type address: str
+        """
+
+        self._address = address
 
     @property
     def city(self):

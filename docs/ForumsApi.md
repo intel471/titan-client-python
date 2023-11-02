@@ -45,7 +45,7 @@ configuration = titan_client.Configuration(
 with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.ForumsApi(api_client)
-    post = 'hacker' # str | Search text in posts and topics. (optional)
+    post = 'hacker' # str | Search text in posts and topics (including images via OCR). (optional)
     posts_by_thread_uid = '?' # str | Search posts by thread uid. At least one of `post`, `postsByThreadUid`, `forum` is required. (optional)
     actor = 'armani' # str | Search posts authored by given actor handle. (optional)
     forum = 'opensc.ws' # str | Search posts in a given forum. (optional)
@@ -71,7 +71,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **post** | **str**| Search text in posts and topics. | [optional] 
+ **post** | **str**| Search text in posts and topics (including images via OCR). | [optional] 
  **posts_by_thread_uid** | **str**| Search posts by thread uid. At least one of &#x60;post&#x60;, &#x60;postsByThreadUid&#x60;, &#x60;forum&#x60; is required. | [optional] 
  **actor** | **str**| Search posts authored by given actor handle. | [optional] 
  **forum** | **str**| Search posts in a given forum. | [optional] 

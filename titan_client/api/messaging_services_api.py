@@ -46,7 +46,7 @@ class MessagingServicesApi(object):
         >>> thread = api.messaging_services_instant_messages_get(async_req=True)
         >>> result = thread.get()
 
-        :param instant_message: Free text instant messages search. At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required.
+        :param instant_message: Free text instant messages search (including images via OCR). At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required.
         :type instant_message: str
         :param instant_message_actor: Search instant messages by actor name (actual for the moment message was written).
         :type instant_message_actor: str
@@ -102,7 +102,7 @@ class MessagingServicesApi(object):
         >>> thread = api.messaging_services_instant_messages_get_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param instant_message: Free text instant messages search. At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required.
+        :param instant_message: Free text instant messages search (including images via OCR). At least one of `instantMessage`, `instantMessageActor`, `instantMessageService`, `instantMessageServer`, `instantMessageChannel` is required.
         :type instant_message: str
         :param instant_message_actor: Search instant messages by actor name (actual for the moment message was written).
         :type instant_message_actor: str

@@ -46,7 +46,7 @@ class ForumsApi(object):
         >>> thread = api.posts_get(async_req=True)
         >>> result = thread.get()
 
-        :param post: Search text in posts and topics.
+        :param post: Search text in posts and topics (including images via OCR).
         :type post: str
         :param posts_by_thread_uid: Search posts by thread uid. At least one of `post`, `postsByThreadUid`, `forum` is required.
         :type posts_by_thread_uid: str
@@ -100,7 +100,7 @@ class ForumsApi(object):
         >>> thread = api.posts_get_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param post: Search text in posts and topics.
+        :param post: Search text in posts and topics (including images via OCR).
         :type post: str
         :param posts_by_thread_uid: Search posts by thread uid. At least one of `post`, `postsByThreadUid`, `forum` is required.
         :type posts_by_thread_uid: str

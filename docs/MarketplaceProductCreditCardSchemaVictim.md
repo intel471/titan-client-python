@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**address** | **str** |  | [optional] 
 **city** | **str** |  | [optional] 
 **country** | **str** |  | [optional] 
 **dob** | **bool** | Availability of dob info. | [optional] 

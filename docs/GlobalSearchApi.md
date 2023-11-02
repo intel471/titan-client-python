@@ -48,7 +48,7 @@ with titan_client.ApiClient(configuration) as api_client:
     ip_address = '192.168.1.1' # str | IP address search. (optional)
     url = 'injectsview.com' # str | URL search. (optional)
     contact_info_email = 'contact_info_email_example' # str | E-mail address search. (optional)
-    post = 'hacker' # str | Forum post search. (optional)
+    post = 'hacker' # str | Forum post search (including images via OCR). (optional)
     private_message = 'private_message_example' # str | Forum private message search. (optional)
     private_message_subject = 'private_message_subject_example' # str | Search text in subjects of Private Messages. (optional)
     actor = 'actor_example' # str | Actor search. (optional)
@@ -89,7 +89,7 @@ with titan_client.ApiClient(configuration) as api_client:
     patch_status = 'patch_status_example' # str | Search CVE reports by patch status. (optional)
     vendor_name = 'vendor_name_example' # str | Search CVE reports by vendor name. (optional)
     product_name = 'product_name_example' # str | Search CVE reports by product name. (optional)
-    instant_message = 'instant_message_example' # str | Free text instant messages search. (optional)
+    instant_message = 'instant_message_example' # str | Free text instant messages search (including images via OCR). (optional)
     instant_message_actor = 'instant_message_actor_example' # str | Search instant messages by author handle (actual for the moment message was written). (optional)
     instant_message_service = 'Telegram, Discord, WhatsApp' # str | Search instant messages by service name. (optional)
     instant_message_server = 'instant_message_server_example' # str | Search instant messages by server name. (optional)
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
  **ip_address** | **str**| IP address search. | [optional] 
  **url** | **str**| URL search. | [optional] 
  **contact_info_email** | **str**| E-mail address search. | [optional] 
- **post** | **str**| Forum post search. | [optional] 
+ **post** | **str**| Forum post search (including images via OCR). | [optional] 
  **private_message** | **str**| Forum private message search. | [optional] 
  **private_message_subject** | **str**| Search text in subjects of Private Messages. | [optional] 
  **actor** | **str**| Actor search. | [optional] 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
  **patch_status** | **str**| Search CVE reports by patch status. | [optional] 
  **vendor_name** | **str**| Search CVE reports by vendor name. | [optional] 
  **product_name** | **str**| Search CVE reports by product name. | [optional] 
- **instant_message** | **str**| Free text instant messages search. | [optional] 
+ **instant_message** | **str**| Free text instant messages search (including images via OCR). | [optional] 
  **instant_message_actor** | **str**| Search instant messages by author handle (actual for the moment message was written). | [optional] 
  **instant_message_service** | **str**| Search instant messages by service name. | [optional] 
  **instant_message_server** | **str**| Search instant messages by server name. | [optional] 
