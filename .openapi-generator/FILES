@@ -112,6 +112,7 @@ docs/GirsGet412Response.md
 docs/GirsResponse.md
 docs/GlobalSearchApi.md
 docs/IOCsApi.md
+docs/ImageSchema.md
 docs/IndicatorSearchResponse.md
 docs/IndicatorSearchSchema.md
 docs/IndicatorSearchSchemaActivity.md
@@ -143,7 +144,6 @@ docs/MalwareFamiliesGet412Response.md
 docs/MalwareFamilySearchResponse.md
 docs/MalwareFamilySearchSchema.md
 docs/MalwareFamilySearchSchemaActivity.md
-docs/MalwarePcapsGet412Response.md
 docs/MalwareReportsSearchResponse.md
 docs/MalwareReportsSearchSchema.md
 docs/MalwareReportsSearchSchemaActivity.md
@@ -193,13 +193,6 @@ docs/NewsSchema.md
 docs/NewsSchemaActivity.md
 docs/NewsSchemaData.md
 docs/NewsSchemaDataAttachmentsInner.md
-docs/PCAPApi.md
-docs/PCAPResponse.md
-docs/PCAPSchema.md
-docs/PCAPSchemaData.md
-docs/PCAPSchemaDataFile.md
-docs/PCAPSchemaDataMalwareFamily.md
-docs/PCAPSchemaDataPcap.md
 docs/PostSchema.md
 docs/PostSchemaLinks.md
 docs/PostSchemaLinksAuthorActor.md
@@ -333,7 +326,6 @@ titan_client/api/malware_families_api.py
 titan_client/api/marketplaces_api.py
 titan_client/api/messaging_services_api.py
 titan_client/api/news_api.py
-titan_client/api/pcap_api.py
 titan_client/api/reports_api.py
 titan_client/api/tags_api.py
 titan_client/api/vulnerabilities_api.py
@@ -444,6 +436,7 @@ titan_client/models/gir_schema_data.py
 titan_client/models/gir_schema_data_gir.py
 titan_client/models/girs_get412_response.py
 titan_client/models/girs_response.py
+titan_client/models/image_schema.py
 titan_client/models/indicator_search_response.py
 titan_client/models/indicator_search_schema.py
 titan_client/models/indicator_search_schema_activity.py
@@ -473,7 +466,6 @@ titan_client/models/malware_families_get412_response.py
 titan_client/models/malware_family_search_response.py
 titan_client/models/malware_family_search_schema.py
 titan_client/models/malware_family_search_schema_activity.py
-titan_client/models/malware_pcaps_get412_response.py
 titan_client/models/malware_reports_search_response.py
 titan_client/models/malware_reports_search_schema.py
 titan_client/models/malware_reports_search_schema_activity.py
@@ -520,12 +512,6 @@ titan_client/models/news_schema.py
 titan_client/models/news_schema_activity.py
 titan_client/models/news_schema_data.py
 titan_client/models/news_schema_data_attachments_inner.py
-titan_client/models/pcap_response.py
-titan_client/models/pcap_schema.py
-titan_client/models/pcap_schema_data.py
-titan_client/models/pcap_schema_data_file.py
-titan_client/models/pcap_schema_data_malware_family.py
-titan_client/models/pcap_schema_data_pcap.py
 titan_client/models/post_schema.py
 titan_client/models/post_schema_links.py
 titan_client/models/post_schema_links_author_actor.py

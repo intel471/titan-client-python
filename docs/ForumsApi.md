@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **posts_get**
-> PostsResponse posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count, images=images, image_src_prefix=image_src_prefix)
+> PostsResponse posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Forum Posts
 
@@ -56,12 +56,10 @@ with titan_client.ApiClient(configuration) as api_client:
     sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
     offset = 0 # int | Skip leading number of records. (optional) (default to 0)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
-    images = 'false' # str | Allows to get the content with the images or placeholders inside (if present). (optional) (default to 'false')
-    image_src_prefix = 'http://mylovely-proxy.com?src=' # str | Adds defined prefix into `<img src` and `<a href` attributes. (optional)
 
     try:
         # Search Forum Posts
-        api_response = api_instance.posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count, images=images, image_src_prefix=image_src_prefix)
+        api_response = api_instance.posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ForumsApi->posts_get: %s\n" % e)
@@ -82,8 +80,6 @@ Name | Type | Description  | Notes
  **sort** | **str**| Sort results by relevance or by the object&#39;s native time in descending (latest) or ascending (earliest) order. | [optional] [default to &#39;relevance&#39;]
  **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
- **images** | **str**| Allows to get the content with the images or placeholders inside (if present). | [optional] [default to &#39;false&#39;]
- **image_src_prefix** | **str**| Adds defined prefix into &#x60;&lt;img src&#x60; and &#x60;&lt;a href&#x60; attributes. | [optional] 
 
 ### Return type
 
@@ -107,7 +103,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **private_messages_get**
-> PrivateMessagesResponse private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count, images=images, image_src_prefix=image_src_prefix)
+> PrivateMessagesResponse private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Private Messages
 
@@ -154,12 +150,10 @@ with titan_client.ApiClient(configuration) as api_client:
     sort = 'relevance' # str | Sort results by relevance or by the object's native time in descending (latest) or ascending (earliest) order. (optional) (default to 'relevance')
     offset = 0 # int | Skip leading number of records. (optional) (default to 0)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
-    images = 'false' # str | Allows to get the content with the images or placeholders inside (if present). (optional) (default to 'false')
-    image_src_prefix = 'http://mylovely-proxy.com?src=' # str | Adds defined prefix into `<img src` and `<a href` attributes. (optional)
 
     try:
         # Search Private Messages
-        api_response = api_instance.private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count, images=images, image_src_prefix=image_src_prefix)
+        api_response = api_instance.private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ForumsApi->private_messages_get: %s\n" % e)
@@ -180,8 +174,6 @@ Name | Type | Description  | Notes
  **sort** | **str**| Sort results by relevance or by the object&#39;s native time in descending (latest) or ascending (earliest) order. | [optional] [default to &#39;relevance&#39;]
  **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
- **images** | **str**| Allows to get the content with the images or placeholders inside (if present). | [optional] [default to &#39;false&#39;]
- **image_src_prefix** | **str**| Adds defined prefix into &#x60;&lt;img src&#x60; and &#x60;&lt;a href&#x60; attributes. | [optional] 
 
 ### Return type
 

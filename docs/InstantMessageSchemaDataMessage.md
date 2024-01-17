@@ -6,7 +6,7 @@ Sub-document containing instant message information.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attachments** | [**list[InstantMessageSchemaDataMessageAttachmentsInner]**](InstantMessageSchemaDataMessageAttachmentsInner.md) | Message attachment. | [optional] 
-**original_images** | **list[str]** | Array of original image urls (if present). | [optional] 
+**images** | [**list[ImageSchema]**](ImageSchema.md) | Array of images (if present). | [optional] 
 **reply_uid** | **str** | Unique identifier of message this message is replying to. | [optional] 
 **text** | **str** | HTML message content. | 
 **uid** | **str** | Unique message identifier. | 
