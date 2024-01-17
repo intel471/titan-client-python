@@ -17,7 +17,6 @@ from titan_client.api.malware_families_api import MalwareFamiliesApi
 from titan_client.api.marketplaces_api import MarketplacesApi
 from titan_client.api.messaging_services_api import MessagingServicesApi
 from titan_client.api.news_api import NewsApi
-from titan_client.api.pcap_api import PCAPApi
 from titan_client.api.reports_api import ReportsApi
 from titan_client.api.tags_api import TagsApi
 from titan_client.api.vulnerabilities_api import VulnerabilitiesApi

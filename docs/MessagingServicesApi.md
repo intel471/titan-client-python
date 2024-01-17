@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **messaging_services_instant_messages_get**
-> MessagingServicesResponse messaging_services_instant_messages_get(instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count, images=images, image_src_prefix=image_src_prefix)
+> MessagingServicesResponse messaging_services_instant_messages_get(instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Instant Messages
 
@@ -56,12 +56,10 @@ with titan_client.ApiClient(configuration) as api_client:
     sort = 'latest' # str | Sort results by the object's native time in descending (latest) or ascending (earliest) order (optional) (default to 'latest')
     offset = 0 # int | Skip leading number of records. (optional) (default to 0)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
-    images = 'false' # str | Allows to get the content with the images or placeholders inside (if present). (optional) (default to 'false')
-    image_src_prefix = 'http://mylovely-proxy.com?src=' # str | Adds defined prefix into `<img src` and `<a href` attributes. (optional)
 
     try:
         # Search Instant Messages
-        api_response = api_instance.messaging_services_instant_messages_get(instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count, images=images, image_src_prefix=image_src_prefix)
+        api_response = api_instance.messaging_services_instant_messages_get(instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MessagingServicesApi->messaging_services_instant_messages_get: %s\n" % e)
@@ -83,8 +81,6 @@ Name | Type | Description  | Notes
  **sort** | **str**| Sort results by the object&#39;s native time in descending (latest) or ascending (earliest) order | [optional] [default to &#39;latest&#39;]
  **offset** | **int**| Skip leading number of records. | [optional] [default to 0]
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
- **images** | **str**| Allows to get the content with the images or placeholders inside (if present). | [optional] [default to &#39;false&#39;]
- **image_src_prefix** | **str**| Adds defined prefix into &#x60;&lt;img src&#x60; and &#x60;&lt;a href&#x60; attributes. | [optional] 
 
 ### Return type
 
