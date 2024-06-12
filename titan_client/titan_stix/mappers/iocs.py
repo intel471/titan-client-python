@@ -22,31 +22,37 @@ class IOCMapper(BaseMapper):
             patterning_mapper=create_url_pattern,
             observable_mapper=create_url,
             kwargs_extractor=lambda i: {"value": i["value"]},
+            opencti_type="Url"
         ),
         "MaliciousDomain": MappingConfig(
             patterning_mapper=create_domain_pattern,
             observable_mapper=create_domain,
             kwargs_extractor=lambda i: {"value": i["value"].split("://")[-1]},
+            opencti_type="Domain-Name"
         ),
         "IPAddress": MappingConfig(
             patterning_mapper=create_ipv4_pattern,
             observable_mapper=create_ipv4,
             kwargs_extractor=lambda i: {"value": i["value"]},
+            opencti_type="IPv4-Addr"
         ),
         "MD5": MappingConfig(
             patterning_mapper=create_file_pattern,
             observable_mapper=create_file,
             kwargs_extractor=lambda i: {"md5": i["value"]},
+            opencti_type="StixFile"
         ),
         "SHA1": MappingConfig(
             patterning_mapper=create_file_pattern,
             observable_mapper=create_file,
             kwargs_extractor=lambda i: {"sha1": i["value"]},
+            opencti_type="StixFile"
         ),
         "SHA256": MappingConfig(
             patterning_mapper=create_file_pattern,
             observable_mapper=create_file,
             kwargs_extractor=lambda i: {"sha256": i["value"]},
+            opencti_type="StixFile"
         ),
     }
 
@@ -69,7 +75,7 @@ class IOCMapper(BaseMapper):
 
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
-            observable = mapping_config.observable_mapper(**kwargs)
+            observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 pattern_type="stix",
@@ -79,6 +85,7 @@ class IOCMapper(BaseMapper):
                 valid_until=valid_until,
                 created_by_ref=author_identity,
                 object_marking_refs=[TLP_AMBER],
+                custom_properties={"x_opencti_main_observable_type": mapping_config.opencti_type}
             )
             r1 = Relationship(
                 indicator, "based-on", observable, created_by_ref=author_identity
@@ -86,7 +93,7 @@ class IOCMapper(BaseMapper):
             for stix_object in [indicator, observable, r1, author_identity, TLP_AMBER]:
                 container[stix_object.id] = stix_object
             for uid, stix_object in self.map_reports(
-                report_mapper, report_sources, indicator, observable
+                report_mapper, report_sources, indicator, observable, r1
             ).items():
                 if isinstance(stix_object, Report) and uid in container:
                     stix_object.object_refs.extend(container[uid].object_refs)
@@ -101,13 +108,18 @@ class IOCMapper(BaseMapper):
         report_sources: list,
         indicator: Indicator,
         observable: Union[URL, DomainName],
+        relationship: Relationship
     ) -> dict:
         container = {}
         for report_source in report_sources:
             container.update(
                 report_mapper.map_shortened_report(
                     report_source,
-                    object_refs={indicator.id: indicator, observable.id: observable},
+                    object_refs={
+                        indicator.id: indicator,
+                        observable.id: observable,
+                        relationship.id: relationship
+                    },
                 )
             )
         return container

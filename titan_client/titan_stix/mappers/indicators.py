@@ -19,6 +19,7 @@ class IndicatorsMapper(BaseMapper):
             patterning_mapper=create_url_pattern,
             observable_mapper=create_url,
             kwargs_extractor=lambda i: {"value": i["data"]["indicator_data"]["url"]},
+            opencti_type="Url"
         ),
         "ipv4": MappingConfig(
             patterning_mapper=create_ipv4_pattern,
@@ -26,6 +27,7 @@ class IndicatorsMapper(BaseMapper):
             kwargs_extractor=lambda i: {
                 "value": i["data"]["indicator_data"]["address"]
             },
+            opencti_type="IPv4-Addr"
         ),
         "file": MappingConfig(
             patterning_mapper=create_file_pattern,
@@ -35,6 +37,7 @@ class IndicatorsMapper(BaseMapper):
                 "sha1": i["data"]["indicator_data"]["file"]["sha1"],
                 "sha256": i["data"]["indicator_data"]["file"]["sha256"],
             },
+            opencti_type="StixFile"
         ),
     }
 
@@ -67,7 +70,7 @@ class IndicatorsMapper(BaseMapper):
 
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
-            observable = mapping_config.observable_mapper(**kwargs)
+            observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
             malware = create_malware(malware_family_name)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
@@ -84,6 +87,7 @@ class IndicatorsMapper(BaseMapper):
                 kill_chain_phases=[
                     KillChainPhase(kill_chain_name="mitre-attack", phase_name=tactics)
                 ],
+                custom_properties={"x_opencti_main_observable_type": mapping_config.opencti_type}
             )
             r1 = Relationship(
                 indicator, "indicates", malware, created_by_ref=author_identity
