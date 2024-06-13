@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **credential_occurrence** | [**CredentialOccurrenceSchema**](CredentialOccurrenceSchema.md) |  | [optional] 
 **credential_set** | [**CredentialSetSchema**](CredentialSetSchema.md) |  | [optional] 
 **cve_report** | [**SimpleCveSchema**](SimpleCveSchema.md) |  | [optional] 
+**data_leak_post** | [**DataLeakPostSchema**](DataLeakPostSchema.md) |  | [optional] 
 **entity** | [**EntitiesSchema**](EntitiesSchema.md) |  | [optional] 
 **event** | [**EventSchema**](EventSchema.md) |  | [optional] 
 **found_time** | **int** | Date when alert was created. | 

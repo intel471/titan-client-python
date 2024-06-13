@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **credentials_total_count** | **int** | Total count of matched credentials. | 
 **cve_reports** | [**list[SimpleCveSchema]**](SimpleCveSchema.md) | List of [Cve Reports](#tag/Vulnerabilities/paths/~1cve~1reports/get). | [optional] 
 **cve_reports_total_count** | **int** | Total count of matched vulnerability reports. | 
+**data_leak_post_total_count** | **int** | Total count of matched data leak posts. | 
+**data_leak_posts** | [**list[DataLeakPostSchema]**](DataLeakPostSchema.md) | List of [Data Leak Blogs](#tag/Data-Leak-Blogs/paths/~1dataleak~1posts/get). | [optional] 
 **entities** | [**list[EntitiesSchema]**](EntitiesSchema.md) | List of [Entities](#tag/Entities/paths/~1entities/get). | [optional] 
 **entity_total_count** | **int** | Total count of matched entities. | 
 **event_total_count** | **int** | Total count of matched events. | 

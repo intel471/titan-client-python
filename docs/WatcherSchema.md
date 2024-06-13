@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **notification_channel** | **str** | Notification chanel. | 
 **notification_frequency** | **str** | Notification frequency. | 
 **patterns** | [**list[WatcherSchemaPatternsInner]**](WatcherSchemaPatternsInner.md) | Search query patterns applicable to a watcher of the &#x60;search&#x60; type. | [optional] 
+**thread_type** | **str** | In case watcher &#x60;type&#x60; is &#x60;thread&#x60; the &#x60;threadType&#x60; must be specified. | [optional] 
 **type** | **str** | Watcher &#x60;type&#x60;. | 
 **uid** | **str** | Watcher identifier. | 
 

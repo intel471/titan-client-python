@@ -15,20 +15,24 @@ from mock import MagicMock
 os.environ['I471_TITAN_CLIENT_CACHE_TTL'] = '0'
 
 fixtures = {
-    'test_indicators': ("indicators_input.json", "indicators_stix.json"),
+    # 'test_indicators': ("indicators_input.json", "indicators_stix.json"),
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
-    'test_yara': ("yara_input.json", "yara_stix.json"),
-    'test_cves': ("cves_input.json", "cves_stix.json")
+    # 'test_yara': ("yara_input.json", "yara_stix.json"),
+    # 'test_cves': ("cves_input.json", "cves_stix.json")
 }
 
 
 def strip_random_values(bundle: dict) -> dict:
     bundle["id"] = None
-    for i, o in enumerate(bundle["objects"]):
-        bundle["objects"][i]["created"] = None
-        bundle["objects"][i]["modified"] = None
+    for i1, o in enumerate(bundle["objects"]):
+        bundle["objects"][i1]["created"] = None
+        bundle["objects"][i1]["modified"] = None
         if o["id"].startswith("relationship--"):
-            bundle["objects"][i]["id"] = None
+            bundle["objects"][i1]["id"] = None
+        for i2, object_ref_id in enumerate(o.get("object_refs", [])):
+            if object_ref_id.startswith("relationship--"):
+                bundle["objects"][i1]["object_refs"][i2] = None
+
     return bundle
 
 

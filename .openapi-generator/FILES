@@ -65,6 +65,13 @@ docs/CredentialsResponse.md
 docs/CredentialsStreamGet412Response.md
 docs/CredentialsStreamResponse.md
 docs/CveReportsGet412Response.md
+docs/DataLeakBlogsApi.md
+docs/DataLeakPostSchema.md
+docs/DataLeakPostSchemaFileListing.md
+docs/DataLeakPostSchemaLinks.md
+docs/DataLeakPostSchemaLinksBlog.md
+docs/DataLeakPostSchemaLinksThread.md
+docs/DataLeakPostsResponse.md
 docs/EntitiesApi.md
 docs/EntitiesResponse.md
 docs/EntitiesSchema.md
@@ -113,6 +120,7 @@ docs/GirsResponse.md
 docs/GlobalSearchApi.md
 docs/IOCsApi.md
 docs/ImageSchema.md
+docs/ImageSnakeCaseSchema.md
 docs/IndicatorSearchResponse.md
 docs/IndicatorSearchSchema.md
 docs/IndicatorSearchSchemaActivity.md
@@ -315,6 +323,7 @@ titan_client/api/__init__.py
 titan_client/api/actors_api.py
 titan_client/api/alerts_api.py
 titan_client/api/credentials_api.py
+titan_client/api/data_leak_blogs_api.py
 titan_client/api/entities_api.py
 titan_client/api/events_api.py
 titan_client/api/forums_api.py
@@ -395,6 +404,12 @@ titan_client/models/credentials_response.py
 titan_client/models/credentials_stream_get412_response.py
 titan_client/models/credentials_stream_response.py
 titan_client/models/cve_reports_get412_response.py
+titan_client/models/data_leak_post_schema.py
+titan_client/models/data_leak_post_schema_file_listing.py
+titan_client/models/data_leak_post_schema_links.py
+titan_client/models/data_leak_post_schema_links_blog.py
+titan_client/models/data_leak_post_schema_links_thread.py
+titan_client/models/data_leak_posts_response.py
 titan_client/models/entities_response.py
 titan_client/models/entities_schema.py
 titan_client/models/entities_schema_links.py
@@ -437,6 +452,7 @@ titan_client/models/gir_schema_data_gir.py
 titan_client/models/girs_get412_response.py
 titan_client/models/girs_response.py
 titan_client/models/image_schema.py
+titan_client/models/image_snake_case_schema.py
 titan_client/models/indicator_search_response.py
 titan_client/models/indicator_search_schema.py
 titan_client/models/indicator_search_schema_activity.py
