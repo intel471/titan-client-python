@@ -24,8 +24,8 @@ jobs:
           pwd
           ls -lh
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install -r requirements.txt
-          python -m pip install -r test-requirements.txt
+          python -m pip install -r .github/workflows/requirements.txt
+          python -m pip install -r .github/workflows/test-requirements.txt
       - name: Run tox
         # Run tox using the version of Python in `PATH`
         run: tox -e py
