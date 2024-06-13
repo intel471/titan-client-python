@@ -34,7 +34,7 @@ setup(
     license="MIT",
     url="https://github.com/intel471/titan-client-python",
     keywords=["OpenAPI", "OpenAPI-Generator", "Titan API v1"],
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
