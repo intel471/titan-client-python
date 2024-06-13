@@ -46,6 +46,8 @@
     "credentials_total_count": 0,
     "cveReports": null,
     "cveReportsTotalCount": 0,
+    "data_leak_post_total_count": 0,
+    "data_leak_posts": null,
     "entities": [
         {
             "activeFrom": 1515176728000,

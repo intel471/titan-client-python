@@ -6,6 +6,7 @@ from __future__ import absolute_import
 from titan_client.api.actors_api import ActorsApi
 from titan_client.api.alerts_api import AlertsApi
 from titan_client.api.credentials_api import CredentialsApi
+from titan_client.api.data_leak_blogs_api import DataLeakBlogsApi
 from titan_client.api.entities_api import EntitiesApi
 from titan_client.api.events_api import EventsApi
 from titan_client.api.forums_api import ForumsApi

@@ -8,6 +8,7 @@
             "credential_occurrence": null,
             "credential_set": null,
             "cveReport": null,
+            "data_leak_post": null,
             "entity": null,
             "event": null,
             "foundTime": 1667229407054,
