@@ -1,5 +1,4 @@
 {
-    "indicatorPartialResult": null,
     "indicatorTotalCount": 2914966,
     "indicators": [
         {
@@ -14,7 +13,6 @@
                 },
                 "expiration": 1698767180000,
                 "indicator_data": {
-                    "address": null,
                     "file": {
                         "download_url": "https://www.randall-parks.biz/category/blog/login.htm",
                         "md5": "ff7b02d1bd68b7a676184d5ad3bfa012",
@@ -23,9 +21,7 @@
                         "size": 275456,
                         "ssdeep": "sYJFTea",
                         "type": "PEEXE_x86"
-                    },
-                    "geo_ip": null,
-                    "url": null
+                    }
                 },
                 "indicator_type": "InCozr",
                 "intel_requirements": [
@@ -35,9 +31,7 @@
                 "threat": {
                     "data": {
                         "family": "YlpZnOsLSscQesopp",
-                        "malware_family_profile_uid": "a4879d2ca52bf298defb2c4803d4dfca",
-                        "variant": null,
-                        "version": null
+                        "malware_family_profile_uid": "a4879d2ca52bf298defb2c4803d4dfca"
                     },
                     "type": "malware",
                     "uid": "b7407a017064ddaf33364b172f433faa"

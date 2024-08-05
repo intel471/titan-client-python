@@ -28,26 +28,18 @@
                 ],
                 "instantMessageChannelTotalCount": 0,
                 "instantMessageServerTotalCount": 0,
-                "instantMessageServers": null,
                 "instantMessageTotalCount": 0,
-                "reportTotalCount": 0,
-                "reports": null
+                "reportTotalCount": 0
             },
             "uid": "213544051f112533eeeb5fbd9603c3a0"
         }
     ],
-    "breach_alerts": null,
     "breach_alerts_total_count": 0,
-    "credential_occurrences": null,
     "credential_occurrences_total_count": 0,
-    "credential_sets": null,
     "credential_sets_total_count": 0,
-    "credentials": null,
     "credentials_total_count": 0,
-    "cveReports": null,
     "cveReportsTotalCount": 0,
     "data_leak_post_total_count": 0,
-    "data_leak_posts": null,
     "entities": [
         {
             "activeFrom": 1515176728000,
@@ -63,8 +55,7 @@
                         "uid": "2b492d753cdea6c662f46b757d63bfe3"
                     }
                 ],
-                "reportTotalCount": 0,
-                "reports": null
+                "reportTotalCount": 0
             },
             "type": "Jabber",
             "uid": "32123dd7e094f941334152c0d043b367",
@@ -81,11 +72,6 @@
             },
             "data": {
                 "event_data": {
-                    "bot_settings": null,
-                    "command": null,
-                    "component_type": null,
-                    "config_file": null,
-                    "controller": null,
                     "controllers": [
                         {
                             "url": "https://www.williams.info/author/"
@@ -98,7 +84,6 @@
                             "key": "joAgLTF"
                         }
                     ],
-                    "exfil_location": null,
                     "file": {
                         "download_url": "https://maxwell-knox.com/homepage.jsp",
                         "md5": "4fa902d520156c2d22731eff271bdfa0",
@@ -107,12 +92,6 @@
                         "size": 894.5,
                         "type": "PEEXE_x86"
                     },
-                    "inject_type": null,
-                    "location": null,
-                    "plugin_name": null,
-                    "plugin_type": null,
-                    "recipient_domains": null,
-                    "senders": null,
                     "settings": [
                         {
                             "authorization_value": "28c1486889f8c5c62b039ca6fd8910b3"
@@ -120,22 +99,17 @@
                         {
                             "build_id": "zLzbv"
                         }
-                    ],
-                    "target_type": null,
-                    "triggers": null
+                    ]
                 },
                 "event_type": "KFAAEmLaNj",
                 "intel_requirements": [
                     "3.1.9",
                     "5.6.4"
                 ],
-                "mitre_tactics": null,
                 "threat": {
                     "data": {
                         "family": "NWETdyI",
-                        "malware_family_profile_uid": "86e94e65242d0f1ba56f8b25ae387e10",
-                        "variant": null,
-                        "version": null
+                        "malware_family_profile_uid": "86e94e65242d0f1ba56f8b25ae387e10"
                     },
                     "type": "malware",
                     "uid": "6c0dd37087842fd18c5e6771bb49d3b7"
@@ -162,9 +136,6 @@
                 },
                 "expiration": 1553145935000,
                 "indicator_data": {
-                    "address": null,
-                    "file": null,
-                    "geo_ip": null,
                     "url": "https://www.todd.com/"
                 },
                 "indicator_type": "SorubBkJ",
@@ -176,9 +147,7 @@
                 "threat": {
                     "data": {
                         "family": "STIKpoaajfxihB",
-                        "malware_family_profile_uid": "2125e1bad76efbad7e6980bc4b9fc578",
-                        "variant": null,
-                        "version": null
+                        "malware_family_profile_uid": "2125e1bad76efbad7e6980bc4b9fc578"
                     },
                     "type": "malware",
                     "uid": "aff0b74ca6a4bc7371deda346038bd5c"
@@ -207,19 +176,15 @@
                 "channel": {
                     "name": "MDBNSu",
                     "registration_date": 1582274805000,
-                    "topic": null,
                     "uid": "780b1104210b6a61f782971a9cbe4695",
                     "url": "http://zimmerman-lee.com/"
                 },
                 "message": {
-                    "attachments": null,
-                    "images": null,
                     "replyUid": "96bfd764ee4f5076accb1c5f36ea7787",
                     "text": "woqWQUItkrA bxQfDt YVCCGAEWHcZGAtH vgKCausyIFe IlmuW kUTMWDMg uMhYy HeYxKIAOAlzclwGS zKszThShEv OqSoCVuQv YSqhLfKwnEXRXQT HcJUXHX bgzruOrQlTew jePzNudXaOHnw LzXDVHnlpz jpLfdxQCSzzFWYr BaoMRsnkdPdJto",
                     "uid": "b0298b03f570dc4b8a5f98777332b78c"
                 },
                 "server": {
-                    "name": null,
                     "service_type": "JnyZPtBeaEvzhxXUkFrt",
                     "uid": "38af350c08e815544f81c76d78ba59cb"
                 }
@@ -228,10 +193,7 @@
         }
     ],
     "iocTotalCount": 0,
-    "iocs": null,
     "malwareReportTotalCount": 0,
-    "malwareReports": null,
-    "news": null,
     "newsTotalCount": 0,
     "postTotalCount": 175230,
     "posts": [
@@ -248,7 +210,6 @@
                     "name": "AJsPkZyvNU",
                     "uid": "2c6ea25fe8fd8fb6d21bb517e26ff9ff"
                 },
-                "images": null,
                 "thread": {
                     "count": 4,
                     "topic": "yyXrrdHkStthr",
@@ -257,7 +218,6 @@
                 }
             },
             "message": "j wwHmb GBVqZxswDODkoA vgf XDFuAwz ntkmlF WDgVSGnapgtx SK xdVwEmcFh GWDmMARtuf rX soWfPSVdTCkfU mD FyduEBKmJlt FuLDzfBRYqS sfouuRMmyVZrsIN cNbEkwvd OWRRpQNoJqrQ SWqHoQFRXIwIKCA IDwluJf gTn ZSRFwR xt VR uOlMvuXvrMJ UO gxVNhFrIK tliuJDPYt Mh VOMmqJ kePYeTC jZMfKPOB grNucGLmBTzqt ExnIqYqbmQai HxjNC gzbnrUw hlAedI GfXlioDsyPyLQQ OWSMdeYS GOsAWzJpblKBjkg gnMp JbPiFHGlWDeNlBB",
-            "messageOriginal": null,
             "uid": "70bf7f8675c996d066256b9d1921c8ab"
         }
     ],
@@ -265,7 +225,6 @@
     "privateMessages": [
         {
             "date": 1574256862000,
-            "last_updated": null,
             "links": {
                 "authorActor": {
                     "handle": "YDdAvSlnqZffLHmX",
@@ -276,7 +235,6 @@
                     "name": "vevSlpSCVZzhUy",
                     "uid": "9d22a7288db1aa882c30cd7486d85d4c"
                 },
-                "images": null,
                 "recipientActor": {
                     "handle": "FurnHl",
                     "uid": "b0e855942b869446373be7e65ce22b12"
@@ -286,17 +244,13 @@
                 }
             },
             "message": "Ld WvfgscpSQ rwhwKYBPiqxhl rJLaiMQv FhZbkjXULeBbIdF DQCXPhc ayQP uCtqPRnhF BsBW LVfQRacAPS mhYA lcyjeHgDpk kzsQSZUlcwaKeOYD eTbF doBNTmaHghJfJL WnvTIQzOvKWIET",
-            "messageOriginal": null,
             "subject": "ZysJMSMm kISIn viHDG NPREfRi suAioKTDqNHLrod hyAzjJWtwc AVXtMQpg WMxUBjLXbTkNaK lhCCVIogtHUxdBO mHVyPNZ ogFFPSMDimCkK AxVkx JzKIuEWL gjnXrnZj Xxy dZaw rUkZLSjiuAVmkAIE w HUtKH Gev qXGWgogDMPkO UljbvmpF BZmScB ArcXARw hG vCRb jNBCKMSCrzKeLhU LwlXyAjVAFQoQE SRmhDbuwHh SFlPMzbNjYJMXvg MwRs iIcgCUXJHpXbFujJ IrNo ETrBabAvBVH PHmrtXPvEwCYsoZ N LUd eAjUZGaqvWnxm yvtMxRhJlXNw yL oeaccRdIX XLjMTyGmGJb MngjqULcSogBp kqEmpzlSE kzAfQIbzngSVVRv",
-            "subjectOriginal": null,
             "uid": "f9bc9e80ebfdfa36b1dea3b7c7638a87"
         }
     ],
     "reportTotalCount": 40,
     "reports": [
         {
-            "actorHandle": null,
-            "actorSubjectOfReport": null,
             "admiraltyCode": "C6",
             "classification": {
                 "intelRequirements": [
@@ -425,11 +379,7 @@
                     "uid": "ea96b13479e72c1dc84b31f4afb08793"
                 }
             ],
-            "released": null,
-            "reportAttachments": null,
-            "sensitiveSource": null,
             "sourceCharacterization": "XrMHducevJABjKf CycgzkYjtDxnkmb XJNhjUVWxcBJx iwKcNMdWihvios KoDziWFQWEUPXhBo vC EFxEMFgDCzlKEiF VndcXQRbbZBNG onp SyPHCRlpkFGIQWs vBcqh fTvbhXc DLBgvsSgXpPvyAIw vu XD fjPXwmqFjm",
-            "sources": null,
             "subject": "GZV wrxPWFr DyMGk uyFOAmASXJns tPfkKPhCS bos ROLNAHawHOCxgr iGVIsCR qVhvtb VehKpqn Khm wPIkwGMUQUKJYj wDn b tDZSqfyMNFJMVnr quDNUQsqoy SdtZcirLbq RR oUHyEgLtpiyywt CHRJmB Rje XQhCAICukVmAqLTa AUetKVdWb yumyYSZhOClgCGq VtulUORb iwzaw KaMreTxS P aoy AV BFGrZlLFTiX xlYcF AwLlwAykufxr VqhDuOJLJgoaardM PMxMgvBzKdvIpJ MOVSkZ qoXNRfwpHzmPAqWP haSYpjQnjMTVtTzn ywHxXAz HYF nEVvwwgyh",
             "tags": [
                 "hYUtHstrcNmduJZFwYBU",
@@ -438,11 +388,9 @@
                 "nybhWjwGnSEWlAlnKrRD",
                 "eVfeRbDILYbEyMYDdfUC"
             ],
-            "uid": "2234309624ae4f6221055670b31a91d7",
-            "victims": null
+            "uid": "2234309624ae4f6221055670b31a91d7"
         }
     ],
-    "situationReports": null,
     "situationReportsTotalCount": 0,
     "spotReports": [
         {
@@ -478,13 +426,9 @@
                                 "url": "http://www.duarte.com/categories/list/author/"
                             }
                         ],
-                        "related_reports": null,
                         "released_at": 829983801000,
-                        "sensitive_source": null,
                         "text": "EvxgojuRFmiRxDc poMsoQVETe Fv AQkOhPzNpHbGfmY TCVFrdVxVCXLdAz aUzTdOBrajnIhwe eMQBDB qTGLalWyYpEAptFP snKcJWSyNz ZJl QYvelLUSVLKlNIn VBTvivHdjb KMfJafeVsQHWVez Cv LUceFLBZpq bQmQOGdqRtfUGe",
-                        "title": null,
-                        "version": "xqVqPUGBfB",
-                        "victims": null
+                        "version": "xqVqPUGBfB"
                     },
                     "uid": "15c033dc9efa772e2715e82d6f5ccf7e"
                 }
@@ -494,6 +438,5 @@
         }
     ],
     "spotReportsTotalCount": 1,
-    "yaraTotalCount": 0,
-    "yaras": null
+    "yaraTotalCount": 0
 }

@@ -29,7 +29,6 @@
                         "8.4.3"
                     ],
                     "released_at": 1679484647000,
-                    "sensitive_source": null,
                     "sources": [
                         {
                             "date": 1676851200000,
@@ -63,8 +62,6 @@
                 },
                 "entities": [
                     {
-                        "description": null,
-                        "geo_info": null,
                         "type": "Handle",
                         "value": "blwlVkqQFnc"
                     }
@@ -74,6 +71,5 @@
             "uid": "3440f51a5b304bbe705f3acd727fc78d"
         }
     ],
-    "breach_alerts_total_count": 1,
-    "partial_result": null
+    "breach_alerts_total_count": 1
 }

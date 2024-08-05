@@ -19,19 +19,14 @@
                         "location_private": false,
                         "location_underground": false
                     },
-                    "counter_measure_links": null,
                     "counter_measures": "EoRPLG",
-                    "cpe": null,
                     "cve_status": "caOIR",
                     "cve_type": "pYtrkJMsKsXys",
                     "cvss_score": {
-                        "v2": null,
                         "v3": 548.8
                     },
-                    "detection": null,
                     "exploit_status": {
                         "available": false,
-                        "not_observed": null,
                         "productized": false,
                         "weaponized": true
                     },
@@ -58,7 +53,6 @@
                     "product_name": "yaplgppPyvgQbFzPcMU",
                     "risk_level": "dqDuubfhxbUzeddQf",
                     "summary": "rgIHgtZslRb",
-                    "titan_links": null,
                     "underground_activity": "ERoBjCQetfx",
                     "underground_activity_summary": "IdNClVmqDUYg",
                     "vendor_name": "VwIgmAlIvBbGMEiBXS"
@@ -68,6 +62,5 @@
             "uid": "8624de2d27e9680b764629498af6a04d"
         }
     ],
-    "cveReportsTotalCount": 1735,
-    "postPartialResult": null
+    "cveReportsTotalCount": 1735
 }

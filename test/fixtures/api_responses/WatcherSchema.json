@@ -7,11 +7,6 @@
         "eKuibINTkoEZXhUnFCUq",
         "zZwGgYXdRvUcbeZSqLmI"
     ],
-    "description": null,
-    "filterByGirSet": null,
-    "filters": null,
-    "girs": null,
-    "links": null,
     "muted": false,
     "notificationChannel": "website",
     "notificationFrequency": "immediately",
@@ -21,7 +16,6 @@
             "types": "GolFngQelJfE"
         }
     ],
-    "threadType": null,
     "type": "search",
     "uid": "af63a26f291c0a370797682042771535"
 }

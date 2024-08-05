@@ -1,6 +1,5 @@
 {
     "cursorNext": "EAtiDdIvbSElA",
-    "eventPartialResult": null,
     "eventTotalCount": 29228766,
     "events": [
         {
@@ -21,12 +20,8 @@
                             }
                         ]
                     },
-                    "command": null,
-                    "component_type": null,
-                    "config_file": null,
                     "controller": {
                         "geo_ip": {
-                            "city": null,
                             "country": "lCKVCzXpKoKpwObE",
                             "country_code": "hqOSlJKVvKCBKEHAvX",
                             "isp": {
@@ -34,25 +29,13 @@
                                 "isp": "NStvrMsCSTWZgXqFKC",
                                 "network": "LguMn",
                                 "organization": "RMIIcztHldvSrAt"
-                            },
-                            "subdivision": null
+                            }
                         },
                         "ipv4": "sryetORrOkdUmgkB",
                         "url": "http://mckee-nguyen.com/list/explore/tag/homepage/"
                     },
-                    "controllers": null,
-                    "encryption": null,
                     "exfil_location": "dYfhIudSiGbdALkJUix",
-                    "file": null,
-                    "inject_type": null,
-                    "location": null,
-                    "plugin_name": null,
-                    "plugin_type": null,
-                    "recipient_domains": null,
-                    "senders": null,
-                    "settings": null,
-                    "target_type": "eqhbSIFHhhq",
-                    "triggers": null
+                    "target_type": "eqhbSIFHhhq"
                 },
                 "event_type": "DNxYrEsVDnJ",
                 "intel_requirements": [
@@ -63,9 +46,7 @@
                 "threat": {
                     "data": {
                         "family": "xtffvRyxWmXBtra",
-                        "malware_family_profile_uid": "0ccf217e73437c08644cca0f881914f1",
-                        "variant": null,
-                        "version": null
+                        "malware_family_profile_uid": "0ccf217e73437c08644cca0f881914f1"
                     },
                     "type": "malware",
                     "uid": "69a7541028ac08ed1d605ac2b49a1a21"

@@ -1,5 +1,4 @@
 {
-    "yaraPartialResult": null,
     "yaraTotalCount": 182,
     "yaras": [
         {
@@ -15,8 +14,7 @@
                 "threat": {
                     "data": {
                         "family": "owOTxqOcslcwCil",
-                        "malware_family_profile_uid": "c52a66faea138f15b389df2e16ab5808",
-                        "version": null
+                        "malware_family_profile_uid": "c52a66faea138f15b389df2e16ab5808"
                     },
                     "type": "malware",
                     "uid": "2a0c10317fcf3878658e326137bee940"

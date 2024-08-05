@@ -12,18 +12,14 @@
         "forums": [
             {
                 "actorHandle": "QvmYsutGGFEIT",
-                "contactInfo": null,
                 "name": "TbtUOUrOFpIYxNIXp",
-                "timeZone": null,
                 "uid": "698ed441ea0de1cdc4f85c14a3bde250"
             }
         ],
         "instantMessageChannelTotalCount": 0,
         "instantMessageServerTotalCount": 0,
-        "instantMessageServers": null,
         "instantMessageTotalCount": 0,
-        "reportTotalCount": 0,
-        "reports": null
+        "reportTotalCount": 0
     },
     "uid": "01e005bf4fe86afd263c56ecf2ac1128"
 }

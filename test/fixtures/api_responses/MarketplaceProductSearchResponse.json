@@ -2,47 +2,31 @@
     "products": [
         {
             "activity": {
-                "first": 331646746000,
-                "last": 1194433183000
+                "first": 1719914057000,
+                "last": 1719914057000
             },
             "data": {
-                "availability": "gjmWwSYTMIp",
-                "base": "YZqmcweurJC",
-                "card_holder": null,
-                "card_number": null,
-                "card_type": "RWlJvDtvGA",
-                "cvv": null,
-                "expiration": "aUkiokcJ",
-                "issuer": "uBsOSUr",
-                "marketplace": {
-                    "name": "iNnOZVpxxPDBxXgGgkLy",
-                    "price": "OeYNlVDlW",
-                    "uid": "2f24aa9da4687ce97d7198692a8178e7"
-                },
-                "obfuscated_number": "KlbbFRajcDGnf",
-                "product_type": "yvWgWpBZE",
-                "victim": {
-                    "country": "qQKdtvIGFAiuaQRrHV",
-                    "ip_address": null,
-                    "os": "linux"
-                },
-                "installed_at": 736031477000,
-                "stolen_by_form_stealers": 0,
-                "title": "RWlJvDtvGA",
+                "description": "Shop: goat.com, Balance: 0, Points: 0, Country: Italy, Info: ZIP: 17031, Checked: 01-09-2023, Email: gmail.com, Mail accs: no",
+                "availability": "Present",
+                "product_type": "Other product",
                 "categories": [
-                    "lJvDt"
+                    "Shopps"
                 ],
-                "description": "ff2e2e406a64b0437"
+                "title": "goat.com shop",
+                "marketplace": {
+                    "name": "blackpass",
+                    "uid": "e4da3b7fbbce2345d7772b0674a318d5",
+                    "price": "1.8USD"
+                }
             },
-            "last_updated": 736031477000,
-            "uid": "8f3809912756b0f06b9471f11bd32c42"
+            "last_updated": 1719914068249,
+            "uid": "1d3081637180f59f4d47734f0cd25530"
         }
     ],
-    "productsPartialResult": null,
-    "products_count": 5421910,
+    "products_count": 27257239,
     "statistics": {
-        "credentials_total_count": 501859,
-        "credit_cards_total_count": 11710373,
-        "other_products_total_count": 35845
+        "credit_cards_total_count": 24515722,
+        "credentials_total_count": 683500,
+        "other_products_total_count": 2058017
     }
 }

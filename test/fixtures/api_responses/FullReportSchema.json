@@ -1,5 +1,4 @@
 {
-    "actorHandle": null,
     "actorSubjectOfReport": [
         {
             "aliases": [
@@ -176,7 +175,6 @@
     "lastUpdated": 444351788000,
     "locations": [
         {
-            "country": null,
             "link": "NQrDVfRvwoqEPK",
             "region": "NusWd"
         },
@@ -200,10 +198,8 @@
             "uid": "fa579bc459f2ab4a65650a57a417884f"
         }
     ],
-    "released": null,
     "reportAttachments": [
         {
-            "description": null,
             "fileName": "WRiPC",
             "fileSize": 304524,
             "malicious": false,
@@ -211,7 +207,6 @@
             "url": "http://www.burke-white.info/login.html"
         },
         {
-            "description": null,
             "fileName": "TtJAxLVc",
             "fileSize": 654387,
             "malicious": false,
@@ -219,7 +214,6 @@
             "url": "http://villegas.biz/"
         },
         {
-            "description": null,
             "fileName": "idkoUjDHPxRWoA",
             "fileSize": 91566,
             "malicious": false,
@@ -227,7 +221,6 @@
             "url": "https://harrison.com/"
         },
         {
-            "description": null,
             "fileName": "EIFQfLlsJmuVsIFkGh",
             "fileSize": 318412,
             "malicious": false,
@@ -235,9 +228,7 @@
             "url": "http://www.smith-proctor.biz/main/"
         }
     ],
-    "sensitiveSource": null,
     "sourceCharacterization": "dxuSGEAPUWnJS nBMFUhjYmYJcwOem gKOkTRWfp bDPqfQsAK koJoPbyLcquU FvHdrx MpEcGkePNPEmb QylPbpB BajHfvZ uuPknMBOSrzxe sMOjYFORrnhpMUQk jNTsRS vdnbyJxQwbBoGr rQzsfkFeeir lSNobED OgVGvHZcspUkSqGt qK yGWAsGtlXstexaeV AsViXHIKxPM VN VyxrTNVfMRQtW LnquozC tXIPSLCo bIJerlxcwr DuZnhYPQvAVOj UFVkbE VxVEBO VXbluuPmyXdOw bGBWu A bdtdGDJolhO mOPKUCEm wjgOurHJ vKXvgH uuC spgsx lWpXAYPihHZ CxIc JN QqeYN dPAOTw eONxnmtUESCuuqh LCCNR TC OJUASLPO",
-    "sources": null,
     "subject": "pHeTVTdauq XuA BAIjPhIpDHt RWpUDCAVyj X dGsxZlRgdKI bzwuPvuQTUlQK ZqfDxCxyygAHJB atlvUE jmYVnfVudUXLCXVt zctlIjzFCn wBxryoAaTdVYL AxJBSjWNvqv",
     "tags": [
         "NDQLYodNngoqTyTxrSnf",
@@ -246,9 +237,7 @@
         "gZBRWYSaqSCeUjhNCAqJ"
     ],
     "uid": "7a6d6516d925096cacd1feb1ca6f9c4f",
-    "victims": null,
     "executiveSummary": "VZORU",
     "rawText": "RoBKr",
-    "rawTextTranslated": null,
     "researcherComments": "QwSVZiaOVnpCWserY"
 }

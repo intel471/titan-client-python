@@ -1,10 +1,7 @@
 {
-    "reportPartialResult": null,
     "reportTotalCount": 10196,
     "reports": [
         {
-            "actorHandle": null,
-            "actorSubjectOfReport": null,
             "admiraltyCode": "A1",
             "classification": {
                 "intelRequirements": [
@@ -129,7 +126,6 @@
                     "region": "EStRxsKF"
                 }
             ],
-            "motivation": null,
             "portalReportUrl": "https://www.lucas.com/search/posts/privacy/",
             "relatedReports": [
                 {
@@ -137,10 +133,6 @@
                     "uid": "3d15b2b5fc9c11e31ea09e2d05b4553e"
                 }
             ],
-            "released": null,
-            "reportAttachments": null,
-            "sensitiveSource": null,
-            "sourceCharacterization": null,
             "sources": [
                 {
                     "index": 1,

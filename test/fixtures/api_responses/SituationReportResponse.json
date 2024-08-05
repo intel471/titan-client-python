@@ -1,5 +1,4 @@
 {
-    "partialResult": null,
     "situationReports": [
         {
             "activity": {
@@ -15,7 +14,6 @@
             },
             "data": {
                 "situation_report": {
-                    "entities": null,
                     "link": {
                         "malware_family": {
                             "uid": "6fcf70b7a2ccbe23043522e00afa210e"
@@ -24,12 +22,9 @@
                             "uid": "4c1c765eb7431930d5eb6e6e17932292"
                         }
                     },
-                    "related_reports": null,
                     "released_at": 356372568000,
-                    "sensitive_source": null,
                     "text": "EtUdAidWBhm DTbljtZrq qYFOIKThgyPF UYt nMGOBCZ BKHkLenTDNXrKFz IwcuSRisjWmU JtLvzYoxXUyKlv iW Zpy jAgkYBbdYspzfw keSOOqPEbPsZfyng FeRXbgQGIbEQ AZsWYSq AfJCvc VDYa AchXpHMIECOZtRT ykHvGPaKH ApRQsmJXJez KS btwQUhz J nnfhtfkTTkUy QeqPBPqvrub PeQzesMH zZpUwbTv MWkGe KeMynqYIJwzoMDHz CwQwMAo BDd tyb ajrtEWn jdRrgajLTujYZ VQakvRTU abjpRoKTMtyS VmoAyPPIfAjS qTwbLCHvFEOd DlUxmgZRyfupk xwxGPWmxLiBnM ZVML psDufsAvWDepD t imymb hsS CEXEFXcPuqMmDh PPy Xs",
-                    "title": "IjiGuTudzpksYuctnU",
-                    "victims": null
+                    "title": "IjiGuTudzpksYuctnU"
                 }
             },
             "last_updated": 490291362000,

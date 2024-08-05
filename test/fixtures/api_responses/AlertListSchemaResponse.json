@@ -2,29 +2,17 @@
     "alertTotalCount": 100008,
     "alerts": [
         {
-            "actor": null,
-            "breachAlert": null,
-            "credential": null,
-            "credential_occurrence": null,
-            "credential_set": null,
-            "cveReport": null,
-            "data_leak_post": null,
-            "entity": null,
-            "event": null,
             "foundTime": 1667229407054,
             "highlights": [
                 {
                     "chunks": [
                         {
-                            "hl": null,
                             "text": "mrazQwdJdEux dRzUda dlkdJarKuubW bWvXdpgXEFMfWFOv aerCeMcrFYAfdxs zQIr kaYzflxDrrpdDVHT sKueZCuuYBng AeQQ oKUhHnNeYS"
                         },
                         {
-                            "hl": "AjgGkQLWKgYN",
-                            "text": null
+                            "hl": "AjgGkQLWKgYN"
                         },
                         {
-                            "hl": null,
                             "text": "kXPSOJZHLe CVQXoxE CcO KYckfOA UsGIENMVavoRZ MLRwoHfy GLJQRDw s jVGNcIalYpxcGimc MXRhKPvTCf XZMrTCiANEPVwNUu reXwvdDaEIh YRDOWuKPFFXY iXLWBt QKmYWKYgdi psnMoRxoiAIPNFdA"
                         }
                     ],
@@ -33,15 +21,12 @@
                 {
                     "chunks": [
                         {
-                            "hl": null,
                             "text": "FCnohDkZ HnACfTAPbk ujcScuKlnPzHnua ZyWsodcXidpUZVF tBamzaVDFxcnvxO WDaEAuKeHVMSBYcr nFwaxuzVttdsnL qVpzV zWzQXi WUyWdjsz OdNfk vEr eyuYCwkxbpsXCop vSBUnpWgGVDhP bdv LBndFfRFAzQj vIrRNfom TcJunZSm"
                         },
                         {
-                            "hl": "JKWzJbzYgVfpirHI",
-                            "text": null
+                            "hl": "JKWzJbzYgVfpirHI"
                         },
                         {
-                            "hl": null,
                             "text": "gBrdBzJsDcsG PYKEwCMhKhjKpKN F WOM AeolL FJhRE kayDjSrLVuvO foQspLUJ o gYpl qqJQoiMgu rdwCt jKagxNmRTweqnQo YPFYMgDBXRfQOUvh lnGydnjxSri BVwMlzU mxtzKMyHAvwGk aEej kNAklYbjB SlvgXB wVyROBwnioLa tTxukCiwBhlsxMmS DvSbCZafSWVH b j rcNaKaN wRyZIodfvS zPXDBbAPcenD lhRVfXMlTrOzkZOy qyz DvjIdbQLQhaMPIx O ngTMmdcZdzpb MgFwGywCv czCOb WM tVGgg HArRXNJMceKB hKzgVDSjPjTRy NhZtcWGtMZqJuIIY NkPVQKf ELmnrI jPgyJLKilpeD kGKlVkbpM BAkm wjQWbOEKzdb CLB oDxVRvOqmSC"
                         }
                     ],
@@ -50,15 +35,12 @@
                 {
                     "chunks": [
                         {
-                            "hl": null,
                             "text": "wjToguOfZ wE drwUDdqYQnm FR M AZhcS lJIvpohHrEzJmYP ZIPDXUDqv GlVELGyGFGZxGU DPvtsyWT WbGyqzABdfV CiYWweAff xcONlyvqfioRnWS kqYTXC GsmuMdPuJNIJS LdENl ioUnyoucjrYIXa myLJUjTPL bKUFfGlpThxK YAxyNnvr zFjdtvtVyK Ifix fs mEOuuJYqcPjURZe qKcGaqI ezaAmQXwIrqTAi IqhCuWZVmGZykSo bsyLZFZpmhkLd kfQbryYIl Gci GYYEMjJcK YT dYsxxlwgYj b"
                         },
                         {
-                            "hl": "nkQXsLTBiLpQTz",
-                            "text": null
+                            "hl": "nkQXsLTBiLpQTz"
                         },
                         {
-                            "hl": null,
                             "text": "CDMcpmDPFpRA zxighT LnERGuHpXN xHlUIKLzANaYRiLD XJRxWO ZrTlngPT guu cEHxwK HLm bzbOVqBDKGa iHSiYQJUfoEIRDYN JHATS fbWfYDOh mlvXfilTrbh NoKZglllESRiQnX HkRRVxJtOZo fFucipFBxxySu DXR k UGzyHBAf TyDcsKtxZzkVkveu YPavvsKOJrMAjf lvaBqJrCjb VQtTY AzsjRPzBtc Wi XVlVfrkIjCCi JWuzJuY vlZUMo FIuvPgfM DmnnWsJecWHiL ZbFcppHydOkrK sZmWTpJZfG QysYJCjt lnDnpg MwVjLctxOQ ezYTYgwwDBaTkEfi rXrWMXYr eOP MtKxgWc"
                         }
                     ],
@@ -67,8 +49,7 @@
                 {
                     "chunks": [
                         {
-                            "hl": "eYITuCftMQmeajANQL",
-                            "text": null
+                            "hl": "eYITuCftMQmeajANQL"
                         }
                     ],
                     "field": "XfnpaagqHHFXLRWlJHLN"
@@ -76,23 +57,18 @@
                 {
                     "chunks": [
                         {
-                            "hl": null,
                             "text": "ykNYcpcoy ccUDBjqxrwtG iktnvzWlJXoeMMd cYoOKGJVlEgyfacw iYMLddDymxLd tQrzdZshwilVKi yi DDRCCDiSVSqUxM OrzqBaHtfQeMZKn cpYpvWix gkwmPaFzTYwXZ DgyisvILVTP EOHxTHE FfrP sbwAvNPjxbdsbzMG zJniUSgoguFZm TdEoKNMxHVxCvZVc PRUEQqdVXyqbPwE J n GrCffWl I wMdQYRssxyO zXhKjoExIdrsIv IGKZiJIljiDRUcu bIJLdPU zJEGepreLSmlOU lwYedZzPJMCkaT LZkeLcobyq hWUWISzyKKSLpnVC gSdjtwaunRc YYUwIUdDZ aZRgFPk nB fHixSXGK ooMv FhCcftTaBtIs VKxEolcJSaFzino gkkSlNPKtUujarX oNOX"
                         },
                         {
-                            "hl": "YDLgO",
-                            "text": null
+                            "hl": "YDLgO"
                         },
                         {
-                            "hl": null,
                             "text": "nfRf ItaIcHUlR plrl OQyff PUBMIVXpjuhq vyRxvUeKX HTLSFiwKMIOX zjMNnkjeAecaicPR kF L UrQtNhTCRuZ QqrjjkfENj WEihzLAlMSAROmEi IlWXdfH aSsJM SCSGzFyR UYMmkdSAdQXy mc clNintZYoM QLEpEgWGbMM wMGkzwFoXgVRcqWD ZvoAyLrqAOMWiP rMdZ"
                         }
                     ],
                     "field": "weQUwTR"
                 }
             ],
-            "indicator": null,
-            "instantMessage": null,
             "post": {
                 "date": 1667145889000,
                 "lastUpdated": 348270497000,
@@ -106,7 +82,6 @@
                         "name": "ZTVrDkdRQd",
                         "uid": "50ec48286899c2f8e3084eb6635921e1"
                     },
-                    "images": null,
                     "thread": {
                         "count": 1,
                         "topic": "gFlBWFKnLMZPiRu",
@@ -118,13 +93,10 @@
                 "messageOriginal": "LlycxtdWcG",
                 "uid": "4926e1e03855254cb73fe9e7464f584f"
             },
-            "privateMessage": null,
-            "report": null,
             "status": "RtgKVfkNemgqA",
             "uid": "7c4dd5801dd07232bdd23a48fab44b1f",
             "watcherGroupUid": "xRXpDaIlK",
             "watcherUid": "lIwyyJzCOTxmVXk"
         }
-    ],
-    "watcherGroups": null
+    ]
 }

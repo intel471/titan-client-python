@@ -1,5 +1,4 @@
 {
-    "actorPartialResult": null,
     "actorTotalCount": 11,
     "actors": [
         {
@@ -16,18 +15,14 @@
                 "forums": [
                     {
                         "actorHandle": "wsHajg",
-                        "contactInfo": null,
                         "name": "llyijvOyeenQUiHBe",
-                        "timeZone": null,
                         "uid": "41945e3afdb251e294145c1aec68691e"
                     }
                 ],
                 "instantMessageChannelTotalCount": 0,
                 "instantMessageServerTotalCount": 0,
-                "instantMessageServers": null,
                 "instantMessageTotalCount": 0,
-                "reportTotalCount": 0,
-                "reports": null
+                "reportTotalCount": 0
             },
             "uid": "ba96ffe12d0a8015eb655861bf6543a1"
         }

@@ -14,14 +14,12 @@
                         "uid": "c174016ecabfdf5b7b85747898f31388"
                     }
                 ],
-                "reportTotalCount": 0,
-                "reports": null
+                "reportTotalCount": 0
             },
             "type": "EmailAddress",
             "uid": "ed861559b267efa2221970b99eda0f0d",
             "value": "zJVwcHXKRgzWaCkw"
         }
     ],
-    "entityPartialResult": null,
     "entityTotalCount": 26
 }

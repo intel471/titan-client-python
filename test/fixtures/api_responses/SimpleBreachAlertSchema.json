@@ -27,7 +27,6 @@
                 "8.2.5"
             ],
             "released_at": 1582936767000,
-            "sensitive_source": null,
             "sources": [
                 {
                     "date": 1676851200000,
@@ -61,8 +60,6 @@
         },
         "entities": [
             {
-                "description": null,
-                "geo_info": null,
                 "type": "Handle",
                 "value": "UBVwdGEqyblgQITlecl"
             }

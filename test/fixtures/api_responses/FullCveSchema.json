@@ -18,19 +18,15 @@
                 "location_private": false,
                 "location_underground": true
             },
-            "counter_measure_links": null,
             "counter_measures": "DNqLxjZZlRYGUucG",
-            "cpe": null,
             "cve_status": "CYFTPsfmyzsfnAGet",
             "cve_type": "tFhEJZWPGJnwlowAFNf",
             "cvss_score": {
                 "v2": 773.0,
                 "v3": 226.7
             },
-            "detection": null,
             "exploit_status": {
                 "available": true,
-                "not_observed": null,
                 "productized": false,
                 "weaponized": true
             },
@@ -40,7 +36,6 @@
                 "researched_publicly": true
             },
             "name": "sorpQWQNLnGtTtTFlMmh",
-            "patch_links": null,
             "patch_status": "hPxBEN",
             "poc": "gDOAAhTtl",
             "poc_links": [

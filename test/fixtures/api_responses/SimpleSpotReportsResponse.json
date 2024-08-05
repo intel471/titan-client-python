@@ -1,5 +1,4 @@
 {
-    "partialResult": null,
     "spotReports": [
         {
             "activity": {
@@ -49,13 +48,10 @@
                                 "url": "http://norton.org/explore/about/"
                             }
                         ],
-                        "related_reports": null,
                         "released_at": 823822692000,
-                        "sensitive_source": null,
                         "text": "uPYREpOVG lGmCzosZLvKTndk PVhgrWlnzRRlmm y LsKopv HOOf CBTMHUJpCcpJVfr QLmmrxuQbZjNaB x xAcuwe QyLH kvNOezFXmPFnYBRn NAYnR bwJk aXTqRvbZGHlS rLqztstuOlwWA mahap CtxgTGPVehCkP vqKqqEOEK ruXrXJXhh DmyjOBbv tIQKvnjPyWFOlv GZJUPvUeGzbJL",
                         "title": "VddbXJQXcH",
-                        "version": "yAVtMe",
-                        "victims": null
+                        "version": "yAVtMe"
                     },
                     "uid": "af095e51360e046c65b08b2170bb76e8"
                 }

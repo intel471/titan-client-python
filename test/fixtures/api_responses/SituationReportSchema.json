@@ -10,7 +10,6 @@
     },
     "data": {
         "situation_report": {
-            "entities": null,
             "link": {
                 "malware_family": {
                     "uid": "45dfeae04e75f86088ed1d8c8b3b1bfe"
@@ -19,12 +18,8 @@
                     "uid": "1266f625df56393de012effe7a9e0dbd"
                 }
             },
-            "related_reports": null,
             "released_at": 888049930000,
-            "sensitive_source": null,
-            "text": "CDuJIutzMLWU DjDnuqNEuTZ lJMkEmGmSvAuh xadlE EuphMI oRtKBBpKASMx kxtZPjylyvDhnJDH syzcUzZxyKnlQ PJl TcCfA IwwudCLCVenQDfu NZtCawMabA",
-            "title": null,
-            "victims": null
+            "text": "CDuJIutzMLWU DjDnuqNEuTZ lJMkEmGmSvAuh xadlE EuphMI oRtKBBpKASMx kxtZPjylyvDhnJDH syzcUzZxyKnlQ PJl TcCfA IwwudCLCVenQDfu NZtCawMabA"
         }
     },
     "last_updated": 1561174250000,

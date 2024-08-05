@@ -1,6 +1,5 @@
 {
     "cursorNext": "WFbzIYbKJsZNCm",
-    "indicatorPartialResult": null,
     "indicatorTotalCount": 2914966,
     "indicators": [
         {
@@ -15,18 +14,14 @@
                 },
                 "expiration": 1633415490000,
                 "indicator_data": {
-                    "address": null,
                     "file": {
                         "download_url": "https://brown-lee.com/terms/",
                         "md5": "873d6105af0dba6bd7ca7b198a1153c0",
                         "sha1": "f7e8a340851cd07ba2e31624ac743c063a84a5be",
                         "sha256": "25b8ad21488b3bb56b0793813f4a97e6ee208f8f3e3a264b014001a6a721100f",
                         "size": 206336,
-                        "ssdeep": null,
                         "type": "PEDLL_x86"
-                    },
-                    "geo_ip": null,
-                    "url": null
+                    }
                 },
                 "indicator_type": "RWFpkPi",
                 "intel_requirements": [
@@ -36,9 +31,7 @@
                 "threat": {
                     "data": {
                         "family": "LDcDLcUqAsZWhyb",
-                        "malware_family_profile_uid": "bb9a2c80ee8a1554ad581c2e66ab1e59",
-                        "variant": null,
-                        "version": null
+                        "malware_family_profile_uid": "bb9a2c80ee8a1554ad581c2e66ab1e59"
                     },
                     "type": "malware",
                     "uid": "111b095d84ba721dcdb97782a2ec9814"

@@ -3,47 +3,33 @@
     "products": [
         {
             "activity": {
-                "first": 206777003000,
-                "last": 942851741000
+                "first": 1659357441000,
+                "last": 1659357441000
             },
             "data": {
-                "availability": "nnvZNviaXWQXNHzZ",
-                "base": "ZKhUtxNrrDmQAcf",
-                "card_holder": "ciADxntTZMAmPmkeLtG",
-                "card_number": null,
-                "card_type": null,
-                "cvv": null,
-                "expiration": "oggUBifmjDukJpNTVcz",
-                "issuer": "YcKckFqGZUXTf",
-                "marketplace": {
-                    "name": "OBLKetUWjpHTHqv",
-                    "price": "TEqezMtzvwVYqCdAXK",
-                    "uid": "91ff0855b964c737ed487fc23e08a55b"
-                },
-                "obfuscated_number": null,
-                "product_type": "RmgCPZSKiYRtoJLNuSRv",
+                "obfuscated_number": "539817**********",
+                "issuer": "DIAMOND TRUST BANK KENYA, LTD.",
+                "availability": "Present",
+                "product_type": "Credit card",
                 "victim": {
-                    "country": "oDEZJcAQJhRJmRSpg",
-                    "ip_address": null,
-                    "os": "linux"
+                    "country": "Kenya"
                 },
-                "installed_at": 736031477000,
-                "stolen_by_form_stealers": 0,
-                "title": "RWlJvDtvGA",
-                "categories": [
-                    "lJvDt"
-                ],
-                "description": "ff2e2e406a64b0437"
+                "expiration": "11/28",
+                "marketplace": {
+                    "name": "russianmarket",
+                    "uid": "a87ff679a2f3e71d9181a67b7542122c",
+                    "price": "59.4USD"
+                },
+                "card_type": "MASTERCARD"
             },
-            "last_updated": 263726433000,
-            "uid": "853f7c90eb1710870e42b9de03645c5d"
+            "last_updated": 1706860616647,
+            "uid": "774eed3e504f05d8f45393e403c3e47d"
         }
     ],
-    "productsPartialResult": null,
-    "products_count": 5421910,
+    "products_count": 27269570,
     "statistics": {
-        "credentials_total_count": 501859,
-        "credit_cards_total_count": 11710373,
-        "other_products_total_count": 35845
+        "credit_cards_total_count": 24523637,
+        "credentials_total_count": 684057,
+        "other_products_total_count": 2061876
     }
 }
