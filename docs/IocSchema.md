@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active_from** | **int** | Date first seen. | [optional] 
@@ -14,6 +15,23 @@ Name | Type | Description | Notes
 **uid** | **str** | Unique IOC identifier. | 
 **value** | **str** | &#x60;Value&#x60; of the indicator. | 
 
+## Example
+
+```python
+from titan_client.models.ioc_schema import IocSchema
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of IocSchema from a JSON string
+ioc_schema_instance = IocSchema.from_json(json)
+# print the JSON string representation of the object
+print(IocSchema.to_json())
+
+# convert the object into a dict
+ioc_schema_dict = ioc_schema_instance.to_dict()
+# create an instance of IocSchema from a dict
+ioc_schema_from_dict = IocSchema.from_dict(ioc_schema_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

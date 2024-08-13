@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **actors_get**
-> SimpleActorsResponse actors_get(actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> SimpleActorsResponse actors_get(actor=actor, forum=forum, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Actors
 
@@ -20,7 +20,7 @@ Returns list of `Actors` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -37,8 +37,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -47,7 +47,7 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.ActorsApi(api_client)
     actor = 'synthx' # str | Search for handles only. At least one of `actor`, `forum` parameter is required. (optional)
     forum = '0day' # str | Search for actors active on given forum. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -57,19 +57,21 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Actors
-        api_response = api_instance.actors_get(actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.actors_get(actor=actor, forum=forum, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ActorsApi->actors_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **actor** | **str**| Search for handles only. At least one of &#x60;actor&#x60;, &#x60;forum&#x60; parameter is required. | [optional] 
  **forum** | **str**| Search for actors active on given forum. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -91,6 +93,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -110,7 +113,7 @@ Returns single Actor object.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -127,8 +130,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -145,7 +148,9 @@ with titan_client.ApiClient(configuration) as api_client:
         print("Exception when calling ActorsApi->actors_uid_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -165,6 +170,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

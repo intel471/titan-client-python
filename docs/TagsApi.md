@@ -19,7 +19,7 @@ Returns list of tags ordered by alphabet. Filtering parameter either displays fu
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -36,8 +36,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -54,7 +54,9 @@ with titan_client.ApiClient(configuration) as api_client:
         print("Exception when calling TagsApi->tags_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -74,6 +76,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

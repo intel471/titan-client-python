@@ -2,12 +2,30 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**credential_occurrences** | [**list[CredentialOccurrenceSchema]**](CredentialOccurrenceSchema.md) | List of &#x60;Credential occurrences&#x60;. | [optional] 
+**credential_occurrences** | [**List[CredentialOccurrenceSchema]**](CredentialOccurrenceSchema.md) | List of &#x60;Credential occurrences&#x60;. | [optional] 
 **credential_occurrences_partial_result** | **bool** | Indicates whether response contains partial result. It could be in case when request took too long and was terminated by timeout. | [optional] 
 **credential_occurrences_total_count** | **int** | Total count of matched credential occurrences. | 
 
+## Example
+
+```python
+from titan_client.models.credential_occurrences_response import CredentialOccurrencesResponse
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CredentialOccurrencesResponse from a JSON string
+credential_occurrences_response_instance = CredentialOccurrencesResponse.from_json(json)
+# print the JSON string representation of the object
+print(CredentialOccurrencesResponse.to_json())
+
+# convert the object into a dict
+credential_occurrences_response_dict = credential_occurrences_response_instance.to_dict()
+# create an instance of CredentialOccurrencesResponse from a dict
+credential_occurrences_response_from_dict = CredentialOccurrencesResponse.from_dict(credential_occurrences_response_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

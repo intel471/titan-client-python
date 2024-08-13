@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 # flake8: noqa
 
 # import apis into api package
@@ -23,3 +21,4 @@ from titan_client.api.tags_api import TagsApi
 from titan_client.api.vulnerabilities_api import VulnerabilitiesApi
 from titan_client.api.watchers_api import WatchersApi
 from titan_client.api.yara_api import YARAApi
+

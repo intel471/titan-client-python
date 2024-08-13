@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **yara_get**
-> YARASearchResponse yara_get(yara=yara, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> YARASearchResponse yara_get(yara=yara, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search Malware Intelligence YARA
 
@@ -19,7 +19,7 @@ Returns list of `YARA` matching filter criteria. Malware Intelligence is a diffe
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -36,8 +36,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -51,7 +51,7 @@ with titan_client.ApiClient(configuration) as api_client:
     malware_family_profile_uid = 'malware_family_profile_uid_example' # str | Search YARA by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid=d073f7352b82c1b8eedda381590adced (optional)
     confidence = 'confidence_example' # str | Search YARA by confidence. See detailed description of confidence levels below. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -62,13 +62,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Malware Intelligence YARA
-        api_response = api_instance.yara_get(yara=yara, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.yara_get(yara=yara, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling YARAApi->yara_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -79,7 +81,7 @@ Name | Type | Description  | Notes
  **malware_family_profile_uid** | **str**| Search YARA by malware family profile UID. Useful for getting context for everything we have around specific malware family, for instance https://api.intel471.com/v1/search?malwareFamilyProfileUid&#x3D;d073f7352b82c1b8eedda381590adced | [optional] 
  **confidence** | **str**| Search YARA by confidence. See detailed description of confidence levels below. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -102,6 +104,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

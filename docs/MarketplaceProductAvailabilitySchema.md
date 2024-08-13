@@ -3,6 +3,7 @@
 Product's availability.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

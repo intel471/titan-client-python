@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **search_get**
-> SearchSchema search_get(text=text, ip_address=ip_address, url=url, contact_info_email=contact_info_email, post=post, private_message=private_message, private_message_subject=private_message_subject, actor=actor, entity=entity, entity_type=entity_type, victim=victim, forum=forum, ioc=ioc, ioc_type=ioc_type, report=report, report_tag=report_tag, report_location=report_location, report_admiralty_code=report_admiralty_code, report_title=report_title, document_type=document_type, document_family=document_family, event=event, indicator=indicator, yara=yara, nids=nids, malware_report=malware_report, spot_report=spot_report, breach_alert=breach_alert, situation_report=situation_report, event_type=event_type, indicator_type=indicator_type, nids_type=nids_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, news=news, news_type=news_type, gir=gir, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, credential_occurrence_uid=credential_occurrence_uid, domain=domain, credential_login=credential_login, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, accessed_url=accessed_url, detected_malware=detected_malware, data_leak_post=data_leak_post, data_leak_posts_by_thread_uid=data_leak_posts_by_thread_uid, data_leak_blog=data_leak_blog, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> SearchSchema search_get(text=text, ip_address=ip_address, url=url, contact_info_email=contact_info_email, post=post, private_message=private_message, private_message_subject=private_message_subject, actor=actor, entity=entity, entity_type=entity_type, victim=victim, forum=forum, ioc=ioc, ioc_type=ioc_type, report=report, report_tag=report_tag, report_location=report_location, report_admiralty_code=report_admiralty_code, report_title=report_title, document_type=document_type, document_family=document_family, event=event, indicator=indicator, yara=yara, nids=nids, malware_report=malware_report, spot_report=spot_report, breach_alert=breach_alert, situation_report=situation_report, event_type=event_type, indicator_type=indicator_type, nids_type=nids_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, news=news, news_type=news_type, gir=gir, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, credential_occurrence_uid=credential_occurrence_uid, domain=domain, credential_login=credential_login, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, accessed_url=accessed_url, detected_malware=detected_malware, data_leak_post=data_leak_post, data_leak_posts_by_thread_uid=data_leak_posts_by_thread_uid, data_leak_blog=data_leak_blog, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search - Global Search
 
@@ -19,7 +19,7 @@ Returns selection of results matching filter criteria. Can include the following
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -36,8 +36,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -120,7 +120,7 @@ with titan_client.ApiClient(configuration) as api_client:
     data_leak_post = 'hacker' # str | Search text in data leak posts and topics (including images via OCR). (optional)
     data_leak_posts_by_thread_uid = 'data_leak_posts_by_thread_uid_example' # str | Search data leak posts by thread uid. (optional)
     data_leak_blog = 'opensc.ws' # str | Search data leak posts in a given data leak blog. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -131,13 +131,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search - Global Search
-        api_response = api_instance.search_get(text=text, ip_address=ip_address, url=url, contact_info_email=contact_info_email, post=post, private_message=private_message, private_message_subject=private_message_subject, actor=actor, entity=entity, entity_type=entity_type, victim=victim, forum=forum, ioc=ioc, ioc_type=ioc_type, report=report, report_tag=report_tag, report_location=report_location, report_admiralty_code=report_admiralty_code, report_title=report_title, document_type=document_type, document_family=document_family, event=event, indicator=indicator, yara=yara, nids=nids, malware_report=malware_report, spot_report=spot_report, breach_alert=breach_alert, situation_report=situation_report, event_type=event_type, indicator_type=indicator_type, nids_type=nids_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, news=news, news_type=news_type, gir=gir, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, credential_occurrence_uid=credential_occurrence_uid, domain=domain, credential_login=credential_login, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, accessed_url=accessed_url, detected_malware=detected_malware, data_leak_post=data_leak_post, data_leak_posts_by_thread_uid=data_leak_posts_by_thread_uid, data_leak_blog=data_leak_blog, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.search_get(text=text, ip_address=ip_address, url=url, contact_info_email=contact_info_email, post=post, private_message=private_message, private_message_subject=private_message_subject, actor=actor, entity=entity, entity_type=entity_type, victim=victim, forum=forum, ioc=ioc, ioc_type=ioc_type, report=report, report_tag=report_tag, report_location=report_location, report_admiralty_code=report_admiralty_code, report_title=report_title, document_type=document_type, document_family=document_family, event=event, indicator=indicator, yara=yara, nids=nids, malware_report=malware_report, spot_report=spot_report, breach_alert=breach_alert, situation_report=situation_report, event_type=event_type, indicator_type=indicator_type, nids_type=nids_type, threat_type=threat_type, threat_uid=threat_uid, malware_family=malware_family, malware_family_profile_uid=malware_family_profile_uid, confidence=confidence, cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, instant_message=instant_message, instant_message_actor=instant_message_actor, instant_message_service=instant_message_service, instant_message_server=instant_message_server, instant_message_channel=instant_message_channel, news=news, news_type=news_type, gir=gir, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, credential_occurrence_uid=credential_occurrence_uid, domain=domain, credential_login=credential_login, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, accessed_url=accessed_url, detected_malware=detected_malware, data_leak_post=data_leak_post, data_leak_posts_by_thread_uid=data_leak_posts_by_thread_uid, data_leak_blog=data_leak_blog, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling GlobalSearchApi->search_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -217,7 +219,7 @@ Name | Type | Description  | Notes
  **data_leak_post** | **str**| Search text in data leak posts and topics (including images via OCR). | [optional] 
  **data_leak_posts_by_thread_uid** | **str**| Search data leak posts by thread uid. | [optional] 
  **data_leak_blog** | **str**| Search data leak posts in a given data leak blog. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -240,6 +242,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

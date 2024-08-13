@@ -3,6 +3,7 @@
 Returns list of Alerts matching filter criteria excluding the following types: Malware reports, YARA
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor** | [**SimpleActorSchema**](SimpleActorSchema.md) |  | [optional] 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 **entity** | [**EntitiesSchema**](EntitiesSchema.md) |  | [optional] 
 **event** | [**EventSchema**](EventSchema.md) |  | [optional] 
 **found_time** | **int** | Date when alert was created. | 
-**highlights** | [**list[AlertListSchemaHighlightsInner]**](AlertListSchemaHighlightsInner.md) | Text snippets with &#x60;highlights&#x60; matching search terms. | [optional] 
+**highlights** | [**List[AlertListSchemaHighlightsInner]**](AlertListSchemaHighlightsInner.md) | Text snippets with &#x60;highlights&#x60; matching search terms. | [optional] 
 **indicator** | [**IndicatorSearchSchema**](IndicatorSearchSchema.md) |  | [optional] 
 **instant_message** | [**InstantMessageSchema**](InstantMessageSchema.md) |  | [optional] 
 **post** | [**PostSchema**](PostSchema.md) |  | [optional] 
@@ -26,6 +27,23 @@ Name | Type | Description | Notes
 **watcher_group_uid** | **str** | Unique watcher group identifier. Displayed if user has access to this watcher group. | [optional] 
 **watcher_uid** | **str** | Unique watcher identifier. Displayed if user has access to this watcher. | [optional] 
 
+## Example
+
+```python
+from titan_client.models.alert_list_schema import AlertListSchema
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AlertListSchema from a JSON string
+alert_list_schema_instance = AlertListSchema.from_json(json)
+# print the JSON string representation of the object
+print(AlertListSchema.to_json())
+
+# convert the object into a dict
+alert_list_schema_dict = alert_list_schema_instance.to_dict()
+# create an instance of AlertListSchema from a dict
+alert_list_schema_from_dict = AlertListSchema.from_dict(alert_list_schema_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

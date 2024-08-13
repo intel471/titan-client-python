@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **credential_sets_accessed_urls_get**
-> CredentialSetsAccessedUrlsResponse credential_sets_accessed_urls_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> CredentialSetsAccessedUrlsResponse credential_sets_accessed_urls_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search credential set accessed urls
 
@@ -28,7 +28,7 @@ Returns list of `Credential set accessed urls` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -45,8 +45,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -59,7 +59,7 @@ with titan_client.ApiClient(configuration) as api_client:
     accessed_url = 'accessed_url_example' # str | Search by accessed url. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
     victim = 'Diagnostica' # str | Search by purported victim. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -70,13 +70,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search credential set accessed urls
-        api_response = api_instance.credential_sets_accessed_urls_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.credential_sets_accessed_urls_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credential_sets_accessed_urls_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
  **accessed_url** | **str**| Search by accessed url. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
  **victim** | **str**| Search by purported victim. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -109,6 +111,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -117,7 +120,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credential_sets_accessed_urls_stream_get**
-> CredentialSetsAccessedUrlsStreamResponse credential_sets_accessed_urls_stream_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+> CredentialSetsAccessedUrlsStreamResponse credential_sets_accessed_urls_stream_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
 
 Credential set accessed url stream
 
@@ -128,7 +131,7 @@ Returns list of `Credential set accessed urls` matching filter criteria. Stream 
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -145,8 +148,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -159,7 +162,7 @@ with titan_client.ApiClient(configuration) as api_client:
     accessed_url = 'accessed_url_example' # str | Search by accessed url. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
     victim = 'Diagnostica' # str | Search by purported victim. (optional)
-    _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -169,13 +172,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Credential set accessed url stream
-        api_response = api_instance.credential_sets_accessed_urls_stream_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+        api_response = api_instance.credential_sets_accessed_urls_stream_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, accessed_url=accessed_url, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credential_sets_accessed_urls_stream_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -185,7 +190,7 @@ Name | Type | Description  | Notes
  **accessed_url** | **str**| Search by accessed url. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
  **victim** | **str**| Search by purported victim. | [optional] 
- **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -207,6 +212,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -215,7 +221,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credential_sets_get**
-> CredentialSetsResponse credential_sets_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> CredentialSetsResponse credential_sets_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search credential sets
 
@@ -226,7 +232,7 @@ Returns list of `Credential sets` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -243,8 +249,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -256,7 +262,7 @@ with titan_client.ApiClient(configuration) as api_client:
     credential_set_uid = 'credential_set_uid_example' # str | Search by credential set uid. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
     victim = 'Diagnostica' # str | Search by purported victim. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -267,13 +273,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search credential sets
-        api_response = api_instance.credential_sets_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.credential_sets_get(text=text, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credential_sets_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -282,7 +290,7 @@ Name | Type | Description  | Notes
  **credential_set_uid** | **str**| Search by credential set uid. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
  **victim** | **str**| Search by purported victim. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -305,6 +313,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -313,7 +322,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credential_sets_stream_get**
-> CredentialSetsStreamResponse credential_sets_stream_get(text=text, credential_set_name=credential_set_name, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+> CredentialSetsStreamResponse credential_sets_stream_get(text=text, credential_set_name=credential_set_name, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
 
 Credential set stream
 
@@ -324,7 +333,7 @@ Returns list of `Credential sets` matching filter criteria. Stream pagination is
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -341,8 +350,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -353,7 +362,7 @@ with titan_client.ApiClient(configuration) as api_client:
     credential_set_name = 'credential_set_name_example' # str | Search by credential set name. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
     victim = 'Diagnostica' # str | Search by purported victim. (optional)
-    _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -363,13 +372,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Credential set stream
-        api_response = api_instance.credential_sets_stream_get(text=text, credential_set_name=credential_set_name, gir=gir, victim=victim, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+        api_response = api_instance.credential_sets_stream_get(text=text, credential_set_name=credential_set_name, gir=gir, victim=victim, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credential_sets_stream_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -377,7 +388,7 @@ Name | Type | Description  | Notes
  **credential_set_name** | **str**| Search by credential set name. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
  **victim** | **str**| Search by purported victim. | [optional] 
- **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -399,6 +410,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -407,7 +419,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credentials_accessed_urls_get**
-> CredentialAccessedUrlsResponse credentials_accessed_urls_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> CredentialAccessedUrlsResponse credentials_accessed_urls_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search credential accessed urls
 
@@ -418,7 +430,7 @@ Returns list of `Credential accessed urls` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -435,8 +447,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -449,7 +461,7 @@ with titan_client.ApiClient(configuration) as api_client:
     domain = 'domain_example' # str | Search by credential domain (detection domain). (optional)
     affiliation_group = 'affiliation_group_example' # str | Search by credential affiliation group. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -460,13 +472,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search credential accessed urls
-        api_response = api_instance.credentials_accessed_urls_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.credentials_accessed_urls_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credentials_accessed_urls_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -476,7 +490,7 @@ Name | Type | Description  | Notes
  **domain** | **str**| Search by credential domain (detection domain). | [optional] 
  **affiliation_group** | **str**| Search by credential affiliation group. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -499,6 +513,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -507,7 +522,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credentials_accessed_urls_stream_get**
-> CredentialAccessedUrlsStreamResponse credentials_accessed_urls_stream_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+> CredentialAccessedUrlsStreamResponse credentials_accessed_urls_stream_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
 
 Credential accessed url stream
 
@@ -518,7 +533,7 @@ Returns list of `Credential accessed urls` matching filter criteria. Stream pagi
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -535,8 +550,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -549,7 +564,7 @@ with titan_client.ApiClient(configuration) as api_client:
     domain = 'domain_example' # str | Search by credential domain (detection domain). (optional)
     affiliation_group = 'affiliation_group_example' # str | Search by credential affiliation group. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -559,13 +574,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Credential accessed url stream
-        api_response = api_instance.credentials_accessed_urls_stream_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+        api_response = api_instance.credentials_accessed_urls_stream_get(text=text, credential_uid=credential_uid, accessed_url=accessed_url, domain=domain, affiliation_group=affiliation_group, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credentials_accessed_urls_stream_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -575,7 +592,7 @@ Name | Type | Description  | Notes
  **domain** | **str**| Search by credential domain (detection domain). | [optional] 
  **affiliation_group** | **str**| Search by credential affiliation group. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -597,6 +614,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -605,7 +623,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credentials_get**
-> CredentialsResponse credentials_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> CredentialsResponse credentials_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search credentials
 
@@ -616,7 +634,7 @@ Returns list of `Credentials` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -633,8 +651,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -661,7 +679,7 @@ with titan_client.ApiClient(configuration) as api_client:
     credential_login = 'credential_login_example' # str | Search by credential login. (optional)
     detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -672,13 +690,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search credentials
-        api_response = api_instance.credentials_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.credentials_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credentials_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -702,7 +722,7 @@ Name | Type | Description  | Notes
  **credential_login** | **str**| Search by credential login. | [optional] 
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -725,6 +745,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -733,7 +754,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credentials_occurrences_get**
-> CredentialOccurrencesResponse credentials_occurrences_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> CredentialOccurrencesResponse credentials_occurrences_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search credential occurrences
 
@@ -744,7 +765,7 @@ Returns list of `Credential occurrences` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -761,8 +782,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -791,7 +812,7 @@ with titan_client.ApiClient(configuration) as api_client:
     detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
     accessed_url = 'accessed_url_example' # str | Search by accessed url. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -802,13 +823,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search credential occurrences
-        api_response = api_instance.credentials_occurrences_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.credentials_occurrences_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credentials_occurrences_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -834,7 +857,7 @@ Name | Type | Description  | Notes
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
  **accessed_url** | **str**| Search by accessed url. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -857,6 +880,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -865,7 +889,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credentials_occurrences_stream_get**
-> CredentialOccurrencesStreamResponse credentials_occurrences_stream_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+> CredentialOccurrencesStreamResponse credentials_occurrences_stream_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
 
 Credential occurrence stream
 
@@ -876,7 +900,7 @@ Returns list of `Credential occurrences` matching filter criteria. Stream pagina
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -893,8 +917,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -923,7 +947,7 @@ with titan_client.ApiClient(configuration) as api_client:
     detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
     accessed_url = 'accessed_url_example' # str | Search by accessed url. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -933,13 +957,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Credential occurrence stream
-        api_response = api_instance.credentials_occurrences_stream_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+        api_response = api_instance.credentials_occurrences_stream_get(text=text, credential_occurrence_uid=credential_occurrence_uid, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, accessed_url=accessed_url, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credentials_occurrences_stream_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -965,7 +991,7 @@ Name | Type | Description  | Notes
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
  **accessed_url** | **str**| Search by accessed url. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -987,6 +1013,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -995,7 +1022,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **credentials_stream_get**
-> CredentialsStreamResponse credentials_stream_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+> CredentialsStreamResponse credentials_stream_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
 
 Credential stream
 
@@ -1006,7 +1033,7 @@ Returns list of `Credentials` matching filter criteria. Stream pagination is bas
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -1023,8 +1050,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -1051,7 +1078,7 @@ with titan_client.ApiClient(configuration) as api_client:
     credential_login = 'credential_login_example' # str | Search by credential login. (optional)
     detected_malware = 'detected_malware_example' # str | Search by credential detected malware. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -1061,13 +1088,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Credential stream
-        api_response = api_instance.credentials_stream_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
+        api_response = api_instance.credentials_stream_get(text=text, credential_uid=credential_uid, credential_set_name=credential_set_name, credential_set_uid=credential_set_uid, domain=domain, affiliation_group=affiliation_group, password_strength=password_strength, password_length_gte=password_length_gte, password_lowercase_gte=password_lowercase_gte, password_uppercase_gte=password_uppercase_gte, password_numbers_gte=password_numbers_gte, password_punctuation_gte=password_punctuation_gte, password_symbols_gte=password_symbols_gte, password_separators_gte=password_separators_gte, password_other_gte=password_other_gte, password_entropy_gte=password_entropy_gte, password_plain=password_plain, credential_login=credential_login, detected_malware=detected_malware, gir=gir, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, cursor=cursor, filter_by_gir_set=filter_by_gir_set, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CredentialsApi->credentials_stream_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1091,7 +1120,7 @@ Name | Type | Description  | Notes
  **credential_login** | **str**| Search by credential login. | [optional] 
  **detected_malware** | **str**| Search by credential detected malware. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -1113,6 +1142,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

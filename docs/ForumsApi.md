@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **posts_get**
-> PostsResponse posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> PostsResponse posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Forum Posts
 
@@ -20,7 +20,7 @@ Returns list of `Posts` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -37,8 +37,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -49,7 +49,7 @@ with titan_client.ApiClient(configuration) as api_client:
     posts_by_thread_uid = '?' # str | Search posts by thread uid. At least one of `post`, `postsByThreadUid`, `forum` is required. (optional)
     actor = 'armani' # str | Search posts authored by given actor handle. (optional)
     forum = 'opensc.ws' # str | Search posts in a given forum. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -59,13 +59,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Forum Posts
-        api_response = api_instance.posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.posts_get(post=post, posts_by_thread_uid=posts_by_thread_uid, actor=actor, forum=forum, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ForumsApi->posts_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -73,7 +75,7 @@ Name | Type | Description  | Notes
  **posts_by_thread_uid** | **str**| Search posts by thread uid. At least one of &#x60;post&#x60;, &#x60;postsByThreadUid&#x60;, &#x60;forum&#x60; is required. | [optional] 
  **actor** | **str**| Search posts authored by given actor handle. | [optional] 
  **forum** | **str**| Search posts in a given forum. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -95,6 +97,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -103,7 +106,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **private_messages_get**
-> PrivateMessagesResponse private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> PrivateMessagesResponse private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Private Messages
 
@@ -114,7 +117,7 @@ Returns list of `Private messages` matching filter criteria.
 * Basic Authentication (BasicAuth):
 ```python
 from __future__ import print_function
-import time
+import os
 import titan_client
 from titan_client.rest import ApiException
 from pprint import pprint
@@ -131,8 +134,8 @@ configuration = titan_client.Configuration(
 
 # Configure HTTP basic authorization: BasicAuth
 configuration = titan_client.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
@@ -143,7 +146,7 @@ with titan_client.ApiClient(configuration) as api_client:
     private_message_subject = 'sell' # str | Search text in subjects of Private Messages. (optional)
     actor = 'schott' # str | Search messages authored or received by given actor handle. (optional)
     forum = 'opensc.ws' # str | Search messages in a given forum. (optional)
-    _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -153,13 +156,15 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Private Messages
-        api_response = api_instance.private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.private_messages_get(private_message=private_message, private_message_subject=private_message_subject, actor=actor, forum=forum, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ForumsApi->private_messages_get: %s\n" % e)
 ```
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -167,7 +172,7 @@ Name | Type | Description  | Notes
  **private_message_subject** | **str**| Search text in subjects of Private Messages. | [optional] 
  **actor** | **str**| Search messages authored or received by given actor handle. | [optional] 
  **forum** | **str**| Search messages in a given forum. | [optional] 
- **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -189,6 +194,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
