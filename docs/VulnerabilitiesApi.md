@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **cve_reports_get**
-> SimpleCvesResponse cve_reports_get(cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+> SimpleCvesResponse cve_reports_get(cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, gir=gir, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
 
 Search Vulnerability Reports (CVE)
 
@@ -55,6 +55,7 @@ with titan_client.ApiClient(configuration) as api_client:
     product_name = 'Microsoft' # str | Search CVE reports by product name. (optional)
     gir = '1.1.3' # str | Search by General Intel Requirements (GIR). <br />Consult your collection manager for a General Intelligence Requirements program. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -65,7 +66,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Vulnerability Reports (CVE)
-        api_response = api_instance.cve_reports_get(cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, gir=gir, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
+        api_response = api_instance.cve_reports_get(cve_report=cve_report, cve_type=cve_type, cve_status=cve_status, cve_name=cve_name, risk_level=risk_level, patch_status=patch_status, vendor_name=vendor_name, product_name=product_name, gir=gir, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, filter_by_gir_set=filter_by_gir_set, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VulnerabilitiesApi->cve_reports_get: %s\n" % e)
@@ -85,6 +86,7 @@ Name | Type | Description  | Notes
  **product_name** | **str**| Search CVE reports by product name. | [optional] 
  **gir** | **str**| Search by General Intel Requirements (GIR). &lt;br /&gt;Consult your collection manager for a General Intelligence Requirements program. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 

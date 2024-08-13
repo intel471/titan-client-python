@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "1.20.0.1"
+__version__ = "1.20.0.2"
 
 # import apis into sdk package
 from titan_client.api.actors_api import ActorsApi
@@ -208,7 +208,6 @@ from titan_client.models.marketplace_product_search_schema_activity import Marke
 from titan_client.models.marketplace_product_search_schema_data import MarketplaceProductSearchSchemaData
 from titan_client.models.marketplace_product_statistics_schema import MarketplaceProductStatisticsSchema
 from titan_client.models.marketplace_product_stream_response import MarketplaceProductStreamResponse
-from titan_client.models.marketplace_product_type_schema import MarketplaceProductTypeSchema
 from titan_client.models.marketplace_resource_search_response import MarketplaceResourceSearchResponse
 from titan_client.models.marketplace_resource_search_schema import MarketplaceResourceSearchSchema
 from titan_client.models.marketplace_resource_search_schema_activity import MarketplaceResourceSearchSchemaActivity

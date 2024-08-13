@@ -41,7 +41,7 @@ class MarketplaceProductCredentialSchema(object):
         'availability': 'MarketplaceProductAvailabilitySchema',
         'installed_at': 'int',
         'marketplace': 'MarketplaceProductMarketplaceSchema',
-        'product_type': 'MarketplaceProductTypeSchema',
+        'product_type': 'str',
         'stolen_by_form_stealers': 'int',
         'title': 'str',
         'victim': 'MarketplaceProductCredentialSchemaVictim'
@@ -72,13 +72,20 @@ class MarketplaceProductCredentialSchema(object):
         self._victim = None
         self.discriminator = None
 
-        self.availability = availability
-        self.installed_at = installed_at
-        self.marketplace = marketplace
-        self.product_type = product_type
-        self.stolen_by_form_stealers = stolen_by_form_stealers
-        self.title = title
-        self.victim = victim
+        if availability is not None:
+            self.availability = availability
+        if installed_at is not None:
+            self.installed_at = installed_at
+        if marketplace is not None:
+            self.marketplace = marketplace
+        if product_type is not None:
+            self.product_type = product_type
+        if stolen_by_form_stealers is not None:
+            self.stolen_by_form_stealers = stolen_by_form_stealers
+        if title is not None:
+            self.title = title
+        if victim is not None:
+            self.victim = victim
 
     @property
     def availability(self):
@@ -98,8 +105,6 @@ class MarketplaceProductCredentialSchema(object):
         :param availability: The availability of this MarketplaceProductCredentialSchema.  # noqa: E501
         :type availability: MarketplaceProductAvailabilitySchema
         """
-        if self.local_vars_configuration.client_side_validation and availability is None:  # noqa: E501
-            raise ValueError("Invalid value for `availability`, must not be `None`")  # noqa: E501
 
         self._availability = availability
 
@@ -123,8 +128,6 @@ class MarketplaceProductCredentialSchema(object):
         :param installed_at: The installed_at of this MarketplaceProductCredentialSchema.  # noqa: E501
         :type installed_at: int
         """
-        if self.local_vars_configuration.client_side_validation and installed_at is None:  # noqa: E501
-            raise ValueError("Invalid value for `installed_at`, must not be `None`")  # noqa: E501
 
         self._installed_at = installed_at
 
@@ -146,8 +149,6 @@ class MarketplaceProductCredentialSchema(object):
         :param marketplace: The marketplace of this MarketplaceProductCredentialSchema.  # noqa: E501
         :type marketplace: MarketplaceProductMarketplaceSchema
         """
-        if self.local_vars_configuration.client_side_validation and marketplace is None:  # noqa: E501
-            raise ValueError("Invalid value for `marketplace`, must not be `None`")  # noqa: E501
 
         self._marketplace = marketplace
 
@@ -155,9 +156,10 @@ class MarketplaceProductCredentialSchema(object):
     def product_type(self):
         """Gets the product_type of this MarketplaceProductCredentialSchema.  # noqa: E501
 
+        Type of product  # noqa: E501
 
         :return: The product_type of this MarketplaceProductCredentialSchema.  # noqa: E501
-        :rtype: MarketplaceProductTypeSchema
+        :rtype: str
         """
         return self._product_type
 
@@ -165,12 +167,17 @@ class MarketplaceProductCredentialSchema(object):
     def product_type(self, product_type):
         """Sets the product_type of this MarketplaceProductCredentialSchema.
 
+        Type of product  # noqa: E501
 
         :param product_type: The product_type of this MarketplaceProductCredentialSchema.  # noqa: E501
-        :type product_type: MarketplaceProductTypeSchema
+        :type product_type: str
         """
-        if self.local_vars_configuration.client_side_validation and product_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `product_type`, must not be `None`")  # noqa: E501
+        allowed_values = ["Credential"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and product_type not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `product_type` ({0}), must be one of {1}"  # noqa: E501
+                .format(product_type, allowed_values)
+            )
 
         self._product_type = product_type
 
@@ -194,8 +201,6 @@ class MarketplaceProductCredentialSchema(object):
         :param stolen_by_form_stealers: The stolen_by_form_stealers of this MarketplaceProductCredentialSchema.  # noqa: E501
         :type stolen_by_form_stealers: int
         """
-        if self.local_vars_configuration.client_side_validation and stolen_by_form_stealers is None:  # noqa: E501
-            raise ValueError("Invalid value for `stolen_by_form_stealers`, must not be `None`")  # noqa: E501
 
         self._stolen_by_form_stealers = stolen_by_form_stealers
 
@@ -219,8 +224,6 @@ class MarketplaceProductCredentialSchema(object):
         :param title: The title of this MarketplaceProductCredentialSchema.  # noqa: E501
         :type title: str
         """
-        if self.local_vars_configuration.client_side_validation and title is None:  # noqa: E501
-            raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
 
         self._title = title
 
@@ -242,8 +245,6 @@ class MarketplaceProductCredentialSchema(object):
         :param victim: The victim of this MarketplaceProductCredentialSchema.  # noqa: E501
         :type victim: MarketplaceProductCredentialSchemaVictim
         """
-        if self.local_vars_configuration.client_side_validation and victim is None:  # noqa: E501
-            raise ValueError("Invalid value for `victim`, must not be `None`")  # noqa: E501
 
         self._victim = victim
 

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **alerts_get**
-> AlertListSchemaResponse alerts_get(_from=_from, until=until, count=count, offset=offset, watcher_group=watcher_group, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
+> AlertListSchemaResponse alerts_get(_from=_from, var_from=var_from, until=until, count=count, offset=offset, watcher_group=watcher_group, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
 
 Get Alerts
 
@@ -45,6 +45,7 @@ with titan_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = titan_client.AlertsApi(api_client)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     count = 10 # int | Returns given number of records starting from `offset` position. (optional) (default to 10)
     offset = 'offset_example' # str | UID of the latest already acquired alert (optional)
@@ -56,7 +57,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Get Alerts
-        api_response = api_instance.alerts_get(_from=_from, until=until, count=count, offset=offset, watcher_group=watcher_group, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
+        api_response = api_instance.alerts_get(_from=_from, var_from=var_from, until=until, count=count, offset=offset, watcher_group=watcher_group, show_read=show_read, display_watchers=display_watchers, mark_as_read=mark_as_read, sort=sort)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_get: %s\n" % e)
@@ -67,6 +68,7 @@ with titan_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **count** | **int**| Returns given number of records starting from &#x60;offset&#x60; position. | [optional] [default to 10]
  **offset** | **str**| UID of the latest already acquired alert | [optional] 

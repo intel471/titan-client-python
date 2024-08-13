@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **news_get**
-> SimpleNewsResponse news_get(news=news, news_type=news_type, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> SimpleNewsResponse news_get(news=news, news_type=news_type, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search News
 
@@ -48,6 +48,7 @@ with titan_client.ApiClient(configuration) as api_client:
     news = 'vulnerability' # str | Free text News search. (optional)
     news_type = 'ANNOUNCEMENT' # str | Search News by news type. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -57,7 +58,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search News
-        api_response = api_instance.news_get(news=news, news_type=news_type, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.news_get(news=news, news_type=news_type, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling NewsApi->news_get: %s\n" % e)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
  **news** | **str**| Free text News search. | [optional] 
  **news_type** | **str**| Search News by news type. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 

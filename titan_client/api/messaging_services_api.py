@@ -58,6 +58,8 @@ class MessagingServicesApi(object):
         :type instant_message_channel: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -110,6 +112,8 @@ class MessagingServicesApi(object):
         :type instant_message_channel: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -155,6 +159,7 @@ class MessagingServicesApi(object):
             'instant_message_server',
             'instant_message_channel',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -208,6 +213,8 @@ class MessagingServicesApi(object):
             query_params.append(('instantMessageChannel', local_var_params['instant_message_channel']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **marketplaces_get**
-> MarketplaceSearchResponse marketplaces_get(text=text, status=status, tier=tier, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> MarketplaceSearchResponse marketplaces_get(text=text, status=status, tier=tier, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Marketplaces
 
@@ -54,6 +54,7 @@ with titan_client.ApiClient(configuration) as api_client:
     status = 'status_example' # str | Search by marketplace status. (optional)
     tier = 'tier_example' # str | Search by marketplace tier. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -63,7 +64,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Marketplaces
-        api_response = api_instance.marketplaces_get(text=text, status=status, tier=tier, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.marketplaces_get(text=text, status=status, tier=tier, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_get: %s\n" % e)
@@ -77,6 +78,7 @@ Name | Type | Description  | Notes
  **status** | **str**| Search by marketplace status. | [optional] 
  **tier** | **str**| Search by marketplace tier. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -106,7 +108,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_products_get**
-> MarketplaceProductSearchResponse marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> MarketplaceProductSearchResponse marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, bin=bin, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Products
 
@@ -148,6 +150,7 @@ with titan_client.ApiClient(configuration) as api_client:
     vendor_uid = '147540e129e096fa91700e9db6588354' # str | Vendor unique identifier. (optional)
     bin = '4543' # str | Search by product BIN. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -157,7 +160,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Products
-        api_response = api_instance.marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.marketplaces_products_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, bin=bin, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_products_get: %s\n" % e)
@@ -173,6 +176,7 @@ Name | Type | Description  | Notes
  **vendor_uid** | **str**| Vendor unique identifier. | [optional] 
  **bin** | **str**| Search by product BIN. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -202,7 +206,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_products_stream_get**
-> MarketplaceProductStreamResponse marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+> MarketplaceProductStreamResponse marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, bin=bin, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
 
 Products stream
 
@@ -245,6 +249,7 @@ with titan_client.ApiClient(configuration) as api_client:
     cursor = 'cursor_example' # str | Continue scrolling from cursor. (optional)
     bin = '4543' # str | Search by product BIN. (optional)
     _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -252,7 +257,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Products stream
-        api_response = api_instance.marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, bin=bin, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+        api_response = api_instance.marketplaces_products_stream_get(text=text, availability=availability, product_type=product_type, vendor_uid=vendor_uid, cursor=cursor, bin=bin, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_products_stream_get: %s\n" % e)
@@ -269,6 +274,7 @@ Name | Type | Description  | Notes
  **cursor** | **str**| Continue scrolling from cursor. | [optional] 
  **bin** | **str**| Search by product BIN. | [optional] 
  **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -296,7 +302,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_resources_get**
-> MarketplaceResourceSearchResponse marketplaces_resources_get(text=text, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> MarketplaceResourceSearchResponse marketplaces_resources_get(text=text, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Resources
 
@@ -334,6 +340,7 @@ with titan_client.ApiClient(configuration) as api_client:
     api_instance = titan_client.MarketplacesApi(api_client)
     text = 'asyncrat' # str | Free text resources search. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -343,7 +350,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Resources
-        api_response = api_instance.marketplaces_resources_get(text=text, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.marketplaces_resources_get(text=text, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_resources_get: %s\n" % e)
@@ -355,6 +362,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **text** | **str**| Free text resources search. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -384,7 +392,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_resources_stream_get**
-> MarketplaceResourceStreamResponse marketplaces_resources_stream_get(text=text, cursor=cursor, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+> MarketplaceResourceStreamResponse marketplaces_resources_stream_get(text=text, cursor=cursor, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
 
 Resources stream
 
@@ -423,6 +431,7 @@ with titan_client.ApiClient(configuration) as api_client:
     text = 'asyncrat' # str | Free text resources search. (optional)
     cursor = 'cursor_example' # str | Continue scrolling from cursor. (optional)
     _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -430,7 +439,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Resources stream
-        api_response = api_instance.marketplaces_resources_stream_get(text=text, cursor=cursor, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+        api_response = api_instance.marketplaces_resources_stream_get(text=text, cursor=cursor, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_resources_stream_get: %s\n" % e)
@@ -443,6 +452,7 @@ Name | Type | Description  | Notes
  **text** | **str**| Free text resources search. | [optional] 
  **cursor** | **str**| Continue scrolling from cursor. | [optional] 
  **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -470,7 +480,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_vendors_get**
-> MarketplaceVendorSearchResponse marketplaces_vendors_get(text=text, marketplace_uid=marketplace_uid, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+> MarketplaceVendorSearchResponse marketplaces_vendors_get(text=text, marketplace_uid=marketplace_uid, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
 
 Search Vendors
 
@@ -509,6 +519,7 @@ with titan_client.ApiClient(configuration) as api_client:
     text = 'asyncrat' # str | Free text vendor search. (optional)
     marketplace_uid = 'c81e728d9d4c2f636f067f89cc14862c' # str | Unique identifier of marketplace. (optional)
     _from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
+    var_from = '2day' # str | Long unix time or string time range. Search data starting from given creation time (including). (optional)
     until = '1day' # str | Long unix time or string time range. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '2day' # str | Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1day' # str | Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -518,7 +529,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Search Vendors
-        api_response = api_instance.marketplaces_vendors_get(text=text, marketplace_uid=marketplace_uid, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
+        api_response = api_instance.marketplaces_vendors_get(text=text, marketplace_uid=marketplace_uid, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, sort=sort, offset=offset, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_vendors_get: %s\n" % e)
@@ -531,6 +542,7 @@ Name | Type | Description  | Notes
  **text** | **str**| Free text vendor search. | [optional] 
  **marketplace_uid** | **str**| Unique identifier of marketplace. | [optional] 
  **_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time or string time range. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time or string time range. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time or string time range. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 
@@ -560,7 +572,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **marketplaces_vendors_stream_get**
-> MarketplaceVendorStreamResponse marketplaces_vendors_stream_get(text=text, marketplace_uid=marketplace_uid, cursor=cursor, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+> MarketplaceVendorStreamResponse marketplaces_vendors_stream_get(text=text, marketplace_uid=marketplace_uid, cursor=cursor, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
 
 Vendors stream
 
@@ -600,6 +612,7 @@ with titan_client.ApiClient(configuration) as api_client:
     marketplace_uid = 'c81e728d9d4c2f636f067f89cc14862c' # str | Unique identifier of marketplace. (optional)
     cursor = 'cursor_example' # str | Continue scrolling from cursor. (optional)
     _from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
+    var_from = '1627776000000' # str | Long unix time. Search data starting from given creation time (including). (optional)
     until = '1627948800000' # str | Long unix time. Search data ending before given creation time (excluding). (optional)
     last_updated_from = '1627948800000' # str | Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. (optional)
     last_updated_until = '1627948800000' # str | Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. (optional)
@@ -607,7 +620,7 @@ with titan_client.ApiClient(configuration) as api_client:
 
     try:
         # Vendors stream
-        api_response = api_instance.marketplaces_vendors_stream_get(text=text, marketplace_uid=marketplace_uid, cursor=cursor, _from=_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
+        api_response = api_instance.marketplaces_vendors_stream_get(text=text, marketplace_uid=marketplace_uid, cursor=cursor, _from=_from, var_from=var_from, until=until, last_updated_from=last_updated_from, last_updated_until=last_updated_until, count=count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling MarketplacesApi->marketplaces_vendors_stream_get: %s\n" % e)
@@ -621,6 +634,7 @@ Name | Type | Description  | Notes
  **marketplace_uid** | **str**| Unique identifier of marketplace. | [optional] 
  **cursor** | **str**| Continue scrolling from cursor. | [optional] 
  **_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
+ **var_from** | **str**| Long unix time. Search data starting from given creation time (including). | [optional] 
  **until** | **str**| Long unix time. Search data ending before given creation time (excluding). | [optional] 
  **last_updated_from** | **str**| Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded. | [optional] 
  **last_updated_until** | **str**| Long unix time. Search data ending before given last updated time (excluding). Empty indicates unbounded. | [optional] 

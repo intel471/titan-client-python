@@ -48,6 +48,8 @@ class AlertsApi(object):
 
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param count: Returns given number of records starting from `offset` position.
@@ -94,6 +96,8 @@ class AlertsApi(object):
 
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param count: Returns given number of records starting from `offset` position.
@@ -138,6 +142,7 @@ class AlertsApi(object):
 
         all_params = [
             '_from',
+            'var_from',
             'until',
             'count',
             'offset',
@@ -179,6 +184,8 @@ class AlertsApi(object):
         query_params = []
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('count') is not None:  # noqa: E501

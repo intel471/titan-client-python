@@ -54,6 +54,8 @@ class MarketplacesApi(object):
         :type tier: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -102,6 +104,8 @@ class MarketplacesApi(object):
         :type tier: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -145,6 +149,7 @@ class MarketplacesApi(object):
             'status',
             'tier',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -194,6 +199,8 @@ class MarketplacesApi(object):
             query_params.append(('tier', local_var_params['tier']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
@@ -264,6 +271,8 @@ class MarketplacesApi(object):
         :type bin: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -316,6 +325,8 @@ class MarketplacesApi(object):
         :type bin: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -361,6 +372,7 @@ class MarketplacesApi(object):
             'vendor_uid',
             'bin',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -414,6 +426,8 @@ class MarketplacesApi(object):
             query_params.append(('bin', local_var_params['bin']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
@@ -486,6 +500,8 @@ class MarketplacesApi(object):
         :type bin: str
         :param _from: Long unix time. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -536,6 +552,8 @@ class MarketplacesApi(object):
         :type bin: str
         :param _from: Long unix time. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -578,6 +596,7 @@ class MarketplacesApi(object):
             'cursor',
             'bin',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -627,6 +646,8 @@ class MarketplacesApi(object):
             query_params.append(('bin', local_var_params['bin']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
@@ -685,6 +706,8 @@ class MarketplacesApi(object):
         :type text: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -729,6 +752,8 @@ class MarketplacesApi(object):
         :type text: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -770,6 +795,7 @@ class MarketplacesApi(object):
         all_params = [
             'text',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -815,6 +841,8 @@ class MarketplacesApi(object):
             query_params.append(('text', local_var_params['text']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
@@ -879,6 +907,8 @@ class MarketplacesApi(object):
         :type cursor: str
         :param _from: Long unix time. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -921,6 +951,8 @@ class MarketplacesApi(object):
         :type cursor: str
         :param _from: Long unix time. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -959,6 +991,7 @@ class MarketplacesApi(object):
             'text',
             'cursor',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -1000,6 +1033,8 @@ class MarketplacesApi(object):
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
@@ -1060,6 +1095,8 @@ class MarketplacesApi(object):
         :type marketplace_uid: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -1106,6 +1143,8 @@ class MarketplacesApi(object):
         :type marketplace_uid: str
         :param _from: Long unix time or string time range. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time or string time range. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time or string time range. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time or string time range. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -1148,6 +1187,7 @@ class MarketplacesApi(object):
             'text',
             'marketplace_uid',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -1195,6 +1235,8 @@ class MarketplacesApi(object):
             query_params.append(('marketplaceUid', local_var_params['marketplace_uid']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
@@ -1261,6 +1303,8 @@ class MarketplacesApi(object):
         :type cursor: str
         :param _from: Long unix time. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -1305,6 +1349,8 @@ class MarketplacesApi(object):
         :type cursor: str
         :param _from: Long unix time. Search data starting from given creation time (including).
         :type _from: str
+        :param var_from: Long unix time. Search data starting from given creation time (including).
+        :type var_from: str
         :param until: Long unix time. Search data ending before given creation time (excluding).
         :type until: str
         :param last_updated_from: Long unix time. Search data starting from given last updated time (including). Empty indicates unbounded.
@@ -1344,6 +1390,7 @@ class MarketplacesApi(object):
             'marketplace_uid',
             'cursor',
             '_from',
+            'var_from',
             'until',
             'last_updated_from',
             'last_updated_until',
@@ -1387,6 +1434,8 @@ class MarketplacesApi(object):
             query_params.append(('cursor', local_var_params['cursor']))  # noqa: E501
         if local_var_params.get('_from') is not None:  # noqa: E501
             query_params.append(('from', local_var_params['_from']))  # noqa: E501
+        if local_var_params.get('var_from') is not None:  # noqa: E501
+            query_params.append(('var_from', local_var_params['from']))  # noqa: E501
         if local_var_params.get('until') is not None:  # noqa: E501
             query_params.append(('until', local_var_params['until']))  # noqa: E501
         if local_var_params.get('last_updated_from') is not None:  # noqa: E501
