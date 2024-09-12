@@ -19,6 +19,7 @@ class IndicatorsMapper(BaseMapper):
             patterning_mapper=create_url_pattern,
             observable_mapper=create_url,
             kwargs_extractor=lambda i: {"value": i["data"]["indicator_data"]["url"]},
+            name_extractor=lambda i: i["data"]["indicator_data"]["url"],
             opencti_type="Url"
         ),
         "ipv4": MappingConfig(
@@ -27,6 +28,7 @@ class IndicatorsMapper(BaseMapper):
             kwargs_extractor=lambda i: {
                 "value": i["data"]["indicator_data"]["address"]
             },
+            name_extractor=lambda i: i["data"]["indicator_data"]["address"],
             opencti_type="IPv4-Addr"
         ),
         "file": MappingConfig(
@@ -37,6 +39,7 @@ class IndicatorsMapper(BaseMapper):
                 "sha1": i["data"]["indicator_data"]["file"]["sha1"],
                 "sha256": i["data"]["indicator_data"]["file"]["sha256"],
             },
+            name_extractor=lambda i: i["data"]["indicator_data"]["file"]["sha256"],
             opencti_type="StixFile"
         ),
     }
@@ -65,9 +68,9 @@ class IndicatorsMapper(BaseMapper):
             confidence = self.map_confidence(item["data"]["confidence"])
             girs_paths = item["data"]["intel_requirements"]
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
+            name = mapping_config.name_extractor(item)
             description_main = item["data"]["context"]["description"]
             description = f"{description_main}\n\n### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
-
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
             observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
@@ -81,6 +84,7 @@ class IndicatorsMapper(BaseMapper):
                 valid_until=valid_until,
                 created_by_ref=author_identity,
                 object_marking_refs=[TLP_AMBER],
+                name=name,
                 description=description,
                 labels=[malware_family_name],
                 confidence=confidence,
