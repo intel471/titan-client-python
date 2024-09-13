@@ -174,7 +174,6 @@ docs/MarketplaceProductSearchSchemaActivity.md
 docs/MarketplaceProductSearchSchemaData.md
 docs/MarketplaceProductStatisticsSchema.md
 docs/MarketplaceProductStreamResponse.md
-docs/MarketplaceProductTypeSchema.md
 docs/MarketplaceResourceSearchResponse.md
 docs/MarketplaceResourceSearchSchema.md
 docs/MarketplaceResourceSearchSchemaActivity.md
@@ -504,7 +503,6 @@ titan_client/models/marketplace_product_search_schema_activity.py
 titan_client/models/marketplace_product_search_schema_data.py
 titan_client/models/marketplace_product_statistics_schema.py
 titan_client/models/marketplace_product_stream_response.py
-titan_client/models/marketplace_product_type_schema.py
 titan_client/models/marketplace_resource_search_response.py
 titan_client/models/marketplace_resource_search_schema.py
 titan_client/models/marketplace_resource_search_schema_activity.py
