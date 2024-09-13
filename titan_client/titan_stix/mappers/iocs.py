@@ -22,38 +22,44 @@ class IOCMapper(BaseMapper):
             patterning_mapper=create_url_pattern,
             observable_mapper=create_url,
             kwargs_extractor=lambda i: {"value": i["value"]},
+            name_extractor=lambda i: i["value"],
             opencti_type="Url"
         ),
         "MaliciousDomain": MappingConfig(
             patterning_mapper=create_domain_pattern,
             observable_mapper=create_domain,
             kwargs_extractor=lambda i: {"value": i["value"].split("://")[-1]},
+            name_extractor=lambda i: i["value"].split("://")[-1],
             opencti_type="Domain-Name"
         ),
         "IPAddress": MappingConfig(
             patterning_mapper=create_ipv4_pattern,
             observable_mapper=create_ipv4,
             kwargs_extractor=lambda i: {"value": i["value"]},
+            name_extractor=lambda i: i["value"],
             opencti_type="IPv4-Addr"
         ),
         "MD5": MappingConfig(
             patterning_mapper=create_file_pattern,
             observable_mapper=create_file,
             kwargs_extractor=lambda i: {"md5": i["value"]},
+            name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
         ),
         "SHA1": MappingConfig(
             patterning_mapper=create_file_pattern,
             observable_mapper=create_file,
             kwargs_extractor=lambda i: {"sha1": i["value"]},
+            name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
         ),
         "SHA256": MappingConfig(
             patterning_mapper=create_file_pattern,
             observable_mapper=create_file,
             kwargs_extractor=lambda i: {"sha256": i["value"]},
+            name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
-        ),
+        )
     }
 
     def map(self, source: dict) -> Bundle:
@@ -73,11 +79,13 @@ class IOCMapper(BaseMapper):
             if valid_from == valid_until:
                 valid_until = None
 
+            name = mapping_config.name_extractor(item)
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
             observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
+                name=name,
                 pattern_type="stix",
                 pattern=stix_pattern,
                 indicator_types=["malicious-activity"],

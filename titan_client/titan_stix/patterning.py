@@ -15,6 +15,11 @@ def create_domain_pattern(value: str) -> str:
 
 
 def create_file_pattern(md5: str = None, sha1: str = None, sha256: str = None) -> str:
+    """
+    Using format `file:hashes.md5`, `file:hashes.sha1`, etc.
+    instead of   `file:hashes.MD5`, `file:hashes.'SHA-1'`, etc.
+    to be compliant with OpenCTI ID generator, which is using the former one.
+    """
     hashes = []
     if md5:
         hashes.append(("file:hashes.md5", f"'{md5}'"))

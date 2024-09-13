@@ -9,6 +9,7 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.852252Z",
             "modified": "2024-06-13T08:06:28.852252Z",
+            "name": "foo.bar",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -99,6 +100,7 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.854344Z",
             "modified": "2024-06-13T08:06:28.854344Z",
+            "name": "foo.bar",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -169,6 +171,7 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.855389Z",
             "modified": "2024-06-13T08:06:28.855389Z",
+            "name": "127.0.0.1",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -248,6 +251,7 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.856477Z",
             "modified": "2024-06-13T08:06:28.856477Z",
+            "name": "1bec8600cb85bcbeed8b9992a0b87ae4",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -290,6 +294,7 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.8577Z",
             "modified": "2024-06-13T08:06:28.8577Z",
+            "name": "d520bb6cd46674b9f29ec5fa3280d678b635ecd8",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -332,6 +337,7 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.859013Z",
             "modified": "2024-06-13T08:06:28.859013Z",
+            "name": "7623def2702a70942c6a0335f3fff55710c8effc18ed9a6bd2896a4c1f66b752",
             "indicator_types": [
                 "malicious-activity"
             ],
