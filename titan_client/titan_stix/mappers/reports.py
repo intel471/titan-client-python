@@ -35,7 +35,7 @@ class ReportMapper(BaseMapper):
         "inforep": ReportSettings(
             "ReportsApi",
             "reports_uid_get",
-            "executive_summary",
+            "executiveSummary",
             ["rawText", "rawTextTranslated", "researcherComments"]
         ),
         # inforep example
@@ -188,7 +188,7 @@ class ReportMapper(BaseMapper):
             value = source.get(field_name)
             if isinstance(value, str):
                 opencti_files.append({
-                    "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]),
+                    "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
                     "mime_type": "text/html",
                     "data": base64.b64encode(bytes(value, "utf-8")).decode("utf-8")
                 })
