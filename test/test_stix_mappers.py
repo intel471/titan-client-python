@@ -15,10 +15,10 @@ from mock import MagicMock
 os.environ['I471_TITAN_CLIENT_CACHE_TTL'] = '0'
 
 fixtures = {
-    # 'test_indicators': ("indicators_input.json", "indicators_stix.json"),
+    'test_indicators': ("indicators_input.json", "indicators_stix.json"),
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
-    # 'test_yara': ("yara_input.json", "yara_stix.json"),
-    # 'test_cves': ("cves_input.json", "cves_stix.json")
+    'test_yara': ("yara_input.json", "yara_stix.json"),
+    'test_cves': ("cves_input.json", "cves_stix.json")
 }
 
 
@@ -77,7 +77,7 @@ def test_report_enrichments():
     assert report_serialized["confidence"] == 90
     assert report_serialized["x_opencti_files"] == [
         {
-            "name": "Raw Text",
+            "name": "Raw Text.html",
             "mime_type": "text/html",
             "data": base64.b64encode(bytes(api_response["rawText"], "utf-8")).decode("utf-8")
         }
