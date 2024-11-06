@@ -66,7 +66,7 @@ class EventSchemaDataEventDataRecipientDomainsInner(object):
     def count(self):
         """Gets the count of this EventSchemaDataEventDataRecipientDomainsInner.  # noqa: E501
 
-        Cout of recipient domains.  # noqa: E501
+        Count of recipient domains.  # noqa: E501
 
         :return: The count of this EventSchemaDataEventDataRecipientDomainsInner.  # noqa: E501
         :rtype: int
@@ -77,7 +77,7 @@ class EventSchemaDataEventDataRecipientDomainsInner(object):
     def count(self, count):
         """Sets the count of this EventSchemaDataEventDataRecipientDomainsInner.
 
-        Cout of recipient domains.  # noqa: E501
+        Count of recipient domains.  # noqa: E501
 
         :param count: The count of this EventSchemaDataEventDataRecipientDomainsInner.  # noqa: E501
         :type count: int
