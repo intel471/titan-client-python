@@ -38,6 +38,8 @@ class EventSchemaDataEventData(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'attack_targets': 'list[object]',
+        'attack_type': 'str',
         'bot_settings': 'object',
         'command': 'str',
         'component_type': 'str',
@@ -49,6 +51,7 @@ class EventSchemaDataEventData(object):
         'file': 'EventSchemaDataEventDataFile',
         'inject_type': 'str',
         'location': 'EventSchemaDataEventDataLocation',
+        'parameters': 'list[object]',
         'plugin_name': 'str',
         'plugin_type': 'str',
         'recipient_domains': 'list[EventSchemaDataEventDataRecipientDomainsInner]',
@@ -59,6 +62,8 @@ class EventSchemaDataEventData(object):
     }
 
     attribute_map = {
+        'attack_targets': 'attack_targets',
+        'attack_type': 'attack_type',
         'bot_settings': 'bot_settings',
         'command': 'command',
         'component_type': 'component_type',
@@ -70,6 +75,7 @@ class EventSchemaDataEventData(object):
         'file': 'file',
         'inject_type': 'inject_type',
         'location': 'location',
+        'parameters': 'parameters',
         'plugin_name': 'plugin_name',
         'plugin_type': 'plugin_type',
         'recipient_domains': 'recipient_domains',
@@ -79,12 +85,14 @@ class EventSchemaDataEventData(object):
         'triggers': 'triggers'
     }
 
-    def __init__(self, bot_settings=None, command=None, component_type=None, config_file=None, controller=None, controllers=None, encryption=None, exfil_location=None, file=None, inject_type=None, location=None, plugin_name=None, plugin_type=None, recipient_domains=None, senders=None, settings=None, target_type=None, triggers=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, attack_targets=None, attack_type=None, bot_settings=None, command=None, component_type=None, config_file=None, controller=None, controllers=None, encryption=None, exfil_location=None, file=None, inject_type=None, location=None, parameters=None, plugin_name=None, plugin_type=None, recipient_domains=None, senders=None, settings=None, target_type=None, triggers=None, local_vars_configuration=None):  # noqa: E501
         """EventSchemaDataEventData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._attack_targets = None
+        self._attack_type = None
         self._bot_settings = None
         self._command = None
         self._component_type = None
@@ -96,6 +104,7 @@ class EventSchemaDataEventData(object):
         self._file = None
         self._inject_type = None
         self._location = None
+        self._parameters = None
         self._plugin_name = None
         self._plugin_type = None
         self._recipient_domains = None
@@ -105,6 +114,10 @@ class EventSchemaDataEventData(object):
         self._triggers = None
         self.discriminator = None
 
+        if attack_targets is not None:
+            self.attack_targets = attack_targets
+        if attack_type is not None:
+            self.attack_type = attack_type
         if bot_settings is not None:
             self.bot_settings = bot_settings
         if command is not None:
@@ -127,6 +140,8 @@ class EventSchemaDataEventData(object):
             self.inject_type = inject_type
         if location is not None:
             self.location = location
+        if parameters is not None:
+            self.parameters = parameters
         if plugin_name is not None:
             self.plugin_name = plugin_name
         if plugin_type is not None:
@@ -141,6 +156,48 @@ class EventSchemaDataEventData(object):
             self.target_type = target_type
         if triggers is not None:
             self.triggers = triggers
+
+    @property
+    def attack_targets(self):
+        """Gets the attack_targets of this EventSchemaDataEventData.  # noqa: E501
+
+
+        :return: The attack_targets of this EventSchemaDataEventData.  # noqa: E501
+        :rtype: list[object]
+        """
+        return self._attack_targets
+
+    @attack_targets.setter
+    def attack_targets(self, attack_targets):
+        """Sets the attack_targets of this EventSchemaDataEventData.
+
+
+        :param attack_targets: The attack_targets of this EventSchemaDataEventData.  # noqa: E501
+        :type attack_targets: list[object]
+        """
+
+        self._attack_targets = attack_targets
+
+    @property
+    def attack_type(self):
+        """Gets the attack_type of this EventSchemaDataEventData.  # noqa: E501
+
+
+        :return: The attack_type of this EventSchemaDataEventData.  # noqa: E501
+        :rtype: str
+        """
+        return self._attack_type
+
+    @attack_type.setter
+    def attack_type(self, attack_type):
+        """Sets the attack_type of this EventSchemaDataEventData.
+
+
+        :param attack_type: The attack_type of this EventSchemaDataEventData.  # noqa: E501
+        :type attack_type: str
+        """
+
+        self._attack_type = attack_type
 
     @property
     def bot_settings(self):
@@ -388,6 +445,27 @@ class EventSchemaDataEventData(object):
         """
 
         self._location = location
+
+    @property
+    def parameters(self):
+        """Gets the parameters of this EventSchemaDataEventData.  # noqa: E501
+
+
+        :return: The parameters of this EventSchemaDataEventData.  # noqa: E501
+        :rtype: list[object]
+        """
+        return self._parameters
+
+    @parameters.setter
+    def parameters(self, parameters):
+        """Sets the parameters of this EventSchemaDataEventData.
+
+
+        :param parameters: The parameters of this EventSchemaDataEventData.  # noqa: E501
+        :type parameters: list[object]
+        """
+
+        self._parameters = parameters
 
     @property
     def plugin_name(self):

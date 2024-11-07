@@ -5,6 +5,8 @@ Sub-document containing event data.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**attack_targets** | **list[object]** |  | [optional] 
+**attack_type** | **str** |  | [optional] 
 **bot_settings** | **object** | An object containing varying data types showing malware bot settings data. Contains any of but not limited the following fields: &#x60;exit_country&#x60;, &#x60;config&#x60;, &#x60;encryption&#x60;. | [optional] 
 **command** | **str** | Command. | [optional] 
 **component_type** | **str** | Type of component i.e. &#x60;CORE&#x60;. | [optional] 
@@ -16,6 +18,7 @@ Name | Type | Description | Notes
 **file** | [**EventSchemaDataEventDataFile**](EventSchemaDataEventDataFile.md) |  | [optional] 
 **inject_type** | **str** | Inject type. | [optional] 
 **location** | [**EventSchemaDataEventDataLocation**](EventSchemaDataEventDataLocation.md) |  | [optional] 
+**parameters** | **list[object]** |  | [optional] 
 **plugin_name** | **str** | Plugin&#39;s name. | [optional] 
 **plugin_type** | **str** | Type of plugin. i.e. &#x60;REMOTE_ACCESS&#x60;, &#x60;CREDENTIAL_STEALER&#x60;, &#x60;OTHER&#x60;. | [optional] 
 **recipient_domains** | [**list[EventSchemaDataEventDataRecipientDomainsInner]**](EventSchemaDataEventDataRecipientDomainsInner.md) | Recipient domains. | [optional] 
