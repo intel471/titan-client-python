@@ -1,22 +1,24 @@
 import base64
-from collections.abc import Callable
+import datetime
 import re
+from collections.abc import Callable
+from enum import Enum
 from typing import List, NamedTuple, Union
 
-from titan_client.titan_stix.exceptions import TitanStixException
-from .common import BaseMapper, StixMapper
-from stix2 import Bundle, Report, Indicator, ExternalReference, TLP_AMBER
-import datetime
-from .. import STIXMapperSettings, author_identity, generate_id
 from pytz import UTC
-from enum import Enum
+from stix2 import TLP_AMBER, Bundle, ExternalReference, File, Indicator, Report
+
+from titan_client.titan_stix.exceptions import TitanStixException
+
+from .. import STIXMapperSettings, author_identity, generate_id
+from .common import BaseMapper, StixMapper
 
 
 class ReportType(Enum):
-    inforep = "inforep"
-    fintel = "fintel"
-    breach_alert = "breach_alert"
-    spotrep = "spotrep"
+    INFOREP = "inforep"
+    FINTEL = "fintel"
+    BREACH_ALERT = "breach_alert"
+    SPOTREP = "spotrep"
 
 
 class ReportSettings(NamedTuple):
@@ -41,28 +43,29 @@ class ReportMapper(BaseMapper):
     """
     remove_html_regex = re.compile(r"<.*?>")
     reports_settings = {
-        ReportType.fintel: ReportSettings(
+        ReportType.FINTEL: ReportSettings(
             "ReportsApi",
             "reports_uid_get",
             "subject",
-            # There's no summary or anything similar. Try to extract contents of the first paragraph <h2>...</h2><p>get-this</p>...
+            # There's no summary or anything similar. Try to extract contents of the first
+            # paragraph <h2>...</h2><p>get-this</p>...
             lambda x: re.split(r'</?p>', re.sub(r'^.*?<p>', '', x.get("rawText") or ""))[0],
             ["rawText"]
-        ),        
-        ReportType.inforep: ReportSettings(
+        ),
+        ReportType.INFOREP: ReportSettings(
             "ReportsApi",
             "reports_uid_get",
             "subject",
             "executive_summary",
             ["rawText", "rawTextTranslated", "researcherComments"]
         ),
-        ReportType.breach_alert: ReportSettings(
+        ReportType.BREACH_ALERT: ReportSettings(
             "ReportsApi",
             "breach_alerts_uid_get",
             "data.breach_alert.title",
             "data.breach_alert.summary",
         ),
-        ReportType.spotrep: ReportSettings(
+        ReportType.SPOTREP: ReportSettings(
             "ReportsApi",
             "spot_reports_uid_get",
             "data.spot_report.spot_report_data.title",
@@ -84,8 +87,9 @@ class ReportMapper(BaseMapper):
         # determine type of the report
         # determine if full report is needed
         # based on above either call _map_report_short or _map_report_full
-        # think if there should be a per-report config and one mapping method or separate method for each report type
-        
+        # think if there should be a per-report config and one mapping method or separate method
+        # for each report type
+
         # if reports search response and full required and type in (fintel, inforep):
         #   self._fetch_and_map_report_full()
         # else
@@ -97,9 +101,11 @@ class ReportMapper(BaseMapper):
     def __map_playground(self):
         container = {}
         some_ind = Indicator(pattern="[ file:name = 'foo.dll' ]", pattern_type="stix")
-        report = Report(name="qwe", object_refs={some_ind.id: some_ind}, published=datetime.datetime(2024,11,11,12,0,0))
+        report = Report(name="qwe",
+                        object_refs={some_ind.id: some_ind},
+                        published=datetime.datetime(2024,11,11,12,0,0))
         container[report.id] = report
-        container[some_ind.id] = some_ind        
+        container[some_ind.id] = some_ind
         return container
 
     def map_report_ioc(self, source: dict, object_refs: dict) -> Report:
@@ -110,9 +116,9 @@ class ReportMapper(BaseMapper):
         """
         titan_id = source["uid"]
         titan_url = source["portalReportUrl"]
-        report_type = ReportType[titan_url.split("/")[-2]]
+        report_type = ReportType[titan_url.split("/")[-2].upper()]
         if self._full_report_required():
-            return self._fetch_and_map_report_full(report_type, titan_id, object_refs)
+            return self._fetch_and_map_report(report_type, titan_id, object_refs)
 
         name = source["subject"]
         time_published = self._format_published(source["released"])
@@ -123,7 +129,7 @@ class ReportMapper(BaseMapper):
             )
         external_references = [ExternalReference(source_name="Titan URL", url=titan_url)]
         confidence = self.map_confidence(source.get("admiraltyCode"))
-        
+
         return Report(
             id = id_,
             name=name,
@@ -159,7 +165,9 @@ class ReportMapper(BaseMapper):
             "name": name,
             "description": self._get_description(source) or name,
             "report_types": [self._get_type(source).value],
-            "confidence": self.map_confidence(source.get("admiraltyCode") or source.get("data", {}).get("breach_alert", {}).get("confidence", {}).get("level")),
+            "confidence": self.map_confidence(source.get("admiraltyCode") or 
+                                              source.get("data", {}).get("breach_alert", {})
+                                              .get("confidence", {}).get("level")),
             "published": time_published,
             "labels": self._get_malware_families(source),
             "external_references": [
@@ -177,31 +185,37 @@ class ReportMapper(BaseMapper):
             report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
         return Report(**report_kwargs)
 
-    def _fetch_and_map_report_full(self, report_type: ReportType, report_id: str, object_refs: dict = None) -> Report:
+    def _fetch_and_map_report(self, report_type: ReportType, report_id: str,
+                              object_refs: dict = None) -> Report:
         report_settings = self.reports_settings.get(report_type)
         if report_id not in self.cache:
-            api_instance = getattr(self.settings.titan_client, report_settings.api_class)(self.settings.api_client)
+            api_instance = getattr(self.settings.titan_client,
+                                   report_settings.api_class)(self.settings.api_client)
             api_response = getattr(api_instance, report_settings.method_name)(report_id)
             self.cache[report_id] = api_response.to_dict(serialize=True)
         return self._map_report(self.cache[report_id], object_refs)
 
+    def _map_entities(self, entities_sources: list[dict]):
+        entity = File(name=entities_sources[0]["value"])
+        return {entity.id: entity}
+
     def _format_published(self, epoch_millis: int):
         """
-        Formatting datetime object for use as ID contributing property in a same way as it's done by OpenCTI
-        to have the same ID here and in OpenCTI.
+        Formatting datetime object for use as ID contributing property in a same way as it's done
+        by OpenCTI to have the same ID here and in OpenCTI.
         """
         parsed = datetime.datetime.fromtimestamp(epoch_millis / 1000, UTC)
         return parsed.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
     def _get_type(self, source: dict) -> ReportType:
         if source.get("documentFamily") == "FINTEL":
-            return ReportType.fintel
+            return ReportType.FINTEL
         if source.get("documentFamily") == "INFOREP":
-            return ReportType.inforep
+            return ReportType.INFOREP
         if "breach_alert" in source.get("data", {}):
-            return ReportType.breach_alert
+            return ReportType.BREACH_ALERT
         if "spot_report" in source.get("data", {}):
-            return ReportType.breach_alert
+            return ReportType.BREACH_ALERT
         raise TitanStixException("Unkown report type")
 
     def _get_url(self, source: dict) -> str:
@@ -221,10 +235,11 @@ class ReportMapper(BaseMapper):
 
         if source:
             return re.sub(self.remove_html_regex, "", source)
-        
+
     def _get_malware_families(self, source: dict):
-        return [i.get("value") for i in (source.get("entities") or []) if i.get("type") == "MalwareFamily"]
-    
+        return [i.get("value") for i in (source.get("entities") or [])
+                if i.get("type") == "MalwareFamily"]
+
     def _get_opencti_files(self, source: dict):
         if not self.settings.report_attachments_opencti:
             return []
@@ -235,8 +250,8 @@ class ReportMapper(BaseMapper):
             value = source.get(field_name)
             if isinstance(value, str):
                 opencti_files.append({
-                    "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
-                    "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
+                    "name":  " ".join([i.capitalize() for i in re.findall(
+                        r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
                     "mime_type": "text/html",
                     "data": base64.b64encode(bytes(value, "utf-8")).decode("utf-8")
                 })
