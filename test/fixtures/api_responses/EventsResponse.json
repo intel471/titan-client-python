@@ -42,6 +42,26 @@
                         "ipv4": "OmvMhBNEaFKvq",
                         "url": "https://www.buchanan.com/"
                     },
+                    "parameters": [
+                        {
+                            "ATK_TYPE": "1"
+                        },
+                        {
+                            "ATK_DURATION": "1"
+                        },
+                        {
+                            "ATK_OPT_DPORT": "1"
+                        },
+                        {
+                            "ATK_OPT_PAYLOAD_SIZE": "1"
+                        }
+                    ],
+                    "attack_targets": [
+                        {
+                            "ipv4": "OmvMhBNEaFKvq"
+                        }
+                    ],
+                    "attack_type": "UDP_FLOOD",
                     "controllers": [
                         {
                             "url": "http://www.petersen.org/about/"

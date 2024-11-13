@@ -40,6 +40,26 @@
                         "ipv4": "sryetORrOkdUmgkB",
                         "url": "http://mckee-nguyen.com/list/explore/tag/homepage/"
                     },
+                    "parameters": [
+                        {
+                            "ATK_TYPE": "1"
+                        },
+                        {
+                            "ATK_DURATION": "1"
+                        },
+                        {
+                            "ATK_OPT_DPORT": "1"
+                        },
+                        {
+                            "ATK_OPT_PAYLOAD_SIZE": "1"
+                        }
+                    ],
+                    "attack_targets": [
+                        {
+                            "ipv4": "OmvMhBNEaFKvq"
+                        }
+                    ],
+                    "attack_type": "UDP_FLOOD",
                     "controllers": null,
                     "encryption": null,
                     "exfil_location": "dYfhIudSiGbdALkJUix",

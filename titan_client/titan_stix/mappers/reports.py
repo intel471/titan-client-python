@@ -236,6 +236,7 @@ class ReportMapper(BaseMapper):
             if isinstance(value, str):
                 opencti_files.append({
                     "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
+                    "name":  " ".join([i.capitalize() for i in re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
                     "mime_type": "text/html",
                     "data": base64.b64encode(bytes(value, "utf-8")).decode("utf-8")
                 })
