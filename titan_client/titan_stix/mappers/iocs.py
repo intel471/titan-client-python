@@ -120,14 +120,11 @@ class IOCMapper(BaseMapper):
     ) -> dict:
         container = {}
         for report_source in report_sources:
-            container.update(
-                report_mapper.map_shortened_report(
-                    report_source,
-                    object_refs={
-                        indicator.id: indicator,
-                        observable.id: observable,
-                        relationship.id: relationship
-                    },
-                )
-            )
+            report: Report = report_mapper.map_report_ioc(
+                report_source,
+                object_refs={
+                    indicator.id: indicator,
+                    observable.id: observable,
+                    relationship.id: relationship})
+            container[report.id] = report
         return container

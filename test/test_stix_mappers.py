@@ -15,10 +15,10 @@ from mock import MagicMock
 os.environ['I471_TITAN_CLIENT_CACHE_TTL'] = '0'
 
 fixtures = {
-    # 'test_indicators': ("indicators_input.json", "indicators_stix.json"),
+    'test_indicators': ("indicators_input.json", "indicators_stix.json"),
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
-    # 'test_yara': ("yara_input.json", "yara_stix.json"),
-    # 'test_cves': ("cves_input.json", "cves_stix.json")
+    'test_yara': ("yara_input.json", "yara_stix.json"),
+    'test_cves': ("cves_input.json", "cves_stix.json")
 }
 
 
@@ -50,7 +50,15 @@ def test_stix_mappers(fixtures):
 def test_report_enrichments():
     api_cls = "ReportsApi"
     method_name = "reports_uid_get"
-    api_response = {"rawText": "<h2>Foo</h2><p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>"}
+    api_response = {
+        "uid": "1fffffffffffffffffffffffffffffff",
+        "documentFamily": "FINTEL",
+        "subject": "New malware released (fromAPI)",
+        "admiraltyCode": "A1",
+        "created": 1679321907000,
+        "dateOfInformation": 1678060800000,
+        "rawText": "<h2>Foo</h2><p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>"
+        }
 
     api_response_mock = MagicMock(name="API response")
     api_response_mock.to_dict.return_value = api_response
@@ -62,7 +70,7 @@ def test_report_enrichments():
     mock_domain = DomainName(value="foo.bar")
 
     mapper = ReportMapper(STIXMapperSettings(mock_titan_client, mock_api_client, report_attachments_opencti=True))
-    result = mapper.map_shortened_report({
+    result = mapper.map_report_ioc({
         "subject": "New malware released",
         "released": 1679321907000,
         "portalReportUrl": "https://foo.bar/fintel/123",
@@ -70,15 +78,39 @@ def test_report_enrichments():
         "admiraltyCode": "A1",
         "dateOfInformation": 1678060800000
     }, {mock_domain.id: mock_domain})
-    report_serialized = json.loads(list(result.values())[0].serialize())
-    assert report_serialized["name"] == "New malware released"
+    report_serialized = json.loads(result.serialize())
+    assert report_serialized["name"] == "New malware released (fromAPI)"
     assert report_serialized["description"] == "New malware Foobar released!"
     assert report_serialized["report_types"] == ["fintel"]
     assert report_serialized["confidence"] == 90
     assert report_serialized["x_opencti_files"] == [
         {
-            "name": "Raw Text",
+            "name": "Raw Text.html",
             "mime_type": "text/html",
             "data": base64.b64encode(bytes(api_response["rawText"], "utf-8")).decode("utf-8")
         }
     ]
+
+def test_ioc_mapper_attached_reports(capsys):
+    ioc_fixture = read_fixture(f'{PREFIX}/fixtures/iocs_with_reports_input.json')
+    expected_result = read_fixture(f'{PREFIX}/fixtures/reports_from_iocs_stix.json')
+    mapper = StixMapper()
+    result = mapper.map(ioc_fixture)
+    with capsys.disabled():
+        result_serialized = json.loads(result.serialize())
+        result_serialized["objects"] = [i for i in result_serialized["objects"] if i["type"] == "report"]
+        expected = strip_random_values(expected_result)
+        assert expected == strip_random_values(result_serialized)
+
+
+@pytest.mark.skip(reason="work in progress")
+def test_breach_alert_mapper(capsys):
+    breach_alert_fixture = read_fixture(f'{PREFIX}/fixtures/breach_alert_af3e62.json')
+    mapper = StixMapper()
+    result = mapper.map(breach_alert_fixture)
+    x = result.serialize()
+    with capsys.disabled():
+        result_serialized = json.loads(result.serialize())
+        result_serialized = [i for i in result_serialized["objects"] if i["type"] == "report"]
+        print(json.dumps(result_serialized, indent=2, sort_keys=True))
+

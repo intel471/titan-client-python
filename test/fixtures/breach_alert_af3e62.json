@@ -1,0 +1,55 @@
+{
+    "breach_alerts_total_count": 1,
+    "breach_alerts": [
+      {
+        "activity": {
+          "first": 1731013823000,
+          "last": 1731013823000
+        },
+        "last_updated": 1731013823000,
+        "uid": "af3e622402a838a01e1343190129204f",
+        "data": {
+          "breach_alert": {
+            "date_of_information": 1730937600000,
+            "confidence": {
+              "level": "low",
+              "description": "The source credibility or accuracy of the information cannot be judged."
+            },
+            "intel_requirements": [
+              "1.1.0",
+              "1.1.1"
+            ],
+            "released_at": 1731013823000,
+            "title": "ACME Corp. possibly compromised by actor Coyote",
+            "victim": {
+              "name": "ACME Corp.",
+              "industries": [
+                {
+                  "industry": "Health care equipment and technology",
+                  "sector": "Life sciences and health care sector"
+                }
+              ],
+              "urls": [
+                "https://acmecorp.fake/"
+              ],
+              "country": "Japan",
+              "revenue": "n/a",
+              "region": "Asia"
+            },
+            "summary": "<p>On Nov. 7, 2024, we collected a sample of the anvil ransomware lorem ipsum dolor sit amet.</p>",
+            "actor_or_group": "Coyote"
+          },
+          "entities": [
+            {
+              "type": "SHA256",
+              "value": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e"
+            },
+            {
+              "type": "Handle",
+              "value": "Coyote"
+            }
+          ]
+        }
+      }
+    ]
+  }
