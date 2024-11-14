@@ -6,7 +6,7 @@ from enum import Enum
 from typing import List, NamedTuple, Union
 
 from pytz import UTC
-from stix2 import TLP_AMBER, Bundle, ExternalReference, File, Indicator, Report
+from stix2 import TLP_AMBER, Bundle, ExternalReference, File, Report
 
 from titan_client.titan_stix.exceptions import TitanStixException
 
@@ -25,13 +25,18 @@ class ReportSettings(NamedTuple):
     api_class: str
     method_name: str
     # either JSON path to the field or a function that extracts value from provided source
-    title_source: Union[str, Callable[[dict], str]]
+    title_source: str
     description_source: Union[str, Callable[[dict], str]]
+    released_at_source: str
     attachments_fields: Union[List[str], None] = None
 
 
-# @StixMapper.register("reports", lambda x: "reportTotalCount" in x)
+@StixMapper.register("fintels_inforeps", lambda x: "reportTotalCount" in x)
+@StixMapper.register("fintel_inforep", lambda x: x.get("documentFamily") in ("FINTEL", "INFOREP"))
 @StixMapper.register("breach_alerts", lambda x: "breach_alerts_total_count" in x)
+@StixMapper.register("breach_alert", lambda x: "breach_alert" in x.get("data", {}))
+@StixMapper.register("spotreps", lambda x: "spotReportsTotalCount" in x)
+@StixMapper.register("spotrep", lambda x: "spot_report" in x.get("data", {}))
 class ReportMapper(BaseMapper):
     """
     There are four types of reports and each can be represented in 2 or 3 formats.
@@ -50,13 +55,15 @@ class ReportMapper(BaseMapper):
             # There's no summary or anything similar. Try to extract contents of the first
             # paragraph <h2>...</h2><p>get-this</p>...
             lambda x: re.split(r'</?p>', re.sub(r'^.*?<p>', '', x.get("rawText") or ""))[0],
+            "created",
             ["rawText"]
         ),
         ReportType.INFOREP: ReportSettings(
             "ReportsApi",
             "reports_uid_get",
             "subject",
-            "executive_summary",
+            "executiveSummary",
+            "created",
             ["rawText", "rawTextTranslated", "researcherComments"]
         ),
         ReportType.BREACH_ALERT: ReportSettings(
@@ -64,12 +71,14 @@ class ReportMapper(BaseMapper):
             "breach_alerts_uid_get",
             "data.breach_alert.title",
             "data.breach_alert.summary",
+            "data.breach_alert.released_at"
         ),
         ReportType.SPOTREP: ReportSettings(
             "ReportsApi",
             "spot_reports_uid_get",
             "data.spot_report.spot_report_data.title",
-            "data.spot_report.spot_report_data.text"
+            "data.spot_report.spot_report_data.text",
+            "data.spot_report.spot_report_data.released_at"
         )
     }
 
@@ -81,32 +90,27 @@ class ReportMapper(BaseMapper):
         """
         Main entrypoint for mapping reponses from /report, /breachAlerts and /spotReports endpoint
         """
-        container = {}
-        container = self.__map_playground()
-        # for each report in source:
-        # determine type of the report
-        # determine if full report is needed
-        # based on above either call _map_report_short or _map_report_full
-        # think if there should be a per-report config and one mapping method or separate method
-        # for each report type
+        if "reportTotalCount" in source:
+            items = source.get("reports") or []
+        elif "breach_alerts_total_count" in source:
+            items = source.get("breach_alerts") or []
+        elif "spotReportsTotalCount" in source:
+            items = source.get("spotReports") or []
+        else:
+            items = [source]
 
-        # if reports search response and full required and type in (fintel, inforep):
-        #   self._fetch_and_map_report_full()
-        # else
-        #   self._map_report(report_src)
+        container = {}
+        for item in items:
+            report_type = self._get_type(item)
+            if report_type in (ReportType.FINTEL,
+                               ReportType.INFOREP) and self._full_report_required():
+                report = self._fetch_and_map_report(report_type, item["uid"])
+            else:
+                report = self._map_report(item)
+            container[report.id] = report
         if container:
             bundle = Bundle(*container.values(), allow_custom=True)
             return bundle
-
-    def __map_playground(self):
-        container = {}
-        some_ind = Indicator(pattern="[ file:name = 'foo.dll' ]", pattern_type="stix")
-        report = Report(name="qwe",
-                        object_refs={some_ind.id: some_ind},
-                        published=datetime.datetime(2024,11,11,12,0,0))
-        container[report.id] = report
-        container[some_ind.id] = some_ind
-        return container
 
     def map_report_ioc(self, source: dict, object_refs: dict) -> Report:
         """
@@ -144,18 +148,14 @@ class ReportMapper(BaseMapper):
             custom_properties={"x_intel471_com_uid": titan_id}
         )
 
-    def _full_report_required(self) -> bool:
-        return all([self.settings.titan_client, self.settings.api_client]) and \
-           any([self.settings.report_description, self.settings.report_attachments_opencti])
-
     def _map_report(self, source: dict, object_refs: dict = None) -> Report:
         """
         Map report in the format that is used when getting a report by ID.
         In case of FINTEL and INFOREP (/reports endpoint) there will be extra (possible big) fields.
         Breach alert and Spot report look the same in their long and short representation
         """
-        name = source.get("subject") or source.get("title")
-        time_published = self._format_published(source.get("released_at") or source.get("created"))
+        name = self._get_title(source)
+        time_published = self._format_published(self._get_released_at(source))
         report_kwargs = {
             "id": generate_id(
                 Report,
@@ -179,8 +179,12 @@ class ReportMapper(BaseMapper):
                 "x_intel471_com_uid": source["uid"]
             }
         }
+        entities = self._map_entities(source.get("data", {}).get("entities") or
+                                      source.get("entities") or [])
         if object_refs:
-            report_kwargs["object_refs"] = object_refs.values()
+            entities.update(object_refs)
+        if entities:
+            report_kwargs["object_refs"] = entities.values()
         if opencti_files := self._get_opencti_files(source):
             report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
         return Report(**report_kwargs)
@@ -195,8 +199,16 @@ class ReportMapper(BaseMapper):
             self.cache[report_id] = api_response.to_dict(serialize=True)
         return self._map_report(self.cache[report_id], object_refs)
 
-    def _map_entities(self, entities_sources: list[dict]):
-        entity = File(name=entities_sources[0]["value"])
+    def _full_report_required(self) -> bool:
+        return all([self.settings.titan_client, self.settings.api_client]) and \
+           any([self.settings.report_description, self.settings.report_attachments_opencti])
+
+    def _map_entities(self, entities_sources: list[dict]) -> dict:
+        # TODO: for breach and spot map victim as well
+        try:
+            entity = File(name=entities_sources[0]["value"])
+        except IndexError:
+            entity = File(name="no-entity")
         return {entity.id: entity}
 
     def _format_published(self, epoch_millis: int):
@@ -215,7 +227,7 @@ class ReportMapper(BaseMapper):
         if "breach_alert" in source.get("data", {}):
             return ReportType.BREACH_ALERT
         if "spot_report" in source.get("data", {}):
-            return ReportType.BREACH_ALERT
+            return ReportType.SPOTREP
         raise TitanStixException("Unkown report type")
 
     def _get_url(self, source: dict) -> str:
@@ -223,9 +235,25 @@ class ReportMapper(BaseMapper):
         report_id = source["uid"]
         return f"https://titan.intel471.com/report/{report_type.value}/{report_id}"
 
+    def _get_released_at(self, source: dict) -> Union[str, None]:
+        report_settings = self.reports_settings.get(self._get_type(source))
+        released_at_source = report_settings.released_at_source
+        for i in released_at_source.split("."):
+            source = source.get(i, {})
+        return source or None
+
+    def _get_title(self, source: dict) -> Union[str, None]:
+        report_settings = self.reports_settings.get(self._get_type(source))
+        title_source = report_settings.title_source
+        for i in title_source.split("."):
+            source = source.get(i, {})
+        return source or None
+
     def _get_description(self, source: dict) -> str:
         report_settings = self.reports_settings.get(self._get_type(source))
         description_source = report_settings.description_source
+        if not self.settings.report_description:
+            return None
 
         if isinstance(description_source, Callable):
             source = description_source(source)
@@ -235,8 +263,8 @@ class ReportMapper(BaseMapper):
 
         if source:
             return re.sub(self.remove_html_regex, "", source)
-
-    def _get_malware_families(self, source: dict):
+    @staticmethod
+    def _get_malware_families(source: dict):
         return [i.get("value") for i in (source.get("entities") or [])
                 if i.get("type") == "MalwareFamily"]
 
