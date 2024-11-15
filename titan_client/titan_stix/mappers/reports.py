@@ -235,7 +235,7 @@ class ReportMapper(BaseMapper):
         report_id = source["uid"]
         return f"https://titan.intel471.com/report/{report_type.value}/{report_id}"
 
-    def _get_released_at(self, source: dict) -> Union[str, None]:
+    def _get_released_at(self, source: dict) -> Union[int, None]:
         report_settings = self.reports_settings.get(self._get_type(source))
         released_at_source = report_settings.released_at_source
         for i in released_at_source.split("."):

@@ -82,7 +82,7 @@ class IOCMapper(BaseMapper):
             name = mapping_config.name_extractor(item)
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
-            observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
+            observable = self.map_entity(item)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 name=name,
@@ -100,7 +100,7 @@ class IOCMapper(BaseMapper):
             )
             for stix_object in [indicator, observable, r1, author_identity, TLP_AMBER]:
                 container[stix_object.id] = stix_object
-            for uid, stix_object in self.map_reports(
+            for uid, stix_object in self._map_reports(
                 report_mapper, report_sources, indicator, observable, r1
             ).items():
                 if isinstance(stix_object, Report) and uid in container:
@@ -110,8 +110,13 @@ class IOCMapper(BaseMapper):
             bundle = Bundle(*container.values(), allow_custom=True)
             return bundle
 
-    def map_reports(
-        self,
+    def map_entity(self, source: dict):
+        mapping_config = self.mapping_configs.get(source["type"])
+        kwargs = mapping_config.kwargs_extractor(source)
+        return mapping_config.observable_mapper(author=author_identity.id, **kwargs)
+
+    @staticmethod
+    def _map_reports(
         report_mapper,
         report_sources: list,
         indicator: Indicator,

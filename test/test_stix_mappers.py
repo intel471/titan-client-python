@@ -8,6 +8,7 @@ from stix2 import DomainName
 from titan_client.titan_stix import STIXMapperSettings
 from titan_client.titan_stix.mappers import ReportMapper
 from titan_client.titan_stix.mappers.common import StixMapper
+from titan_client.titan_stix.mappers.observables import ObservableMapper
 
 from .conftest import PREFIX, read_fixture
 from mock import MagicMock
@@ -114,3 +115,31 @@ def test_breach_alert_mapper(capsys):
         result_serialized = [i for i in result_serialized["objects"] if i["type"] == "report"]
         print(json.dumps(result_serialized, indent=2, sort_keys=True))
 
+@pytest.mark.parametrize("source,expected_values", (
+        # /iocs endpoint
+        ({"type": "MaliciousURL", "value": "https://acme.com"}, {"type": "url", "value": "https://acme.com"}),
+        ({"type": "MaliciousDomain", "value": "acme.com"}, {"type": "domain-name", "value": "acme.com"}),
+        ({"type": "IPAddress", "value": "10.0.0.1"}, {"type": "ipv4-addr", "value": "10.0.0.1"}),
+        ({"type": "AutonomousSystem", "value": "AS123456"}, {"type": "autonomous-system", "number": 123456}),
+        ({"type": "MD5", "value": "acb9cf2560602aa023e9933b959974d1"}, {"type": "file", "hashes": {"MD5": "acb9cf2560602aa023e9933b959974d1"}}),
+        ({"type": "SHA1", "value": "ae9de44e5f23758ffb6f4fa28065c6122c2e4467"}, {"type": "file", "hashes": {"SHA-1": "ae9de44e5f23758ffb6f4fa28065c6122c2e4467"}}),
+        ({"type": "SHA256", "value": "890a0bfab48d0b93da8f7617b2e65621e8d7f8c93a854fa8596232d9bcb1b39e"}, {"type": "file", "hashes": {"SHA-256": "890a0bfab48d0b93da8f7617b2e65621e8d7f8c93a854fa8596232d9bcb1b39e"}}),
+        ({"type": "FileName", "value": "acmecorp.exe"}, {"type": "file", "name": "acmecorp.exe"}),
+        # /entities endpoint
+        ({"type": "ActorDomain", "value": "acme.com"}, {"type": "domain-name", "value": "acme.com"}),
+        ({"type": "ActorOtherWebsite", "value": "https://acme.com"}, {"type": "url", "value": "https://acme.com"}),
+        ({"type": "BitcoinAddress", "value": "1HUu6K9sFvN1cGV"}, {"type": "cryptocurrency-wallet", "value": "1HUu6K9sFvN1cGV"}),
+        ({"type": "Discord", "value": "https://discord.gg/2xx2xx2"}, {"type": "user-account", "user_id": "2xx2xx2", "account_type": "Discord"}),
+        ({"type": "Facebook", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Facebook"}),
+        ({"type": "GitHub", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "GitHub"}),
+        ({"type": "ICQ", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "ICQ"}),
+        ({"type": "Instagram", "value": "instagram.com/changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Instagram"}),
+        ({"type": "Jabber", "value": "changeme@jabber.de"}, {"type": "user-account", "user_id": "changeme@jabber.de", "account_type": "Jabber"}),
+        ({"type": "LinkedIn", "value": "https://www.linkedin.com/in/iamweasel-58312b1a6/"}, {"type": "user-account", "user_id": "iamweasel-58312b1a6", "account_type": "LinkedIn"}),
+
+))
+def test_observable_mapper(source, expected_values):
+    mapper = ObservableMapper()
+    sco = mapper.map(**source)
+    for key, value in expected_values.items():
+        assert getattr(sco, key) == value
