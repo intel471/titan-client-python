@@ -91,7 +91,10 @@ class IndicatorsMapper(BaseMapper):
                 kill_chain_phases=[
                     KillChainPhase(kill_chain_name="mitre-attack", phase_name=tactics)
                 ],
-                custom_properties={"x_opencti_main_observable_type": mapping_config.opencti_type}
+                custom_properties={
+                    "x_opencti_main_observable_type": mapping_config.opencti_type,
+                    "x_opencti_score": self.settings.ioc_opencti_score,
+                }
             )
             r1 = Relationship(
                 indicator, "indicates", malware, created_by_ref=author_identity
