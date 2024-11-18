@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass
 from typing import Union, Callable
 
-from stix2 import URL, IPv4Address, DomainName, File, AutonomousSystem, UserAccount
+from stix2 import URL, IPv4Address, DomainName, File, AutonomousSystem, UserAccount, IPv6Address, EmailAddress
 from pycti import CustomObservableCryptocurrencyWallet
 
 from titan_client.titan_stix import author_identity
@@ -20,14 +20,19 @@ class ObservableMapper:
 
     def __init__(self):
         self.mapper_configs = [
-            MapperConfig(self.map_url, ("MaliciousURL", "ActorOtherWebsite")),
+            MapperConfig(self.map_url, ("MaliciousURL", "ActorOtherWebsite", "URL")),
             MapperConfig(self.map_domain, ("MaliciousDomain", "ActorDomain")),
-            MapperConfig(self.map_ipv4, ("IPAddress",)),
+            MapperConfig(self.map_ipv4, ("IPAddress", "IPv4Prefix")),
+            MapperConfig(self.map_ipv6, ("IPv6Prefix", )),
+            MapperConfig(self.map_email_address, ("EmailAddress", )),
             MapperConfig(self.map_autonomous_system, ("AutonomousSystem",)),
             MapperConfig(self.map_file_hash, ("MD5", "SHA1", "SHA256",)),
             MapperConfig(self.map_filename, ("FileName",)),
-            MapperConfig(self.map_crypto_wallet, ("BitcoinAddress",)),
-            MapperConfig(self.map_user_account, ("Discord", "Facebook", "GitHub", "ICQ", "Instagram", "Jabber", "LinkedIn"),
+            MapperConfig(self.map_crypto_wallet, ("BitcoinAddress", "OtherCryptoCurrencies")),
+            MapperConfig(self.map_user_account, (
+                "AIM", "Discord", "Facebook", "GitHub", "ICQ", "Instagram", "Jabber", "LinkedIn", "MSN", "MoiMir",
+                "Odnoklassniki", "QQ", "Skype", "Telegram", "TOX", "Tox", "Twitter", "VK", "WeChat", "Wickr", "YahooIM",
+                "PerfectMoneyID", "QiwiWallet", "WebMoneyID", "WebMoneyPurse", "YandexMoney", "Phone"),
                          lambda x: re.sub(r"^.*/", "", x.strip("/"))),
         ]
 
@@ -60,8 +65,24 @@ class ObservableMapper:
         )
 
     @staticmethod
+    def map_ipv6(value: str, *args, **kwargs) -> IPv6Address:
+        return IPv6Address(
+            value=value,
+            object_marking_refs=[MARKING],
+            custom_properties={X_OPENCT_CREATED_BY: author_identity}
+        )
+
+    @staticmethod
     def map_domain(value: str, *args, **kwargs) -> DomainName:
         return DomainName(
+            value=value,
+            object_marking_refs=[MARKING],
+            custom_properties={X_OPENCT_CREATED_BY: author_identity}
+        )
+
+    @staticmethod
+    def map_email_address(value: str, *args, **kwargs) -> EmailAddress:
+        return EmailAddress(
             value=value,
             object_marking_refs=[MARKING],
             custom_properties={X_OPENCT_CREATED_BY: author_identity}

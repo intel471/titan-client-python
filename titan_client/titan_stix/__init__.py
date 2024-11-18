@@ -1,6 +1,6 @@
 import datetime
 import uuid
-from typing import Union, NamedTuple
+from typing import Union, NamedTuple, Iterable
 
 from stix2 import Relationship, base, Identity
 from stix2.base import _DomainObject, _Observable
@@ -26,6 +26,23 @@ def generate_id(
         name = canonicalize(id_contributing_properties, utf8=False)
         return f"{stix_class._type}--{uuid.uuid5(base.SCO_DET_ID_NAMESPACE, name)}"
     return f"{stix_class._type}--{uuid.uuid4()}"
+
+
+class StixObjects(list):
+    """
+    Helper class for collecting unique STIX instances (by STIX ID)
+    """
+    def append(self, item):
+        try:
+            if item.id not in [i.id for i in self]:
+                super().append(item)
+        except AttributeError:
+
+            raise
+
+    def extend(self, __iterable):
+        for i in __iterable:
+            self.append(i)
 
 
 author_name = "Intel 471 Inc."

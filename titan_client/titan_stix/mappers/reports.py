@@ -9,8 +9,9 @@ from pytz import UTC
 from stix2 import TLP_AMBER, Bundle, ExternalReference, File, Report
 
 from titan_client.titan_stix.exceptions import TitanStixException
+from .observables import ObservableMapper
 
-from .. import STIXMapperSettings, author_identity, generate_id
+from .. import STIXMapperSettings, author_identity, generate_id, StixObjects
 from .common import BaseMapper, StixMapper
 
 
@@ -84,6 +85,7 @@ class ReportMapper(BaseMapper):
 
     def __init__(self, settings: STIXMapperSettings):
         super().__init__(settings)
+        self.observable_mapper = ObservableMapper()
         self.cache = {}
 
     def map(self, source: dict) -> Bundle:
@@ -99,20 +101,19 @@ class ReportMapper(BaseMapper):
         else:
             items = [source]
 
-        container = {}
+        stix_objects = StixObjects()
         for item in items:
             report_type = self._get_type(item)
             if report_type in (ReportType.FINTEL,
                                ReportType.INFOREP) and self._full_report_required():
-                report = self._fetch_and_map_report(report_type, item["uid"])
+                stix_objects.extend(self._fetch_and_map_report(report_type, item["uid"]))
             else:
-                report = self._map_report(item)
-            container[report.id] = report
-        if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+                stix_objects.extend(self._map_report(item))
+        if stix_objects:
+            bundle = Bundle(*stix_objects, allow_custom=True)
             return bundle
 
-    def map_report_ioc(self, source: dict, object_refs: dict) -> Report:
+    def map_report_ioc(self, source: dict, object_refs: StixObjects) -> StixObjects:
         """
         Map report in the format as used when attached to IOCs (in the response of /iocs endpoint).
         This format differs from the one in actual reports endpoint (/reports, /breachAlerts, etc.)
@@ -148,12 +149,13 @@ class ReportMapper(BaseMapper):
             custom_properties={"x_intel471_com_uid": titan_id}
         )
 
-    def _map_report(self, source: dict, object_refs: dict = None) -> Report:
+    def _map_report(self, source: dict, object_refs: StixObjects = None) -> StixObjects:
         """
         Map report in the format that is used when getting a report by ID.
         In case of FINTEL and INFOREP (/reports endpoint) there will be extra (possible big) fields.
         Breach alert and Spot report look the same in their long and short representation
         """
+        stix_objects = StixObjects()
         name = self._get_title(source)
         time_published = self._format_published(self._get_released_at(source))
         report_kwargs = {
@@ -179,18 +181,20 @@ class ReportMapper(BaseMapper):
                 "x_intel471_com_uid": source["uid"]
             }
         }
-        entities = self._map_entities(source.get("data", {}).get("entities") or
+        entities: StixObjects = self._map_entities(source.get("data", {}).get("entities") or
                                       source.get("entities") or [])
         if object_refs:
-            entities.update(object_refs)
+            entities.extend(object_refs)
         if entities:
-            report_kwargs["object_refs"] = entities.values()
+            report_kwargs["object_refs"] = entities
+            stix_objects.extend(entities)
         if opencti_files := self._get_opencti_files(source):
             report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
-        return Report(**report_kwargs)
+        stix_objects.append(Report(**report_kwargs))
+        return stix_objects
 
     def _fetch_and_map_report(self, report_type: ReportType, report_id: str,
-                              object_refs: dict = None) -> Report:
+                              object_refs: dict = None) -> StixObjects:
         report_settings = self.reports_settings.get(report_type)
         if report_id not in self.cache:
             api_instance = getattr(self.settings.titan_client,
@@ -203,13 +207,17 @@ class ReportMapper(BaseMapper):
         return all([self.settings.titan_client, self.settings.api_client]) and \
            any([self.settings.report_description, self.settings.report_attachments_opencti])
 
-    def _map_entities(self, entities_sources: list[dict]) -> dict:
+    def _map_entities(self, entities_sources: list[dict]) -> StixObjects:
         # TODO: for breach and spot map victim as well
-        try:
-            entity = File(name=entities_sources[0]["value"])
-        except IndexError:
-            entity = File(name="no-entity")
-        return {entity.id: entity}
+        stix_objects = StixObjects()
+        for i in entities_sources:
+            o = self.observable_mapper.map(**i)
+            if not o:
+                print(f"Not translating {i}")
+                continue
+            stix_objects.append(o)
+        return stix_objects
+        # return {i.id: i for i in self.observable_mapper.map_many(*entities_sources)}
 
     def _format_published(self, epoch_millis: int):
         """

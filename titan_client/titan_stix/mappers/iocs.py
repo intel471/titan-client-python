@@ -5,7 +5,7 @@ from typing import Union
 from pytz import UTC
 from stix2 import Bundle, Indicator, Report, TLP_AMBER, DomainName, URL, Relationship
 
-from .. import author_identity, generate_id
+from .. import author_identity, generate_id, StixObjects
 from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..observables import create_domain, create_url, create_ipv4, create_file
 from .reports import ReportMapper
@@ -100,12 +100,12 @@ class IOCMapper(BaseMapper):
             )
             for stix_object in [indicator, observable, r1, author_identity, TLP_AMBER]:
                 container[stix_object.id] = stix_object
-            for uid, stix_object in self._map_reports(
+            for stix_object in self._map_reports(
                 report_mapper, report_sources, indicator, observable, r1
-            ).items():
-                if isinstance(stix_object, Report) and uid in container:
-                    stix_object.object_refs.extend(container[uid].object_refs)
-                container[uid] = stix_object
+            ):
+                if isinstance(stix_object, Report) and stix_object.id in container:
+                    stix_object.object_refs.extend(container[stix_object.id].object_refs)
+                container[stix_object.id] = stix_object
         if container:
             bundle = Bundle(*container.values(), allow_custom=True)
             return bundle
@@ -122,14 +122,11 @@ class IOCMapper(BaseMapper):
         indicator: Indicator,
         observable: Union[URL, DomainName],
         relationship: Relationship
-    ) -> dict:
-        container = {}
+    ) -> StixObjects:
+        stix_objects = StixObjects()
         for report_source in report_sources:
             report: Report = report_mapper.map_report_ioc(
                 report_source,
-                object_refs={
-                    indicator.id: indicator,
-                    observable.id: observable,
-                    relationship.id: relationship})
-            container[report.id] = report
-        return container
+                object_refs=StixObjects([indicator, observable, relationship]))
+            stix_objects.append(report)
+        return stix_objects

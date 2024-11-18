@@ -5,7 +5,7 @@ import os
 import pytest
 from stix2 import DomainName
 
-from titan_client.titan_stix import STIXMapperSettings
+from titan_client.titan_stix import STIXMapperSettings, StixObjects
 from titan_client.titan_stix.mappers import ReportMapper
 from titan_client.titan_stix.mappers.common import StixMapper
 from titan_client.titan_stix.mappers.observables import ObservableMapper
@@ -78,8 +78,8 @@ def test_report_enrichments():
         "uid": "1fffffffffffffffffffffffffffffff",
         "admiraltyCode": "A1",
         "dateOfInformation": 1678060800000
-    }, {mock_domain.id: mock_domain})
-    report_serialized = json.loads(result.serialize())
+    }, StixObjects([mock_domain]))
+    report_serialized = json.loads(result[1].serialize())
     assert report_serialized["name"] == "New malware released (fromAPI)"
     assert report_serialized["description"] == "New malware Foobar released!"
     assert report_serialized["report_types"] == ["fintel"]
@@ -118,8 +118,11 @@ def test_breach_alert_mapper(capsys):
 @pytest.mark.parametrize("source,expected_values", (
         # /iocs endpoint
         ({"type": "MaliciousURL", "value": "https://acme.com"}, {"type": "url", "value": "https://acme.com"}),
+        ({"type": "URL", "value": "https://acme.com"}, {"type": "url", "value": "https://acme.com"}),
         ({"type": "MaliciousDomain", "value": "acme.com"}, {"type": "domain-name", "value": "acme.com"}),
         ({"type": "IPAddress", "value": "10.0.0.1"}, {"type": "ipv4-addr", "value": "10.0.0.1"}),
+        ({"type": "IPv4Prefix", "value": "10.0.0.1/24"}, {"type": "ipv4-addr", "value": "10.0.0.1/24"}),
+        ({"type": "IPv6Prefix", "value": "2a09:7c44::/32"}, {"type": "ipv6-addr", "value": "2a09:7c44::/32"}),
         ({"type": "AutonomousSystem", "value": "AS123456"}, {"type": "autonomous-system", "number": 123456}),
         ({"type": "MD5", "value": "acb9cf2560602aa023e9933b959974d1"}, {"type": "file", "hashes": {"MD5": "acb9cf2560602aa023e9933b959974d1"}}),
         ({"type": "SHA1", "value": "ae9de44e5f23758ffb6f4fa28065c6122c2e4467"}, {"type": "file", "hashes": {"SHA-1": "ae9de44e5f23758ffb6f4fa28065c6122c2e4467"}}),
@@ -129,6 +132,9 @@ def test_breach_alert_mapper(capsys):
         ({"type": "ActorDomain", "value": "acme.com"}, {"type": "domain-name", "value": "acme.com"}),
         ({"type": "ActorOtherWebsite", "value": "https://acme.com"}, {"type": "url", "value": "https://acme.com"}),
         ({"type": "BitcoinAddress", "value": "1HUu6K9sFvN1cGV"}, {"type": "cryptocurrency-wallet", "value": "1HUu6K9sFvN1cGV"}),
+        ({"type": "OtherCryptoCurrencies", "value": "1HUu6K9sFvN1cGV"}, {"type": "cryptocurrency-wallet", "value": "1HUu6K9sFvN1cGV"}),
+        ({"type": "EmailAddress", "value": "changeme@acme.com"}, {"type": "email-addr", "value": "changeme@acme.com"}),
+        ({"type": "AIM", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "AIM"}),
         ({"type": "Discord", "value": "https://discord.gg/2xx2xx2"}, {"type": "user-account", "user_id": "2xx2xx2", "account_type": "Discord"}),
         ({"type": "Facebook", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Facebook"}),
         ({"type": "GitHub", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "GitHub"}),
@@ -136,6 +142,24 @@ def test_breach_alert_mapper(capsys):
         ({"type": "Instagram", "value": "instagram.com/changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Instagram"}),
         ({"type": "Jabber", "value": "changeme@jabber.de"}, {"type": "user-account", "user_id": "changeme@jabber.de", "account_type": "Jabber"}),
         ({"type": "LinkedIn", "value": "https://www.linkedin.com/in/iamweasel-58312b1a6/"}, {"type": "user-account", "user_id": "iamweasel-58312b1a6", "account_type": "LinkedIn"}),
+        ({"type": "MSN", "value": "changeme@acme.com"}, {"type": "user-account", "user_id": "changeme@acme.com", "account_type": "MSN"}),
+        ({"type": "MoiMir", "value": "my.mail.ru/mail/changeme/"}, {"type": "user-account", "user_id": "changeme", "account_type": "MoiMir"}),
+        ({"type": "Odnoklassniki", "value": "ok.ru/profile/11111800259"}, {"type": "user-account", "user_id": "11111800259", "account_type": "Odnoklassniki"}),
+        ({"type": "QQ", "value": "111159547"}, {"type": "user-account", "user_id": "111159547", "account_type": "QQ"}),
+        ({"type": "Skype", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Skype"}),
+        ({"type": "Telegram", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Telegram"}),
+        ({"type": "TOX", "value": "2B41B398739E6BECE4E93EAFA0C665"}, {"type": "user-account", "user_id": "2B41B398739E6BECE4E93EAFA0C665", "account_type": "TOX"}),
+        ({"type": "Twitter", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Twitter"}),
+        ({"type": "VK", "value": "vk.com/changeme_2"}, {"type": "user-account", "user_id": "changeme_2", "account_type": "VK"}),
+        ({"type": "WeChat", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "WeChat"}),
+        ({"type": "Wickr", "value": "changeme"}, {"type": "user-account", "user_id": "changeme", "account_type": "Wickr"}),
+        ({"type": "YahooIM", "value": "changeme@yahoo.com"}, {"type": "user-account", "user_id": "changeme@yahoo.com", "account_type": "YahooIM"}),
+        ({"type": "PerfectMoneyID", "value": "U1111111"}, {"type": "user-account", "user_id": "U1111111", "account_type": "PerfectMoneyID"}),
+        ({"type": "QiwiWallet", "value": "11110519386"}, {"type": "user-account", "user_id": "11110519386", "account_type": "QiwiWallet"}),
+        ({"type": "WebMoneyID", "value": "111112935229"}, {"type": "user-account", "user_id": "111112935229", "account_type": "WebMoneyID"}),
+        ({"type": "WebMoneyPurse", "value": "Z111144083730"}, {"type": "user-account", "user_id": "Z111144083730", "account_type": "WebMoneyPurse"}),
+        ({"type": "YandexMoney", "value": "111113131482342"}, {"type": "user-account", "user_id": "111113131482342", "account_type": "YandexMoney"}),
+        ({"type": "Phone", "value": "79874172111"}, {"type": "user-account", "user_id": "79874172111", "account_type": "Phone"}),
 
 ))
 def test_observable_mapper(source, expected_values):
