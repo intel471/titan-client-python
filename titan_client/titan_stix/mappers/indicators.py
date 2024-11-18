@@ -75,6 +75,9 @@ class IndicatorsMapper(BaseMapper):
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
             observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
             malware = create_malware(malware_family_name)
+            custom_properties = {"x_opencti_main_observable_type": mapping_config.opencti_type}
+            if self.settings.ioc_opencti_score:
+                custom_properties.update({"x_opencti_score": self.settings.ioc_opencti_score})
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 pattern_type="stix",
@@ -91,10 +94,7 @@ class IndicatorsMapper(BaseMapper):
                 kill_chain_phases=[
                     KillChainPhase(kill_chain_name="mitre-attack", phase_name=tactics)
                 ],
-                custom_properties={
-                    "x_opencti_main_observable_type": mapping_config.opencti_type,
-                    "x_opencti_score": self.settings.ioc_opencti_score,
-                }
+                custom_properties=custom_properties
             )
             r1 = Relationship(
                 indicator, "indicates", malware, created_by_ref=author_identity
