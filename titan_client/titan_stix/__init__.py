@@ -21,7 +21,7 @@ class STIXMapperSettings(NamedTuple):
 def generate_id(
     stix_class: Union[_DomainObject, Relationship, _Observable],
     **id_contributing_properties: str,
-):
+) -> str:
     if id_contributing_properties:
         name = canonicalize(id_contributing_properties, utf8=False)
         return f"{stix_class._type}--{uuid.uuid5(base.SCO_DET_ID_NAMESPACE, name)}"
@@ -37,7 +37,6 @@ class StixObjects(list):
             if item.id not in [i.id for i in self]:
                 super().append(item)
         except AttributeError:
-
             raise
 
     def extend(self, __iterable):

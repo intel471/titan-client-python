@@ -1,4 +1,5 @@
 import re
+from collections import ChainMap
 from dataclasses import dataclass
 from typing import Union, Callable
 
@@ -38,14 +39,10 @@ class EntitiesMapper:
                 "PerfectMoneyID", "QiwiWallet", "WebMoneyID", "WebMoneyPurse", "YandexMoney", "Phone"),
                          lambda x: re.sub(r"^.*/", "", x.strip("/"))),
         ]
-
-    def map_many(self, *observable_sources: dict):
-        for observable_source in observable_sources:
-            yield self.map(observable_source["type"], observable_source["value"])
+        self.type2config = dict(ChainMap(*[{st: mc for st in mc.src_types} for mc in self.mapper_configs]))
 
     def map(self, type: str, value: str, *args, **kwargs):  # noqa need `type` here as it comes from the API
-        for mapper_config in self.mapper_configs:
-            if type in mapper_config.src_types:
-                if value_extractor := mapper_config.value_extractor:
-                    value = value_extractor(value)
-                return mapper_config.mapper(value, type=type)
+        if mapper_config := self.type2config.get(type):
+            if value_extractor := mapper_config.value_extractor:
+                value = value_extractor(value)
+            return mapper_config.mapper(value, type=type)

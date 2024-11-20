@@ -3,9 +3,10 @@ import logging
 from typing import Union
 
 from pytz import UTC
-from stix2 import Bundle, Indicator, Report, TLP_AMBER, DomainName, URL, Relationship
+from stix2 import Bundle, Indicator, Report, DomainName, URL, Relationship
 
 from .. import author_identity, generate_id, StixObjects
+from ..constants import MARKING
 from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..sco import map_domain, map_url, map_ipv4, map_file
 from .reports import ReportMapper
@@ -92,13 +93,13 @@ class IOCMapper(BaseMapper):
                 valid_from=valid_from,
                 valid_until=valid_until,
                 created_by_ref=author_identity,
-                object_marking_refs=[TLP_AMBER],
+                object_marking_refs=[MARKING],
                 custom_properties={"x_opencti_main_observable_type": mapping_config.opencti_type}
             )
             r1 = Relationship(
                 indicator, "based-on", observable, created_by_ref=author_identity
             )
-            for stix_object in [indicator, observable, r1, author_identity, TLP_AMBER]:
+            for stix_object in [indicator, observable, r1, author_identity, MARKING]:
                 container[stix_object.id] = stix_object
             for stix_object in self._map_reports(
                 report_mapper, report_sources, indicator, observable, r1
