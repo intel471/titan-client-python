@@ -7,7 +7,7 @@ from stix2 import Bundle, Indicator, Report, TLP_AMBER, DomainName, URL, Relatio
 
 from .. import author_identity, generate_id, StixObjects
 from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern, create_file_pattern
-from ..observables import create_domain, create_url, create_ipv4, create_file
+from ..sco import map_domain, map_url, map_ipv4, map_file
 from .reports import ReportMapper
 from .common import StixMapper, BaseMapper, MappingConfig
 
@@ -20,42 +20,42 @@ class IOCMapper(BaseMapper):
     mapping_configs = {
         "MaliciousURL": MappingConfig(
             patterning_mapper=create_url_pattern,
-            observable_mapper=create_url,
+            entities_mapper=map_url,
             kwargs_extractor=lambda i: {"value": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="Url"
         ),
         "MaliciousDomain": MappingConfig(
             patterning_mapper=create_domain_pattern,
-            observable_mapper=create_domain,
+            entities_mapper=map_domain,
             kwargs_extractor=lambda i: {"value": i["value"].split("://")[-1]},
             name_extractor=lambda i: i["value"].split("://")[-1],
             opencti_type="Domain-Name"
         ),
         "IPAddress": MappingConfig(
             patterning_mapper=create_ipv4_pattern,
-            observable_mapper=create_ipv4,
+            entities_mapper=map_ipv4,
             kwargs_extractor=lambda i: {"value": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="IPv4-Addr"
         ),
         "MD5": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {"md5": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
         ),
         "SHA1": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {"sha1": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
         ),
         "SHA256": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {"sha256": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
@@ -113,7 +113,7 @@ class IOCMapper(BaseMapper):
     def map_entity(self, source: dict):
         mapping_config = self.mapping_configs.get(source["type"])
         kwargs = mapping_config.kwargs_extractor(source)
-        return mapping_config.observable_mapper(author=author_identity.id, **kwargs)
+        return mapping_config.entities_mapper(**kwargs)
 
     @staticmethod
     def _map_reports(
@@ -125,8 +125,8 @@ class IOCMapper(BaseMapper):
     ) -> StixObjects:
         stix_objects = StixObjects()
         for report_source in report_sources:
-            report: Report = report_mapper.map_report_ioc(
+            report_etc: StixObjects = report_mapper.map_report_ioc(
                 report_source,
                 object_refs=StixObjects([indicator, observable, relationship]))
-            stix_objects.append(report)
+            stix_objects.extend(report_etc)
         return stix_objects

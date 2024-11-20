@@ -9,10 +9,11 @@ from pytz import UTC
 from stix2 import TLP_AMBER, Bundle, ExternalReference, File, Report
 
 from titan_client.titan_stix.exceptions import TitanStixException
-from .observables import ObservableMapper
+from .entities import EntitiesMapper
 
 from .. import STIXMapperSettings, author_identity, generate_id, StixObjects
 from .common import BaseMapper, StixMapper
+from ..constants import MARKING
 
 
 class ReportType(Enum):
@@ -85,7 +86,7 @@ class ReportMapper(BaseMapper):
 
     def __init__(self, settings: STIXMapperSettings):
         super().__init__(settings)
-        self.observable_mapper = ObservableMapper()
+        self.entities_mapper = EntitiesMapper()
         self.cache = {}
 
     def map(self, source: dict) -> Bundle:
@@ -135,7 +136,7 @@ class ReportMapper(BaseMapper):
         external_references = [ExternalReference(source_name="Titan URL", url=titan_url)]
         confidence = self.map_confidence(source.get("admiraltyCode"))
 
-        return Report(
+        return StixObjects([Report(
             id = id_,
             name=name,
             description=name,
@@ -147,7 +148,7 @@ class ReportMapper(BaseMapper):
             created_by_ref=author_identity,
             object_marking_refs=TLP_AMBER,
             custom_properties={"x_intel471_com_uid": titan_id}
-        )
+        )])
 
     def _map_report(self, source: dict, object_refs: StixObjects = None) -> StixObjects:
         """
@@ -155,7 +156,7 @@ class ReportMapper(BaseMapper):
         In case of FINTEL and INFOREP (/reports endpoint) there will be extra (possible big) fields.
         Breach alert and Spot report look the same in their long and short representation
         """
-        stix_objects = StixObjects()
+        stix_objects = StixObjects([MARKING, author_identity])
         name = self._get_title(source)
         time_published = self._format_published(self._get_released_at(source))
         report_kwargs = {
@@ -172,9 +173,7 @@ class ReportMapper(BaseMapper):
                                               .get("confidence", {}).get("level")),
             "published": time_published,
             "labels": self._get_malware_families(source),
-            "external_references": [
-                ExternalReference(source_name="Titan URL", url=self._get_url(source))
-            ],
+            "external_references": self._get_external_references(source),
             "created_by_ref": author_identity,
             "object_marking_refs": [TLP_AMBER],
             "custom_properties": {
@@ -207,17 +206,29 @@ class ReportMapper(BaseMapper):
         return all([self.settings.titan_client, self.settings.api_client]) and \
            any([self.settings.report_description, self.settings.report_attachments_opencti])
 
+    def _get_external_references(self, source: dict) -> list[ExternalReference]:
+        references = [ExternalReference(source_name="Titan URL", url=self._get_url(source))]
+
+        # data.spot_report.spot_report_data.links
+        # for link_src in source["data"]["spot_report"]["spot_report_data"]["links"]:
+        #     external_reference = ExternalReference(
+        #         source_name=link_src['title'], url=link_src["url"]
+        #     )
+        #     references.append(external_reference)
+        return references
+
+
     def _map_entities(self, entities_sources: list[dict]) -> StixObjects:
         # TODO: for breach and spot map victim as well
         stix_objects = StixObjects()
         for i in entities_sources:
-            o = self.observable_mapper.map(**i)
+            o = self.entities_mapper.map(**i)
             if not o:
                 print(f"Not translating {i}")
                 continue
             stix_objects.append(o)
         return stix_objects
-        # return {i.id: i for i in self.observable_mapper.map_many(*entities_sources)}
+        # return {i.id: i for i in self.entities_mapper.map_many(*entities_sources)}
 
     def _format_published(self, epoch_millis: int):
         """

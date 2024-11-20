@@ -7,8 +7,8 @@ from stix2 import Indicator, Bundle, Relationship, KillChainPhase, TLP_AMBER
 from .. import author_identity, generate_id
 from .common import StixMapper, BaseMapper, MappingConfig
 from ..patterning import create_url_pattern, create_ipv4_pattern, create_file_pattern
-from ..observables import create_url, create_ipv4, create_file
-from ..sdo import create_malware
+from ..sco import map_url, map_ipv4, map_file
+from ..sdo import map_malware
 
 
 @StixMapper.register("indicators", lambda x: "indicatorTotalCount" in x)
@@ -17,14 +17,14 @@ class IndicatorsMapper(BaseMapper):
     mapping_configs = {
         "url": MappingConfig(
             patterning_mapper=create_url_pattern,
-            observable_mapper=create_url,
+            entities_mapper=map_url,
             kwargs_extractor=lambda i: {"value": i["data"]["indicator_data"]["url"]},
             name_extractor=lambda i: i["data"]["indicator_data"]["url"],
             opencti_type="Url"
         ),
         "ipv4": MappingConfig(
             patterning_mapper=create_ipv4_pattern,
-            observable_mapper=create_ipv4,
+            entities_mapper=map_ipv4,
             kwargs_extractor=lambda i: {
                 "value": i["data"]["indicator_data"]["address"]
             },
@@ -33,7 +33,7 @@ class IndicatorsMapper(BaseMapper):
         ),
         "file": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {
                 "md5": i["data"]["indicator_data"]["file"]["md5"],
                 "sha1": i["data"]["indicator_data"]["file"]["sha1"],
@@ -73,8 +73,8 @@ class IndicatorsMapper(BaseMapper):
             description = f"{description_main}\n\n### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
-            observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
-            malware = create_malware(malware_family_name)
+            observable = mapping_config.entities_mapper(**kwargs)
+            malware = map_malware(malware_family_name)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 pattern_type="stix",

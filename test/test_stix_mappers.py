@@ -8,7 +8,7 @@ from stix2 import DomainName
 from titan_client.titan_stix import STIXMapperSettings, StixObjects
 from titan_client.titan_stix.mappers import ReportMapper
 from titan_client.titan_stix.mappers.common import StixMapper
-from titan_client.titan_stix.mappers.observables import ObservableMapper
+from titan_client.titan_stix.mappers.entities import EntitiesMapper
 
 from .conftest import PREFIX, read_fixture
 from mock import MagicMock
@@ -79,7 +79,7 @@ def test_report_enrichments():
         "admiraltyCode": "A1",
         "dateOfInformation": 1678060800000
     }, StixObjects([mock_domain]))
-    report_serialized = json.loads(result[1].serialize())
+    report_serialized = json.loads(result[-1].serialize())
     assert report_serialized["name"] == "New malware released (fromAPI)"
     assert report_serialized["description"] == "New malware Foobar released!"
     assert report_serialized["report_types"] == ["fintel"]
@@ -163,7 +163,7 @@ def test_breach_alert_mapper(capsys):
 
 ))
 def test_observable_mapper(source, expected_values):
-    mapper = ObservableMapper()
+    mapper = EntitiesMapper()
     sco = mapper.map(**source)
     for key, value in expected_values.items():
         assert getattr(sco, key) == value

@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
 
 MappingConfig = namedtuple(
     "MappingConfig",
-    ["patterning_mapper", "observable_mapper", "kwargs_extractor", "name_extractor", "opencti_type"]
+    ["patterning_mapper", "entities_mapper", "kwargs_extractor", "name_extractor", "opencti_type"]
 )
 
 
