@@ -22,6 +22,7 @@ class ReportType(Enum):
     FINTEL = "fintel"
     BREACH_ALERT = "breach_alert"
     SPOTREP = "spotrep"
+    MALWARE = "malware"
 
 
 class ReportSettings(NamedTuple):
@@ -31,6 +32,7 @@ class ReportSettings(NamedTuple):
     title_path: str
     description_path_or_extractor: Union[str, Callable[[dict], str]]
     released_at_path: str
+    entities_path_or_extractor: Union[str, Callable[[dict], str]]
     victims_path: str
     links_path: str
     attachments_paths: Union[List[str], None] = None
@@ -42,47 +44,63 @@ class ReportSettings(NamedTuple):
 @StixMapper.register("breach_alert", lambda x: "breach_alert" in x.get("data", {}))
 @StixMapper.register("spotreps", lambda x: "spotReportsTotalCount" in x)
 @StixMapper.register("spotrep", lambda x: "spot_report" in x.get("data", {}))
+@StixMapper.register("malreps", lambda x: "malwareReportTotalCount" in x)
+@StixMapper.register("malrep", lambda x: "malware_report_data" in x.get("data", {}))
 class ReportMapper(BaseMapper):
     reports_settings = {
         ReportType.FINTEL: ReportSettings(
-            "ReportsApi",
-            "reports_uid_get",
-            "subject",
+            api_class="ReportsApi",
+            method_name="reports_uid_get",
+            title_path="subject",
             # There's no summary or anything similar. Try to extract contents of the first
             # paragraph <h2>...</h2><p>get-this</p>...
-            lambda x: re.split(r'</?p>', re.sub(r'^.*?<p>', '', x.get("rawText") or ""))[0],
-            "created",
-            "victims",
-            "sources",
-            ["rawText"]
+            description_path_or_extractor=lambda src: re.split(r'</?p>', re.sub(r'^.*?<p>', '', src.get("rawText") or ""))[0],
+            released_at_path="created",
+            entities_path_or_extractor="entities",
+            victims_path="victims",
+            links_path="sources",
+            attachments_paths=["rawText"]
         ),
         ReportType.INFOREP: ReportSettings(
-            "ReportsApi",
-            "reports_uid_get",
-            "subject",
-            "executiveSummary",
-            "created",
-            "victims",
-            "sources",
-            ["rawText", "rawTextTranslated", "researcherComments"]
+            api_class="ReportsApi",
+            method_name="reports_uid_get",
+            title_path="subject",
+            description_path_or_extractor="executiveSummary",
+            released_at_path="created",
+            entities_path_or_extractor="entities",
+            victims_path="victims",
+            links_path="sources",
+            attachments_paths=["rawText", "rawTextTranslated", "researcherComments"]
         ),
         ReportType.BREACH_ALERT: ReportSettings(
-            "ReportsApi",
-            "breach_alerts_uid_get",
-            "data.breach_alert.title",
-            "data.breach_alert.summary",
-            "data.breach_alert.released_at",
-            "data.breach_alert.victim",
-            "data.breach_alert.sources"
+            api_class="ReportsApi",
+            method_name="breach_alerts_uid_get",
+            title_path="data.breach_alert.title",
+            description_path_or_extractor="data.breach_alert.summary",
+            released_at_path="data.breach_alert.released_at",
+            entities_path_or_extractor="data.entities",
+            victims_path="data.breach_alert.victim",
+            links_path="data.breach_alert.sources"
         ),
         ReportType.SPOTREP: ReportSettings(
-            "ReportsApi",
-            "spot_reports_uid_get",
-            "data.spot_report.spot_report_data.title",
-            "data.spot_report.spot_report_data.text",
-            "data.spot_report.spot_report_data.released_at",
-            "data.spot_report.spot_report_data.victims",
-            "data.spot_report.spot_report_data.links"
+            api_class="ReportsApi",
+            method_name="spot_reports_uid_get",
+            title_path="data.spot_report.spot_report_data.title",
+            description_path_or_extractor="data.spot_report.spot_report_data.text",
+            released_at_path="data.spot_report.spot_report_data.released_at",
+            entities_path_or_extractor="data.entities",
+            victims_path="data.spot_report.spot_report_data.victims",
+            links_path="data.spot_report.spot_report_data.links"
+        ),
+        ReportType.MALWARE: ReportSettings(
+            api_class="ReportsApi",
+            method_name="malware_reports_uid_get",
+            title_path="data.malware_report_data.title",
+            description_path_or_extractor="data.malware_report_data.text",
+            released_at_path="data.malware_report_data.released_at",
+            entities_path_or_extractor=lambda src: [{"type": "MalwareFamily", "value": src.get("data", {}).get("threat", {}).get("data", {}).get("family")}],
+            victims_path="",
+            links_path=""
         )
     }
 
@@ -101,6 +119,8 @@ class ReportMapper(BaseMapper):
             items = source.get("breach_alerts") or []
         elif "spotReportsTotalCount" in source:
             items = source.get("spotReports") or []
+        elif "malwareReportTotalCount" in source:
+            items = source.get("malwareReports") or []
         else:
             items = [source]
 
@@ -227,9 +247,15 @@ class ReportMapper(BaseMapper):
         return references
 
     def _get_entities(self, source: dict) -> StixObjects:
-        entities_sources = source.get("data", {}).get("entities") or source.get("entities") or []
+        report_settings = self.reports_settings.get(self._get_type(source))
+        entities_path_or_extractor = report_settings.entities_path_or_extractor
+        if isinstance(entities_path_or_extractor, Callable):
+            source = entities_path_or_extractor(source)
+        else:
+            for i in entities_path_or_extractor.split("."):
+                source = source.get(i, {})
         stix_objects = StixObjects()
-        for entities_source in entities_sources:
+        for entities_source in source:
             entity = self.entities_mapper.map(**entities_source)
             if not entity:
                 # TODO: log.debug
@@ -268,6 +294,8 @@ class ReportMapper(BaseMapper):
             return ReportType.BREACH_ALERT
         if "spot_report" in source.get("data", {}):
             return ReportType.SPOTREP
+        if "malware_report_data" in source.get("data", {}):
+            return ReportType.MALWARE
         raise TitanStixException("Unkown report type")
 
     def _get_url(self, source: dict) -> str:
