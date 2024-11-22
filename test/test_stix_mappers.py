@@ -9,6 +9,7 @@ from titan_client.titan_stix import STIXMapperSettings, StixObjects
 from titan_client.titan_stix.mappers import ReportMapper
 from titan_client.titan_stix.mappers.common import StixMapper
 from titan_client.titan_stix.mappers.entities import EntitiesMapper
+from titan_client.titan_stix.mappers.reports import ReportType
 
 from .conftest import PREFIX, read_fixture
 from mock import MagicMock
@@ -109,7 +110,6 @@ def test_breach_alert_mapper(capsys):
     breach_alert_fixture = read_fixture(f'{PREFIX}/fixtures/breach_alert_af3e62.json')
     mapper = StixMapper()
     result = mapper.map(breach_alert_fixture)
-    x = result.serialize()
     with capsys.disabled():
         result_serialized = json.loads(result.serialize())
         result_serialized = [i for i in result_serialized["objects"] if i["type"] == "report"]
@@ -167,3 +167,41 @@ def test_observable_mapper(source, expected_values):
     sco = mapper.map(**source)
     for key, value in expected_values.items():
         assert getattr(sco, key) == value
+
+
+@pytest.mark.parametrize("report_type,source,expected_values", (
+    (ReportType.FINTEL.value, {"uid": "ab1", "documentFamily": "FINTEL", "sources": [
+        {"type": "External Link", "title": "ACME corp news", "url": "https://acme.corp/123", "index": "1"}]},
+     {"source_name": "External Link - ACME corp news", "url": "https://acme.corp/123"}),
+    (ReportType.FINTEL.value, {"uid": "ab1", "documentFamily": "FINTEL", "sources": [
+        {"type": "External Link", "title": "Titan Information Report", "url": "https://titan.intel471.com/report/inforep/487a8", "index": "1"}]},
+     {}),
+    (ReportType.INFOREP.value, {"uid": "ab1", "documentFamily": "INFOREP", "sources": [
+        {"type": "Forum Post", "title": "[SOURCE CODE] HexSec | Android RAT",
+         "url": "https://titan.intel471.com/post_thread/9cacd56", "index": "1"}]},
+     {"source_name": "Forum Post - [SOURCE CODE] HexSec | Android RAT", "url": "https://titan.intel471.com/post_thread/9cacd56"}),
+    (ReportType.INFOREP.value, {"uid": "ab1", "documentFamily": "INFOREP", "sources": [
+        {"type": "Forum Post", "title": "[SOURCE CODE] HexSec | Android RAT",
+         "url": "https://titan.intel471.com/post_thread/9cacd56", "index": "1"}]},
+     {"source_name": "Forum Post - [SOURCE CODE] HexSec | Android RAT",
+      "url": "https://titan.intel471.com/post_thread/9cacd56"}),
+    (ReportType.BREACH_ALERT.value, {"uid": "ab1", "data": {"breach_alert": {"sources": [
+        {"type": "internal", "source_type": "Forum Thread", "title": "acmesystems",
+         "url": "https://titan.intel471.com/post_thread/2984", "index": "1"}]}}},
+     {"source_name": "Forum Thread internal - acmesystems",
+      "url": "https://titan.intel471.com/post_thread/2984"}),
+    (ReportType.SPOTREP.value, {"uid": "ab1", "data": {"spot_report": {"spot_report_data": {"links": [
+        {"type": "internal", "title": "Forum thread",
+         "url": "https://titan.intel471.com/post_thread/2984"}]}}}},
+     {"source_name": "internal - Forum thread",
+      "url": "https://titan.intel471.com/post_thread/2984"}),
+))
+def test_map_reports_external_references(report_type, source, expected_values):
+    mapper = ReportMapper(STIXMapperSettings())
+    external_refs = mapper._get_external_references(source)
+    external_ref_0 = json.loads(external_refs[0].serialize())
+    assert external_ref_0 == {"source_name": "Titan URL", "url": f"https://titan.intel471.com/report/{report_type}/ab1"}
+    if len(external_refs) > 1:
+        external_ref_1 = json.loads(external_refs[1].serialize())
+        assert external_ref_1 == expected_values
+

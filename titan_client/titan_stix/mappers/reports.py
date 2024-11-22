@@ -32,6 +32,7 @@ class ReportSettings(NamedTuple):
     description_path_or_extractor: Union[str, Callable[[dict], str]]
     released_at_path: str
     victims_path: str
+    links_path: str
     attachments_paths: Union[List[str], None] = None
 
 
@@ -52,6 +53,7 @@ class ReportMapper(BaseMapper):
             lambda x: re.split(r'</?p>', re.sub(r'^.*?<p>', '', x.get("rawText") or ""))[0],
             "created",
             "victims",
+            "sources",
             ["rawText"]
         ),
         ReportType.INFOREP: ReportSettings(
@@ -61,6 +63,7 @@ class ReportMapper(BaseMapper):
             "executiveSummary",
             "created",
             "victims",
+            "sources",
             ["rawText", "rawTextTranslated", "researcherComments"]
         ),
         ReportType.BREACH_ALERT: ReportSettings(
@@ -69,7 +72,8 @@ class ReportMapper(BaseMapper):
             "data.breach_alert.title",
             "data.breach_alert.summary",
             "data.breach_alert.released_at",
-            "data.breach_alert.victim"
+            "data.breach_alert.victim",
+            "data.breach_alert.sources"
         ),
         ReportType.SPOTREP: ReportSettings(
             "ReportsApi",
@@ -77,7 +81,8 @@ class ReportMapper(BaseMapper):
             "data.spot_report.spot_report_data.title",
             "data.spot_report.spot_report_data.text",
             "data.spot_report.spot_report_data.released_at",
-            "data.spot_report.spot_report_data.victims"
+            "data.spot_report.spot_report_data.victims",
+            "data.spot_report.spot_report_data.links"
         )
     }
 
@@ -202,19 +207,23 @@ class ReportMapper(BaseMapper):
     def _get_report_id(self, name: str, time_published: str) -> str:
         return generate_id(
             Report,
-            name=self.shorten(name, 128).strip().lower(),
+            name=name.strip().lower(),
             published=time_published
         )
 
     def _get_external_references(self, source: dict) -> list[ExternalReference]:
         references = [ExternalReference(source_name="Titan URL", url=self._get_url(source))]
-
-        # data.spot_report.spot_report_data.links
-        # for link_src in source["data"]["spot_report"]["spot_report_data"]["links"]:
-        #     external_reference = ExternalReference(
-        #         source_name=link_src['title'], url=link_src["url"]
-        #     )
-        #     references.append(external_reference)
+        report_settings = self.reports_settings.get(self._get_type(source))
+        links_path = report_settings.links_path
+        for i in links_path.split("."):
+            source = source.get(i, {})
+        if source:
+            for link_source in source:
+                if "intel471.com/report" in link_source["url"]:
+                    continue
+                source_name = f"{link_source.get('source_type', '')} {link_source['type']} - {link_source['title']}".strip()
+                external_ref = ExternalReference(url=link_source["url"], source_name=source_name)
+                references.append(external_ref)
         return references
 
     def _get_entities(self, source: dict) -> StixObjects:
@@ -268,15 +277,15 @@ class ReportMapper(BaseMapper):
 
     def _get_released_at(self, source: dict) -> Union[int, None]:
         report_settings = self.reports_settings.get(self._get_type(source))
-        released_at_source = report_settings.released_at_path
-        for i in released_at_source.split("."):
+        released_at_path = report_settings.released_at_path
+        for i in released_at_path.split("."):
             source = source.get(i, {})
         return source or None
 
     def _get_title(self, source: dict) -> Union[str, None]:
         report_settings = self.reports_settings.get(self._get_type(source))
-        title_source = report_settings.title_path
-        for i in title_source.split("."):
+        title_path = report_settings.title_path
+        for i in title_path.split("."):
             source = source.get(i, {})
         return source or None
 
