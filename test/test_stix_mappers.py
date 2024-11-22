@@ -229,7 +229,7 @@ def test_map_reports_external_references(report_type, source, expected_values):
     (ReportType.SPOTREP.value, {"uid": "ab1", "data": {"spot_report": {"spot_report_data": {"victims": [
         {"name": "ACME corp", "urls": ["https://acme.corp"]}]}}}}),
 ))
-def test_map_reports_external_references(report_type, source):
+def test_map_reports_victims(report_type, source):
     mapper = ReportMapper(STIXMapperSettings())
     victims = mapper._get_victims(source)
     assert victims[0].type == "identity"
