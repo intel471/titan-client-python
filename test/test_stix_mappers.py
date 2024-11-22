@@ -205,3 +205,34 @@ def test_map_reports_external_references(report_type, source, expected_values):
         external_ref_1 = json.loads(external_refs[1].serialize())
         assert external_ref_1 == expected_values
 
+
+@pytest.mark.parametrize("report_type,source", (
+    (ReportType.FINTEL.value, {"uid": "ab1", "documentFamily": "FINTEL", "victims": [
+        {"name": "ACME corp", "urls": ["https://acme.corp"]}]}),
+    (ReportType.INFOREP.value, {"uid": "ab1", "documentFamily": "INFOREP", "victims": [
+        {"name": "ACME corp", "urls": ["https://acme.corp"]}]}),
+    (ReportType.BREACH_ALERT.value, {"uid": "ab1", "data": {"breach_alert": {"victim": {
+            "country": "United States",
+            "industries": [
+                {
+                    "industry": "Financial and investment consulting industry",
+                    "sector": "Professional services and consulting sector"
+                }
+            ],
+            "name": "ACME corp",
+            "region": "North America",
+            "revenue": "US $100 million",
+            "urls": [
+                "https://acme.corp"
+            ]
+        }}}}),
+    (ReportType.SPOTREP.value, {"uid": "ab1", "data": {"spot_report": {"spot_report_data": {"victims": [
+        {"name": "ACME corp", "urls": ["https://acme.corp"]}]}}}}),
+))
+def test_map_reports_external_references(report_type, source):
+    mapper = ReportMapper(STIXMapperSettings())
+    victims = mapper._get_victims(source)
+    assert victims[0].type == "identity"
+    assert victims[0].identity_class == "organization"
+    assert victims[0].name == "ACME corp"
+    assert victims[0].contact_information == "https://acme.corp"
