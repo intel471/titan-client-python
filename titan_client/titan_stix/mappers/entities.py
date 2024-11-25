@@ -5,7 +5,7 @@ from typing import Union, Callable
 
 from titan_client.titan_stix.sco import map_url, map_domain, map_ipv4, map_ipv6, map_email_address, \
     map_autonomous_system, map_file_hash, map_filename, map_crypto_wallet, map_user_account
-from titan_client.titan_stix.sdo import map_malware, map_threat_actor
+from titan_client.titan_stix.sdo import map_malware, map_threat_actor, map_vulnerability
 
 
 @dataclass(frozen=True)
@@ -33,6 +33,7 @@ class EntitiesMapper:
             MapperConfig(map_crypto_wallet, ("BitcoinAddress", "OtherCryptoCurrencies")),
             MapperConfig(map_threat_actor, ("Handle",)),
             MapperConfig(map_malware, ("MalwareFamily",)),
+            MapperConfig(map_vulnerability, ("CveID",)),
             MapperConfig(map_user_account, (
                 "AIM", "Discord", "Facebook", "GitHub", "ICQ", "Instagram", "Jabber", "LinkedIn", "MSN", "MoiMir",
                 "Odnoklassniki", "QQ", "Skype", "Telegram", "TOX", "Tox", "Twitter", "VK", "WeChat", "Wickr", "YahooIM",
