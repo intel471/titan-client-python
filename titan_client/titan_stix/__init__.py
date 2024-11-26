@@ -1,6 +1,6 @@
 import datetime
 import uuid
-from typing import Union, NamedTuple, Optional
+from typing import Union, NamedTuple, Optional, Iterable
 
 from stix2 import Relationship, base, Identity
 from stix2.base import _DomainObject, _Observable
@@ -22,11 +22,27 @@ class STIXMapperSettings(NamedTuple):
 def generate_id(
     stix_class: Union[_DomainObject, Relationship, _Observable],
     **id_contributing_properties: str,
-):
+) -> str:
     if id_contributing_properties:
         name = canonicalize(id_contributing_properties, utf8=False)
         return f"{stix_class._type}--{uuid.uuid5(base.SCO_DET_ID_NAMESPACE, name)}"
     return f"{stix_class._type}--{uuid.uuid4()}"
+
+
+class StixObjects(list):
+    """
+    Helper class for collecting unique STIX instances (by STIX ID)
+    """
+    def append(self, item):
+        try:
+            if item.id not in [i.id for i in self]:
+                super().append(item)
+        except AttributeError:
+            raise
+
+    def extend(self, __iterable):
+        for i in __iterable:
+            self.append(i)
 
 
 author_name = "Intel 471 Inc."

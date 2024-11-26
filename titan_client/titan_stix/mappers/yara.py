@@ -5,7 +5,7 @@ from pytz import UTC
 from stix2 import Indicator, Bundle, Relationship, TLP_AMBER
 from .common import StixMapper, BaseMapper
 from .. import author_identity, generate_id
-from ..sdo import create_malware
+from ..sdo import map_malware
 
 
 @StixMapper.register("yara", lambda x: "yaraTotalCount" in x)
@@ -25,7 +25,7 @@ class YaraMapper(BaseMapper):
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
             description = f"### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
 
-            malware = create_malware(malware_family_name)
+            malware = map_malware(malware_family_name)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=yara_signature),
                 pattern_type="yara",
