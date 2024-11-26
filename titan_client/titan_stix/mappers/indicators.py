@@ -75,6 +75,14 @@ class IndicatorsMapper(BaseMapper):
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
             observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
             malware = create_malware(malware_family_name)
+            labels = malware_family_name
+            if girs:
+                girs_labels = [
+                    f'Intel 471 - GIR {path}'
+                    f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
+                    for path in girs_paths
+                ]
+                labels = [malware_family_name] + girs_labels
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 pattern_type="stix",
@@ -86,7 +94,7 @@ class IndicatorsMapper(BaseMapper):
                 object_marking_refs=[TLP_AMBER],
                 name=name,
                 description=description,
-                labels=[malware_family_name],
+                labels=labels,
                 confidence=confidence,
                 kill_chain_phases=[
                     KillChainPhase(kill_chain_name="mitre-attack", phase_name=tactics)

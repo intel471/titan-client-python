@@ -107,6 +107,16 @@ class ReportMapper(BaseMapper):
 
     def _map_report_kwargs(self, source: dict, object_refs: dict):
         time_published = self._format_published(source.get("released") or source.get("created"))
+        girs_names = self.get_girs_names()
+        girs_paths = source.get("classification", {}).get("intelRequirements")
+        labels = self._get_malware_families(source)
+        if girs_paths:
+            girs_labels = [
+                f'Intel 471 - GIR {path}'
+                f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
+                for path in girs_paths
+            ]
+            labels = [labels] + girs_labels
         return {
             "id": generate_id(
                 Report,
@@ -118,7 +128,7 @@ class ReportMapper(BaseMapper):
             "report_types": [self._get_type(source)],
             "confidence": self.map_confidence(source.get("admiraltyCode") or source.get("data", {}).get("breach_alert", {}).get("confidence", {}).get("level")),
             "published": time_published,
-            "labels": self._get_malware_families(source),
+            "labels": labels,
             "object_refs": object_refs.values(),
             "external_references": [
                 ExternalReference(source_name="Titan URL", url=self._get_url(source))
