@@ -78,6 +78,15 @@ class IndicatorsMapper(BaseMapper):
             custom_properties = {"x_opencti_main_observable_type": mapping_config.opencti_type}
             if self.settings.ioc_opencti_score:
                 custom_properties.update({"x_opencti_score": self.settings.ioc_opencti_score})
+            labels = malware_family_name
+            if girs:
+                girs_labels = [
+                    f'Intel 471 - GIR {path}'
+                    f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
+                    for path in girs_paths
+                ]
+                labels = [malware_family_name] + girs_labels
+
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 pattern_type="stix",
@@ -89,7 +98,7 @@ class IndicatorsMapper(BaseMapper):
                 object_marking_refs=[TLP_AMBER],
                 name=name,
                 description=description,
-                labels=[malware_family_name],
+                labels=labels,
                 confidence=confidence,
                 kill_chain_phases=[
                     KillChainPhase(kill_chain_name="mitre-attack", phase_name=tactics)

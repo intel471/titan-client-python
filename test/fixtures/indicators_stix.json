@@ -39,7 +39,8 @@
                 }
             ],
             "labels": [
-                "fooBar"
+                "fooBar",
+                "Intel 471 - GIR 0.0.0"
             ],
             "confidence": 50,
             "object_marking_refs": [
@@ -123,7 +124,8 @@
                 }
             ],
             "labels": [
-                "fooBar"
+                "fooBar",
+                "Intel 471 - GIR 0.0.0"
             ],
             "confidence": 85,
             "object_marking_refs": [
@@ -204,7 +206,8 @@
                 }
             ],
             "labels": [
-                "barBaz"
+                "barBaz",
+                "Intel 471 - GIR 0.0.0"
             ],
             "confidence": 85,
             "object_marking_refs": [
