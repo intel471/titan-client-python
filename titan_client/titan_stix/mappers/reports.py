@@ -178,11 +178,15 @@ class ReportMapper(BaseMapper):
         stix_objects = StixObjects([MARKING, author_identity])
         name = self._get_title(source)
         time_published = self._format_published(self._get_released_at(source))
+        report_type: ReportType = self._get_type(source)
+        report_types = [report_type.value]
+        if report_type == ReportType.FINTEL:
+            report_types.append(source["documentType"].lower())
         report_kwargs = {
             "id": self._get_report_id(name, time_published),
             "name": name,
             "description": self._get_description(source) or name,
-            "report_types": [self._get_type(source).value],
+            "report_types": report_types,
             "confidence": self.map_confidence(source.get("admiraltyCode") or 
                                               source.get("data", {}).get("breach_alert", {})
                                               .get("confidence", {}).get("level")),
@@ -320,8 +324,6 @@ class ReportMapper(BaseMapper):
     def _get_description(self, source: dict) -> Union[str, None]:
         report_settings = self.reports_settings.get(self._get_type(source))
         description_path_or_extractor = report_settings.description_path_or_extractor
-        if not self.settings.report_description:
-            return None
 
         if isinstance(description_path_or_extractor, Callable):
             source = description_path_or_extractor(source)

@@ -44,6 +44,8 @@ class EntitiesMapper:
 
     def map(self, type: str, value: str, *args, **kwargs):  # noqa need `type` here as it comes from the API
         if mapper_config := self.type2config.get(type):
+            if len(value) < 2:
+                return
             if value_extractor := mapper_config.value_extractor:
                 value = value_extractor(value)
             return mapper_config.mapper(value, type=type)

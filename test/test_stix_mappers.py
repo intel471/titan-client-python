@@ -55,6 +55,7 @@ def test_report_enrichments():
     api_response = {
         "uid": "1fffffffffffffffffffffffffffffff",
         "documentFamily": "FINTEL",
+        "documentType": "ACTOR_PROFILE",
         "subject": "New malware released (fromAPI)",
         "admiraltyCode": "A1",
         "created": 1679321907000,
@@ -83,7 +84,7 @@ def test_report_enrichments():
     report_serialized = json.loads(result[-1].serialize())
     assert report_serialized["name"] == "New malware released (fromAPI)"
     assert report_serialized["description"] == "New malware Foobar released!"
-    assert report_serialized["report_types"] == ["fintel"]
+    assert report_serialized["report_types"] == ["fintel", "actor_profile"]
     assert report_serialized["confidence"] == 90
     assert report_serialized["x_opencti_files"] == [
         {
