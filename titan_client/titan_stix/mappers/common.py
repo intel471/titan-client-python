@@ -156,3 +156,17 @@ class BaseMapper(ABC):
             for gir in api_response.girs:
                 girs_names[gir.data.gir.path] = gir.data.gir.name
         return girs_names
+
+    @staticmethod
+    def format_girs_labels(girs: list[dict]):
+        """
+        Desired label formats:
+        Intel 471 - GIR - 0.0.0 - Gir name
+        Intel 471 - GIR - 0.0.0
+        """
+        girs_labels = [
+            f'Intel 471 - GIR {gir.get("path")}'
+            f'{" - " + gir.get("name") if (gir.get("name") and not gir.get("path")==gir.get("name")) else ""}'
+            for gir in girs
+        ]
+        return girs_labels
