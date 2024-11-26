@@ -179,6 +179,16 @@ class ReportMapper(BaseMapper):
         time_published = self._format_published(self._get_released_at(source))
         report_type: ReportType = self._get_type(source)
         report_types = [report_type.value]
+        girs_names = self.get_girs_names()
+        girs_paths = source.get("classification", {}).get("intelRequirements")
+        labels = self._get_malware_families(source)
+        if girs_paths:
+            girs_labels = [
+                f'Intel 471 - GIR {path}'
+                f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
+                for path in girs_paths
+            ]
+            labels = [labels] + girs_labels
         if report_type == ReportType.FINTEL:
             report_types.append(source["documentType"].lower())
         report_kwargs = {
@@ -190,7 +200,7 @@ class ReportMapper(BaseMapper):
                                               source.get("data", {}).get("breach_alert", {})
                                               .get("confidence", {}).get("level")),
             "published": time_published,
-            "labels": self._get_malware_families(source),
+            "labels": labels,
             "external_references": self._get_external_references(source),
             "created_by_ref": author_identity,
             "object_marking_refs": [MARKING],

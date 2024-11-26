@@ -1,6 +1,6 @@
 import datetime
 import uuid
-from typing import Union, NamedTuple, Optional, Iterable
+from typing import Union, NamedTuple, Optional
 
 from stix2 import Relationship, base, Identity
 from stix2.base import _DomainObject, _Observable
@@ -18,6 +18,7 @@ class STIXMapperSettings(NamedTuple):
     # understandable for OpenCTI (base64 encoded, inside specific JSON structure)
     report_attachments_opencti: bool = False
     ioc_opencti_score: Optional[int] = None
+
 
 def generate_id(
     stix_class: Union[_DomainObject, Relationship, _Observable],

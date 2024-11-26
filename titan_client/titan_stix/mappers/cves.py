@@ -59,6 +59,11 @@ class CveMapper(BaseMapper):
             custom_properties = {"x_intel471_com_uid": uid}
             if cvss3_score:
                 custom_properties["x_opencti_base_score"] = cvss3_score
+            girs_labels = [
+                f'Intel 471 - GIR {path}'
+                f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
+                for path in girs_paths
+            ]
             vulnerability = Vulnerability(
                 id=generate_id(Vulnerability, name=name.strip().lower()),
                 name=name,
@@ -67,6 +72,7 @@ class CveMapper(BaseMapper):
                 external_references=external_references,
                 object_marking_refs=[TLP_AMBER],
                 custom_properties=custom_properties,
+                labels=girs_labels
             )
             container[vulnerability.id] = vulnerability
             container[author_identity.id] = author_identity

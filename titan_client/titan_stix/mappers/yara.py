@@ -23,8 +23,15 @@ class YaraMapper(BaseMapper):
             confidence = self.map_confidence(item["data"]["confidence"])
             girs_paths = item["data"]["intel_requirements"]
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
+            labels = [malware_family_name]
+            if girs:
+                girs_labels = [
+                    f'Intel 471 - GIR {path}'
+                    f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
+                    for path in girs_paths
+                ]
+                labels.extend(girs_labels)
             description = f"### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
-
             malware = map_malware(malware_family_name)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=yara_signature),
@@ -35,7 +42,7 @@ class YaraMapper(BaseMapper):
                 created_by_ref=author_identity,
                 object_marking_refs=[TLP_AMBER],
                 description=description,
-                labels=[malware_family_name],
+                labels=labels,
                 confidence=confidence,
             )
             relationship = Relationship(
