@@ -1,9 +1,8 @@
 import base64
 import datetime
 import re
-from collections.abc import Callable
 from enum import Enum
-from typing import List, NamedTuple, Union
+from typing import List, NamedTuple, Union, Callable
 
 from pytz import UTC
 from stix2 import TLP_AMBER, Bundle, ExternalReference, Report
@@ -235,7 +234,7 @@ class ReportMapper(BaseMapper):
             published=time_published
         )
 
-    def _get_external_references(self, source: dict) -> list[ExternalReference]:
+    def _get_external_references(self, source: dict) -> List[ExternalReference]:
         references = [ExternalReference(source_name="Titan URL", url=self._get_url(source))]
         report_settings = self.reports_settings.get(self._get_type(source))
         links_path = report_settings.links_path
