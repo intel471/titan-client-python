@@ -86,13 +86,14 @@ def test_report_enrichments():
     assert report_serialized["description"] == "New malware Foobar released!"
     assert report_serialized["report_types"] == ["fintel", "actor_profile"]
     assert report_serialized["confidence"] == 90
-    assert report_serialized["x_opencti_files"] == [
-        {
-            "name": "Raw Text.html",
-            "mime_type": "text/html",
-            "data": base64.b64encode(bytes(api_response["rawText"], "utf-8")).decode("utf-8")
-        }
-    ]
+    assert report_serialized["content"] == api_response['rawText']
+    # assert report_serialized["x_opencti_files"] == [
+    #     {
+    #         "name": "Raw Text.html",
+    #         "mime_type": "text/html",
+    #         "data": base64.b64encode(bytes(api_response["rawText"], "utf-8")).decode("utf-8")
+    #     }
+    # ]
 
 def test_ioc_mapper_attached_reports(capsys):
     ioc_fixture = read_fixture(f'{PREFIX}/fixtures/iocs_with_reports_input.json')
@@ -202,9 +203,26 @@ def test_map_reports_external_references(report_type, source, expected_values):
     external_refs = mapper._get_external_references(source)
     external_ref_0 = json.loads(external_refs[0].serialize())
     assert external_ref_0 == {"source_name": "Titan URL", "url": f"https://titan.intel471.com/report/{report_type}/ab1"}
-    if len(external_refs) > 1:
+    if expected_values:
         external_ref_1 = json.loads(external_refs[1].serialize())
         assert external_ref_1 == expected_values
+
+
+@pytest.mark.parametrize("report_type,source", (
+    (ReportType.FINTEL.value, {"uid": "ab1", "documentFamily": "FINTEL", "entities": [{"type": "MalwareFamily", "value": "acme"}, {"type": "IPAddress", "value": "0.0.0.1"}]}),
+    (ReportType.FINTEL.value, {"uid": "ab1", "documentFamily": "INFOREP", "entities": [{"type": "MalwareFamily", "value": "acme"}]}),
+    (ReportType.BREACH_ALERT.value, {"uid": "ab1", "data": {"breach_alert": {}, "entities": [{"type": "MalwareFamily", "value": "acme"}]}}),
+    (ReportType.SPOTREP.value, {"uid": "ab1", "data": {"spot_report": {}, "entities": [{"type": "MalwareFamily", "value": "acme"}]}}),
+    (ReportType.MALWARE.value, {"uid": "ab1", "data": {"malware_report_data": {}, "threat": {"data": {"family": "acme"}}}}),
+))
+def test_map_reports_entities(report_type, source):
+    mapper = ReportMapper(STIXMapperSettings())
+    entities = mapper._get_entities(source)
+    entity = json.loads(entities[0].serialize())
+    assert entity["type"] == "malware"
+    assert entity["name"] == "acme"
+    malware_families_names = mapper._get_malware_families_names(entities)
+    assert malware_families_names == ["acme"]
 
 
 @pytest.mark.parametrize("report_type,source", (

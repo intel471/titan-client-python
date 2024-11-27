@@ -33,12 +33,12 @@ class ReportSettings(NamedTuple):
     method_name: str
     # either JSON path to the field or a function that extracts value from provided source
     title_path: str
-    description_path_or_extractor: Union[str, Callable[[dict], str]]
+    description_path_or_extractor: Union[str, Callable]
     released_at_path: str
-    entities_path_or_extractor: Union[str, Callable[[dict], str]]
+    entities_path_or_extractor: Union[str, Callable]
     victims_path: str
     links_path: str
-    attachments_paths: Union[List[str], None] = None
+    contents_paths: Union[List[str], None] = None
 
 
 @StixMapper.register("fintels_inforeps", lambda x: "reportTotalCount" in x)
@@ -62,7 +62,7 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="entities",
             victims_path="victims",
             links_path="sources",
-            attachments_paths=["rawText"]
+            contents_paths=["rawText"]
         ),
         ReportType.INFOREP: ReportSettings(
             api_class="ReportsApi",
@@ -73,7 +73,7 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="entities",
             victims_path="victims",
             links_path="sources",
-            attachments_paths=["rawText", "rawTextTranslated", "researcherComments"]
+            contents_paths=["executiveSummary", "researcherComments", "rawText", "rawTextTranslated"]
         ),
         ReportType.BREACH_ALERT: ReportSettings(
             api_class="ReportsApi",
@@ -99,11 +99,12 @@ class ReportMapper(BaseMapper):
             api_class="ReportsApi",
             method_name="malware_reports_uid_get",
             title_path="data.malware_report_data.title",
-            description_path_or_extractor="data.malware_report_data.text",
+            description_path_or_extractor=lambda src: re.split(r'</?p>', re.sub(r'^.*?<p>', '', src.get("data", {}).get("malware_report_data", {}).get("text") or ""))[1],
             released_at_path="data.malware_report_data.released_at",
             entities_path_or_extractor=lambda src: [{"type": "MalwareFamily", "value": src.get("data", {}).get("threat", {}).get("data", {}).get("family")}],
             victims_path="",
-            links_path=""
+            links_path="",
+            contents_paths=["data.malware_report_data.text"]
         )
     }
 
@@ -197,7 +198,7 @@ class ReportMapper(BaseMapper):
         time_published = self._format_published(self._get_released_at(source))
         report_types = [report_type.value]
         girs_paths = source.get("data", {}).get("classification", {}).get("intelRequirements")
-        labels = self._get_malware_families(source)
+        labels = self._get_malware_families_names(object_refs)
         if girs_paths:
             girs_names = self.get_girs_names()
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
@@ -220,11 +221,14 @@ class ReportMapper(BaseMapper):
             "object_marking_refs": [MARKING],
             "custom_properties": {
                 "x_intel471_com_uid": source["uid"],
+                "content": self._get_opencti_content(source)
             }
         }
-        if opencti_files := self._get_opencti_files(source):
-            report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
-        stix_objects.append(Report(**report_kwargs))
+        # instead of attached files putting the contents into `custom_properties.content`
+        # if opencti_files := self._get_opencti_files(source):
+        #     report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
+        report = Report(**report_kwargs)
+        stix_objects.append(report)
         return stix_objects
 
     def _fetch_and_map_report(self, report_type: ReportType, report_id: str,
@@ -241,21 +245,37 @@ class ReportMapper(BaseMapper):
         return all([self.settings.titan_client, self.settings.api_client]) and \
            any([self.settings.report_description, self.settings.report_attachments_opencti])
 
-    def _get_report_id(self, name: str, time_published: str) -> str:
+    @staticmethod
+    def _get_report_id(name: str, time_published: str) -> str:
         return generate_id(
             Report,
             name=name.strip().lower(),
             published=time_published
         )
 
+    def _extract_value(self, source: dict, path_or_extractor_name: str):
+        report_type = self._get_type(source)
+        report_settings = self.reports_settings.get(report_type)
+        path_or_extractor = getattr(report_settings, path_or_extractor_name, "")
+        if isinstance(path_or_extractor, Callable):
+            try:
+                return path_or_extractor(source)
+            except Exception as e:
+                log.warning("Can't extract value from report %s/%s using path/extractor `%s`. %s",
+                            report_type, source["uid"], path_or_extractor_name, e)
+                return None
+        return self._extract_value_by_path(source, path_or_extractor) or None
+
+    @staticmethod
+    def _extract_value_by_path(source: dict, path: str):
+        for i in path.split("."):
+            source = source.get(i, {})
+        return source or None
+
     def _get_external_references(self, source: dict) -> List[ExternalReference]:
         references = [ExternalReference(source_name="Titan URL", url=self._get_url(source))]
-        report_settings = self.reports_settings.get(self._get_type(source))
-        links_path = report_settings.links_path
-        for i in links_path.split("."):
-            source = source.get(i, {})
-        if source:
-            for link_source in source:
+        if value := self._extract_value(source, "links_path"):
+            for link_source in value:
                 if "intel471.com/report" in link_source["url"]:
                     continue
                 source_name = f"{link_source.get('source_type', '')} {link_source['type']} - {link_source['title']}".strip()
@@ -264,33 +284,25 @@ class ReportMapper(BaseMapper):
         return references
 
     def _get_entities(self, source: dict) -> StixObjects:
-        report_settings = self.reports_settings.get(self._get_type(source))
-        entities_path_or_extractor = report_settings.entities_path_or_extractor
-        if isinstance(entities_path_or_extractor, Callable):
-            source = entities_path_or_extractor(source)
-        else:
-            for i in entities_path_or_extractor.split("."):
-                source = source.get(i, {})
+        value = self._extract_value(source, "entities_path_or_extractor")
         stix_objects = StixObjects()
-        for entities_source in source or []:
+        for entities_source in value or []:
             if entity := self.entities_mapper.map(**entities_source):
                 stix_objects.append(entity)
         return stix_objects
 
     def _get_victims(self, source: dict) -> StixObjects:
         stix_objects = StixObjects()
-        report_settings = self.reports_settings.get(self._get_type(source))
-        for i in report_settings.victims_path.split("."):
-            source = source.get(i, {})
-        if source:
-            if isinstance(source, dict):
-                source = [source]
-            for victim_src in source:
+        if value := self._extract_value(source, "victims_path"):
+            if isinstance(value, dict):
+                value = [value]
+            for victim_src in value:
                 stix_objects.append(
                     map_organization(victim_src["name"], victim_src["urls"][0]))
             return stix_objects
 
-    def _format_published(self, epoch_millis: int):
+    @staticmethod
+    def _format_published(epoch_millis: int):
         """
         Formatting datetime object for use as ID contributing property in a same way as it's done
         by OpenCTI to have the same ID here and in OpenCTI.
@@ -298,7 +310,8 @@ class ReportMapper(BaseMapper):
         parsed = datetime.datetime.fromtimestamp(epoch_millis / 1000, UTC)
         return parsed.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
-    def _get_type(self, source: dict) -> ReportType:
+    @staticmethod
+    def _get_type(source: dict) -> ReportType:
         if source.get("documentFamily") == "FINTEL":
             return ReportType.FINTEL
         if source.get("documentFamily") == "INFOREP":
@@ -317,43 +330,39 @@ class ReportMapper(BaseMapper):
         return f"https://titan.intel471.com/report/{report_type.value}/{report_id}"
 
     def _get_released_at(self, source: dict) -> Union[int, None]:
-        report_settings = self.reports_settings.get(self._get_type(source))
-        released_at_path = report_settings.released_at_path
-        for i in released_at_path.split("."):
-            source = source.get(i, {})
-        return source or None
+        return self._extract_value(source, "released_at_path") or None
 
     def _get_title(self, source: dict) -> Union[str, None]:
-        report_settings = self.reports_settings.get(self._get_type(source))
-        title_path = report_settings.title_path
-        for i in title_path.split("."):
-            source = source.get(i, {})
-        return source or None
+        return self._extract_value(source, "title_path") or None
 
     def _get_description(self, source: dict) -> Union[str, None]:
-        report_settings = self.reports_settings.get(self._get_type(source))
-        description_path_or_extractor = report_settings.description_path_or_extractor
-
-        if isinstance(description_path_or_extractor, Callable):
-            source = description_path_or_extractor(source)
-        else:
-            for i in description_path_or_extractor.split("."):
-                source = source.get(i, {})
-
-        if source and isinstance(source, str):
-            return re.sub(REMOVE_HTML_REGEX, "", source)
+        value = self._extract_value(source, "description_path_or_extractor")
+        if value and isinstance(value, str):
+            return re.sub(REMOVE_HTML_REGEX, "", value)
 
     @staticmethod
-    def _get_malware_families(source: dict):
-        return [i.get("value") for i in (source.get("entities") or [])
-                if i.get("type") == "MalwareFamily"]
+    def _get_malware_families_names(entities: StixObjects) -> List[str]:
+        return [i.name for i in entities if i.type == "malware"]
+
+    def _get_opencti_content(self, source: dict):
+        content_bits = []
+        contents_paths = self.reports_settings.get(self._get_type(source)).contents_paths or []
+        for path in contents_paths:
+            value = self._extract_value_by_path(source, path)
+            if value and isinstance(value, str):
+                if len(contents_paths) > 1:
+                    heading = " ".join([i.capitalize() for i in re.findall(
+                        r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', path.split(".")[-1])])
+                    content_bits.append(f"<h1>{heading}</h1>")
+                content_bits.append(value)
+        return "\n".join(content_bits)
 
     def _get_opencti_files(self, source: dict):
         if not self.settings.report_attachments_opencti:
             return []
         opencti_files = []
         report_settings = self.reports_settings.get(self._get_type(source))
-        attachments_fields = report_settings.attachments_paths or []
+        attachments_fields = report_settings.contents_paths or []
         for field_name in attachments_fields:
             value = source.get(field_name)
             if isinstance(value, str):
