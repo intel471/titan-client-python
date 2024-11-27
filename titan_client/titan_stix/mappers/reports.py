@@ -1,5 +1,6 @@
 import base64
 import datetime
+import logging
 import re
 from enum import Enum
 from typing import List, NamedTuple, Union, Callable
@@ -14,6 +15,9 @@ from .. import STIXMapperSettings, author_identity, generate_id, StixObjects
 from .common import BaseMapper, StixMapper
 from ..constants import MARKING, REMOVE_HTML_REGEX
 from ..sdo import map_organization
+
+
+log = logging.getLogger(__name__)
 
 
 class ReportType(Enum):
@@ -174,10 +178,23 @@ class ReportMapper(BaseMapper):
         In case of FINTEL and INFOREP (/reports endpoint) there will be extra (possible big) fields.
         Breach alert and Spot report look the same in their long and short representation
         """
+        if not object_refs:
+            object_refs = StixObjects()
+        if entities := self._get_entities(source):
+            object_refs.extend(entities)
+        if victims := self._get_victims(source):
+            object_refs.extend(victims)
+
+        report_type: ReportType = self._get_type(source)
+        if not object_refs:
+            log.info("No entities associated with the report. Skipping the report %s/%s",
+                     report_type, source["uid"])
+            return StixObjects()
+
         stix_objects = StixObjects([MARKING, author_identity])
+        stix_objects.extend(object_refs)
         name = self._get_title(source)
         time_published = self._format_published(self._get_released_at(source))
-        report_type: ReportType = self._get_type(source)
         report_types = [report_type.value]
         if report_type == ReportType.FINTEL:
             report_types.append(source["documentType"].lower())
@@ -192,22 +209,13 @@ class ReportMapper(BaseMapper):
             "published": time_published,
             "labels": self._get_malware_families(source),
             "external_references": self._get_external_references(source),
+            "object_refs": object_refs,
             "created_by_ref": author_identity,
             "object_marking_refs": [MARKING],
             "custom_properties": {
-                "x_intel471_com_uid": source["uid"]
+                "x_intel471_com_uid": source["uid"],
             }
         }
-
-        if not object_refs:
-            object_refs = StixObjects()
-        if entities := self._get_entities(source):
-            object_refs.extend(entities)
-        if victims := self._get_victims(source):
-            object_refs.extend(victims)
-
-        report_kwargs["object_refs"] = object_refs
-        stix_objects.extend(object_refs)
         if opencti_files := self._get_opencti_files(source):
             report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
         stix_objects.append(Report(**report_kwargs))
@@ -258,13 +266,9 @@ class ReportMapper(BaseMapper):
             for i in entities_path_or_extractor.split("."):
                 source = source.get(i, {})
         stix_objects = StixObjects()
-        for entities_source in source:
-            entity = self.entities_mapper.map(**entities_source)
-            if not entity:
-                # TODO: log.debug
-                print(f"Not translating {entities_source}")
-                continue
-            stix_objects.append(entity)
+        for entities_source in source or []:
+            if entity := self.entities_mapper.map(**entities_source):
+                stix_objects.append(entity)
         return stix_objects
 
     def _get_victims(self, source: dict) -> StixObjects:
