@@ -25,11 +25,7 @@ class YaraMapper(BaseMapper):
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
             labels = [malware_family_name]
             if girs:
-                girs_labels = [
-                    f'Intel 471 - GIR {path}'
-                    f'{" - " + girs_names.get(path) if girs_names.get(path) else ""}'
-                    for path in girs_paths
-                ]
+                girs_labels = self.format_girs_labels(girs)
                 labels.extend(girs_labels)
             description = f"### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
             malware = map_malware(malware_family_name)

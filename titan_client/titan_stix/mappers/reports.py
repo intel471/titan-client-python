@@ -38,6 +38,7 @@ class ReportSettings(NamedTuple):
     entities_path_or_extractor: Union[str, Callable]
     victims_path: str
     links_path: str
+    girs_extractor: Callable
     contents_paths: Union[List[str], None] = None
 
 
@@ -62,7 +63,8 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="entities",
             victims_path="victims",
             links_path="sources",
-            contents_paths=["rawText"]
+            contents_paths=["rawText"],
+            girs_extractor = lambda src: src.get("classification", {}).get("intelRequirements")
         ),
         ReportType.INFOREP: ReportSettings(
             api_class="ReportsApi",
@@ -73,7 +75,8 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="entities",
             victims_path="victims",
             links_path="sources",
-            contents_paths=["executiveSummary", "researcherComments", "rawText", "rawTextTranslated"]
+            contents_paths=["executiveSummary", "researcherComments", "rawText", "rawTextTranslated"],
+            girs_extractor=lambda src: src.get("classification", {}).get("intelRequirements")
         ),
         ReportType.BREACH_ALERT: ReportSettings(
             api_class="ReportsApi",
@@ -83,7 +86,9 @@ class ReportMapper(BaseMapper):
             released_at_path="data.breach_alert.released_at",
             entities_path_or_extractor="data.entities",
             victims_path="data.breach_alert.victim",
-            links_path="data.breach_alert.sources"
+            links_path="data.breach_alert.sources",
+            girs_extractor=lambda src: src.get("data", {}).get("breach_alert", {}).get(
+                "intel_requirements")
         ),
         ReportType.SPOTREP: ReportSettings(
             api_class="ReportsApi",
@@ -93,7 +98,9 @@ class ReportMapper(BaseMapper):
             released_at_path="data.spot_report.spot_report_data.released_at",
             entities_path_or_extractor="data.entities",
             victims_path="data.spot_report.spot_report_data.victims",
-            links_path="data.spot_report.spot_report_data.links"
+            links_path="data.spot_report.spot_report_data.links",
+            girs_extractor=lambda src: src.get("data", {}).get("spot_report", {}).get(
+                "spot_report_data", {}).get("intel_requirements")
         ),
         ReportType.MALWARE: ReportSettings(
             api_class="ReportsApi",
@@ -104,7 +111,8 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor=lambda src: [{"type": "MalwareFamily", "value": src.get("data", {}).get("threat", {}).get("data", {}).get("family")}],
             victims_path="",
             links_path="",
-            contents_paths=["data.malware_report_data.text"]
+            contents_paths=["data.malware_report_data.text"],
+            girs_extractor=lambda src: src.get("classification", {}).get("intelRequirements")
         )
     }
 
@@ -197,12 +205,12 @@ class ReportMapper(BaseMapper):
         name = self._get_title(source)
         time_published = self._format_published(self._get_released_at(source))
         report_types = [report_type.value]
-        girs_paths = source.get("data", {}).get("classification", {}).get("intelRequirements")
-        labels = self._get_malware_families_names(object_refs)
+        girs_paths = self.reports_settings.get(self._get_type(source)).girs_extractor(source)
+        labels = self._get_malware_families(source)
         if girs_paths:
             girs_names = self.get_girs_names()
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
-            labels = [labels] + self.format_girs_labels(girs)
+            labels.extend(self.format_girs_labels(girs))
         if report_type == ReportType.FINTEL:
             report_types.append(source["documentType"].lower())
         report_kwargs = {
@@ -210,7 +218,7 @@ class ReportMapper(BaseMapper):
             "name": name,
             "description": self._get_description(source) or name,
             "report_types": report_types,
-            "confidence": self.map_confidence(source.get("admiraltyCode") or 
+            "confidence": self.map_confidence(source.get("admiraltyCode") or
                                               source.get("data", {}).get("breach_alert", {})
                                               .get("confidence", {}).get("level")),
             "published": time_published,
