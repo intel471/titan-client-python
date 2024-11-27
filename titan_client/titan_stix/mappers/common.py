@@ -9,7 +9,7 @@ from abc import ABC
 from collections import namedtuple
 from collections.abc import Callable
 from functools import wraps
-from typing import Union
+from typing import Union, List
 
 from stix2 import Bundle
 
@@ -158,7 +158,7 @@ class BaseMapper(ABC):
         return girs_names
 
     @staticmethod
-    def format_girs_labels(girs: list[dict]):
+    def format_girs_labels(girs: List[dict]):
         """
         Desired label formats:
         Intel 471 - GIR - 0.0.0 - Gir name
