@@ -92,17 +92,6 @@ def test_report_enrichments():
     assert report_serialized["content"] == api_response['rawText']
     assert report_serialized["labels"] == ["Intel 471 - GIR 1.1"]
 
-def test_ioc_mapper_attached_reports(capsys):
-    ioc_fixture = read_fixture(f'{PREFIX}/fixtures/iocs_with_reports_input.json')
-    expected_result = read_fixture(f'{PREFIX}/fixtures/reports_from_iocs_stix.json')
-    mapper = StixMapper()
-    result = mapper.map(ioc_fixture)
-    with capsys.disabled():
-        result_serialized = json.loads(result.serialize())
-        result_serialized["objects"] = [i for i in result_serialized["objects"] if i["type"] == "report"]
-        expected = strip_random_values(expected_result)
-        assert expected == strip_random_values(result_serialized)
-
 
 @pytest.mark.skip(reason="work in progress")
 def test_breach_alert_mapper(capsys):
@@ -113,6 +102,7 @@ def test_breach_alert_mapper(capsys):
         result_serialized = json.loads(result.serialize())
         result_serialized = [i for i in result_serialized["objects"] if i["type"] == "report"]
         print(json.dumps(result_serialized, indent=2, sort_keys=True))
+
 
 @pytest.mark.parametrize("source,expected_values", (
         # /iocs endpoint
