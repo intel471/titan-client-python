@@ -64,7 +64,7 @@ class IOCMapper(BaseMapper):
     }
 
     def map(self, source: dict) -> Bundle:
-        container = {}
+        container = StixObjects()
         report_mapper = ReportMapper(self.settings)
         items = source.get("iocs") or [] if "iocTotalCount" in source else [source]
         for item in items:
@@ -99,16 +99,16 @@ class IOCMapper(BaseMapper):
             r1 = Relationship(
                 indicator, "based-on", observable, created_by_ref=author_identity
             )
-            for stix_object in [indicator, observable, r1, author_identity, MARKING]:
-                container[stix_object.id] = stix_object
+            container.extend([indicator, observable, r1, author_identity, MARKING])
             for stix_object in self._map_reports(
-                report_mapper, report_sources, indicator, observable, r1
-            ):
-                if isinstance(stix_object, Report) and stix_object.id in container:
-                    stix_object.object_refs.extend(container[stix_object.id].object_refs)
-                container[stix_object.id] = stix_object
+                report_mapper, report_sources, indicator, observable, r1):
+                if isinstance(stix_object, Report):
+                    if already_mapped_reports := [i for i in container if i.id == stix_object.id]:
+                        already_mapped_report = already_mapped_reports[0]
+                        already_mapped_report.object_refs.extend(stix_object.object_refs)
+                container.append(stix_object)
         if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+            bundle = Bundle(*container, allow_custom=True)
             return bundle
 
     def map_entity(self, source: dict):

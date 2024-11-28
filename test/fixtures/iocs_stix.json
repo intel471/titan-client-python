@@ -219,18 +219,18 @@
       ],
       "published": "2021-09-02T09:33:53Z",
       "object_refs": [
-        "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
-        "file--842a90f8-17e2-5b7c-a356-cafacff88ab8",
-        "relationship--a09022ec-1540-4772-8edf-23d08f70007a",
-        "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
-        "file--f11f895a-307f-5fab-8888-75291f2bae81",
-        "relationship--8041c992-da1c-4360-91f9-1f00905ad6fb",
-        "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
-        "file--85995aa9-36db-5c5b-b620-270b86ac82b3",
-        "relationship--39d41a4b-6574-4276-a9a6-f52ce5c2685b",
         "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
         "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b",
-        "relationship--67e4f23e-ee4e-4546-a6ac-6ad6555bf4a4"
+        "relationship--a5da9a35-6fee-4d7b-b791-7916d3c0be07",
+        "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
+        "file--85995aa9-36db-5c5b-b620-270b86ac82b3",
+        "relationship--9b2ae9c3-3465-4547-b356-843180b8d334",
+        "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
+        "file--f11f895a-307f-5fab-8888-75291f2bae81",
+        "relationship--b4ddd6a5-d4f7-4355-b008-a874fb6e0243",
+        "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
+        "file--842a90f8-17e2-5b7c-a356-cafacff88ab8",
+        "relationship--f7004956-0501-49c2-99ee-fbd9a3cdb422"
       ],
       "confidence": 0,
       "external_references": [

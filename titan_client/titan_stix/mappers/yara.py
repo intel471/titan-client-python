@@ -4,14 +4,14 @@ import yaml
 from pytz import UTC
 from stix2 import Indicator, Bundle, Relationship, TLP_AMBER
 from .common import StixMapper, BaseMapper
-from .. import author_identity, generate_id
+from .. import author_identity, generate_id, StixObjects
 from ..sdo import map_malware
 
 
 @StixMapper.register("yara", lambda x: "yaraTotalCount" in x)
 class YaraMapper(BaseMapper):
     def map(self, source: dict) -> Bundle:
-        container = {}
+        container = StixObjects()
         items = source.get("yaras") or [] if "yaraTotalCount" in source else [source]
         girs_names = self.get_girs_names()
         for item in items:
@@ -55,7 +55,7 @@ class YaraMapper(BaseMapper):
                 author_identity,
                 TLP_AMBER,
             ]:
-                container[stix_object.id] = stix_object
+                container.append(stix_object)
         if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+            bundle = Bundle(*container, allow_custom=True)
             return bundle

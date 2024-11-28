@@ -1,15 +1,16 @@
 import yaml
-from stix2 import Bundle, Vulnerability, ExternalReference, TLP_AMBER
+from stix2 import Bundle, Vulnerability, ExternalReference
 
 from .common import BaseMapper, StixMapper
-from .. import author_identity, generate_id
+from .. import author_identity, generate_id, StixObjects
+from ..constants import MARKING
 
 
 @StixMapper.register("cves", lambda x: "cveReportsTotalCount" in x)
 @StixMapper.register("cve", lambda x: "cve_report" in x.get("data", {}))
 class CveMapper(BaseMapper):
     def map(self, source: dict) -> Bundle:
-        container = {}
+        container = StixObjects()
         items = (
             source.get("cveReports") or []
             if "cveReportsTotalCount" in source
@@ -66,13 +67,11 @@ class CveMapper(BaseMapper):
                 description=description,
                 created_by_ref=author_identity,
                 external_references=external_references,
-                object_marking_refs=[TLP_AMBER],
+                object_marking_refs=[MARKING],
                 custom_properties=custom_properties,
                 labels=girs_labels
             )
-            container[vulnerability.id] = vulnerability
-            container[author_identity.id] = author_identity
-            container[TLP_AMBER.id] = TLP_AMBER
+            container.extend([vulnerability, author_identity, MARKING])
         if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+            bundle = Bundle(*container, allow_custom=True)
             return bundle

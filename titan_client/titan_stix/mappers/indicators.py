@@ -4,7 +4,7 @@ import yaml
 from pytz import UTC
 from stix2 import Indicator, Bundle, Relationship, KillChainPhase, TLP_AMBER
 
-from .. import author_identity, generate_id
+from .. import author_identity, generate_id, StixObjects
 from .common import StixMapper, BaseMapper, MappingConfig
 from ..patterning import create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..sco import map_url, map_ipv4, map_file
@@ -45,7 +45,7 @@ class IndicatorsMapper(BaseMapper):
     }
 
     def map(self, source: dict) -> Bundle:
-        container = {}
+        container = StixObjects()
         items = (
             source.get("indicators") or []
             if "indicatorTotalCount" in source
@@ -116,7 +116,7 @@ class IndicatorsMapper(BaseMapper):
                 author_identity,
                 TLP_AMBER,
             ]:
-                container[stix_object.id] = stix_object
+                container.append(stix_object)
         if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+            bundle = Bundle(*container, allow_custom=True)
             return bundle

@@ -1,4 +1,3 @@
-import base64
 import json
 import os
 
@@ -45,6 +44,8 @@ def test_stix_mappers(fixtures):
     expected_result = read_fixture(f'{PREFIX}/fixtures/{out_fixture}')
     mapper = StixMapper()
     result = mapper.map(api_response)
+    # with open("/tmp/t1.json", "w") as fh:
+    #     json.dump(json.loads(result.serialize()), fh, sort_keys=True, indent=2)
     expected = strip_random_values(expected_result)
     assert expected == strip_random_values(json.loads(result.serialize()))
 
