@@ -1,4 +1,3 @@
-import base64
 import datetime
 import logging
 import re
@@ -233,9 +232,6 @@ class ReportMapper(BaseMapper):
                 "content": self._get_opencti_content(source)
             }
         }
-        # instead of attached files putting the contents into `custom_properties.content`
-        # if opencti_files := self._get_opencti_files(source):
-        #     report_kwargs["custom_properties"]["x_opencti_files"] = opencti_files
         report = Report(**report_kwargs)
         stix_objects.append(report)
         return stix_objects
@@ -251,8 +247,9 @@ class ReportMapper(BaseMapper):
         return self._map_report(self.cache[report_id], object_refs)
 
     def _is_full_report_required(self) -> bool:
-        return all([self.settings.titan_client, self.settings.api_client]) and \
-           any([self.settings.report_description, self.settings.report_attachments_opencti])
+        return all([self.settings.titan_client,
+                    self.settings.api_client,
+                    self.settings.report_full_content])
 
     @staticmethod
     def _get_report_id(name: str, time_published: str) -> str:
@@ -365,20 +362,3 @@ class ReportMapper(BaseMapper):
                     content_bits.append(f"<h1>{heading}</h1>")
                 content_bits.append(value)
         return "\n".join(content_bits)
-
-    def _get_opencti_files(self, source: dict):
-        if not self.settings.report_attachments_opencti:
-            return []
-        opencti_files = []
-        report_settings = self.reports_settings.get(self._get_type(source))
-        attachments_fields = report_settings.contents_paths or []
-        for field_name in attachments_fields:
-            value = source.get(field_name)
-            if isinstance(value, str):
-                opencti_files.append({
-                    "name":  " ".join([i.capitalize() for i in re.findall(
-                        r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', field_name)]) + ".html",
-                    "mime_type": "text/html",
-                    "data": base64.b64encode(bytes(value, "utf-8")).decode("utf-8")
-                })
-        return opencti_files

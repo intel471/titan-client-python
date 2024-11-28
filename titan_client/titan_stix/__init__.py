@@ -12,11 +12,9 @@ class STIXMapperSettings(NamedTuple):
     api_client: Union['ApiClient', None] = None
     # Resolve GIRs numbers into full names
     girs_names: bool = True
-    # Get full reports' descriptions
-    report_description: bool = True
-    # Get HTML representation of reports contents and return them in a format
-    # understandable for OpenCTI (base64 encoded, inside specific JSON structure)
-    report_attachments_opencti: bool = False
+    # Get full reports contents. Applicable to FINTEL and INFOREP
+    # as other reports have full content in respective search APIs.
+    report_full_content: bool = True
     ioc_opencti_score: Optional[int] = None
 
 

@@ -73,7 +73,7 @@ def test_report_enrichments():
     mock_api_client = MagicMock()
     mock_domain = DomainName(value="foo.bar")
 
-    mapper = ReportMapper(STIXMapperSettings(mock_titan_client, mock_api_client, report_attachments_opencti=True))
+    mapper = ReportMapper(STIXMapperSettings(mock_titan_client, mock_api_client, report_full_content=True))
     result = mapper.map_report_ioc({
         "subject": "New malware released",
         "released": 1679321907000,
