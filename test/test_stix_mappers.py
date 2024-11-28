@@ -19,7 +19,8 @@ fixtures = {
     'test_indicators': ("indicators_input.json", "indicators_stix.json"),
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
     'test_yara': ("yara_input.json", "yara_stix.json"),
-    'test_cves': ("cves_input.json", "cves_stix.json")
+    'test_cves': ("cves_input.json", "cves_stix.json"),
+    'test_cvesx': ("iocs_with_reports_input.json", "reports_from_iocs_stix.json"),
 }
 
 

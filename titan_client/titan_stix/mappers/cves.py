@@ -1,5 +1,5 @@
 import yaml
-from stix2 import Bundle, Vulnerability, ExternalReference
+from stix2 import Bundle, Vulnerability, ExternalReference, Software, Relationship
 
 from .common import BaseMapper, StixMapper
 from .. import author_identity, generate_id, StixObjects
@@ -23,14 +23,13 @@ class CveMapper(BaseMapper):
             underground_activity_summary = item["data"]["cve_report"][
                 "underground_activity_summary"
             ]
+            counter_measures = item["data"]["cve_report"]["counter_measures"]
             extras = yaml.dump(
                 {
                     k: v
                     for k, v in item["data"]["cve_report"].items()
                     if k
                     in (
-                        "vendor_name",
-                        "product_name",
                         "patch_status",
                         "interest_level",
                         "activity_location",
@@ -38,7 +37,7 @@ class CveMapper(BaseMapper):
                     )
                 }
             )
-            description = f"{summary}\n\n{underground_activity_summary}\n\n### Properties\n\n```yaml\n{extras}```"
+            description = f"{summary}\n\n{underground_activity_summary}\n\n{counter_measures}\n\n### Properties\n\n```yaml\n{extras}```"
             cvss3_score = (item["data"]["cve_report"].get("cvss_score") or {}).get("v3")
             external_references = []
             for link_type, key in (
@@ -66,7 +65,11 @@ class CveMapper(BaseMapper):
                 custom_properties=custom_properties,
                 labels=labels
             )
-            container.extend([vulnerability, author_identity, MARKING])
+            software = Software(
+                name=item["data"]["cve_report"]["product_name"],
+                vendor=item["data"]["cve_report"]["vendor_name"])
+            rel = Relationship(software, "has", vulnerability, created_by_ref=author_identity)
+            container.extend([vulnerability, software, rel, author_identity, MARKING])
         if container:
             bundle = Bundle(*container, allow_custom=True)
             return bundle

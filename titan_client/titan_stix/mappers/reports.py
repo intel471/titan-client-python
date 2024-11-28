@@ -333,7 +333,7 @@ class ReportMapper(BaseMapper):
         return self._extract_value(source, "released_at_path") or None
 
     def _get_girs_labels(self, source: dict) -> List[str]:
-        girs_paths = self._extract_value(source, "girs_path")
+        girs_paths = self._extract_value(source, "girs_path") or []
         return self.get_girs_labels(girs_paths)
 
     def _get_title(self, source: dict) -> Union[str, None]:
