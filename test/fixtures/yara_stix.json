@@ -22,7 +22,6 @@
             "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
             "created": "2024-06-13T08:06:28.864774Z",
             "modified": "2024-06-13T08:06:28.864774Z",
-            "description": "### Intel requirements\n\n```yaml\n- name: null\n  path: '1.1'\n```",
             "indicator_types": [
                 "malicious-activity"
             ],

@@ -16,7 +16,6 @@ class CveMapper(BaseMapper):
             if "cveReportsTotalCount" in source
             else [source]
         )
-        girs_names = self.get_girs_names()
         for item in items:
             uid = item["uid"]
             name = item["data"]["cve_report"]["name"]
@@ -40,10 +39,6 @@ class CveMapper(BaseMapper):
                 }
             )
             description = f"{summary}\n\n{underground_activity_summary}\n\n### Properties\n\n```yaml\n{extras}```"
-            girs_paths = (item.get("classification") or {}).get("intel_requirements") or []
-            girs = [{"path": i, "name": girs_names.get(i, i)} for i in girs_paths]
-            if girs:
-                description += f"\n\n### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
             cvss3_score = (item["data"]["cve_report"].get("cvss_score") or {}).get("v3")
             external_references = []
             for link_type, key in (
@@ -60,7 +55,7 @@ class CveMapper(BaseMapper):
             custom_properties = {"x_intel471_com_uid": uid}
             if cvss3_score:
                 custom_properties["x_opencti_base_score"] = cvss3_score
-            girs_labels = self.format_girs_labels(girs)
+            labels = self.get_girs_labels((item.get("classification") or {}).get("intel_requirements") or [])
             vulnerability = Vulnerability(
                 id=generate_id(Vulnerability, name=name.strip().lower()),
                 name=name,
@@ -69,7 +64,7 @@ class CveMapper(BaseMapper):
                 external_references=external_references,
                 object_marking_refs=[MARKING],
                 custom_properties=custom_properties,
-                labels=girs_labels
+                labels=labels
             )
             container.extend([vulnerability, author_identity, MARKING])
         if container:

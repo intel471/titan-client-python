@@ -51,7 +51,6 @@ class IndicatorsMapper(BaseMapper):
             if "indicatorTotalCount" in source
             else [source]
         )
-        girs_names = self.get_girs_names()
         for item in items:
             indicator_type = item["data"]["indicator_type"]
             mapping_config = self.mapping_configs.get(indicator_type)
@@ -66,11 +65,8 @@ class IndicatorsMapper(BaseMapper):
             )
             tactics = self.map_tactic(item["data"]["mitre_tactics"])
             confidence = self.map_confidence(item["data"]["confidence"])
-            girs_paths = item["data"]["intel_requirements"]
-            girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
             name = mapping_config.name_extractor(item)
-            description_main = item["data"]["context"]["description"]
-            description = f"{description_main}\n\n### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
+            description = item["data"]["context"]["description"]
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
             observable = mapping_config.entities_mapper(**kwargs)
@@ -79,10 +75,7 @@ class IndicatorsMapper(BaseMapper):
             if self.settings.ioc_opencti_score:
                 custom_properties.update({"x_opencti_score": self.settings.ioc_opencti_score})
             labels = [malware_family_name]
-            if girs:
-                girs_labels = self.format_girs_labels(girs)
-                labels = [malware_family_name] + girs_labels
-
+            labels.extend(self.get_girs_labels(item["data"]["intel_requirements"]))
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 pattern_type="stix",

@@ -61,7 +61,8 @@ def test_report_enrichments():
         "admiraltyCode": "A1",
         "created": 1679321907000,
         "dateOfInformation": 1678060800000,
-        "rawText": "<h2>Foo</h2><p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>"
+        "rawText": "<h2>Foo</h2><p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>",
+        "classification": {"intelRequirements": ["1.1"]}
         }
 
     api_response_mock = MagicMock(name="API response")
@@ -88,13 +89,7 @@ def test_report_enrichments():
     assert report_serialized["report_types"] == ["fintel", "actor_profile"]
     assert report_serialized["confidence"] == 90
     assert report_serialized["content"] == api_response['rawText']
-    # assert report_serialized["x_opencti_files"] == [
-    #     {
-    #         "name": "Raw Text.html",
-    #         "mime_type": "text/html",
-    #         "data": base64.b64encode(bytes(api_response["rawText"], "utf-8")).decode("utf-8")
-    #     }
-    # ]
+    assert report_serialized["labels"] == ["Intel 471 - GIR 1.1"]
 
 def test_ioc_mapper_attached_reports(capsys):
     ioc_fixture = read_fixture(f'{PREFIX}/fixtures/iocs_with_reports_input.json')
@@ -258,38 +253,14 @@ def test_map_reports_victims(report_type, source):
     assert victims[0].contact_information == "https://acme.corp"
 
 
-@pytest.mark.parametrize("report_type,source,labels", (
-        (
-                ReportType.FINTEL,
-                {"uid": "123", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}},
-                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
-        ),
-        (
-                ReportType.INFOREP,
-                {"uid": "123", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}},
-                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
-        ),
-        (
-                ReportType.SPOTREP,
-                {"uid": "123", "data": {"spot_report": {"spot_report_data":{"intel_requirements": ["1.1.1", "1.2.2"]}}}},
-                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
-        ),
-        (
-                ReportType.MALWARE,
-                {"uid": "123", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}},
-                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
-        ),
-        (
-                ReportType.BREACH_ALERT,
-                {"uid": "123", "data": {"breach_alert":{"intel_requirements": ["1.1.1", "1.2.2"]}}},
-                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
-        ),
+@pytest.mark.parametrize("report_type,source", (
+        (ReportType.FINTEL, {"uid": "123", "documentFamily": "FINTEL", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}}),
+        (ReportType.INFOREP, {"uid": "123", "documentFamily": "INFOREP", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}}),
+        (ReportType.SPOTREP, {"uid": "123", "data": {"spot_report": {"spot_report_data":{"intel_requirements": ["1.1.1", "1.2.2"]}}}}),
+        (ReportType.MALWARE, {"uid": "123", "data": {"malware_report_data": {}}, "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}}),
+        (ReportType.BREACH_ALERT, {"uid": "123", "data": {"breach_alert":{"intel_requirements": ["1.1.1", "1.2.2"]}}}),
 ))
-def test_reports_gir_labels(report_type, source, labels):
-    girs = {"1.1.1": "Expected description"}
+def test_reports_gir_labels(report_type, source):
     mapper = ReportMapper(STIXMapperSettings())
-    girs_paths = mapper.reports_settings.get(report_type).girs_extractor(source)
-    girs_labels = mapper.format_girs_labels([
-        {"path": i, "name": girs.get(i)} for i in girs_paths
-    ])
-    assert girs_labels == labels
+    girs_labels = mapper._get_girs_labels(source)
+    assert girs_labels == ["Intel 471 - GIR 1.1.1", "Intel 471 - GIR 1.2.2"]

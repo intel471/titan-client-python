@@ -144,7 +144,7 @@ class BaseMapper(ABC):
         return text.strip()
 
     @cached("i471titanclientgirs")
-    def get_girs_names(self):
+    def _get_girs_names(self) -> dict:
         girs_names = {}
         if not all([self.settings.titan_client, self.settings.api_client, self.settings.girs_names]):
             return girs_names
@@ -157,16 +157,10 @@ class BaseMapper(ABC):
                 girs_names[gir.data.gir.path] = gir.data.gir.name
         return girs_names
 
-    @staticmethod
-    def format_girs_labels(girs: List[dict]):
-        """
-        Desired label formats:
-        Intel 471 - GIR - 0.0.0 - Gir name
-        Intel 471 - GIR - 0.0.0
-        """
-        girs_labels = [
-            f'Intel 471 - GIR {gir.get("path")}'
-            f'{" - " + gir.get("name") if (gir.get("name") and not gir.get("path")==gir.get("name")) else ""}'
-            for gir in girs
+    def get_girs_labels(self, gir_paths: List[str]):
+        girs_names = self._get_girs_names()
+        paths_and_names = {i: girs_names.get(i) for i in gir_paths}
+        return [
+            f'Intel 471 - GIR {path}{" - " + name if name else ""}'
+            for path, name in paths_and_names.items()
         ]
-        return girs_labels
