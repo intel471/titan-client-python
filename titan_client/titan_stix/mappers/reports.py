@@ -42,6 +42,7 @@ class ReportSettings(NamedTuple):
     contents_paths: Union[List[str], None] = None
 
 
+
 @StixMapper.register("fintels_inforeps", lambda x: "reportTotalCount" in x)
 @StixMapper.register("fintel_inforep", lambda x: x.get("documentFamily") in ("FINTEL", "INFOREP"))
 @StixMapper.register("breach_alerts", lambda x: "breach_alerts_total_count" in x)
@@ -206,7 +207,7 @@ class ReportMapper(BaseMapper):
         time_published = self._format_published(self._get_released_at(source))
         report_types = [report_type.value]
         girs_paths = self.reports_settings.get(self._get_type(source)).girs_extractor(source)
-        labels = self._get_malware_families(source)
+        labels = self._get_malware_families_names(stix_objects)
         if girs_paths:
             girs_names = self.get_girs_names()
             girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
