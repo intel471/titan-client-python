@@ -256,3 +256,40 @@ def test_map_reports_victims(report_type, source):
     assert victims[0].identity_class == "organization"
     assert victims[0].name == "ACME corp"
     assert victims[0].contact_information == "https://acme.corp"
+
+
+@pytest.mark.parametrize("report_type,source,labels", (
+        (
+                ReportType.FINTEL,
+                {"uid": "123", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}},
+                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
+        ),
+        (
+                ReportType.INFOREP,
+                {"uid": "123", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}},
+                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
+        ),
+        (
+                ReportType.SPOTREP,
+                {"uid": "123", "data": {"spot_report": {"spot_report_data":{"intel_requirements": ["1.1.1", "1.2.2"]}}}},
+                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
+        ),
+        (
+                ReportType.MALWARE,
+                {"uid": "123", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}},
+                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
+        ),
+        (
+                ReportType.BREACH_ALERT,
+                {"uid": "123", "data": {"breach_alert":{"intel_requirements": ["1.1.1", "1.2.2"]}}},
+                ["Intel 471 - GIR 1.1.1 - Expected description", "Intel 471 - GIR 1.2.2"]
+        ),
+))
+def test_reports_gir_labels(report_type, source, labels):
+    girs = {"1.1.1": "Expected description"}
+    mapper = ReportMapper(STIXMapperSettings())
+    girs_paths = mapper.reports_settings.get(report_type).girs_extractor(source)
+    girs_labels = mapper.format_girs_labels([
+        {"path": i, "name": girs.get(i)} for i in girs_paths
+    ])
+    assert girs_labels == labels
