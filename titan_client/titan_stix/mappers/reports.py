@@ -358,5 +358,5 @@ class ReportMapper(BaseMapper):
                     heading = " ".join([i.capitalize() for i in re.findall(
                         r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', path.split(".")[-1])])
                     content_bits.append(f"<h1>{heading}</h1>")
-                content_bits.append(value)
+                content_bits.append(re.sub(r"<img src[^>]*>", "", value))
         return "\n".join(content_bits)
