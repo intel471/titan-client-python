@@ -15,6 +15,7 @@ def map_malware(value: str, *args, **kwargs) -> Malware:
 def map_threat_actor(value: str, *args, **kwargs) -> ThreatActor:
     return ThreatActor(
         name = value,
+        resource_level="individual",
         created_by_ref=author_identity,
         object_marking_refs=[MARKING],
 )
