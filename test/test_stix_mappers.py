@@ -21,18 +21,24 @@ fixtures = {
     'test_yara': ("yara_input.json", "yara_stix.json"),
     'test_cves': ("cves_input.json", "cves_stix.json"),
     'test_cvesx': ("iocs_with_reports_input.json", "reports_from_iocs_stix.json"),
+    'test_report_breach_alert': ("report_breach_alert_input.json", "report_breach_alert_stix.json"),
+    'test_report_fintel': ("report_fintel_input.json", "report_fintel_stix.json"),
+    'test_report_inforep': ("report_inforep_input.json", "report_inforep_stix.json"),
+    'test_report_spot': ("report_spot_input.json", "report_spot_stix.json"),
+    'test_report_malware': ("report_malware_input.json", "report_malware_stix.json"),
 }
 
 
 def strip_random_values(bundle: dict) -> dict:
     bundle["id"] = None
+    remove_id_types = ('relationship', 'threat-actor', 'identity')
     for i1, o in enumerate(bundle["objects"]):
         bundle["objects"][i1]["created"] = None
         bundle["objects"][i1]["modified"] = None
-        if o["id"].startswith("relationship--"):
+        if o["type"] in remove_id_types:
             bundle["objects"][i1]["id"] = None
         for i2, object_ref_id in enumerate(o.get("object_refs", [])):
-            if object_ref_id.startswith("relationship--"):
+            if object_ref_id.split("--")[0] in remove_id_types:
                 bundle["objects"][i1]["object_refs"][i2] = None
 
     return bundle

@@ -1,0 +1,52 @@
+{
+    "reportTotalCount": 9,
+    "reports": [
+        {
+            "uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "documentFamily": "INFOREP",
+            "documentType": "INFOREP",
+            "admiraltyCode": "C3",
+            "motivation": [
+                "CC"
+            ],
+            "subject": "Lorem ipsum",
+            "created": 1700000000001,
+            "dateOfInformation": 1700000000001,
+            "sourceCharacterization": "Lorem ipsum",
+            "entities": [
+                {
+                    "type": "EmailAddress",
+                    "value": "example@exaple.com"
+                },
+                {
+                    "type": "MaliciousDomain",
+                    "value": "example.com"
+                }
+            ],
+            "locations": [
+                {
+                    "region": "abc",
+                    "country": "abc",
+                    "link": "originated_from"
+                }
+            ],
+            "tags": [
+                "Malware"
+            ],
+            "portalReportUrl": "https://example.com",
+            "lastUpdated": 1700000000001,
+            "actorSubjectOfReport": [
+                {
+                    "handle": "Dummy handle"
+                }
+            ],
+            "classification": {
+                "intelRequirements": [
+                    "1.1.1",
+                    "1.2"
+                ]
+            },
+            "sensitiveSource": true
+        }
+    ]
+}

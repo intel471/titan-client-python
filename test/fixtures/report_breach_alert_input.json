@@ -1,0 +1,60 @@
+{
+    "breach_alerts_total_count": 1,
+    "breach_alerts": [
+        {
+            "activity": {
+                "first": 1700000000001,
+                "last": 1700000000001
+            },
+            "last_updated": 1700000000001,
+            "uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "data": {
+                "breach_alert": {
+                    "date_of_information": 1700000000001,
+                    "confidence": {
+                        "level": "low",
+                        "description": "Lorem"
+                    },
+                    "intel_requirements": [
+                        "1.1.1",
+                        "1.2"
+                    ],
+                    "released_at": 1700000000001,
+                    "title": "Lorem",
+                    "victim": {
+                        "name": "Dummy",
+                        "industries": [
+                            {
+                                "industry": "Consumer business industry",
+                                "sector": "Lorem ipsum"
+                            }
+                        ],
+                        "urls": [
+                            "https://www.example.com"
+                        ],
+                        "country": "Lorem ipsum",
+                        "revenue": "Lorem ipsum",
+                        "region": "Lorem ipsum"
+                    },
+                    "sources": [
+                        {
+                            "url": "https://titan.intel471.com/post_thread/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                            "source_type": "Forum Thread",
+                            "date": 1700000000001,
+                            "title": "Lorem ipsum",
+                            "type": "internal"
+                        }
+                    ],
+                    "summary": "Lorem ipsum",
+                    "actor_or_group": "Lorem ipsum"
+                },
+                "entities": [
+                    {
+                        "type": "Handle",
+                        "value": "Lorem ipsum"
+                    }
+                ]
+            }
+        }
+    ]
+}
