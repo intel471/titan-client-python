@@ -269,6 +269,8 @@ class ReportMapper(BaseMapper):
     @staticmethod
     def _extract_value_by_path(source: dict, path: str):
         for i in path.split("."):
+            if not source:
+                break
             source = source.get(i, {})
         return source or None
 

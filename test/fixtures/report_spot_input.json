@@ -1,0 +1,45 @@
+{
+    "spotReportsTotalCount": 1,
+    "spotReports": [
+        {
+            "activity": {
+                "first": 1700000000001,
+                "last": 1700000000001
+            },
+            "last_updated": 1700000000001,
+            "uid": "11111111111111111111111111111111",
+            "data": {
+                "spot_report": {
+                    "uid": "11111111111111111111111111111111",
+                    "spot_report_data": {
+                        "date_of_information": 1700000000001,
+                        "text": "Lorem ipsum",
+                        "intel_requirements": [
+                            "1.1.1"
+                        ],
+                        "version": "1",
+                        "links": [
+                            {
+                                "type": "external",
+                                "url": "https://dummy",
+                                "title": "Lorem"
+                            }
+                        ],
+                        "released_at": 1700000000001,
+                        "title": "Lorem ipsum"
+                    }
+                },
+                "entities": [
+                    {
+                        "type": "Handle",
+                        "value": "Dummy handle"
+                    },
+                    {
+                        "type": "Handle",
+                        "value": "Dummy handle"
+                    }
+                ]
+            }
+        }
+    ]
+}
