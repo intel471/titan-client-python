@@ -2,6 +2,7 @@ import re
 
 from pycti import CustomObservableCryptocurrencyWallet
 from stix2 import URL, IPv4Address, DomainName, File, AutonomousSystem, UserAccount, IPv6Address, EmailAddress
+from stix2.exceptions import InvalidValueError
 
 from titan_client.titan_stix import author_identity
 from titan_client.titan_stix.constants import MARKING, X_OPENCT_CREATED_BY
@@ -32,6 +33,8 @@ def map_ipv6(value: str, *args, **kwargs) -> IPv6Address:
 
 
 def map_domain(value: str, *args, **kwargs) -> DomainName:
+    if value.startswith("http"):
+        raise InvalidValueError(DomainName, "value", f"'{value}' is not valid domain name")
     return DomainName(
         value=value,
         object_marking_refs=[MARKING],
