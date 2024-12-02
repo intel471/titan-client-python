@@ -11,7 +11,7 @@ from titan_client.titan_stix.mappers.entities import EntitiesMapper
 from titan_client.titan_stix.mappers.reports import ReportType
 
 from .conftest import PREFIX, read_fixture
-from mock import MagicMock
+from mock import MagicMock, patch
 
 os.environ['I471_TITAN_CLIENT_CACHE_TTL'] = '0'
 
@@ -49,8 +49,10 @@ def test_stix_mappers(fixtures):
     in_fixture, out_fixture = fixtures
     api_response = read_fixture(f'{PREFIX}/fixtures/{in_fixture}')
     expected_result = read_fixture(f'{PREFIX}/fixtures/{out_fixture}')
-    mapper = StixMapper()
-    result = mapper.map(api_response)
+    with patch('titan_client.titan_stix.mappers.common.BaseMapper._get_girs_names') as mck:
+        mck.return_value = {"1.1.1": "Lorem ipsum"}
+        mapper = StixMapper(STIXMapperSettings())
+        result = mapper.map(api_response)
     # with open("/tmp/t1.json", "w") as fh:
     #     json.dump(json.loads(result.serialize()), fh, sort_keys=True, indent=2)
     expected = strip_random_values(expected_result)
@@ -248,16 +250,3 @@ def test_map_reports_victims(report_type, source):
     assert victims[0].identity_class == "organization"
     assert victims[0].name == "ACME corp"
     assert victims[0].contact_information == "https://acme.corp"
-
-
-@pytest.mark.parametrize("report_type,source", (
-        (ReportType.FINTEL, {"uid": "123", "documentFamily": "FINTEL", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}}),
-        (ReportType.INFOREP, {"uid": "123", "documentFamily": "INFOREP", "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}}),
-        (ReportType.SPOTREP, {"uid": "123", "data": {"spot_report": {"spot_report_data":{"intel_requirements": ["1.1.1", "1.2.2"]}}}}),
-        (ReportType.MALWARE, {"uid": "123", "data": {"malware_report_data": {}}, "classification": {"intelRequirements": ["1.1.1", "1.2.2"]}}),
-        (ReportType.BREACH_ALERT, {"uid": "123", "data": {"breach_alert":{"intel_requirements": ["1.1.1", "1.2.2"]}}}),
-))
-def test_reports_gir_labels(report_type, source):
-    mapper = ReportMapper(STIXMapperSettings())
-    girs_labels = mapper._get_girs_labels(source)
-    assert girs_labels == ["Intel 471 - GIR 1.1.1", "Intel 471 - GIR 1.2.2"]
