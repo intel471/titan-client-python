@@ -101,7 +101,7 @@ def test_report_enrichments():
         "admiraltyCode": "A1",
         "dateOfInformation": 1678060800000
     }, StixObjects([mock_domain]))
-    report_serialized = json.loads(result[-1].serialize())
+    report_serialized = json.loads(list(result.get())[-1].serialize())
     assert report_serialized["name"] == "New malware released (fromAPI)"
     assert report_serialized["description"] == "New malware Foobar released!"
     assert report_serialized["report_types"] == ["fintel", "actor_profile"]
@@ -222,7 +222,7 @@ def test_map_reports_external_references(report_type, source, expected_values):
 def test_map_reports_entities(report_type, source):
     mapper = ReportMapper(STIXMapperSettings())
     entities = mapper._get_entities(source)
-    entity = json.loads(entities[0].serialize())
+    entity = json.loads(list(entities.get())[0].serialize())
     assert entity["type"] == "malware"
     assert entity["name"] == "acme"
     malware_families_names = mapper._get_malware_families_names(entities)
@@ -254,7 +254,7 @@ def test_map_reports_entities(report_type, source):
 ))
 def test_map_reports_victims(report_type, source):
     mapper = ReportMapper(STIXMapperSettings())
-    victims = mapper._get_victims(source)
+    victims = list(mapper._get_victims(source).get())
     assert victims[0].type == "identity"
     assert victims[0].identity_class == "organization"
     assert victims[0].name == "ACME corp"

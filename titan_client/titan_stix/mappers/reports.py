@@ -143,9 +143,9 @@ class ReportMapper(BaseMapper):
                 # Full version is available only when getting individual report by ID
                 stix_objects.extend(self._fetch_and_map_report(report_type, item["uid"]))
             else:
-                stix_objects.extend(self._map_report(item))
+                stix_objects.extend(self._map_report(item).get())
         if stix_objects:
-            bundle = Bundle(*stix_objects, allow_custom=True)
+            bundle = Bundle(*stix_objects.get(), allow_custom=True)
             return bundle
 
     def map_report_ioc(self, source: dict, object_refs: StixObjects) -> StixObjects:
@@ -172,7 +172,7 @@ class ReportMapper(BaseMapper):
             report_types = [report_type.value],
             confidence=confidence,
             published=time_published,
-            object_refs=object_refs,
+            object_refs=object_refs.get(),
             external_references=external_references,
             created_by_ref=author_identity,
             object_marking_refs=TLP_AMBER,
@@ -188,18 +188,18 @@ class ReportMapper(BaseMapper):
         if not object_refs:
             object_refs = StixObjects()
         if entities := self._get_entities(source):
-            object_refs.extend(entities)
+            object_refs.extend(entities.get())
         if victims := self._get_victims(source):
-            object_refs.extend(victims)
+            object_refs.extend(victims.get())
 
         report_type: ReportType = self._get_type(source)
-        if not object_refs:
+        if not object_refs.get():
             log.info("No entities associated with the report. Skipping the report %s/%s",
                      report_type, source["uid"])
             return StixObjects()
 
         stix_objects = StixObjects([MARKING, author_identity])
-        stix_objects.extend(object_refs)
+        stix_objects.extend(object_refs.get())
         name = self._get_title(source)
         time_published = self._format_published(self._get_released_at(source))
         report_types = [report_type.value]
@@ -218,7 +218,7 @@ class ReportMapper(BaseMapper):
             "published": time_published,
             "labels": labels,
             "external_references": self._get_external_references(source),
-            "object_refs": object_refs,
+            "object_refs": object_refs.get(),
             "created_by_ref": author_identity,
             "object_marking_refs": [MARKING],
             "custom_properties": {
@@ -299,8 +299,11 @@ class ReportMapper(BaseMapper):
             if isinstance(value, dict):
                 value = [value]
             for victim_src in value:
+                url = None
+                if urls := victim_src.get("urls"):
+                    url = urls[0]
                 stix_objects.append(
-                    map_organization(victim_src["name"], victim_src["urls"][0]))
+                    map_organization(victim_src["name"], url))
             return stix_objects
 
     @staticmethod
@@ -348,7 +351,7 @@ class ReportMapper(BaseMapper):
 
     @staticmethod
     def _get_malware_families_names(entities: StixObjects) -> List[str]:
-        return [i.name for i in entities if i.type == "malware"]
+        return [i.name for i in entities.get() if i.type == "malware"]
 
     def _get_opencti_content(self, source: dict):
         content_bits = []

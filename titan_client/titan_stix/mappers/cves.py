@@ -71,5 +71,5 @@ class CveMapper(BaseMapper):
             rel = Relationship(software, "has", vulnerability, created_by_ref=author_identity)
             container.extend([vulnerability, software, rel, author_identity, MARKING])
         if container:
-            bundle = Bundle(*container, allow_custom=True)
+            bundle = Bundle(*container.get(), allow_custom=True)
             return bundle

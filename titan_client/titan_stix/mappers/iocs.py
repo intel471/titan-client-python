@@ -101,14 +101,14 @@ class IOCMapper(BaseMapper):
             )
             container.extend([indicator, observable, r1, author_identity, MARKING])
             for stix_object in self._map_reports(
-                report_mapper, report_sources, indicator, observable, r1):
+                report_mapper, report_sources, indicator, observable, r1).get():
                 if isinstance(stix_object, Report):
-                    if already_mapped_reports := [i for i in container if i.id == stix_object.id]:
+                    if already_mapped_reports := [i for i in container.get() if i.id == stix_object.id]:
                         already_mapped_report = already_mapped_reports[0]
                         already_mapped_report.object_refs.extend(stix_object.object_refs)
                 container.append(stix_object)
         if container:
-            bundle = Bundle(*container, allow_custom=True)
+            bundle = Bundle(*container.get(), allow_custom=True)
             return bundle
 
     def map_entity(self, source: dict):
@@ -129,5 +129,5 @@ class IOCMapper(BaseMapper):
             report_etc: StixObjects = report_mapper.map_report_ioc(
                 report_source,
                 object_refs=StixObjects([indicator, observable, relationship]))
-            stix_objects.extend(report_etc)
+            stix_objects.extend(report_etc.get())
         return stix_objects

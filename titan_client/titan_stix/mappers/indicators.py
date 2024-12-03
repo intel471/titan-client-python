@@ -111,5 +111,5 @@ class IndicatorsMapper(BaseMapper):
             ]:
                 container.append(stix_object)
         if container:
-            bundle = Bundle(*container, allow_custom=True)
+            bundle = Bundle(*container.get(), allow_custom=True)
             return bundle
