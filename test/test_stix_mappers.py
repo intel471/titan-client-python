@@ -49,10 +49,21 @@ def test_stix_mappers(fixtures):
     in_fixture, out_fixture = fixtures
     api_response = read_fixture(f'{PREFIX}/fixtures/{in_fixture}')
     expected_result = read_fixture(f'{PREFIX}/fixtures/{out_fixture}')
-    mapper = StixMapper()
+
+    gir_mock = MagicMock(name="Gir mock")
+    gir_mock.data.gir.path, gir_mock.data.gir.name = "1.1.1", "Lorem"
+    api_response_mock = MagicMock(name="API response")
+    api_response_mock.girs = [gir_mock]
+    api_instance_mock = MagicMock(name="API instance")
+    api_instance_mock.girs_get.return_value = api_response_mock
+    mock_titan_client = MagicMock(name="titan_client")
+    mock_titan_client.GIRsApi.return_value = api_instance_mock
+    mock_api_client = MagicMock()
+
+    mapper = StixMapper(STIXMapperSettings(
+        titan_client=mock_titan_client, api_client=mock_api_client, report_full_content=False
+    ))
     result = mapper.map(api_response)
-    # with open("/tmp/t1.json", "w") as fh:
-    #     json.dump(json.loads(result.serialize()), fh, sort_keys=True, indent=2)
     expected = strip_random_values(expected_result)
     assert expected == strip_random_values(json.loads(result.serialize()))
 
