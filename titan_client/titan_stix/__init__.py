@@ -52,6 +52,9 @@ class StixObjects:
     def get(self):
         return self._container.values()
 
+    def __bool__(self):
+        return bool(self._container)
+
 
 author_name = "Intel 471 Inc."
 author_identity = Identity(

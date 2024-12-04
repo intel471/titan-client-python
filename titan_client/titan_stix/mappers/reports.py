@@ -141,7 +141,7 @@ class ReportMapper(BaseMapper):
                                ReportType.INFOREP) and self._is_full_report_required():
                 # In this case search reports API returns shortened version, without content fields
                 # Full version is available only when getting individual report by ID
-                stix_objects.extend(self._fetch_and_map_report(report_type, item["uid"]))
+                stix_objects.extend(self._fetch_and_map_report(report_type, item["uid"]).get())
             else:
                 stix_objects.extend(self._map_report(item).get())
         if stix_objects:
@@ -193,7 +193,7 @@ class ReportMapper(BaseMapper):
             object_refs.extend(victims.get())
 
         report_type: ReportType = self._get_type(source)
-        if not object_refs.get():
+        if not object_refs:
             log.info("No entities associated with the report. Skipping the report %s/%s",
                      report_type, source["uid"])
             return StixObjects()

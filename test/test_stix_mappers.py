@@ -68,7 +68,27 @@ def test_stix_mappers(fixtures):
     assert expected == strip_random_values(json.loads(result.serialize()))
 
 
-def test_report_enrichments():
+def test_report_from_ioc():
+    mock_domain = DomainName(value="foo.bar")
+    mapper = ReportMapper(STIXMapperSettings())
+    result = mapper.map_report_ioc({
+        "subject": "New malware released",
+        "released": 1679321907000,
+        "portalReportUrl": "https://foo.bar/fintel/123",
+        "uid": "1fffffffffffffffffffffffffffffff",
+        "admiraltyCode": "A1",
+        "dateOfInformation": 1678060800000
+    }, StixObjects([mock_domain]))
+    report_serialized = json.loads(list(result.get())[-1].serialize())
+    assert report_serialized["name"] == "New malware released"
+    assert report_serialized["description"] == "New malware released"
+    assert report_serialized["report_types"] == ["fintel"]
+    assert report_serialized["confidence"] == 90
+    assert getattr(report_serialized, "content", None) is None
+    assert getattr(report_serialized, "labels", None) is None
+
+
+def test_full_report_from_ioc():
     api_cls = "ReportsApi"
     method_name = "reports_uid_get"
     api_response = {
@@ -110,15 +130,56 @@ def test_report_enrichments():
     assert report_serialized["labels"] == ["Intel 471 - GIR 1.1"]
 
 
-@pytest.mark.skip(reason="work in progress")
-def test_breach_alert_mapper(capsys):
-    breach_alert_fixture = read_fixture(f'{PREFIX}/fixtures/breach_alert_af3e62.json')
-    mapper = StixMapper()
-    result = mapper.map(breach_alert_fixture)
-    with capsys.disabled():
-        result_serialized = json.loads(result.serialize())
-        result_serialized = [i for i in result_serialized["objects"] if i["type"] == "report"]
-        print(json.dumps(result_serialized, indent=2, sort_keys=True))
+def test_full_report_from_reports_api():
+    api_cls = "ReportsApi"
+    method_name = "reports_uid_get"
+    api_response = {
+        "uid": "1fffffffffffffffffffffffffffffff",
+        "documentFamily": "INFOREP",
+        "documentType": "INFOREP",
+        "subject": "New malware released (fromAPI)",
+        "admiraltyCode": "A1",
+        "created": 1679321907000,
+        "dateOfInformation": 1678060800000,
+        "classification": {"intelRequirements": ["1.1"]},
+        "entities": [{"type": "ActorDomain", "value": "foo.bar"}],
+        "executiveSummary": "This report examines the cybercriminal underground",
+        "rawText": "<h2>Foo</h2><p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>",
+        "researcherComments": "<h3>Actor and information assessment</h3><p>The actor joined the XYZ forum"
+                              "<figure class=\"image image_resized width52\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSU</figure></p>",
+        }
+
+    api_response_mock = MagicMock(name="API response")
+    api_response_mock.to_dict.return_value = api_response
+    api_instance_mock = MagicMock(name="API instance")
+    getattr(api_instance_mock, method_name).return_value = api_response_mock
+    mock_titan_client = MagicMock(name="titan_client")
+    getattr(mock_titan_client, api_cls).return_value = api_instance_mock
+    mock_api_client = MagicMock()
+
+    mapper = ReportMapper(STIXMapperSettings(mock_titan_client, mock_api_client, report_full_content=True))
+    bundle = mapper.map({
+        "documentFamily": "FINTEL",
+        "subject": "New malware released",
+        "released": 1679321907000,
+        "uid": "1fffffffffffffffffffffffffffffff",
+        "admiraltyCode": "A1",
+        "dateOfInformation": 1678060800000
+    })
+    report = bundle.objects[-1]
+    assert report.name == "New malware released (fromAPI)"
+    assert report.description == "This report examines the cybercriminal underground"
+    assert report.report_types == ["inforep"]
+    assert report.confidence == 90
+    assert report.labels == ["Intel 471 - GIR 1.1"]
+    assert report.content == ('<h1>Executive Summary</h1>\n'
+                              'This report examines the cybercriminal underground\n'
+                              '<h1>Researcher Comments</h1>\n'
+                              '<h3>Actor and information assessment</h3>'
+                              '<p>The actor joined the XYZ forum<figure class="image image_resized width52"></p>\n'
+                              '<h1>Raw Text</h1>\n'
+                              '<h2>Foo</h2>'
+                              '<p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>')
 
 
 @pytest.mark.parametrize("source,expected_values", (
@@ -136,6 +197,7 @@ def test_breach_alert_mapper(capsys):
         ({"type": "FileName", "value": "acmecorp.exe"}, {"type": "file", "name": "acmecorp.exe"}),
         # /entities endpoint
         ({"type": "ActorDomain", "value": "acme.com"}, {"type": "domain-name", "value": "acme.com"}),
+        ({"type": "Handle", "value": "acme"}, {"type": "threat-actor", "name": "acme"}),
         ({"type": "ActorOtherWebsite", "value": "https://acme.com"}, {"type": "url", "value": "https://acme.com"}),
         ({"type": "BitcoinAddress", "value": "1HUu6K9sFvN1cGV"}, {"type": "cryptocurrency-wallet", "value": "1HUu6K9sFvN1cGV"}),
         ({"type": "OtherCryptoCurrencies", "value": "1HUu6K9sFvN1cGV"}, {"type": "cryptocurrency-wallet", "value": "1HUu6K9sFvN1cGV"}),
@@ -166,13 +228,19 @@ def test_breach_alert_mapper(capsys):
         ({"type": "WebMoneyPurse", "value": "Z111144083730"}, {"type": "user-account", "user_id": "Z111144083730", "account_type": "WebMoneyPurse"}),
         ({"type": "YandexMoney", "value": "111113131482342"}, {"type": "user-account", "user_id": "111113131482342", "account_type": "YandexMoney"}),
         ({"type": "Phone", "value": "79874172111"}, {"type": "user-account", "user_id": "79874172111", "account_type": "Phone"}),
-
+        ({"type": "CveID", "value": "CVE-2024-23113"}, {"type": "vulnerability", "name": "CVE-2024-23113"}),
+        # Invalid stuff
+        ({"type": "Handle", "value": "a"}, None),
+        ({"type": "MD5", "value": "invalidMd5"}, None)
 ))
 def test_observable_mapper(source, expected_values):
     mapper = EntitiesMapper()
     sco = mapper.map(**source)
-    for key, value in expected_values.items():
-        assert getattr(sco, key) == value
+    if expected_values is None:
+        assert sco is expected_values
+    else:
+        for key, value in expected_values.items():
+            assert getattr(sco, key) == value
 
 
 @pytest.mark.parametrize("report_type,source,expected_values", (
