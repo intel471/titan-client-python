@@ -3,11 +3,12 @@ import logging
 from typing import Union
 
 from pytz import UTC
-from stix2 import Bundle, Indicator, Report, TLP_AMBER, DomainName, URL, Relationship
+from stix2 import Bundle, Indicator, Report, DomainName, URL, Relationship
 
-from .. import author_identity, generate_id
+from .. import author_identity, generate_id, StixObjects
+from ..constants import MARKING
 from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern, create_file_pattern
-from ..observables import create_domain, create_url, create_ipv4, create_file
+from ..sco import map_domain, map_url, map_ipv4, map_file
 from .reports import ReportMapper
 from .common import StixMapper, BaseMapper, MappingConfig
 
@@ -20,42 +21,42 @@ class IOCMapper(BaseMapper):
     mapping_configs = {
         "MaliciousURL": MappingConfig(
             patterning_mapper=create_url_pattern,
-            observable_mapper=create_url,
+            entities_mapper=map_url,
             kwargs_extractor=lambda i: {"value": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="Url"
         ),
         "MaliciousDomain": MappingConfig(
             patterning_mapper=create_domain_pattern,
-            observable_mapper=create_domain,
+            entities_mapper=map_domain,
             kwargs_extractor=lambda i: {"value": i["value"].split("://")[-1]},
             name_extractor=lambda i: i["value"].split("://")[-1],
             opencti_type="Domain-Name"
         ),
         "IPAddress": MappingConfig(
             patterning_mapper=create_ipv4_pattern,
-            observable_mapper=create_ipv4,
+            entities_mapper=map_ipv4,
             kwargs_extractor=lambda i: {"value": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="IPv4-Addr"
         ),
         "MD5": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {"md5": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
         ),
         "SHA1": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {"sha1": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
         ),
         "SHA256": MappingConfig(
             patterning_mapper=create_file_pattern,
-            observable_mapper=create_file,
+            entities_mapper=map_file,
             kwargs_extractor=lambda i: {"sha256": i["value"]},
             name_extractor=lambda i: i["value"],
             opencti_type="StixFile"
@@ -63,7 +64,7 @@ class IOCMapper(BaseMapper):
     }
 
     def map(self, source: dict) -> Bundle:
-        container = {}
+        container = StixObjects()
         report_mapper = ReportMapper(self.settings)
         items = source.get("iocs") or [] if "iocTotalCount" in source else [source]
         for item in items:
@@ -82,7 +83,7 @@ class IOCMapper(BaseMapper):
             name = mapping_config.name_extractor(item)
             kwargs = mapping_config.kwargs_extractor(item)
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
-            observable = mapping_config.observable_mapper(author=author_identity.id, **kwargs)
+            observable = self.map_entity(item)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=stix_pattern),
                 name=name,
@@ -92,42 +93,41 @@ class IOCMapper(BaseMapper):
                 valid_from=valid_from,
                 valid_until=valid_until,
                 created_by_ref=author_identity,
-                object_marking_refs=[TLP_AMBER],
+                object_marking_refs=[MARKING],
                 custom_properties={"x_opencti_main_observable_type": mapping_config.opencti_type}
             )
             r1 = Relationship(
                 indicator, "based-on", observable, created_by_ref=author_identity
             )
-            for stix_object in [indicator, observable, r1, author_identity, TLP_AMBER]:
-                container[stix_object.id] = stix_object
-            for uid, stix_object in self.map_reports(
-                report_mapper, report_sources, indicator, observable, r1
-            ).items():
-                if isinstance(stix_object, Report) and uid in container:
-                    stix_object.object_refs.extend(container[uid].object_refs)
-                container[uid] = stix_object
+            container.extend([indicator, observable, r1, author_identity, MARKING])
+            for stix_object in self._map_reports(
+                report_mapper, report_sources, indicator, observable, r1).get():
+                if isinstance(stix_object, Report):
+                    if already_mapped_reports := [i for i in container.get() if i.id == stix_object.id]:
+                        already_mapped_report = already_mapped_reports[0]
+                        already_mapped_report.object_refs.extend(stix_object.object_refs)
+                container.append(stix_object)
         if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+            bundle = Bundle(*container.get(), allow_custom=True)
             return bundle
 
-    def map_reports(
-        self,
+    def map_entity(self, source: dict):
+        mapping_config = self.mapping_configs.get(source["type"])
+        kwargs = mapping_config.kwargs_extractor(source)
+        return mapping_config.entities_mapper(**kwargs)
+
+    @staticmethod
+    def _map_reports(
         report_mapper,
         report_sources: list,
         indicator: Indicator,
         observable: Union[URL, DomainName],
         relationship: Relationship
-    ) -> dict:
-        container = {}
+    ) -> StixObjects:
+        stix_objects = StixObjects()
         for report_source in report_sources:
-            container.update(
-                report_mapper.map_shortened_report(
-                    report_source,
-                    object_refs={
-                        indicator.id: indicator,
-                        observable.id: observable,
-                        relationship.id: relationship
-                    },
-                )
-            )
-        return container
+            report_etc: StixObjects = report_mapper.map_report_ioc(
+                report_source,
+                object_refs=StixObjects([indicator, observable, relationship]))
+            stix_objects.extend(report_etc.get())
+        return stix_objects

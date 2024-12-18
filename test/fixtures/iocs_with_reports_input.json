@@ -1,0 +1,51 @@
+{
+    "iocTotalCount": 1,
+    "iocs": [
+      {
+        "lastUpdated": 1731013828197,
+        "links": {
+          "actorTotalCount": 0,
+          "reportTotalCount": 1,
+          "reports": [
+            {
+              "subject": "ACME Corp. possibly compromised by actor Coyote one",
+              "released": 1731013823000,
+              "portalReportUrl": "hxxps://acmecorp.fake/report/fintel/af3e622402a838a01e1343190129204f",
+              "uid": "af3e622402a838a01e1343190129204f",
+              "admiraltyCode": "D3",
+              "dateOfInformation": 1730937600000
+            },
+            {
+              "subject": "ACME Corp. possibly compromised by actor Coyote two",
+              "released": 1731013824000,
+              "portalReportUrl": "hxxps://acmecorp.fake/report/inforep/af3e622402a838a01e1343190129204f",
+              "uid": "bf3e622402a838a01e1343190129204f",
+              "admiraltyCode": "A1",
+              "motivation": [
+                  "CC"
+              ],
+              "sourceCharacterization": "Information was derived from our sensitive and reliable source.",
+              "dateOfInformation": 1729468800000
+            },
+            {
+              "subject": "ACME Corp. possibly compromised by actor Coyote three",
+              "released": 1731013825000,
+              "portalReportUrl": "hxxps://acmecorp.fake/report/breach_alert/af3e622402a838a01e1343190129204f",
+              "uid": "cf3e622402a838a01e1343190129204f"
+            },
+            {
+              "subject": "ACME Corp. possibly compromised by actor Coyote four",
+              "released": 1731013826000,
+              "portalReportUrl": "hxxps://acmecorp.fake/report/spotrep/af3e622402a838a01e1343190129204f",
+              "uid": "df3e622402a838a01e1343190129204f"
+            }
+          ]
+        },
+        "activeFrom": 1731013823000,
+        "activeTill": 1731013823000,
+        "uid": "050a5e7b68ea038d240f71eb3154183b",
+        "type": "SHA256",
+        "value": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e"
+      }
+    ]
+  }

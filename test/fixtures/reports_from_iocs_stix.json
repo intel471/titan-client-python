@@ -1,0 +1,189 @@
+{
+  "id": "bundle--90ad093e-d6ad-443f-8ba9-f56815f0473d",
+  "objects": [
+    {
+      "created": "2024-11-28T15:54:28.17634Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "id": "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "modified": "2024-11-28T15:54:28.17634Z",
+      "name": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "pattern": "[file:hashes.sha256 = '38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2024-11-07T21:10:23Z",
+      "x_opencti_main_observable_type": "StixFile"
+    },
+    {
+      "hashes": {
+        "SHA-256": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e"
+      },
+      "id": "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "spec_version": "2.1",
+      "type": "file",
+      "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
+    },
+    {
+      "created": "2024-11-28T15:54:28.18414Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "id": "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08",
+      "modified": "2024-11-28T15:54:28.18414Z",
+      "relationship_type": "based-on",
+      "source_ref": "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
+      "spec_version": "2.1",
+      "target_ref": "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
+      "type": "relationship"
+    },
+    {
+      "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
+      "modified": "2022-01-01T00:00:00.000Z",
+      "name": "Intel 471 Inc.",
+      "spec_version": "2.1",
+      "type": "identity"
+    },
+    {
+      "created": "2017-01-20T00:00:00.000Z",
+      "definition": {
+        "tlp": "amber"
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
+    },
+    {
+      "confidence": 50,
+      "created": "2024-11-28T15:54:28.184595Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "ACME Corp. possibly compromised by actor Coyote one",
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "hxxps://acmecorp.fake/report/fintel/af3e622402a838a01e1343190129204f"
+        }
+      ],
+      "id": "report--0822a415-51bb-5067-aea0-8dd4247da211",
+      "modified": "2024-11-28T15:54:28.184595Z",
+      "name": "ACME Corp. possibly compromised by actor Coyote one",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "object_refs": [
+        "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
+        "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
+        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+      ],
+      "published": "2024-11-07T21:10:23Z",
+      "report_types": [
+        "fintel"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
+      "x_intel471_com_uid": "af3e622402a838a01e1343190129204f"
+    },
+    {
+      "confidence": 90,
+      "created": "2024-11-28T15:54:28.185102Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "ACME Corp. possibly compromised by actor Coyote two",
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "hxxps://acmecorp.fake/report/inforep/af3e622402a838a01e1343190129204f"
+        }
+      ],
+      "id": "report--396ddf19-958f-5cac-839a-684a91910999",
+      "modified": "2024-11-28T15:54:28.185102Z",
+      "name": "ACME Corp. possibly compromised by actor Coyote two",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "object_refs": [
+        "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
+        "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
+        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+      ],
+      "published": "2024-11-07T21:10:24Z",
+      "report_types": [
+        "inforep"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
+      "x_intel471_com_uid": "bf3e622402a838a01e1343190129204f"
+    },
+    {
+      "confidence": 0,
+      "created": "2024-11-28T15:54:28.185357Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "ACME Corp. possibly compromised by actor Coyote three",
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "hxxps://acmecorp.fake/report/breach_alert/af3e622402a838a01e1343190129204f"
+        }
+      ],
+      "id": "report--aa0981d3-e9af-5f3b-8970-a9fc24385ab1",
+      "modified": "2024-11-28T15:54:28.185357Z",
+      "name": "ACME Corp. possibly compromised by actor Coyote three",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "object_refs": [
+        "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
+        "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
+        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+      ],
+      "published": "2024-11-07T21:10:25Z",
+      "report_types": [
+        "breach_alert"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
+      "x_intel471_com_uid": "cf3e622402a838a01e1343190129204f"
+    },
+    {
+      "confidence": 0,
+      "created": "2024-11-28T15:54:28.185589Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "ACME Corp. possibly compromised by actor Coyote four",
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "hxxps://acmecorp.fake/report/spotrep/af3e622402a838a01e1343190129204f"
+        }
+      ],
+      "id": "report--eb6c0c43-799d-52bc-b1f9-4a766141adff",
+      "modified": "2024-11-28T15:54:28.185589Z",
+      "name": "ACME Corp. possibly compromised by actor Coyote four",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "object_refs": [
+        "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
+        "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
+        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+      ],
+      "published": "2024-11-07T21:10:26Z",
+      "report_types": [
+        "spotrep"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
+      "x_intel471_com_uid": "df3e622402a838a01e1343190129204f"
+    }
+  ],
+  "type": "bundle"
+}

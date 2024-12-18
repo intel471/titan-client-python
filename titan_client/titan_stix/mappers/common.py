@@ -9,7 +9,7 @@ from abc import ABC
 from collections import namedtuple
 from collections.abc import Callable
 from functools import wraps
-from typing import Union
+from typing import Union, List
 
 from stix2 import Bundle
 
@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
 
 MappingConfig = namedtuple(
     "MappingConfig",
-    ["patterning_mapper", "observable_mapper", "kwargs_extractor", "name_extractor", "opencti_type"]
+    ["patterning_mapper", "entities_mapper", "kwargs_extractor", "name_extractor", "opencti_type"]
 )
 
 
@@ -144,7 +144,7 @@ class BaseMapper(ABC):
         return text.strip()
 
     @cached("i471titanclientgirs")
-    def get_girs_names(self):
+    def _get_girs_names(self) -> dict:
         girs_names = {}
         if not all([self.settings.titan_client, self.settings.api_client, self.settings.girs_names]):
             return girs_names
@@ -156,3 +156,11 @@ class BaseMapper(ABC):
             for gir in api_response.girs:
                 girs_names[gir.data.gir.path] = gir.data.gir.name
         return girs_names
+
+    def get_girs_labels(self, gir_paths: List[str]):
+        girs_names = self._get_girs_names()
+        paths_and_names = {i: girs_names.get(i) for i in gir_paths}
+        return [
+            f'Intel 471 - GIR {path}{" - " + name if name else ""}'
+            for path, name in paths_and_names.items()
+        ]

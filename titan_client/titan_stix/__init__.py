@@ -1,6 +1,6 @@
 import datetime
 import uuid
-from typing import Union, NamedTuple
+from typing import Union, NamedTuple, Optional, List
 
 from stix2 import Relationship, base, Identity
 from stix2.base import _DomainObject, _Observable
@@ -12,20 +12,48 @@ class STIXMapperSettings(NamedTuple):
     api_client: Union['ApiClient', None] = None
     # Resolve GIRs numbers into full names
     girs_names: bool = True
-    # Get full reports' descriptions
-    report_description: bool = True
-    # Get HTML representation of reports contents and return them in a format
-    # understandable for OpenCTI (base64 encoded, inside specific JSON structure)
-    report_attachments_opencti: bool = False
+    # Get full reports contents. Applicable to FINTEL and INFOREP
+    # as other reports have full content in respective search APIs.
+    report_full_content: bool = True
+    ioc_opencti_score: Optional[int] = None
+
 
 def generate_id(
     stix_class: Union[_DomainObject, Relationship, _Observable],
     **id_contributing_properties: str,
-):
+) -> str:
     if id_contributing_properties:
         name = canonicalize(id_contributing_properties, utf8=False)
         return f"{stix_class._type}--{uuid.uuid5(base.SCO_DET_ID_NAMESPACE, name)}"
     return f"{stix_class._type}--{uuid.uuid4()}"
+
+
+class StixObjects:
+    """
+    Helper class for collecting unique STIX instances (by STIX ID)
+    """
+    def __init__(self, objects: Union[List, None]=None):
+        self._container = {}
+        if objects:
+            self.extend(objects)
+
+    def append(self, item):
+        item_id = item.id
+        try:
+            if item_id not in self._container:
+                self._container[item_id] = item
+        except AttributeError:
+            raise
+
+    def extend(self, __iterable):
+        for i in __iterable:
+            self.append(i)
+
+    def get(self):
+        return self._container.values()
+
+    def __bool__(self):
+        return bool(self._container)
 
 
 author_name = "Intel 471 Inc."

@@ -23,7 +23,7 @@
             "created": "2024-06-13T08:06:28.832975Z",
             "modified": "2024-06-13T08:06:28.832975Z",
             "name": "1.2.3.4",
-            "description": "fooBar controller IPv4\n\n### Intel requirements\n\n```yaml\n- name: null\n  path: 0.0.0\n```",
+            "description": "fooBar controller IPv4",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -39,7 +39,8 @@
                 }
             ],
             "labels": [
-                "fooBar"
+                "fooBar",
+                "Intel 471 - GIR 0.0.0"
             ],
             "confidence": 50,
             "object_marking_refs": [
@@ -107,7 +108,7 @@
             "created": "2024-06-13T08:06:28.840837Z",
             "modified": "2024-06-13T08:06:28.840837Z",
             "name": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e",
-            "description": "sample of fooBar malware family\n\n### Intel requirements\n\n```yaml\n- name: null\n  path: 0.0.0\n```",
+            "description": "sample of fooBar malware family",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -123,7 +124,8 @@
                 }
             ],
             "labels": [
-                "fooBar"
+                "fooBar",
+                "Intel 471 - GIR 0.0.0"
             ],
             "confidence": 85,
             "object_marking_refs": [
@@ -188,7 +190,7 @@
             "created": "2024-06-13T08:06:28.846757Z",
             "modified": "2024-06-13T08:06:28.846757Z",
             "name": "http://foo.bar/baz",
-            "description": "barBaz controller URL\n\n### Intel requirements\n\n```yaml\n- name: null\n  path: 0.0.0\n```",
+            "description": "barBaz controller URL",
             "indicator_types": [
                 "malicious-activity"
             ],
@@ -204,7 +206,8 @@
                 }
             ],
             "labels": [
-                "barBaz"
+                "barBaz",
+                "Intel 471 - GIR 0.0.0"
             ],
             "confidence": 85,
             "object_marking_refs": [

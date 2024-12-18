@@ -4,16 +4,15 @@ import yaml
 from pytz import UTC
 from stix2 import Indicator, Bundle, Relationship, TLP_AMBER
 from .common import StixMapper, BaseMapper
-from .. import author_identity, generate_id
-from ..sdo import create_malware
+from .. import author_identity, generate_id, StixObjects
+from ..sdo import map_malware
 
 
 @StixMapper.register("yara", lambda x: "yaraTotalCount" in x)
 class YaraMapper(BaseMapper):
     def map(self, source: dict) -> Bundle:
-        container = {}
+        container = StixObjects()
         items = source.get("yaras") or [] if "yaraTotalCount" in source else [source]
-        girs_names = self.get_girs_names()
         for item in items:
             yara_signature = item["data"]["yara_data"]["signature"]
             malware_family_name = item["data"]["threat"]["data"]["family"]
@@ -21,11 +20,9 @@ class YaraMapper(BaseMapper):
                 item["activity"]["first"] / 1000, UTC
             )
             confidence = self.map_confidence(item["data"]["confidence"])
-            girs_paths = item["data"]["intel_requirements"]
-            girs = [{"path": i, "name": girs_names.get(i)} for i in girs_paths]
-            description = f"### Intel requirements\n\n```yaml\n{yaml.dump(girs)}```"
-
-            malware = create_malware(malware_family_name)
+            labels = [malware_family_name]
+            labels.extend(self.get_girs_labels(item["data"]["intel_requirements"]))
+            malware = map_malware(malware_family_name)
             indicator = Indicator(
                 id=generate_id(Indicator, pattern=yara_signature),
                 pattern_type="yara",
@@ -34,8 +31,7 @@ class YaraMapper(BaseMapper):
                 valid_from=valid_from,
                 created_by_ref=author_identity,
                 object_marking_refs=[TLP_AMBER],
-                description=description,
-                labels=[malware_family_name],
+                labels=labels,
                 confidence=confidence,
             )
             relationship = Relationship(
@@ -48,7 +44,7 @@ class YaraMapper(BaseMapper):
                 author_identity,
                 TLP_AMBER,
             ]:
-                container[stix_object.id] = stix_object
+                container.append(stix_object)
         if container:
-            bundle = Bundle(*container.values(), allow_custom=True)
+            bundle = Bundle(*container.get(), allow_custom=True)
             return bundle
