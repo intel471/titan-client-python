@@ -171,64 +171,84 @@ class SearchSchema(object):
         self._yaras = None
         self.discriminator = None
 
-        self.actor_total_count = actor_total_count
+        if actor_total_count is not None:
+            self.actor_total_count = actor_total_count
         if actors is not None:
             self.actors = actors
         if breach_alerts is not None:
             self.breach_alerts = breach_alerts
-        self.breach_alerts_total_count = breach_alerts_total_count
+        if breach_alerts_total_count is not None:
+            self.breach_alerts_total_count = breach_alerts_total_count
         if credential_occurrences is not None:
             self.credential_occurrences = credential_occurrences
-        self.credential_occurrences_total_count = credential_occurrences_total_count
+        if credential_occurrences_total_count is not None:
+            self.credential_occurrences_total_count = credential_occurrences_total_count
         if credential_sets is not None:
             self.credential_sets = credential_sets
-        self.credential_sets_total_count = credential_sets_total_count
+        if credential_sets_total_count is not None:
+            self.credential_sets_total_count = credential_sets_total_count
         if credentials is not None:
             self.credentials = credentials
-        self.credentials_total_count = credentials_total_count
+        if credentials_total_count is not None:
+            self.credentials_total_count = credentials_total_count
         if cve_reports is not None:
             self.cve_reports = cve_reports
-        self.cve_reports_total_count = cve_reports_total_count
-        self.data_leak_post_total_count = data_leak_post_total_count
+        if cve_reports_total_count is not None:
+            self.cve_reports_total_count = cve_reports_total_count
+        if data_leak_post_total_count is not None:
+            self.data_leak_post_total_count = data_leak_post_total_count
         if data_leak_posts is not None:
             self.data_leak_posts = data_leak_posts
         if entities is not None:
             self.entities = entities
-        self.entity_total_count = entity_total_count
-        self.event_total_count = event_total_count
+        if entity_total_count is not None:
+            self.entity_total_count = entity_total_count
+        if event_total_count is not None:
+            self.event_total_count = event_total_count
         if events is not None:
             self.events = events
-        self.indicator_total_count = indicator_total_count
+        if indicator_total_count is not None:
+            self.indicator_total_count = indicator_total_count
         if indicators is not None:
             self.indicators = indicators
-        self.instant_message_total_count = instant_message_total_count
+        if instant_message_total_count is not None:
+            self.instant_message_total_count = instant_message_total_count
         if instant_messages is not None:
             self.instant_messages = instant_messages
-        self.ioc_total_count = ioc_total_count
+        if ioc_total_count is not None:
+            self.ioc_total_count = ioc_total_count
         if iocs is not None:
             self.iocs = iocs
-        self.malware_report_total_count = malware_report_total_count
+        if malware_report_total_count is not None:
+            self.malware_report_total_count = malware_report_total_count
         if malware_reports is not None:
             self.malware_reports = malware_reports
         if news is not None:
             self.news = news
-        self.news_total_count = news_total_count
-        self.post_total_count = post_total_count
+        if news_total_count is not None:
+            self.news_total_count = news_total_count
+        if post_total_count is not None:
+            self.post_total_count = post_total_count
         if posts is not None:
             self.posts = posts
-        self.private_message_total_count = private_message_total_count
+        if private_message_total_count is not None:
+            self.private_message_total_count = private_message_total_count
         if private_messages is not None:
             self.private_messages = private_messages
-        self.report_total_count = report_total_count
+        if report_total_count is not None:
+            self.report_total_count = report_total_count
         if reports is not None:
             self.reports = reports
         if situation_reports is not None:
             self.situation_reports = situation_reports
-        self.situation_reports_total_count = situation_reports_total_count
+        if situation_reports_total_count is not None:
+            self.situation_reports_total_count = situation_reports_total_count
         if spot_reports is not None:
             self.spot_reports = spot_reports
-        self.spot_reports_total_count = spot_reports_total_count
-        self.yara_total_count = yara_total_count
+        if spot_reports_total_count is not None:
+            self.spot_reports_total_count = spot_reports_total_count
+        if yara_total_count is not None:
+            self.yara_total_count = yara_total_count
         if yaras is not None:
             self.yaras = yaras
 
@@ -252,8 +272,6 @@ class SearchSchema(object):
         :param actor_total_count: The actor_total_count of this SearchSchema.  # noqa: E501
         :type actor_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and actor_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `actor_total_count`, must not be `None`")  # noqa: E501
 
         self._actor_total_count = actor_total_count
 
@@ -323,8 +341,6 @@ class SearchSchema(object):
         :param breach_alerts_total_count: The breach_alerts_total_count of this SearchSchema.  # noqa: E501
         :type breach_alerts_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and breach_alerts_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `breach_alerts_total_count`, must not be `None`")  # noqa: E501
 
         self._breach_alerts_total_count = breach_alerts_total_count
 
@@ -371,8 +387,6 @@ class SearchSchema(object):
         :param credential_occurrences_total_count: The credential_occurrences_total_count of this SearchSchema.  # noqa: E501
         :type credential_occurrences_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and credential_occurrences_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `credential_occurrences_total_count`, must not be `None`")  # noqa: E501
 
         self._credential_occurrences_total_count = credential_occurrences_total_count
 
@@ -419,8 +433,6 @@ class SearchSchema(object):
         :param credential_sets_total_count: The credential_sets_total_count of this SearchSchema.  # noqa: E501
         :type credential_sets_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and credential_sets_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `credential_sets_total_count`, must not be `None`")  # noqa: E501
 
         self._credential_sets_total_count = credential_sets_total_count
 
@@ -467,8 +479,6 @@ class SearchSchema(object):
         :param credentials_total_count: The credentials_total_count of this SearchSchema.  # noqa: E501
         :type credentials_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and credentials_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `credentials_total_count`, must not be `None`")  # noqa: E501
 
         self._credentials_total_count = credentials_total_count
 
@@ -515,8 +525,6 @@ class SearchSchema(object):
         :param cve_reports_total_count: The cve_reports_total_count of this SearchSchema.  # noqa: E501
         :type cve_reports_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and cve_reports_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `cve_reports_total_count`, must not be `None`")  # noqa: E501
 
         self._cve_reports_total_count = cve_reports_total_count
 
@@ -540,8 +548,6 @@ class SearchSchema(object):
         :param data_leak_post_total_count: The data_leak_post_total_count of this SearchSchema.  # noqa: E501
         :type data_leak_post_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and data_leak_post_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `data_leak_post_total_count`, must not be `None`")  # noqa: E501
 
         self._data_leak_post_total_count = data_leak_post_total_count
 
@@ -611,8 +617,6 @@ class SearchSchema(object):
         :param entity_total_count: The entity_total_count of this SearchSchema.  # noqa: E501
         :type entity_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and entity_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `entity_total_count`, must not be `None`")  # noqa: E501
 
         self._entity_total_count = entity_total_count
 
@@ -636,8 +640,6 @@ class SearchSchema(object):
         :param event_total_count: The event_total_count of this SearchSchema.  # noqa: E501
         :type event_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and event_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_total_count`, must not be `None`")  # noqa: E501
 
         self._event_total_count = event_total_count
 
@@ -684,8 +686,6 @@ class SearchSchema(object):
         :param indicator_total_count: The indicator_total_count of this SearchSchema.  # noqa: E501
         :type indicator_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and indicator_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `indicator_total_count`, must not be `None`")  # noqa: E501
 
         self._indicator_total_count = indicator_total_count
 
@@ -732,8 +732,6 @@ class SearchSchema(object):
         :param instant_message_total_count: The instant_message_total_count of this SearchSchema.  # noqa: E501
         :type instant_message_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and instant_message_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `instant_message_total_count`, must not be `None`")  # noqa: E501
 
         self._instant_message_total_count = instant_message_total_count
 
@@ -780,8 +778,6 @@ class SearchSchema(object):
         :param ioc_total_count: The ioc_total_count of this SearchSchema.  # noqa: E501
         :type ioc_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and ioc_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `ioc_total_count`, must not be `None`")  # noqa: E501
 
         self._ioc_total_count = ioc_total_count
 
@@ -828,8 +824,6 @@ class SearchSchema(object):
         :param malware_report_total_count: The malware_report_total_count of this SearchSchema.  # noqa: E501
         :type malware_report_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and malware_report_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `malware_report_total_count`, must not be `None`")  # noqa: E501
 
         self._malware_report_total_count = malware_report_total_count
 
@@ -899,8 +893,6 @@ class SearchSchema(object):
         :param news_total_count: The news_total_count of this SearchSchema.  # noqa: E501
         :type news_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and news_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `news_total_count`, must not be `None`")  # noqa: E501
 
         self._news_total_count = news_total_count
 
@@ -924,8 +916,6 @@ class SearchSchema(object):
         :param post_total_count: The post_total_count of this SearchSchema.  # noqa: E501
         :type post_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and post_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `post_total_count`, must not be `None`")  # noqa: E501
 
         self._post_total_count = post_total_count
 
@@ -972,8 +962,6 @@ class SearchSchema(object):
         :param private_message_total_count: The private_message_total_count of this SearchSchema.  # noqa: E501
         :type private_message_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and private_message_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `private_message_total_count`, must not be `None`")  # noqa: E501
 
         self._private_message_total_count = private_message_total_count
 
@@ -1020,8 +1008,6 @@ class SearchSchema(object):
         :param report_total_count: The report_total_count of this SearchSchema.  # noqa: E501
         :type report_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and report_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `report_total_count`, must not be `None`")  # noqa: E501
 
         self._report_total_count = report_total_count
 
@@ -1091,8 +1077,6 @@ class SearchSchema(object):
         :param situation_reports_total_count: The situation_reports_total_count of this SearchSchema.  # noqa: E501
         :type situation_reports_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and situation_reports_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `situation_reports_total_count`, must not be `None`")  # noqa: E501
 
         self._situation_reports_total_count = situation_reports_total_count
 
@@ -1139,8 +1123,6 @@ class SearchSchema(object):
         :param spot_reports_total_count: The spot_reports_total_count of this SearchSchema.  # noqa: E501
         :type spot_reports_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and spot_reports_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `spot_reports_total_count`, must not be `None`")  # noqa: E501
 
         self._spot_reports_total_count = spot_reports_total_count
 
@@ -1164,8 +1146,6 @@ class SearchSchema(object):
         :param yara_total_count: The yara_total_count of this SearchSchema.  # noqa: E501
         :type yara_total_count: int
         """
-        if self.local_vars_configuration.client_side_validation and yara_total_count is None:  # noqa: E501
-            raise ValueError("Invalid value for `yara_total_count`, must not be `None`")  # noqa: E501
 
         self._yara_total_count = yara_total_count
 
