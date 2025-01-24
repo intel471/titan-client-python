@@ -23,9 +23,11 @@
                 "obfuscated_number": null,
                 "product_type": "Other product",
                 "victim": {
-                    "country": "oDEZJcAQJhRJmRSpg",
+                    "country": "qQKdtvIGFAiuaQRrHV",
+                    "dob": null,
                     "ip_address": null,
-                    "os": "linux"
+                    "os": "linux",
+                    "pin": null
                 },
                 "installed_at": 736031477000,
                 "stolen_by_form_stealers": 0,
