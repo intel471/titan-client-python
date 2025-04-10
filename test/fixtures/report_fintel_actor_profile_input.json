@@ -1,0 +1,59 @@
+{
+    "reportTotalCount": 1,
+    "reports": [
+        {
+            "uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "documentFamily": "FINTEL",
+            "documentType": "ACTOR_PROFILE",
+            "admiraltyCode": "A1",
+            "subject": "Lorem",
+            "created": 1700000000001,
+            "dateOfInformation": 1700000000001,
+            "entities": [
+                {
+                    "type": "MaliciousDomain",
+                    "value": "bad"
+                },
+                {
+                    "type": "Handle",
+                    "value": "Lorem"
+                }
+            ],
+            "tags": [
+                "Phishing"
+            ],
+            "portalReportUrl": "https://titan.intel471.com/report/fintel/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "lastUpdated": 1700000000001,
+            "sources": [
+                {
+                    "url": "https://titan.intel471.com/report/inforep/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "title": "Lorem ipsum",
+                    "type": "Info Report",
+                    "index": 1
+                }
+            ],
+            "classification": {
+                "intelRequirements": [
+                    "1.1.1",
+                    "1.1.9",
+                    "1.1.10"
+                ]
+            },
+            "victims": [
+                {
+                    "name": "Dummy",
+                    "urls": [
+                        "https://dummy"
+                    ]
+                },
+                {
+                    "name": "Dummy",
+                    "urls": [
+                        "https://dummy"
+                    ]
+                }
+            ],
+            "rawText": "<h2>Actor summary</h2><p>The <strong>Lorem</strong> actor is a hacktivist</p><p>Lorem ipsum</p>"
+        }
+    ]
+}

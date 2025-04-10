@@ -5,7 +5,7 @@ from enum import Enum
 from typing import List, NamedTuple, Union, Callable
 
 from pytz import UTC
-from stix2 import TLP_AMBER, Bundle, ExternalReference, Report
+from stix2 import TLP_AMBER, Bundle, ExternalReference, Report, ThreatActor
 
 from titan_client.titan_stix.exceptions import TitanStixException
 from .entities import EntitiesMapper
@@ -25,6 +25,9 @@ class ReportType(Enum):
     BREACH_ALERT = "breach_alert"
     SPOTREP = "spotrep"
     MALWARE = "malware"
+
+
+REPORT_SUBTYPE_ACTOR_PROFILE = "ACTOR_PROFILE"
 
 
 class ReportSettings(NamedTuple):
@@ -119,10 +122,11 @@ class ReportMapper(BaseMapper):
         self.entities_mapper = EntitiesMapper()
         self.cache = {}
 
-    def map(self, source: dict) -> Bundle:
+    def map(self, source: dict) -> Union[Bundle, None]:
         """
         Main entrypoint for mapping responses from /report, /breachAlerts and /spotReports endpoints
         """
+        is_report_by_id = False
         if "reportTotalCount" in source:
             items = source.get("reports") or []
         elif "breach_alerts_total_count" in source:
@@ -132,13 +136,17 @@ class ReportMapper(BaseMapper):
         elif "malwareReportTotalCount" in source:
             items = source.get("malwareReports") or []
         else:
+            is_report_by_id = True
             items = [source]
 
         stix_objects = StixObjects()
         for item in items:
             report_type = self._get_type(item)
-            if report_type in (ReportType.FINTEL,
-                               ReportType.INFOREP) and self._is_full_report_required():
+            if all([
+                report_type in (ReportType.FINTEL, ReportType.INFOREP),
+                not is_report_by_id,
+                self._is_full_report_required()
+            ]):
                 # In this case search reports API returns shortened version, without content fields
                 # Full version is available only when getting individual report by ID
                 stix_objects.extend(self._fetch_and_map_report(report_type, item["uid"]).get())
@@ -205,12 +213,25 @@ class ReportMapper(BaseMapper):
         report_types = [report_type.value]
         labels = self._get_malware_families_names(stix_objects)
         labels.extend(self._get_girs_labels(source))
+        description = self._get_description(source) or name
         if report_type == ReportType.FINTEL:
-            report_types.append(source["documentType"].lower())
+            document_type = source["documentType"]
+            report_types.append(document_type.lower())
+            if document_type == REPORT_SUBTYPE_ACTOR_PROFILE:
+                threat_actor = self.entities_mapper.map(**{
+                    "type": "Handle",
+                    "value": name,
+                    "description": description
+                })
+                stix_objects = StixObjects([i for i in stix_objects.get()
+                                            if not (isinstance(i, ThreatActor) and i.name == name)])
+                stix_objects.add(threat_actor)
+                name = f"Actor Profile – {name}"
+
         report_kwargs = {
             "id": self._get_report_id(name, time_published),
             "name": name,
-            "description": self._get_description(source) or name,
+            "description": description,
             "report_types": report_types,
             "confidence": self.map_confidence(source.get("admiraltyCode") or
                                               source.get("data", {}).get("breach_alert", {})
@@ -227,7 +248,7 @@ class ReportMapper(BaseMapper):
             }
         }
         report = Report(**report_kwargs)
-        stix_objects.append(report)
+        stix_objects.add(report)
         return stix_objects
 
     def _fetch_and_map_report(self, report_type: ReportType, report_id: str,
@@ -290,7 +311,7 @@ class ReportMapper(BaseMapper):
         stix_objects = StixObjects()
         for entities_source in value or []:
             if entity := self.entities_mapper.map(**entities_source):
-                stix_objects.append(entity)
+                stix_objects.add(entity)
         return stix_objects
 
     def _get_victims(self, source: dict) -> StixObjects:
@@ -302,7 +323,7 @@ class ReportMapper(BaseMapper):
                 url = None
                 if urls := victim_src.get("urls"):
                     url = urls[0]
-                stix_objects.append(
+                stix_objects.add(
                     map_organization(victim_src["name"], url))
             return stix_objects
 
@@ -363,5 +384,5 @@ class ReportMapper(BaseMapper):
                     heading = " ".join([i.capitalize() for i in re.findall(
                         r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))|[a-z]+', path.split(".")[-1])])
                     content_bits.append(f"<h1>{heading}</h1>")
-                content_bits.append(re.sub(r"<img src[^>]*>", "", value))
+                content_bits.append(value)
         return "\n".join(content_bits)

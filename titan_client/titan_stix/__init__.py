@@ -12,8 +12,8 @@ class STIXMapperSettings(NamedTuple):
     api_client: Union['ApiClient', None] = None
     # Resolve GIRs numbers into full names
     girs_names: bool = True
-    # Get full reports contents. Applicable to FINTEL and INFOREP
-    # as other reports have full content in respective search APIs.
+    # Get full reports contents using additional API call. Applicable to FINTEL and INFOREP
+    # as other reports have full content in respective search APIs already.
     report_full_content: bool = True
     ioc_opencti_score: Optional[int] = None
 
@@ -37,17 +37,14 @@ class StixObjects:
         if objects:
             self.extend(objects)
 
-    def append(self, item):
+    def add(self, item):
         item_id = item.id
-        try:
-            if item_id not in self._container:
-                self._container[item_id] = item
-        except AttributeError:
-            raise
+        if item_id not in self._container:
+            self._container[item_id] = item
 
     def extend(self, __iterable):
         for i in __iterable:
-            self.append(i)
+            self.add(i)
 
     def get(self):
         return self._container.values()
