@@ -60,6 +60,7 @@
                 "domain-name--bedb4899-d24b-5401-bc86-8f6b4cc18ec7"
             ],
             "labels": [
+                "Intel 471 - sensitive source",
                 "Intel 471 - GIR 1.1.1 - Lorem",
                 "Intel 471 - GIR 1.2"
             ],
@@ -73,7 +74,7 @@
             "object_marking_refs": [
                 "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
             ],
-            "content": "",
+            "content": "<h1>Source Characterization</h1>\nLorem ipsum",
             "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         }
     ]

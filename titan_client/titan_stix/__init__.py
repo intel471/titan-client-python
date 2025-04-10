@@ -6,6 +6,8 @@ from stix2 import Relationship, base, Identity
 from stix2.base import _DomainObject, _Observable
 from stix2.canonicalization.Canonicalize import canonicalize
 
+from titan_client.titan_stix.constants import INTEL_471
+
 
 class STIXMapperSettings(NamedTuple):
     titan_client: Union['titan_client', None] = None
@@ -53,7 +55,7 @@ class StixObjects:
         return bool(self._container)
 
 
-author_name = "Intel 471 Inc."
+author_name = f"{INTEL_471} Inc."
 author_identity = Identity(
     id=generate_id(Identity, name=author_name.lower(), identity_class="organization"),
     name=author_name,

@@ -12,7 +12,7 @@ from .entities import EntitiesMapper
 
 from .. import STIXMapperSettings, author_identity, generate_id, StixObjects
 from .common import BaseMapper, StixMapper
-from ..constants import MARKING, REMOVE_HTML_REGEX
+from ..constants import INTEL_471, MARKING, REMOVE_HTML_REGEX
 from ..sdo import map_organization
 
 
@@ -41,6 +41,7 @@ class ReportSettings(NamedTuple):
     victims_path: str
     links_path: str
     girs_path: str
+    is_sensitive_source_path: str
     contents_paths: Union[List[str], None] = None
 
 
@@ -67,7 +68,8 @@ class ReportMapper(BaseMapper):
             victims_path="victims",
             links_path="sources",
             contents_paths=["rawText"],
-            girs_path = "classification.intelRequirements"
+            girs_path = "classification.intelRequirements",
+            is_sensitive_source_path = "sensitiveSource"
         ),
         ReportType.INFOREP: ReportSettings(
             api_class="ReportsApi",
@@ -78,8 +80,9 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="entities",
             victims_path="victims",
             links_path="sources",
-            contents_paths=["executiveSummary", "researcherComments", "rawText", "rawTextTranslated"],
-            girs_path = "classification.intelRequirements"
+            contents_paths=["executiveSummary", "researcherComments", "rawText", "rawTextTranslated", "sourceCharacterization"],
+            girs_path = "classification.intelRequirements",
+            is_sensitive_source_path = "sensitiveSource"
         ),
         ReportType.BREACH_ALERT: ReportSettings(
             api_class="ReportsApi",
@@ -90,7 +93,8 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="data.entities",
             victims_path="data.breach_alert.victim",
             links_path="data.breach_alert.sources",
-            girs_path="data.breach_alert.intel_requirements"
+            girs_path="data.breach_alert.intel_requirements",
+            is_sensitive_source_path = "data.breach_alert.sensitive_source"
         ),
         ReportType.SPOTREP: ReportSettings(
             api_class="ReportsApi",
@@ -101,7 +105,8 @@ class ReportMapper(BaseMapper):
             entities_path_or_extractor="data.entities",
             victims_path="data.spot_report.spot_report_data.victims",
             links_path="data.spot_report.spot_report_data.links",
-            girs_path="data.spot_report.spot_report_data.intel_requirements"
+            girs_path="data.spot_report.spot_report_data.intel_requirements",
+            is_sensitive_source_path = "data.spot_report.spot_report_data.sensitive_source"
         ),
         ReportType.MALWARE: ReportSettings(
             api_class="ReportsApi",
@@ -113,7 +118,8 @@ class ReportMapper(BaseMapper):
             victims_path="",
             links_path="",
             contents_paths=["data.malware_report_data.text"],
-            girs_path = "classification.intelRequirements"
+            girs_path = "classification.intelRequirements",
+                is_sensitive_source_path = "data.malware_report_data.sensitive_source"
         )
     }
 
@@ -212,6 +218,8 @@ class ReportMapper(BaseMapper):
         time_published = self._format_published(self._get_released_at(source))
         report_types = [report_type.value]
         labels = self._get_malware_families_names(stix_objects)
+        if self._is_sensitive_source(source):
+            labels.append(f"{INTEL_471} - sensitive source")
         labels.extend(self._get_girs_labels(source))
         description = self._get_description(source) or name
         if report_type == ReportType.FINTEL:
@@ -369,6 +377,9 @@ class ReportMapper(BaseMapper):
         value = self._extract_value(source, "description_path_or_extractor")
         if value and isinstance(value, str):
             return re.sub(REMOVE_HTML_REGEX, "", value)
+
+    def _is_sensitive_source(self, source: dict) -> bool:
+        return bool(self._extract_value(source, "is_sensitive_source_path"))
 
     @staticmethod
     def _get_malware_families_names(entities: StixObjects) -> List[str]:
