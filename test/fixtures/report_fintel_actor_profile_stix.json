@@ -1,0 +1,116 @@
+{
+  "type": "bundle",
+  "id": "bundle--8e9a82bb-40f9-4d40-bd91-d8a6d4706dda",
+  "objects": [
+    {
+      "type": "marking-definition",
+      "spec_version": "2.1",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "created": "2017-01-20T00:00:00.000Z",
+      "definition_type": "tlp",
+      "name": "TLP:AMBER",
+      "definition": {
+        "tlp": "amber"
+      }
+    },
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2022-01-01T00:00:00.000Z",
+      "modified": "2022-01-01T00:00:00.000Z",
+      "name": "Intel 471 Inc.",
+      "identity_class": "organization"
+    },
+    {
+      "type": "domain-name",
+      "spec_version": "2.1",
+      "id": "domain-name--5738557b-186f-5e7f-bbbc-a6678ea6513d",
+      "value": "bad",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
+    },
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--84c7f6b6-e799-4c38-9059-428fc2b0f540",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2025-04-10T09:23:45.518101Z",
+      "modified": "2025-04-10T09:23:45.518101Z",
+      "name": "Dummy",
+      "identity_class": "organization",
+      "contact_information": "https://dummy",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ]
+    },
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--a7aa08ca-757a-48f7-8dff-57a722c9bb1c",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2025-04-10T09:23:45.518534Z",
+      "modified": "2025-04-10T09:23:45.518534Z",
+      "name": "Dummy",
+      "identity_class": "organization",
+      "contact_information": "https://dummy",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ]
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--18543508-84b9-4083-a1f2-cc66eea35570",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2025-04-10T09:24:01.044147Z",
+      "modified": "2025-04-10T09:24:01.044147Z",
+      "name": "Lorem",
+      "description": "The Lorem actor is a hacktivist",
+      "resource_level": "individual",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--e93c4093-b63b-59a0-90f7-73979423226b",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "created": "2025-04-10T09:24:12.360243Z",
+      "modified": "2025-04-10T09:24:12.360243Z",
+      "name": "Actor Profile \u2013 Lorem",
+      "description": "The Lorem actor is a hacktivist",
+      "report_types": [
+        "fintel",
+        "actor_profile"
+      ],
+      "published": "2023-11-14T22:13:20.001Z",
+      "object_refs": [
+        "domain-name--5738557b-186f-5e7f-bbbc-a6678ea6513d",
+        "threat-actor--b9ff421e-581e-4ade-bc2a-4a9c61549730",
+        "identity--84c7f6b6-e799-4c38-9059-428fc2b0f540",
+        "identity--a7aa08ca-757a-48f7-8dff-57a722c9bb1c"
+      ],
+      "labels": [
+        "Intel 471 - GIR 1.1.1 - Lorem",
+        "Intel 471 - GIR 1.1.9",
+        "Intel 471 - GIR 1.1.10"
+      ],
+      "confidence": 90,
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "https://titan.intel471.com/report/fintel/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "content": "<h2>Actor summary</h2><p>The <strong>Lorem</strong> actor is a hacktivist</p><p>Lorem ipsum</p>",
+      "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ]
+}

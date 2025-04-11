@@ -109,7 +109,7 @@ class IndicatorsMapper(BaseMapper):
                 author_identity,
                 TLP_AMBER,
             ]:
-                container.append(stix_object)
+                container.add(stix_object)
         if container:
             bundle = Bundle(*container.get(), allow_custom=True)
             return bundle

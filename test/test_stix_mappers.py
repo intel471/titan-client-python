@@ -23,6 +23,7 @@ fixtures = {
     'test_cvesx': ("iocs_with_reports_input.json", "reports_from_iocs_stix.json"),
     'test_report_breach_alert': ("report_breach_alert_input.json", "report_breach_alert_stix.json"),
     'test_report_fintel': ("report_fintel_input.json", "report_fintel_stix.json"),
+    'test_report_fintel_actor_profile': ("report_fintel_actor_profile_input.json", "report_fintel_actor_profile_stix.json"),
     'test_report_inforep': ("report_inforep_input.json", "report_inforep_stix.json"),
     'test_report_spot': ("report_spot_input.json", "report_spot_stix.json"),
     'test_report_malware': ("report_malware_input.json", "report_malware_stix.json"),
@@ -94,7 +95,7 @@ def test_full_report_from_ioc():
     api_response = {
         "uid": "1fffffffffffffffffffffffffffffff",
         "documentFamily": "FINTEL",
-        "documentType": "ACTOR_PROFILE",
+        "documentType": "MALWARE_CAMPAIGN",
         "subject": "New malware released (fromAPI)",
         "admiraltyCode": "A1",
         "created": 1679321907000,
@@ -124,7 +125,7 @@ def test_full_report_from_ioc():
     report_serialized = json.loads(list(result.get())[-1].serialize())
     assert report_serialized["name"] == "New malware released (fromAPI)"
     assert report_serialized["description"] == "New malware Foobar released!"
-    assert report_serialized["report_types"] == ["fintel", "actor_profile"]
+    assert report_serialized["report_types"] == ["fintel", "malware_campaign"]
     assert report_serialized["confidence"] == 90
     assert report_serialized["content"] == api_response['rawText']
     assert report_serialized["labels"] == ["Intel 471 - GIR 1.1"]
@@ -158,14 +159,14 @@ def test_full_report_from_reports_api():
     mock_api_client = MagicMock()
 
     mapper = ReportMapper(STIXMapperSettings(mock_titan_client, mock_api_client, report_full_content=True))
-    bundle = mapper.map({
+    bundle = mapper.map({"reportTotalCount": "1", "reports": [{
         "documentFamily": "FINTEL",
         "subject": "New malware released",
         "released": 1679321907000,
         "uid": "1fffffffffffffffffffffffffffffff",
         "admiraltyCode": "A1",
         "dateOfInformation": 1678060800000
-    })
+    }]})
     report = bundle.objects[-1]
     assert report.name == "New malware released (fromAPI)"
     assert report.description == "This report examines the cybercriminal underground"
@@ -176,7 +177,8 @@ def test_full_report_from_reports_api():
                               'This report examines the cybercriminal underground\n'
                               '<h1>Researcher Comments</h1>\n'
                               '<h3>Actor and information assessment</h3>'
-                              '<p>The actor joined the XYZ forum<figure class="image image_resized width52"></p>\n'
+                              '<p>The actor joined the XYZ forum<figure class="image image_resized width52">'
+                              '<img src="data:image/png;base64,iVBORw0KGgoAAAANSU</figure></p>\n'
                               '<h1>Raw Text</h1>\n'
                               '<h2>Foo</h2>'
                               '<p>New malware <strong>Foobar</strong> released!</p><h2>Bar</h2>')

@@ -106,7 +106,7 @@ class IOCMapper(BaseMapper):
                     if already_mapped_reports := [i for i in container.get() if i.id == stix_object.id]:
                         already_mapped_report = already_mapped_reports[0]
                         already_mapped_report.object_refs.extend(stix_object.object_refs)
-                container.append(stix_object)
+                container.add(stix_object)
         if container:
             bundle = Bundle(*container.get(), allow_custom=True)
             return bundle

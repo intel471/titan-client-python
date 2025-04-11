@@ -13,7 +13,7 @@ from typing import Union, List
 
 from stix2 import Bundle
 
-from .. import STIXMapperSettings
+from .. import INTEL_471, STIXMapperSettings
 from ..exceptions import EmptyBundle, StixMapperNotFound
 
 log = logging.getLogger(__name__)
@@ -161,6 +161,6 @@ class BaseMapper(ABC):
         girs_names = self._get_girs_names()
         paths_and_names = {i: girs_names.get(i) for i in gir_paths}
         return [
-            f'Intel 471 - GIR {path}{" - " + name if name else ""}'
+            f'{INTEL_471} - GIR {path}{" - " + name if name else ""}'
             for path, name in paths_and_names.items()
         ]
