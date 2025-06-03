@@ -8,6 +8,7 @@ from titan_client.titan_stix import STIXMapperSettings, StixObjects
 from titan_client.titan_stix.mappers import ReportMapper
 from titan_client.titan_stix.mappers.common import StixMapper
 from titan_client.titan_stix.mappers.entities import EntitiesMapper
+from titan_client.titan_stix.mappers.indicators import IndicatorsMapper
 from titan_client.titan_stix.mappers.reports import ReportType
 
 from .conftest import PREFIX, read_fixture
@@ -342,3 +343,24 @@ def test_reports_gir_labels(report_type, source):
     mapper = ReportMapper(STIXMapperSettings())
     girs_labels = mapper._get_girs_labels(source)
     assert girs_labels == ["Intel 471 - GIR 1.1.1", "Intel 471 - GIR 1.2.2"]
+
+
+def test_indicator_pattern_url_quote():
+    mapper = IndicatorsMapper(STIXMapperSettings())
+    result = mapper.map({"indicatorTotalCount": "1", "indicators": [{
+        "activity": {"first": 1747231416000, "last": 1747317804000},
+        "data": {
+            "indicator_data": {
+                "url": "https://foo.bar.com/pixel.png'ogi,TO"
+            },
+            "indicator_type": "url",
+            "threat": {"data": {"family": "foo"}},
+            "expiration": 1747317804000,
+            "mitre_tactics": "command_and_control",
+            "confidence": "high",
+            "context": {"description": "foo"},
+            "intel_requirements": ["1.3.11.1"]
+        }
+    }]})
+    assert result.objects[1].pattern == \
+        "[url:value = 'https://foo.bar.com/pixel.png%27ogi,TO']"

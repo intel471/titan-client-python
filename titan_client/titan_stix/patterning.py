@@ -1,9 +1,17 @@
+import urllib
+from stix2patterns.validator import run_validator
+
+
 def _wrap(*components):
     return "[" + " OR ".join([f"{i} = {j}" for i, j in components]) + "]"
 
 
 def create_url_pattern(value: str) -> str:
-    return _wrap(("url:value", f"'{value}'"))
+    pattern = _wrap(("url:value", f"'{value}'"))
+    if run_validator(pattern):
+        value = urllib.parse.quote(value, safe=":/?&=,")
+        pattern = _wrap(("url:value", f"'{value}'"))
+    return pattern
 
 
 def create_ipv4_pattern(value: str) -> str:
