@@ -21,7 +21,7 @@ fixtures = {
     'test_iocs': ("iocs_input.json", "iocs_stix.json"),
     'test_yara': ("yara_input.json", "yara_stix.json"),
     'test_cves': ("cves_input.json", "cves_stix.json"),
-    'test_cvesx': ("iocs_with_reports_input.json", "reports_from_iocs_stix.json"),
+    'test_iocs_from_reports': ("iocs_with_reports_input.json", "reports_from_iocs_stix.json"),
     'test_report_breach_alert': ("report_breach_alert_input.json", "report_breach_alert_stix.json"),
     'test_report_fintel': ("report_fintel_input.json", "report_fintel_stix.json"),
     'test_report_fintel_actor_profile': ("report_fintel_actor_profile_input.json", "report_fintel_actor_profile_stix.json"),
@@ -29,6 +29,14 @@ fixtures = {
     'test_report_spot': ("report_spot_input.json", "report_spot_stix.json"),
     'test_report_malware': ("report_malware_input.json", "report_malware_stix.json"),
 }
+
+
+def strip_random_values(bundle: dict) -> dict:
+    bundle["id"] = None
+    for i1, o in enumerate(bundle["objects"]):
+        bundle["objects"][i1]["created"] = None
+        bundle["objects"][i1]["modified"] = None
+    return bundle
 
 
 @pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
@@ -51,7 +59,9 @@ def test_stix_mappers(fixtures):
         titan_client=mock_titan_client, api_client=mock_api_client, report_full_content=False
     ))
     result = mapper.map(api_response)
-    assert expected_result == json.loads(result.serialize())
+    expected = strip_random_values(expected_result)
+    actual = strip_random_values(json.loads(result.serialize()))
+    assert expected == actual
 
 
 def test_report_from_ioc():

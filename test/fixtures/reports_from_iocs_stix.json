@@ -1,14 +1,14 @@
 {
-  "id": "bundle--90ad093e-d6ad-443f-8ba9-f56815f0473d",
+  "id": "bundle--a0f7aff1-9db8-43a8-9c1f-86cc2382f538",
   "objects": [
     {
-      "created": "2024-11-28T15:54:28.17634Z",
+      "created": "2025-06-09T13:48:24.173193Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "id": "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
       "indicator_types": [
         "malicious-activity"
       ],
-      "modified": "2024-11-28T15:54:28.17634Z",
+      "modified": "2025-06-09T13:48:24.173193Z",
       "name": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
@@ -34,10 +34,10 @@
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "created": "2024-11-28T15:54:28.18414Z",
+      "created": "2025-06-09T13:48:24.177795Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "id": "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08",
-      "modified": "2024-11-28T15:54:28.18414Z",
+      "id": "relationship--91ce1401-7c34-51e2-87a5-5ee68a47962a",
+      "modified": "2025-06-09T13:48:24.177795Z",
       "relationship_type": "based-on",
       "source_ref": "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
       "spec_version": "2.1",
@@ -66,7 +66,7 @@
     },
     {
       "confidence": 50,
-      "created": "2024-11-28T15:54:28.184595Z",
+      "created": "2025-06-09T13:48:24.178313Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "description": "ACME Corp. possibly compromised by actor Coyote one",
       "external_references": [
@@ -76,7 +76,7 @@
         }
       ],
       "id": "report--0822a415-51bb-5067-aea0-8dd4247da211",
-      "modified": "2024-11-28T15:54:28.184595Z",
+      "modified": "2025-06-09T13:48:24.178313Z",
       "name": "ACME Corp. possibly compromised by actor Coyote one",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
@@ -84,7 +84,7 @@
       "object_refs": [
         "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
         "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
-        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+        "relationship--91ce1401-7c34-51e2-87a5-5ee68a47962a"
       ],
       "published": "2024-11-07T21:10:23Z",
       "report_types": [
@@ -96,7 +96,7 @@
     },
     {
       "confidence": 90,
-      "created": "2024-11-28T15:54:28.185102Z",
+      "created": "2025-06-09T13:48:24.178676Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "description": "ACME Corp. possibly compromised by actor Coyote two",
       "external_references": [
@@ -106,7 +106,7 @@
         }
       ],
       "id": "report--396ddf19-958f-5cac-839a-684a91910999",
-      "modified": "2024-11-28T15:54:28.185102Z",
+      "modified": "2025-06-09T13:48:24.178676Z",
       "name": "ACME Corp. possibly compromised by actor Coyote two",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
@@ -114,7 +114,7 @@
       "object_refs": [
         "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
         "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
-        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+        "relationship--91ce1401-7c34-51e2-87a5-5ee68a47962a"
       ],
       "published": "2024-11-07T21:10:24Z",
       "report_types": [
@@ -126,7 +126,7 @@
     },
     {
       "confidence": 0,
-      "created": "2024-11-28T15:54:28.185357Z",
+      "created": "2025-06-09T13:48:24.178845Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "description": "ACME Corp. possibly compromised by actor Coyote three",
       "external_references": [
@@ -136,7 +136,7 @@
         }
       ],
       "id": "report--aa0981d3-e9af-5f3b-8970-a9fc24385ab1",
-      "modified": "2024-11-28T15:54:28.185357Z",
+      "modified": "2025-06-09T13:48:24.178845Z",
       "name": "ACME Corp. possibly compromised by actor Coyote three",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
@@ -144,7 +144,7 @@
       "object_refs": [
         "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
         "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
-        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+        "relationship--91ce1401-7c34-51e2-87a5-5ee68a47962a"
       ],
       "published": "2024-11-07T21:10:25Z",
       "report_types": [
@@ -156,7 +156,7 @@
     },
     {
       "confidence": 0,
-      "created": "2024-11-28T15:54:28.185589Z",
+      "created": "2025-06-09T13:48:24.179016Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "description": "ACME Corp. possibly compromised by actor Coyote four",
       "external_references": [
@@ -166,7 +166,7 @@
         }
       ],
       "id": "report--eb6c0c43-799d-52bc-b1f9-4a766141adff",
-      "modified": "2024-11-28T15:54:28.185589Z",
+      "modified": "2025-06-09T13:48:24.179016Z",
       "name": "ACME Corp. possibly compromised by actor Coyote four",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
@@ -174,7 +174,7 @@
       "object_refs": [
         "indicator--e61008aa-ce88-585b-bc65-a37626ce9f1b",
         "file--4a84f7e9-891d-5f49-bc42-b940c1387d2b",
-        "relationship--ff8b5726-18d5-43c7-861d-20ceedbfcd08"
+        "relationship--91ce1401-7c34-51e2-87a5-5ee68a47962a"
       ],
       "published": "2024-11-07T21:10:26Z",
       "report_types": [
