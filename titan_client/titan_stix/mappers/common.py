@@ -83,7 +83,7 @@ def cached(key):
             if ttl_seconds == 0:
                 return func(*args, **kwargs)
             tempdir = tempfile.gettempdir()
-            cache_postfix = int(datetime.datetime.now(datetime.UTC).timestamp() / ttl_seconds)
+            cache_postfix = int(datetime.datetime.now(datetime.timezone.utc).timestamp() / ttl_seconds)
             cache_path = os.path.join(tempdir, f"{key}{cache_postfix}")
             result = {}
             try:
@@ -109,7 +109,7 @@ def cached(key):
 
 class BaseMapper(ABC):
     def __init__(self, settings: STIXMapperSettings):
-        self.now = datetime.datetime.now(datetime.UTC)
+        self.now = datetime.datetime.now(datetime.timezone.utc)
         self.settings = settings
 
     @abc.abstractmethod
