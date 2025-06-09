@@ -1,10 +1,10 @@
 import datetime
 
-import yaml
 from pytz import UTC
+import pycti
 from stix2 import Indicator, Bundle, Relationship, TLP_AMBER
 from .common import StixMapper, BaseMapper
-from .. import author_identity, generate_id, StixObjects
+from .. import author_identity, StixObjects
 from ..sdo import map_malware
 
 
@@ -24,7 +24,7 @@ class YaraMapper(BaseMapper):
             labels.extend(self.get_girs_labels(item["data"]["intel_requirements"]))
             malware = map_malware(malware_family_name)
             indicator = Indicator(
-                id=generate_id(Indicator, pattern=yara_signature),
+                id=pycti.Indicator.generate_id(yara_signature),
                 pattern_type="yara",
                 pattern=yara_signature,
                 indicator_types=["malicious-activity"],
@@ -35,7 +35,14 @@ class YaraMapper(BaseMapper):
                 confidence=confidence,
             )
             relationship = Relationship(
-                indicator, "indicates", malware, created_by_ref=author_identity
+                id=pycti.StixCoreRelationship.generate_id(
+                    relationship_type="indicates",
+                    source_ref=indicator.id,
+                    target_ref=malware.id),
+                source_ref=indicator,
+                relationship_type="indicates",
+                target_ref=malware,
+                created_by_ref=author_identity
             )
             for stix_object in [
                 malware,

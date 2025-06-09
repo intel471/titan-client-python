@@ -31,21 +31,6 @@ fixtures = {
 }
 
 
-def strip_random_values(bundle: dict) -> dict:
-    bundle["id"] = None
-    remove_id_types = ('relationship', 'threat-actor', 'identity')
-    for i1, o in enumerate(bundle["objects"]):
-        bundle["objects"][i1]["created"] = None
-        bundle["objects"][i1]["modified"] = None
-        if o["type"] in remove_id_types:
-            bundle["objects"][i1]["id"] = None
-        for i2, object_ref_id in enumerate(o.get("object_refs", [])):
-            if object_ref_id.split("--")[0] in remove_id_types:
-                bundle["objects"][i1]["object_refs"][i2] = None
-
-    return bundle
-
-
 @pytest.mark.parametrize('fixtures', fixtures.values(), ids=fixtures.keys())
 def test_stix_mappers(fixtures):
     in_fixture, out_fixture = fixtures
@@ -66,8 +51,7 @@ def test_stix_mappers(fixtures):
         titan_client=mock_titan_client, api_client=mock_api_client, report_full_content=False
     ))
     result = mapper.map(api_response)
-    expected = strip_random_values(expected_result)
-    assert expected == strip_random_values(json.loads(result.serialize()))
+    assert expected_result == json.loads(result.serialize())
 
 
 def test_report_from_ioc():

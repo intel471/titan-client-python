@@ -5,12 +5,13 @@ from enum import Enum
 from typing import List, NamedTuple, Union, Callable
 
 from pytz import UTC
+import pycti
 from stix2 import TLP_AMBER, Bundle, ExternalReference, Report, ThreatActor
 
 from titan_client.titan_stix.exceptions import TitanStixException
 from .entities import EntitiesMapper
 
-from .. import STIXMapperSettings, author_identity, generate_id, StixObjects
+from .. import STIXMapperSettings, author_identity, StixObjects
 from .common import BaseMapper, StixMapper
 from ..constants import INTEL_471, MARKING, REMOVE_HTML_REGEX
 from ..sdo import map_organization
@@ -180,7 +181,7 @@ class ReportMapper(BaseMapper):
         confidence = self.map_confidence(source.get("admiraltyCode"))
 
         return StixObjects([Report(
-            id = self._get_report_id(name, time_published),
+            id = pycti.Report.generate_id(name, time_published),
             name=name,
             description=name,
             report_types = [report_type.value],
@@ -237,7 +238,7 @@ class ReportMapper(BaseMapper):
                 name = f"Actor Profile – {name}"
 
         report_kwargs = {
-            "id": self._get_report_id(name, time_published),
+            "id": pycti.Report.generate_id(name, time_published),
             "name": name,
             "description": description,
             "report_types": report_types,
@@ -273,14 +274,6 @@ class ReportMapper(BaseMapper):
         return all([self.settings.titan_client,
                     self.settings.api_client,
                     self.settings.report_full_content])
-
-    @staticmethod
-    def _get_report_id(name: str, time_published: str) -> str:
-        return generate_id(
-            Report,
-            name=name.strip().lower(),
-            published=time_published
-        )
 
     def _extract_value(self, source: dict, path_or_extractor_name: str):
         report_type = self._get_type(source)
