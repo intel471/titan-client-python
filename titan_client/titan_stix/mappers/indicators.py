@@ -1,10 +1,10 @@
 import datetime
 
-import yaml
 from pytz import UTC
+import pycti
 from stix2 import Indicator, Bundle, Relationship, KillChainPhase, TLP_AMBER
 
-from .. import author_identity, generate_id, StixObjects
+from .. import author_identity, StixObjects
 from .common import StixMapper, BaseMapper, MappingConfig
 from ..patterning import create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..sco import map_url, map_ipv4, map_file
@@ -77,7 +77,7 @@ class IndicatorsMapper(BaseMapper):
             labels = [malware_family_name]
             labels.extend(self.get_girs_labels(item["data"]["intel_requirements"]))
             indicator = Indicator(
-                id=generate_id(Indicator, pattern=stix_pattern),
+                id=pycti.Indicator.generate_id(stix_pattern),
                 pattern_type="stix",
                 pattern=stix_pattern,
                 indicator_types=["malicious-activity"],
@@ -95,10 +95,24 @@ class IndicatorsMapper(BaseMapper):
                 custom_properties=custom_properties
             )
             r1 = Relationship(
-                indicator, "indicates", malware, created_by_ref=author_identity
+                id=pycti.StixCoreRelationship.generate_id(
+                    relationship_type="indicates",
+                    source_ref=indicator.id,
+                    target_ref=malware.id),
+                source_ref=indicator,
+                relationship_type="indicates",
+                target_ref=malware,
+                created_by_ref=author_identity
             )
             r2 = Relationship(
-                indicator, "based-on", observable, created_by_ref=author_identity
+                id=pycti.StixCoreRelationship.generate_id(
+                    relationship_type="based-on",
+                    source_ref=indicator.id,
+                    target_ref=observable.id),
+                source_ref=indicator,
+                relationship_type="based-on",
+                target_ref=observable,
+                created_by_ref=author_identity
             )
             for stix_object in [
                 malware,

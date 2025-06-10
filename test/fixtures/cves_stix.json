@@ -1,8 +1,8 @@
 {
-  "id": "bundle--2d413645-53ac-43a4-a920-7f6ab35e0185",
+  "id": "bundle--ff3abb6c-7d55-4367-bb06-d80470bf5b5f",
   "objects": [
     {
-      "created": "2024-11-28T15:52:15.76501Z",
+      "created": "2025-06-09T13:47:35.429129Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "description": "CVE-2021-11111 is an out-of-bound write vulnerability.\n\nWeaponization or productization not observed\n\nAcme addressed the vulnerability\n\n### Properties\n\n```yaml\nactivity_location:\n  location_opensource: true\n  location_private: false\n  location_underground: true\nexploit_status:\n  available: true\n  productized: false\n  weaponized: true\ninterest_level:\n  disclosed_publicly: true\n  exploit_sought: false\n  researched_publicly: true\npatch_status: available\n```",
       "external_references": [
@@ -25,7 +25,7 @@
         "Intel 471 - GIR 1.0.1",
         "Intel 471 - GIR 1.0.2"
       ],
-      "modified": "2024-11-28T15:52:15.76501Z",
+      "modified": "2025-06-09T13:47:35.429129Z",
       "name": "CVE-2021-11111",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
@@ -43,10 +43,10 @@
       "vendor": "Acme"
     },
     {
-      "created": "2024-11-28T15:52:15.765337Z",
+      "created": "2025-06-09T13:47:35.429704Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "id": "relationship--b8557a5a-ae94-45f5-be15-6b392e88c964",
-      "modified": "2024-11-28T15:52:15.765337Z",
+      "id": "relationship--1358bccd-4ccf-5e2a-aafe-340649962df0",
+      "modified": "2025-06-09T13:47:35.429704Z",
       "relationship_type": "has",
       "source_ref": "software--1f2e88bf-0277-5c4a-bd98-2282c1bfdb23",
       "spec_version": "2.1",

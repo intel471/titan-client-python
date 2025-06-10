@@ -83,7 +83,7 @@ def cached(key):
             if ttl_seconds == 0:
                 return func(*args, **kwargs)
             tempdir = tempfile.gettempdir()
-            cache_postfix = int(datetime.datetime.utcnow().timestamp() / ttl_seconds)
+            cache_postfix = int(datetime.datetime.now(datetime.timezone.utc).timestamp() / ttl_seconds)
             cache_path = os.path.join(tempdir, f"{key}{cache_postfix}")
             result = {}
             try:
@@ -109,7 +109,7 @@ def cached(key):
 
 class BaseMapper(ABC):
     def __init__(self, settings: STIXMapperSettings):
-        self.now = datetime.datetime.utcnow()
+        self.now = datetime.datetime.now(datetime.timezone.utc)
         self.settings = settings
 
     @abc.abstractmethod
@@ -122,7 +122,7 @@ class BaseMapper(ABC):
         # [STIX confidence scales](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_1v6elyto0uqg)
 
         # If it's Admiralty_code we're interested in the second part only (Credibility), which is a number between 1 and 6.
-        value = re.sub(r"^[A-F]([1-6])$", "\\1", confidence or "", re.IGNORECASE)
+        value = re.sub(r"^[A-F]([1-6])$", "\\1", confidence or "", flags=re.IGNORECASE)
 
         # If there's no match, we expect a word from low/medium/high scale.
         # If for any reason it's not the case either, we set confidence as not specified (`None`)

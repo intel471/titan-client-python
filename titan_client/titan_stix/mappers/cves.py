@@ -1,8 +1,9 @@
 import yaml
+import pycti
 from stix2 import Bundle, Vulnerability, ExternalReference, Software, Relationship
 
 from .common import BaseMapper, StixMapper
-from .. import author_identity, generate_id, StixObjects
+from .. import author_identity, StixObjects
 from ..constants import MARKING
 
 
@@ -56,7 +57,7 @@ class CveMapper(BaseMapper):
                 custom_properties["x_opencti_base_score"] = cvss3_score
             labels = self.get_girs_labels((item.get("classification") or {}).get("intel_requirements") or [])
             vulnerability = Vulnerability(
-                id=generate_id(Vulnerability, name=name.strip().lower()),
+                id=pycti.Vulnerability.generate_id(name),
                 name=name,
                 description=description,
                 created_by_ref=author_identity,
@@ -68,7 +69,15 @@ class CveMapper(BaseMapper):
             software = Software(
                 name=item["data"]["cve_report"]["product_name"],
                 vendor=item["data"]["cve_report"]["vendor_name"])
-            rel = Relationship(software, "has", vulnerability, created_by_ref=author_identity)
+            rel = Relationship(
+                id=pycti.StixCoreRelationship.generate_id(
+                    relationship_type="has",
+                    source_ref=software.id,
+                    target_ref=vulnerability.id),
+                source_ref=software,
+                relationship_type= "has",
+                target_ref=vulnerability,
+                created_by_ref=author_identity)
             container.extend([vulnerability, software, rel, author_identity, MARKING])
         if container:
             bundle = Bundle(*container.get(), allow_custom=True)

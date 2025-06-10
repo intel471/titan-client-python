@@ -3,9 +3,10 @@ import logging
 from typing import Union
 
 from pytz import UTC
+import pycti
 from stix2 import Bundle, Indicator, Report, DomainName, URL, Relationship
 
-from .. import author_identity, generate_id, StixObjects
+from .. import author_identity, StixObjects
 from ..constants import MARKING
 from ..patterning import create_domain_pattern, create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..sco import map_domain, map_url, map_ipv4, map_file
@@ -85,7 +86,7 @@ class IOCMapper(BaseMapper):
             stix_pattern = mapping_config.patterning_mapper(**kwargs)
             observable = self.map_entity(item)
             indicator = Indicator(
-                id=generate_id(Indicator, pattern=stix_pattern),
+                id=pycti.Indicator.generate_id(stix_pattern),
                 name=name,
                 pattern_type="stix",
                 pattern=stix_pattern,
@@ -97,7 +98,14 @@ class IOCMapper(BaseMapper):
                 custom_properties={"x_opencti_main_observable_type": mapping_config.opencti_type}
             )
             r1 = Relationship(
-                indicator, "based-on", observable, created_by_ref=author_identity
+                id=pycti.StixCoreRelationship.generate_id(
+                    relationship_type="based-on",
+                    source_ref=indicator.id,
+                    target_ref=observable.id),
+                source_ref=indicator,
+                relationship_type="based-on",
+                target_ref=observable,
+                created_by_ref=author_identity
             )
             container.extend([indicator, observable, r1, author_identity, MARKING])
             for stix_object in self._map_reports(

@@ -96,7 +96,7 @@ def map_file(md5: str = None, sha1: str = None, sha256: str = None, name: str = 
     return File(**file_kwargs)
 
 
-def map_file_hash(value: str, type: str) -> File:
+def map_file_hash(value: str, type: str, *args, **kwargs) -> File:
     kwargs = {type.lower(): value}
     return map_file(**kwargs)
 
