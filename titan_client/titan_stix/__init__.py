@@ -21,16 +21,6 @@ class STIXMapperSettings(NamedTuple):
     ioc_opencti_score: Optional[int] = None
 
 
-def generate_id(
-    stix_class: Union[_DomainObject, Relationship, _Observable],
-    **id_contributing_properties: str,
-) -> str:
-    if id_contributing_properties:
-        name = canonicalize(id_contributing_properties, utf8=False)
-        return f"{stix_class._type}--{uuid.uuid5(base.SCO_DET_ID_NAMESPACE, name)}"
-    return f"{stix_class._type}--{uuid.uuid4()}"
-
-
 class StixObjects:
     """
     Helper class for collecting unique STIX instances (by STIX ID)
