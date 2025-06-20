@@ -256,6 +256,9 @@ class ReportMapper(BaseMapper):
                 "content": self._get_opencti_content(source)
             }
         }
+        if report_type == ReportType.INFOREP:
+            if source_reliability := self._map_source_reliability(source.get("admiraltyCode")):
+                report_kwargs["custom_properties"]["x_opencti_reliability"] = source_reliability
         report = Report(**report_kwargs)
         stix_objects.add(report)
         return stix_objects
@@ -390,3 +393,16 @@ class ReportMapper(BaseMapper):
                     content_bits.append(f"<h1>{heading}</h1>")
                 content_bits.append(value)
         return "\n".join(content_bits)
+
+    def _map_source_reliability(self, admiralty_code: Union[str, None]):
+        if admiralty_code and len(admiralty_code) > 0:
+            reliability_code = admiralty_code[0].upper()
+            return {
+                "A": "A - Completely reliable",
+                "B": "B - Usually reliable",
+                "C": "C - Fairly reliable",
+                "D": "D - Not usually reliable",
+                "E": "E - Unreliable",
+                "F": "F - Reliability cannot be judged"
+            }.get(reliability_code)
+        return None
