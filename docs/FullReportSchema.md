@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **uid** | **str** | Unique report identifier. | 
 **victims** | [**list[SimpleReportSchemaVictimsInner]**](SimpleReportSchemaVictimsInner.md) | Purported victims list. | [optional] 
 **executive_summary** | **str** | Executive summary in HTML format. | [optional] 
-**raw_text** | **str** | Raw text in HTML format. | 
+**raw_text** | **str** | Raw text in HTML format. | [optional] 
 **raw_text_translated** | **str** | Translated text in HTML format. | [optional] 
 **researcher_comments** | **str** | Researcher&#39;s comments in HTML format. | [optional] 
 
