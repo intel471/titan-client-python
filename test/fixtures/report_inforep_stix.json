@@ -75,7 +75,8 @@
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "content": "<h1>Source Characterization</h1>\nLorem ipsum",
-      "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "x_opencti_reliability": "C - Fairly reliable"
     }
   ]
 }

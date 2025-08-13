@@ -57,7 +57,7 @@ class EntitiesMapper:
                 value = value_extractor(value)
             try:
                 return mapper_config.mapper(value, type=type, *args, **kwargs)
-            except InvalidValueError as e:
+            except (InvalidValueError, ValueError) as e:
                 log.info(f"Skipping entity. {e}")
                 return
         log.info(f"Skipping entity. No suitable mapper. type=`{type}` value=`{value}`")

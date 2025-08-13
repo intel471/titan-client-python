@@ -134,6 +134,7 @@ class BaseMapper(ABC):
     def map_tactic(self, tactic: str):
         if tactic and len(tactic) > 0:
             return tactic.replace("_", "-").replace(" ", "-").lower()
+        return None
 
     @staticmethod
     def shorten(text: str, limit: int) -> str:

@@ -65,7 +65,8 @@ class FullReportSchemaAllOf(object):
 
         if executive_summary is not None:
             self.executive_summary = executive_summary
-        self.raw_text = raw_text
+        if raw_text is not None:
+            self.raw_text = raw_text
         if raw_text_translated is not None:
             self.raw_text_translated = raw_text_translated
         if researcher_comments is not None:
@@ -114,8 +115,6 @@ class FullReportSchemaAllOf(object):
         :param raw_text: The raw_text of this FullReportSchemaAllOf.  # noqa: E501
         :type raw_text: str
         """
-        if self.local_vars_configuration.client_side_validation and raw_text is None:  # noqa: E501
-            raise ValueError("Invalid value for `raw_text`, must not be `None`")  # noqa: E501
 
         self._raw_text = raw_text
 
