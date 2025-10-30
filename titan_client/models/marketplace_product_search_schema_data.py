@@ -40,6 +40,7 @@ class MarketplaceProductSearchSchemaData(object):
     openapi_types = {
         'availability': 'MarketplaceProductAvailabilitySchema',
         'base': 'str',
+        'bin': 'str',
         'card_holder': 'str',
         'card_number': 'str',
         'card_type': 'str',
@@ -60,6 +61,7 @@ class MarketplaceProductSearchSchemaData(object):
     attribute_map = {
         'availability': 'availability',
         'base': 'base',
+        'bin': 'bin',
         'card_holder': 'card_holder',
         'card_number': 'card_number',
         'card_type': 'card_type',
@@ -77,7 +79,7 @@ class MarketplaceProductSearchSchemaData(object):
         'victim': 'victim'
     }
 
-    def __init__(self, availability=None, base=None, card_holder=None, card_number=None, card_type=None, categories=None, cvv=None, description=None, expiration=None, installed_at=None, issuer=None, marketplace=None, obfuscated_number=None, product_type=None, stolen_by_form_stealers=None, title=None, victim=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, availability=None, base=None, bin=None, card_holder=None, card_number=None, card_type=None, categories=None, cvv=None, description=None, expiration=None, installed_at=None, issuer=None, marketplace=None, obfuscated_number=None, product_type=None, stolen_by_form_stealers=None, title=None, victim=None, local_vars_configuration=None):  # noqa: E501
         """MarketplaceProductSearchSchemaData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -85,6 +87,7 @@ class MarketplaceProductSearchSchemaData(object):
 
         self._availability = None
         self._base = None
+        self._bin = None
         self._card_holder = None
         self._card_number = None
         self._card_type = None
@@ -106,6 +109,8 @@ class MarketplaceProductSearchSchemaData(object):
             self.availability = availability
         if base is not None:
             self.base = base
+        if bin is not None:
+            self.bin = bin
         if card_holder is not None:
             self.card_holder = card_holder
         if card_number is not None:
@@ -180,6 +185,29 @@ class MarketplaceProductSearchSchemaData(object):
         """
 
         self._base = base
+
+    @property
+    def bin(self):
+        """Gets the bin of this MarketplaceProductSearchSchemaData.  # noqa: E501
+
+        Credit card BIN.  # noqa: E501
+
+        :return: The bin of this MarketplaceProductSearchSchemaData.  # noqa: E501
+        :rtype: str
+        """
+        return self._bin
+
+    @bin.setter
+    def bin(self, bin):
+        """Sets the bin of this MarketplaceProductSearchSchemaData.
+
+        Credit card BIN.  # noqa: E501
+
+        :param bin: The bin of this MarketplaceProductSearchSchemaData.  # noqa: E501
+        :type bin: str
+        """
+
+        self._bin = bin
 
     @property
     def card_holder(self):

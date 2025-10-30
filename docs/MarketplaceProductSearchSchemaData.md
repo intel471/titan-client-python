@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **availability** | [**MarketplaceProductAvailabilitySchema**](MarketplaceProductAvailabilitySchema.md) |  | [optional] 
 **base** | **str** | Base dump name. | [optional] 
+**bin** | **str** | Credit card BIN. | [optional] 
 **card_holder** | **str** | Credit card holder. | [optional] 
 **card_number** | **str** | Credit card number. | [optional] 
 **card_type** | **str** | Credit card type. | [optional] 

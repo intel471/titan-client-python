@@ -67,3 +67,4 @@ target/
 .idea/
 .vscode
 .env
+pyrightconfig.json

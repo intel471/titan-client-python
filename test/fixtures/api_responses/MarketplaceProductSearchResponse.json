@@ -8,6 +8,7 @@
             "data": {
                 "availability": "gjmWwSYTMIp",
                 "base": "YZqmcweurJC",
+                "bin": "1234",
                 "card_holder": null,
                 "card_number": null,
                 "card_type": "RWlJvDtvGA",
@@ -26,7 +27,11 @@
                     "dob": null,
                     "ip_address": null,
                     "os": "linux",
-                    "pin": null
+                    "pin": null,
+                    "zip": "1234",
+                    "ssn": false,
+                    "city": null,
+                    "state": null
                 },
                 "installed_at": 736031477000,
                 "stolen_by_form_stealers": 0,
