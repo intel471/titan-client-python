@@ -216,6 +216,8 @@ class ReportMapper(BaseMapper):
         stix_objects = StixObjects([MARKING, author_identity])
         stix_objects.extend(object_refs.get())
         name = self._get_title(source)
+        if not name:
+            name = f"{report_type.value} {source['uid']}"
         time_published = self._format_published(self._get_released_at(source))
         report_types = [report_type.value]
         labels = self._get_malware_families_names(stix_objects)

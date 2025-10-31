@@ -38,34 +38,48 @@ class MarketplaceProductSearchSchemaDataVictim(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'city': 'str',
         'country': 'str',
         'dob': 'bool',
         'ip_address': 'str',
         'os': 'str',
-        'pin': 'bool'
+        'pin': 'bool',
+        'ssn': 'bool',
+        'state': 'str',
+        'zip': 'str'
     }
 
     attribute_map = {
+        'city': 'city',
         'country': 'country',
         'dob': 'dob',
         'ip_address': 'ip_address',
         'os': 'os',
-        'pin': 'pin'
+        'pin': 'pin',
+        'ssn': 'ssn',
+        'state': 'state',
+        'zip': 'zip'
     }
 
-    def __init__(self, country=None, dob=None, ip_address=None, os=None, pin=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, city=None, country=None, dob=None, ip_address=None, os=None, pin=None, ssn=None, state=None, zip=None, local_vars_configuration=None):  # noqa: E501
         """MarketplaceProductSearchSchemaDataVictim - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._city = None
         self._country = None
         self._dob = None
         self._ip_address = None
         self._os = None
         self._pin = None
+        self._ssn = None
+        self._state = None
+        self._zip = None
         self.discriminator = None
 
+        if city is not None:
+            self.city = city
         if country is not None:
             self.country = country
         if dob is not None:
@@ -76,6 +90,33 @@ class MarketplaceProductSearchSchemaDataVictim(object):
             self.os = os
         if pin is not None:
             self.pin = pin
+        if ssn is not None:
+            self.ssn = ssn
+        if state is not None:
+            self.state = state
+        if zip is not None:
+            self.zip = zip
+
+    @property
+    def city(self):
+        """Gets the city of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+
+
+        :return: The city of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :rtype: str
+        """
+        return self._city
+
+    @city.setter
+    def city(self, city):
+        """Sets the city of this MarketplaceProductSearchSchemaDataVictim.
+
+
+        :param city: The city of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :type city: str
+        """
+
+        self._city = city
 
     @property
     def country(self):
@@ -191,6 +232,69 @@ class MarketplaceProductSearchSchemaDataVictim(object):
         """
 
         self._pin = pin
+
+    @property
+    def ssn(self):
+        """Gets the ssn of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+
+
+        :return: The ssn of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :rtype: bool
+        """
+        return self._ssn
+
+    @ssn.setter
+    def ssn(self, ssn):
+        """Sets the ssn of this MarketplaceProductSearchSchemaDataVictim.
+
+
+        :param ssn: The ssn of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :type ssn: bool
+        """
+
+        self._ssn = ssn
+
+    @property
+    def state(self):
+        """Gets the state of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+
+
+        :return: The state of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :rtype: str
+        """
+        return self._state
+
+    @state.setter
+    def state(self, state):
+        """Sets the state of this MarketplaceProductSearchSchemaDataVictim.
+
+
+        :param state: The state of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :type state: str
+        """
+
+        self._state = state
+
+    @property
+    def zip(self):
+        """Gets the zip of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+
+
+        :return: The zip of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :rtype: str
+        """
+        return self._zip
+
+    @zip.setter
+    def zip(self, zip):
+        """Sets the zip of this MarketplaceProductSearchSchemaDataVictim.
+
+
+        :param zip: The zip of this MarketplaceProductSearchSchemaDataVictim.  # noqa: E501
+        :type zip: str
+        """
+
+        self._zip = zip
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
