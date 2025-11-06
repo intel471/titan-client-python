@@ -1,37 +1,119 @@
 {
-  "type": "bundle",
-  "id": "bundle--1c63e103-906a-41b4-a48c-fdd094d1b904",
+  "id": "bundle--db320927-9d8b-4e4d-b4c1-67fc06899dc1",
   "objects": [
     {
-      "type": "malware",
-      "spec_version": "2.1",
-      "id": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
+      "created": "2025-11-06T14:44:03.698044Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.436325Z",
-      "modified": "2025-06-09T13:44:40.436325Z",
-      "name": "fooBar",
+      "id": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
       "is_family": true,
+      "modified": "2025-11-06T14:44:03.698044Z",
+      "name": "fooBar",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "spec_version": "2.1",
+      "type": "malware"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--274128a4-2ad4-50b5-ae7b-b0dea1fa9861",
+      "confidence": 50,
+      "created": "2025-11-06T14:44:03.698464Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.436759Z",
-      "modified": "2025-06-09T13:44:40.436759Z",
-      "name": "1.2.3.4",
       "description": "fooBar controller IPv4",
+      "id": "indicator--274128a4-2ad4-50b5-ae7b-b0dea1fa9861",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "command-and-control"
+        }
+      ],
+      "labels": [
+        "fooBar",
+        "Intel 471 - GIR 0.0.0"
+      ],
+      "modified": "2025-11-06T14:44:03.698464Z",
+      "name": "1.2.3.4",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[ipv4-addr:value = '1.2.3.4']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2022-06-03T11:36:14Z",
       "valid_until": "2022-07-03T12:17:39Z",
+      "x_opencti_main_observable_type": "IPv4-Addr"
+    },
+    {
+      "id": "ipv4-addr--0198f97b-e65d-5025-87e5-58bc39d4bdb4",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "1.2.3.4",
+      "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
+    },
+    {
+      "created": "2025-11-06T14:44:03.701868Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "id": "relationship--ec4c6d46-736b-5ba8-bce9-63f531170f05",
+      "modified": "2025-11-06T14:44:03.701868Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "relationship_type": "indicates",
+      "source_ref": "indicator--274128a4-2ad4-50b5-ae7b-b0dea1fa9861",
+      "spec_version": "2.1",
+      "target_ref": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
+      "type": "relationship"
+    },
+    {
+      "created": "2025-11-06T14:44:03.702064Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "id": "relationship--a787645d-9c70-51d7-b74a-91f3c0a88d3f",
+      "modified": "2025-11-06T14:44:03.702064Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "relationship_type": "based-on",
+      "source_ref": "indicator--274128a4-2ad4-50b5-ae7b-b0dea1fa9861",
+      "spec_version": "2.1",
+      "target_ref": "ipv4-addr--0198f97b-e65d-5025-87e5-58bc39d4bdb4",
+      "type": "relationship"
+    },
+    {
+      "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
+      "modified": "2022-01-01T00:00:00.000Z",
+      "name": "Intel 471 Inc.",
+      "spec_version": "2.1",
+      "type": "identity"
+    },
+    {
+      "created": "2017-01-20T00:00:00.000Z",
+      "definition": {
+        "tlp": "amber"
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
+    },
+    {
+      "confidence": 85,
+      "created": "2025-11-06T14:44:03.702776Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "sample of fooBar malware family",
+      "id": "indicator--3c7db02c-8ff5-52a0-bb17-9638d494f6c6",
+      "indicator_types": [
+        "malicious-activity"
+      ],
       "kill_chain_phases": [
         {
           "kill_chain_name": "mitre-attack",
@@ -42,163 +124,84 @@
         "fooBar",
         "Intel 471 - GIR 0.0.0"
       ],
-      "confidence": 50,
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
-      "x_opencti_main_observable_type": "IPv4-Addr"
-    },
-    {
-      "type": "ipv4-addr",
-      "spec_version": "2.1",
-      "id": "ipv4-addr--0198f97b-e65d-5025-87e5-58bc39d4bdb4",
-      "value": "1.2.3.4",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
-      "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--ec4c6d46-736b-5ba8-bce9-63f531170f05",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.440133Z",
-      "modified": "2025-06-09T13:44:40.440133Z",
-      "relationship_type": "indicates",
-      "source_ref": "indicator--274128a4-2ad4-50b5-ae7b-b0dea1fa9861",
-      "target_ref": "malware--5709afa6-1486-5cfe-98fb-205568ec6491"
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--a787645d-9c70-51d7-b74a-91f3c0a88d3f",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.440264Z",
-      "modified": "2025-06-09T13:44:40.440264Z",
-      "relationship_type": "based-on",
-      "source_ref": "indicator--274128a4-2ad4-50b5-ae7b-b0dea1fa9861",
-      "target_ref": "ipv4-addr--0198f97b-e65d-5025-87e5-58bc39d4bdb4"
-    },
-    {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2022-01-01T00:00:00.000Z",
-      "modified": "2022-01-01T00:00:00.000Z",
-      "name": "Intel 471 Inc.",
-      "identity_class": "organization"
-    },
-    {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
-      "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
-      "definition": {
-        "tlp": "amber"
-      }
-    },
-    {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--3c7db02c-8ff5-52a0-bb17-9638d494f6c6",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.440863Z",
-      "modified": "2025-06-09T13:44:40.440863Z",
+      "modified": "2025-11-06T14:44:03.702776Z",
       "name": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e",
-      "description": "sample of fooBar malware family",
-      "indicator_types": [
-        "malicious-activity"
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[file:hashes.md5 = '4c4712a4141d261ec0ca8f9037950685' OR file:hashes.sha1 = '391e962681972d5625fc3574e112a4bdae603550' OR file:hashes.sha256 = '38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2022-06-03T11:36:14Z",
       "valid_until": "2022-07-03T12:17:39Z",
-      "kill_chain_phases": [
-        {
-          "kill_chain_name": "mitre-attack",
-          "phase_name": "command-and-control"
-        }
-      ],
-      "labels": [
-        "fooBar",
-        "Intel 471 - GIR 0.0.0"
-      ],
-      "confidence": 85,
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "StixFile"
     },
     {
-      "type": "file",
-      "spec_version": "2.1",
-      "id": "file--274bf59a-4ab3-501c-8438-cb3ee0702542",
       "hashes": {
         "MD5": "4c4712a4141d261ec0ca8f9037950685",
         "SHA-1": "391e962681972d5625fc3574e112a4bdae603550",
         "SHA-256": "38a5dfa3ec07f08e8e1788d1d567359a7ed95b0e354953cf0222e0fea1872a7e"
       },
+      "id": "file--274bf59a-4ab3-501c-8438-cb3ee0702542",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "file",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
+      "created": "2025-11-06T14:44:03.705188Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "id": "relationship--0b1cb9bd-63fa-5c27-8244-fa579379bb84",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.443136Z",
-      "modified": "2025-06-09T13:44:40.443136Z",
-      "relationship_type": "indicates",
-      "source_ref": "indicator--3c7db02c-8ff5-52a0-bb17-9638d494f6c6",
-      "target_ref": "malware--5709afa6-1486-5cfe-98fb-205568ec6491"
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--6a24bb80-8526-557b-9499-bbfdbc6e5a34",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.443236Z",
-      "modified": "2025-06-09T13:44:40.443236Z",
-      "relationship_type": "based-on",
-      "source_ref": "indicator--3c7db02c-8ff5-52a0-bb17-9638d494f6c6",
-      "target_ref": "file--274bf59a-4ab3-501c-8438-cb3ee0702542"
-    },
-    {
-      "type": "malware",
-      "spec_version": "2.1",
-      "id": "malware--7b7a9065-06e7-5861-b500-f1152a4f236c",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.443863Z",
-      "modified": "2025-06-09T13:44:40.443863Z",
-      "name": "barBaz",
-      "is_family": true,
+      "modified": "2025-11-06T14:44:03.705188Z",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "relationship_type": "indicates",
+      "source_ref": "indicator--3c7db02c-8ff5-52a0-bb17-9638d494f6c6",
+      "spec_version": "2.1",
+      "target_ref": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
+      "type": "relationship"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--1ee5d4d2-2180-573d-ba09-606cfa6052a6",
+      "created": "2025-11-06T14:44:03.705301Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.444099Z",
-      "modified": "2025-06-09T13:44:40.444099Z",
-      "name": "http://foo.bar/baz",
+      "id": "relationship--6a24bb80-8526-557b-9499-bbfdbc6e5a34",
+      "modified": "2025-11-06T14:44:03.705301Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "relationship_type": "based-on",
+      "source_ref": "indicator--3c7db02c-8ff5-52a0-bb17-9638d494f6c6",
+      "spec_version": "2.1",
+      "target_ref": "file--274bf59a-4ab3-501c-8438-cb3ee0702542",
+      "type": "relationship"
+    },
+    {
+      "created": "2025-11-06T14:44:03.705953Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "id": "malware--7b7a9065-06e7-5861-b500-f1152a4f236c",
+      "is_family": true,
+      "modified": "2025-11-06T14:44:03.705953Z",
+      "name": "barBaz",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "spec_version": "2.1",
+      "type": "malware"
+    },
+    {
+      "confidence": 85,
+      "created": "2025-11-06T14:44:03.706188Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "description": "barBaz controller URL",
+      "id": "indicator--1ee5d4d2-2180-573d-ba09-606cfa6052a6",
       "indicator_types": [
         "malicious-activity"
       ],
-      "pattern": "[url:value = 'http://foo.bar/baz']",
-      "pattern_type": "stix",
-      "pattern_version": "2.1",
-      "valid_from": "2022-06-03T11:36:14Z",
-      "valid_until": "2022-07-03T12:17:39Z",
       "kill_chain_phases": [
         {
           "kill_chain_name": "mitre-attack",
@@ -209,43 +212,58 @@
         "barBaz",
         "Intel 471 - GIR 0.0.0"
       ],
-      "confidence": 85,
+      "modified": "2025-11-06T14:44:03.706188Z",
+      "name": "http://foo.bar/baz",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "pattern": "[url:value = 'http://foo.bar/baz']",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2022-06-03T11:36:14Z",
+      "valid_until": "2022-07-03T12:17:39Z",
       "x_opencti_main_observable_type": "Url"
     },
     {
-      "type": "url",
-      "spec_version": "2.1",
       "id": "url--180e139a-6141-57cd-949c-1bd736c9073e",
-      "value": "http://foo.bar/baz",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "url",
+      "value": "http://foo.bar/baz",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--d770bc83-be90-509c-a47e-adec98532369",
+      "created": "2025-11-06T14:44:03.706476Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.444383Z",
-      "modified": "2025-06-09T13:44:40.444383Z",
+      "id": "relationship--d770bc83-be90-509c-a47e-adec98532369",
+      "modified": "2025-11-06T14:44:03.706476Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "indicates",
       "source_ref": "indicator--1ee5d4d2-2180-573d-ba09-606cfa6052a6",
-      "target_ref": "malware--7b7a9065-06e7-5861-b500-f1152a4f236c"
+      "spec_version": "2.1",
+      "target_ref": "malware--7b7a9065-06e7-5861-b500-f1152a4f236c",
+      "type": "relationship"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--b2206f95-3e1e-56bf-9928-e5b79911a2d6",
+      "created": "2025-11-06T14:44:03.70657Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:44:40.44447Z",
-      "modified": "2025-06-09T13:44:40.44447Z",
+      "id": "relationship--b2206f95-3e1e-56bf-9928-e5b79911a2d6",
+      "modified": "2025-11-06T14:44:03.70657Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--1ee5d4d2-2180-573d-ba09-606cfa6052a6",
-      "target_ref": "url--180e139a-6141-57cd-949c-1bd736c9073e"
+      "spec_version": "2.1",
+      "target_ref": "url--180e139a-6141-57cd-949c-1bd736c9073e",
+      "type": "relationship"
     }
-  ]
+  ],
+  "type": "bundle"
 }

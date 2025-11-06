@@ -105,6 +105,7 @@ class IOCMapper(BaseMapper):
                 source_ref=indicator,
                 relationship_type="based-on",
                 target_ref=observable,
+                object_marking_refs=[MARKING],
                 created_by_ref=author_identity
             )
             container.extend([indicator, observable, r1, author_identity, MARKING])

@@ -1,72 +1,75 @@
 {
-  "type": "bundle",
-  "id": "bundle--09b50c59-6ca1-40fc-9c99-39c0d698c279",
+  "id": "bundle--d6bc3554-1c5c-48da-a7b5-97d6b62c22b6",
   "objects": [
     {
-      "type": "malware",
-      "spec_version": "2.1",
-      "id": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
+      "created": "2025-11-06T14:44:03.719556Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:58.901896Z",
-      "modified": "2025-06-09T13:45:58.901896Z",
-      "name": "foobar",
+      "id": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
       "is_family": true,
+      "modified": "2025-11-06T14:44:03.719556Z",
+      "name": "foobar",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "spec_version": "2.1",
+      "type": "malware"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--dee6befd-c56e-599f-89c5-5fe70bb7c0f1",
+      "confidence": 85,
+      "created": "2025-11-06T14:44:03.719676Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:58.902267Z",
-      "modified": "2025-06-09T13:45:58.902267Z",
+      "id": "indicator--dee6befd-c56e-599f-89c5-5fe70bb7c0f1",
       "indicator_types": [
         "malicious-activity"
       ],
-      "pattern": "rule Foobar\n{\n    meta:\n        author = \"Myself\"\n}",
-      "pattern_type": "yara",
-      "valid_from": "2022-05-30T12:06:12Z",
       "labels": [
         "foobar",
         "Intel 471 - GIR 1.1"
       ],
-      "confidence": 85,
+      "modified": "2025-11-06T14:44:03.719676Z",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "pattern": "rule Foobar\n{\n    meta:\n        author = \"Myself\"\n}",
+      "pattern_type": "yara",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2022-05-30T12:06:12Z"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--f5e2c605-33d8-5050-b980-6079f52f9e82",
+      "created": "2025-11-06T14:44:03.719773Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:58.902386Z",
-      "modified": "2025-06-09T13:45:58.902386Z",
+      "id": "relationship--f5e2c605-33d8-5050-b980-6079f52f9e82",
+      "modified": "2025-11-06T14:44:03.719773Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "indicates",
       "source_ref": "indicator--dee6befd-c56e-599f-89c5-5fe70bb7c0f1",
-      "target_ref": "malware--5709afa6-1486-5cfe-98fb-205568ec6491"
+      "spec_version": "2.1",
+      "target_ref": "malware--5709afa6-1486-5cfe-98fb-205568ec6491",
+      "type": "relationship"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
       "modified": "2022-01-01T00:00:00.000Z",
       "name": "Intel 471 Inc.",
-      "identity_class": "organization"
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
       "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
       "definition": {
         "tlp": "amber"
-      }
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
     }
-  ]
+  ],
+  "type": "bundle"
 }

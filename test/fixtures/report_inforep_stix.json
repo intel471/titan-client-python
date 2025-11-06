@@ -1,82 +1,82 @@
 {
-  "type": "bundle",
-  "id": "bundle--faf9badc-df4a-472c-816b-755aa23daa69",
+  "id": "bundle--615804c9-787d-4d18-a646-92cf1708161a",
   "objects": [
     {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
       "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
       "definition": {
         "tlp": "amber"
-      }
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
       "modified": "2022-01-01T00:00:00.000Z",
       "name": "Intel 471 Inc.",
-      "identity_class": "organization"
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "email-addr",
-      "spec_version": "2.1",
       "id": "email-addr--fa518209-6108-53fe-a004-6d80cfcdcc16",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
+      "spec_version": "2.1",
+      "type": "email-addr",
       "value": "example@exaple.com",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "domain-name",
-      "spec_version": "2.1",
       "id": "domain-name--bedb4899-d24b-5401-bc86-8f6b4cc18ec7",
-      "value": "example.com",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "domain-name",
+      "value": "example.com",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--0fee6c6f-e494-5b8c-bbfd-8dfe7a748434",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:50:32.271045Z",
-      "modified": "2025-06-09T13:50:32.271045Z",
-      "name": "Lorem ipsum",
-      "description": "Lorem ipsum",
-      "report_types": [
-        "inforep"
-      ],
-      "published": "2023-11-14T22:13:20.001Z",
-      "object_refs": [
-        "email-addr--fa518209-6108-53fe-a004-6d80cfcdcc16",
-        "domain-name--bedb4899-d24b-5401-bc86-8f6b4cc18ec7"
-      ],
-      "labels": [
-        "Intel 471 - sensitive source",
-        "Intel 471 - GIR 1.1.1 - Lorem",
-        "Intel 471 - GIR 1.2"
-      ],
       "confidence": 50,
+      "content": "<h1>Source Characterization</h1>\nLorem ipsum",
+      "created": "2025-11-06T14:44:03.736968Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "Lorem ipsum",
       "external_references": [
         {
           "source_name": "Titan URL",
           "url": "https://titan.intel471.com/report/inforep/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         }
       ],
+      "id": "report--0fee6c6f-e494-5b8c-bbfd-8dfe7a748434",
+      "labels": [
+        "Intel 471 - sensitive source",
+        "Intel 471 - GIR 1.1.1 - Lorem",
+        "Intel 471 - GIR 1.2"
+      ],
+      "modified": "2025-11-06T14:44:03.736968Z",
+      "name": "Lorem ipsum",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "content": "<h1>Source Characterization</h1>\nLorem ipsum",
+      "object_refs": [
+        "email-addr--fa518209-6108-53fe-a004-6d80cfcdcc16",
+        "domain-name--bedb4899-d24b-5401-bc86-8f6b4cc18ec7"
+      ],
+      "published": "2023-11-14T22:13:20.001Z",
+      "report_types": [
+        "inforep"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "x_opencti_reliability": "C - Fairly reliable"
     }
-  ]
+  ],
+  "type": "bundle"
 }

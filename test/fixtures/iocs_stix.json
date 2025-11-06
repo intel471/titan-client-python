@@ -1,223 +1,235 @@
 {
-  "type": "bundle",
-  "id": "bundle--ef6eabc1-6a18-412b-9348-54af7af36973",
+  "id": "bundle--11b1211c-8079-47ac-b04c-ef6397eebae4",
   "objects": [
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
+      "created": "2025-11-06T14:44:03.710225Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.939356Z",
-      "modified": "2025-06-09T13:45:24.939356Z",
-      "name": "foo.bar",
+      "id": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "modified": "2025-11-06T14:44:03.710225Z",
+      "name": "foo.bar",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[domain-name:value = 'foo.bar']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2021-09-02T09:33:53Z",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "Domain-Name"
     },
     {
-      "type": "domain-name",
-      "spec_version": "2.1",
       "id": "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984",
-      "value": "foo.bar",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "domain-name",
+      "value": "foo.bar",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--f63db25b-c3e8-5589-925e-bc98a0b3d360",
+      "created": "2025-11-06T14:44:03.710784Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.943103Z",
-      "modified": "2025-06-09T13:45:24.943103Z",
+      "id": "relationship--f63db25b-c3e8-5589-925e-bc98a0b3d360",
+      "modified": "2025-11-06T14:44:03.710784Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
-      "target_ref": "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984"
+      "spec_version": "2.1",
+      "target_ref": "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984",
+      "type": "relationship"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
       "modified": "2022-01-01T00:00:00.000Z",
       "name": "Intel 471 Inc.",
-      "identity_class": "organization"
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
       "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
       "definition": {
         "tlp": "amber"
-      }
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--a1f3eeb8-c6f0-5c2e-960b-5a5787a2197d",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.943651Z",
-      "modified": "2025-06-09T13:45:24.943651Z",
-      "name": "Lorem ipsum",
-      "description": "Lorem ipsum",
-      "report_types": [
-        "spotrep"
-      ],
-      "published": "2021-09-02T09:33:53Z",
-      "object_refs": [
-        "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
-        "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984",
-        "relationship--f63db25b-c3e8-5589-925e-bc98a0b3d360"
-      ],
       "confidence": 0,
+      "created": "2025-11-06T14:44:03.711084Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "Lorem ipsum",
       "external_references": [
         {
           "source_name": "Titan URL",
           "url": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950685"
         }
       ],
+      "id": "report--a1f3eeb8-c6f0-5c2e-960b-5a5787a2197d",
+      "modified": "2025-11-06T14:44:03.711084Z",
+      "name": "Lorem ipsum",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "object_refs": [
+        "indicator--d885e6f6-6d7d-5a2b-af05-53b861c3fd51",
+        "domain-name--b7a2c682-5608-5ade-aa12-5fde0aa49984",
+        "relationship--f63db25b-c3e8-5589-925e-bc98a0b3d360"
+      ],
+      "published": "2021-09-02T09:33:53Z",
+      "report_types": [
+        "spotrep"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "14796d40bf40721ed6eab8f54d9402e2"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
+      "created": "2025-11-06T14:44:03.711611Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.94477Z",
-      "modified": "2025-06-09T13:45:24.94477Z",
-      "name": "foo.bar",
+      "id": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "modified": "2025-11-06T14:44:03.711611Z",
+      "name": "foo.bar",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[url:value = 'foo.bar']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2021-09-02T09:33:53Z",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "Url"
     },
     {
-      "type": "url",
-      "spec_version": "2.1",
       "id": "url--b7a2c682-5608-5ade-aa12-5fde0aa49984",
-      "value": "foo.bar",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "url",
+      "value": "foo.bar",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--f9ee4e2e-3714-5fc6-942a-e1ba7f93e896",
+      "created": "2025-11-06T14:44:03.711875Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.945112Z",
-      "modified": "2025-06-09T13:45:24.945112Z",
+      "id": "relationship--f9ee4e2e-3714-5fc6-942a-e1ba7f93e896",
+      "modified": "2025-11-06T14:44:03.711875Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
-      "target_ref": "url--b7a2c682-5608-5ade-aa12-5fde0aa49984"
+      "spec_version": "2.1",
+      "target_ref": "url--b7a2c682-5608-5ade-aa12-5fde0aa49984",
+      "type": "relationship"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--69cb0bf4-2762-5f7d-bde4-456e38252b5d",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.945312Z",
-      "modified": "2025-06-09T13:45:24.945312Z",
-      "name": "The quick brown fox",
-      "description": "The quick brown fox",
-      "report_types": [
-        "inforep"
-      ],
-      "published": "2021-09-02T09:33:53Z",
-      "object_refs": [
-        "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
-        "url--b7a2c682-5608-5ade-aa12-5fde0aa49984",
-        "relationship--f9ee4e2e-3714-5fc6-942a-e1ba7f93e896"
-      ],
       "confidence": 0,
+      "created": "2025-11-06T14:44:03.712032Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "The quick brown fox",
       "external_references": [
         {
           "source_name": "Titan URL",
           "url": "https://titan.intel471.com/report/inforep/4c4712a4141d261ec0ca8f9037950686"
         }
       ],
+      "id": "report--69cb0bf4-2762-5f7d-bde4-456e38252b5d",
+      "modified": "2025-11-06T14:44:03.712032Z",
+      "name": "The quick brown fox",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "object_refs": [
+        "indicator--8bea67b0-12fb-5d07-9f45-135415e7710c",
+        "url--b7a2c682-5608-5ade-aa12-5fde0aa49984",
+        "relationship--f9ee4e2e-3714-5fc6-942a-e1ba7f93e896"
+      ],
+      "published": "2021-09-02T09:33:53Z",
+      "report_types": [
+        "inforep"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "14796d40bf40721ed6eab8f54d9402e2"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
+      "created": "2025-11-06T14:44:03.712222Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.945587Z",
-      "modified": "2025-06-09T13:45:24.945587Z",
-      "name": "127.0.0.1",
+      "id": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "modified": "2025-11-06T14:44:03.712222Z",
+      "name": "127.0.0.1",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[ipv4-addr:value = '127.0.0.1']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2021-09-02T09:33:53Z",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "IPv4-Addr"
     },
     {
-      "type": "ipv4-addr",
-      "spec_version": "2.1",
       "id": "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b",
-      "value": "127.0.0.1",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "127.0.0.1",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--e346975c-efb5-5612-8790-46cecab2027f",
+      "created": "2025-11-06T14:44:03.712491Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.946171Z",
-      "modified": "2025-06-09T13:45:24.946171Z",
+      "id": "relationship--e346975c-efb5-5612-8790-46cecab2027f",
+      "modified": "2025-11-06T14:44:03.712491Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
-      "target_ref": "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b"
+      "spec_version": "2.1",
+      "target_ref": "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b",
+      "type": "relationship"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--e2f8cf2b-85c9-51ea-b7cf-6bb80fa2e53e",
+      "confidence": 0,
+      "created": "2025-11-06T14:44:03.71263Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.946339Z",
-      "modified": "2025-06-09T13:45:24.946339Z",
-      "name": "NVM, will be skipped anyways",
       "description": "NVM, will be skipped anyways",
-      "report_types": [
-        "spotrep"
+      "external_references": [
+        {
+          "source_name": "Titan URL",
+          "url": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950686"
+        }
       ],
-      "published": "2021-09-02T09:33:53Z",
+      "id": "report--e2f8cf2b-85c9-51ea-b7cf-6bb80fa2e53e",
+      "modified": "2025-11-06T14:44:03.71263Z",
+      "name": "NVM, will be skipped anyways",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "object_refs": [
         "indicator--a831dcab-392e-5927-8ed7-9b8c3b343526",
         "ipv4-addr--679c6c82-b4be-52e2-9c7a-198689f6f77b",
@@ -232,146 +244,152 @@
         "file--842a90f8-17e2-5b7c-a356-cafacff88ab8",
         "relationship--18c50d20-fe14-586b-b389-2145bab9eefd"
       ],
-      "confidence": 0,
-      "external_references": [
-        {
-          "source_name": "Titan URL",
-          "url": "https://titan.intel471.com/report/spotrep/4c4712a4141d261ec0ca8f9037950686"
-        }
+      "published": "2021-09-02T09:33:53Z",
+      "report_types": [
+        "spotrep"
       ],
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "14796d40bf40721ed6eab8f54d9402e2"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
+      "created": "2025-11-06T14:44:03.712851Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.946716Z",
-      "modified": "2025-06-09T13:45:24.946716Z",
-      "name": "1bec8600cb85bcbeed8b9992a0b87ae4",
+      "id": "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "modified": "2025-11-06T14:44:03.712851Z",
+      "name": "1bec8600cb85bcbeed8b9992a0b87ae4",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[file:hashes.md5 = '1bec8600cb85bcbeed8b9992a0b87ae4']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2021-09-02T09:33:53Z",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "StixFile"
     },
     {
-      "type": "file",
-      "spec_version": "2.1",
-      "id": "file--85995aa9-36db-5c5b-b620-270b86ac82b3",
       "hashes": {
         "MD5": "1bec8600cb85bcbeed8b9992a0b87ae4"
       },
+      "id": "file--85995aa9-36db-5c5b-b620-270b86ac82b3",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "file",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--d142b244-dea0-5797-8656-2290bc2dac2e",
+      "created": "2025-11-06T14:44:03.713155Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.948479Z",
-      "modified": "2025-06-09T13:45:24.948479Z",
+      "id": "relationship--d142b244-dea0-5797-8656-2290bc2dac2e",
+      "modified": "2025-11-06T14:44:03.713155Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--42cd3d21-a2b3-5dc5-8eb0-4db53eacf338",
-      "target_ref": "file--85995aa9-36db-5c5b-b620-270b86ac82b3"
+      "spec_version": "2.1",
+      "target_ref": "file--85995aa9-36db-5c5b-b620-270b86ac82b3",
+      "type": "relationship"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
+      "created": "2025-11-06T14:44:03.714673Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.948966Z",
-      "modified": "2025-06-09T13:45:24.948966Z",
-      "name": "d520bb6cd46674b9f29ec5fa3280d678b635ecd8",
+      "id": "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "modified": "2025-11-06T14:44:03.714673Z",
+      "name": "d520bb6cd46674b9f29ec5fa3280d678b635ecd8",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[file:hashes.sha1 = 'd520bb6cd46674b9f29ec5fa3280d678b635ecd8']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2021-09-02T09:33:53Z",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "StixFile"
     },
     {
-      "type": "file",
-      "spec_version": "2.1",
-      "id": "file--f11f895a-307f-5fab-8888-75291f2bae81",
       "hashes": {
         "SHA-1": "d520bb6cd46674b9f29ec5fa3280d678b635ecd8"
       },
+      "id": "file--f11f895a-307f-5fab-8888-75291f2bae81",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "file",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--b4d3f76b-3f5b-5065-b5c9-344f25650557",
+      "created": "2025-11-06T14:44:03.715034Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.949509Z",
-      "modified": "2025-06-09T13:45:24.949509Z",
+      "id": "relationship--b4d3f76b-3f5b-5065-b5c9-344f25650557",
+      "modified": "2025-11-06T14:44:03.715034Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--2c172df2-247b-5b3c-be44-54f9c787657f",
-      "target_ref": "file--f11f895a-307f-5fab-8888-75291f2bae81"
+      "spec_version": "2.1",
+      "target_ref": "file--f11f895a-307f-5fab-8888-75291f2bae81",
+      "type": "relationship"
     },
     {
-      "type": "indicator",
-      "spec_version": "2.1",
-      "id": "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
+      "created": "2025-11-06T14:44:03.715407Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.949896Z",
-      "modified": "2025-06-09T13:45:24.949896Z",
-      "name": "7623def2702a70942c6a0335f3fff55710c8effc18ed9a6bd2896a4c1f66b752",
+      "id": "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
       "indicator_types": [
         "malicious-activity"
+      ],
+      "modified": "2025-11-06T14:44:03.715407Z",
+      "name": "7623def2702a70942c6a0335f3fff55710c8effc18ed9a6bd2896a4c1f66b752",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
       "pattern": "[file:hashes.sha256 = '7623def2702a70942c6a0335f3fff55710c8effc18ed9a6bd2896a4c1f66b752']",
       "pattern_type": "stix",
       "pattern_version": "2.1",
+      "spec_version": "2.1",
+      "type": "indicator",
       "valid_from": "2021-09-02T09:33:53Z",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ],
       "x_opencti_main_observable_type": "StixFile"
     },
     {
-      "type": "file",
-      "spec_version": "2.1",
-      "id": "file--842a90f8-17e2-5b7c-a356-cafacff88ab8",
       "hashes": {
         "SHA-256": "7623def2702a70942c6a0335f3fff55710c8effc18ed9a6bd2896a4c1f66b752"
       },
+      "id": "file--842a90f8-17e2-5b7c-a356-cafacff88ab8",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "file",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--18c50d20-fe14-586b-b389-2145bab9eefd",
+      "created": "2025-11-06T14:44:03.715783Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:45:24.950371Z",
-      "modified": "2025-06-09T13:45:24.950371Z",
+      "id": "relationship--18c50d20-fe14-586b-b389-2145bab9eefd",
+      "modified": "2025-11-06T14:44:03.715783Z",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "relationship_type": "based-on",
       "source_ref": "indicator--49a0cb32-1206-53d4-8dd6-cbfdd2606169",
-      "target_ref": "file--842a90f8-17e2-5b7c-a356-cafacff88ab8"
+      "spec_version": "2.1",
+      "target_ref": "file--842a90f8-17e2-5b7c-a356-cafacff88ab8",
+      "type": "relationship"
     }
-  ]
+  ],
+  "type": "bundle"
 }

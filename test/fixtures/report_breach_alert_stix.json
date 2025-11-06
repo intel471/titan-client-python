@@ -1,76 +1,59 @@
 {
-  "type": "bundle",
-  "id": "bundle--63fa406c-e67e-455a-a174-db6ab8d55063",
+  "id": "bundle--7723b86c-670e-42d9-86ba-c5f9d57ceca2",
   "objects": [
     {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
       "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
       "definition": {
         "tlp": "amber"
-      }
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
       "modified": "2022-01-01T00:00:00.000Z",
       "name": "Intel 471 Inc.",
-      "identity_class": "organization"
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "threat-actor",
-      "spec_version": "2.1",
+      "created": "2025-11-06T14:44:03.727692Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "id": "threat-actor--5edd2856-cb02-566e-a052-d158a2d11bcd",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:49:19.650663Z",
-      "modified": "2025-06-09T13:49:19.650663Z",
+      "modified": "2025-11-06T14:44:03.727692Z",
       "name": "Lorem ipsum",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+      ],
       "resource_level": "individual",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      "spec_version": "2.1",
+      "type": "threat-actor"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--b7403ffd-634d-52ec-964d-bb755241c27c",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:49:19.651053Z",
-      "modified": "2025-06-09T13:49:19.651053Z",
-      "name": "Dummy",
-      "identity_class": "organization",
       "contact_information": "https://www.example.com",
+      "created": "2025-11-06T14:44:03.72782Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "id": "identity--b7403ffd-634d-52ec-964d-bb755241c27c",
+      "identity_class": "organization",
+      "modified": "2025-11-06T14:44:03.72782Z",
+      "name": "Dummy",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--4112ce81-62af-5272-9ebb-7ce2cd3ccef8",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:49:19.651454Z",
-      "modified": "2025-06-09T13:49:19.651454Z",
-      "name": "Lorem",
-      "description": "Lorem ipsum",
-      "report_types": [
-        "breach_alert"
-      ],
-      "published": "2023-11-14T22:13:20.001Z",
-      "object_refs": [
-        "threat-actor--5edd2856-cb02-566e-a052-d158a2d11bcd",
-        "identity--b7403ffd-634d-52ec-964d-bb755241c27c"
-      ],
-      "labels": [
-        "Intel 471 - GIR 1.1.1 - Lorem",
-        "Intel 471 - GIR 1.2"
-      ],
       "confidence": 15,
+      "content": "",
+      "created": "2025-11-06T14:44:03.728134Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "Lorem ipsum",
       "external_references": [
         {
           "source_name": "Titan URL",
@@ -81,11 +64,28 @@
           "url": "https://titan.intel471.com/post_thread/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         }
       ],
+      "id": "report--4112ce81-62af-5272-9ebb-7ce2cd3ccef8",
+      "labels": [
+        "Intel 471 - GIR 1.1.1 - Lorem",
+        "Intel 471 - GIR 1.2"
+      ],
+      "modified": "2025-11-06T14:44:03.728134Z",
+      "name": "Lorem",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "content": "",
+      "object_refs": [
+        "threat-actor--5edd2856-cb02-566e-a052-d158a2d11bcd",
+        "identity--b7403ffd-634d-52ec-964d-bb755241c27c"
+      ],
+      "published": "2023-11-14T22:13:20.001Z",
+      "report_types": [
+        "breach_alert"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     }
-  ]
+  ],
+  "type": "bundle"
 }
