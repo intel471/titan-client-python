@@ -1,101 +1,101 @@
 {
-  "type": "bundle",
-  "id": "bundle--f918f05e-f035-4f6a-b844-3a73b25a7238",
+  "id": "bundle--1fe4f7a0-5765-4140-ae68-f68517300b4b",
   "objects": [
     {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
       "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
       "definition": {
         "tlp": "amber"
-      }
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
       "modified": "2022-01-01T00:00:00.000Z",
       "name": "Intel 471 Inc.",
-      "identity_class": "organization"
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "domain-name",
-      "spec_version": "2.1",
       "id": "domain-name--5738557b-186f-5e7f-bbbc-a6678ea6513d",
-      "value": "bad",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
+      "spec_version": "2.1",
+      "type": "domain-name",
+      "value": "bad",
       "x_opencti_created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--b7403ffd-634d-52ec-964d-bb755241c27c",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:49:47.141357Z",
-      "modified": "2025-06-09T13:49:47.141357Z",
-      "name": "Dummy",
-      "identity_class": "organization",
       "contact_information": "https://dummy",
-      "object_marking_refs": [
-        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
-    },
-    {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--fe08297a-ec76-5a20-8e80-f472731dfe4f",
+      "created": "2025-11-06T14:44:03.730767Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:49:47.141472Z",
-      "modified": "2025-06-09T13:49:47.141472Z",
-      "name": "Dummy2",
+      "id": "identity--b7403ffd-634d-52ec-964d-bb755241c27c",
       "identity_class": "organization",
-      "contact_information": "https://dummy2",
+      "modified": "2025-11-06T14:44:03.730767Z",
+      "name": "Dummy",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--4112ce81-62af-5272-9ebb-7ce2cd3ccef8",
+      "contact_information": "https://dummy2",
+      "created": "2025-11-06T14:44:03.730948Z",
       "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:49:47.14189Z",
-      "modified": "2025-06-09T13:49:47.14189Z",
-      "name": "Lorem",
-      "description": "Lorem",
-      "report_types": [
-        "fintel",
-        "intelligence_bulletin"
+      "id": "identity--fe08297a-ec76-5a20-8e80-f472731dfe4f",
+      "identity_class": "organization",
+      "modified": "2025-11-06T14:44:03.730948Z",
+      "name": "Dummy2",
+      "object_marking_refs": [
+        "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "published": "2023-11-14T22:13:20.001Z",
-      "object_refs": [
-        "domain-name--5738557b-186f-5e7f-bbbc-a6678ea6513d",
-        "identity--b7403ffd-634d-52ec-964d-bb755241c27c",
-        "identity--fe08297a-ec76-5a20-8e80-f472731dfe4f"
-      ],
-      "labels": [
-        "Intel 471 - GIR 1.1.1 - Lorem",
-        "Intel 471 - GIR 1.1.9",
-        "Intel 471 - GIR 1.1.10"
-      ],
+      "spec_version": "2.1",
+      "type": "identity"
+    },
+    {
       "confidence": 90,
+      "content": "",
+      "created": "2025-11-06T14:44:03.731514Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "Lorem",
       "external_references": [
         {
           "source_name": "Titan URL",
           "url": "https://titan.intel471.com/report/fintel/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         }
       ],
+      "id": "report--4112ce81-62af-5272-9ebb-7ce2cd3ccef8",
+      "labels": [
+        "Intel 471 - GIR 1.1.1 - Lorem",
+        "Intel 471 - GIR 1.1.9",
+        "Intel 471 - GIR 1.1.10"
+      ],
+      "modified": "2025-11-06T14:44:03.731514Z",
+      "name": "Lorem",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "content": "",
+      "object_refs": [
+        "domain-name--5738557b-186f-5e7f-bbbc-a6678ea6513d",
+        "identity--b7403ffd-634d-52ec-964d-bb755241c27c",
+        "identity--fe08297a-ec76-5a20-8e80-f472731dfe4f"
+      ],
+      "published": "2023-11-14T22:13:20.001Z",
+      "report_types": [
+        "fintel",
+        "intelligence_bulletin"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     }
-  ]
+  ],
+  "type": "bundle"
 }

@@ -1,74 +1,58 @@
 {
-  "type": "bundle",
-  "id": "bundle--137c1241-70d1-4dfb-a731-68dde5e6be81",
+  "id": "bundle--f387dff5-0be7-40ae-adcf-eb17183355b6",
   "objects": [
     {
-      "type": "marking-definition",
-      "spec_version": "2.1",
-      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
       "created": "2017-01-20T00:00:00.000Z",
-      "definition_type": "tlp",
-      "name": "TLP:AMBER",
       "definition": {
         "tlp": "amber"
-      }
+      },
+      "definition_type": "tlp",
+      "id": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      "name": "TLP:AMBER",
+      "spec_version": "2.1",
+      "type": "marking-definition"
     },
     {
-      "type": "identity",
-      "spec_version": "2.1",
-      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "created": "2022-01-01T00:00:00.000Z",
+      "id": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "identity_class": "organization",
       "modified": "2022-01-01T00:00:00.000Z",
       "name": "Intel 471 Inc.",
-      "identity_class": "organization"
+      "spec_version": "2.1",
+      "type": "identity"
     },
     {
-      "type": "threat-actor",
-      "spec_version": "2.1",
+      "created": "2025-11-06T14:44:03.739217Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "id": "threat-actor--6f18e374-7f3b-53c2-89c2-4584c62773de",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:50:52.364568Z",
-      "modified": "2025-06-09T13:50:52.364568Z",
+      "modified": "2025-11-06T14:44:03.739217Z",
       "name": "Dummy handle",
-      "resource_level": "individual",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "resource_level": "individual",
+      "spec_version": "2.1",
+      "type": "threat-actor"
     },
     {
-      "type": "threat-actor",
-      "spec_version": "2.1",
+      "created": "2025-11-06T14:44:03.739363Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
       "id": "threat-actor--771cb531-1676-596f-8e3a-533952a34615",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:50:52.36501Z",
-      "modified": "2025-06-09T13:50:52.36501Z",
+      "modified": "2025-11-06T14:44:03.739363Z",
       "name": "Dummy handle2",
-      "resource_level": "individual",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-      ]
+      ],
+      "resource_level": "individual",
+      "spec_version": "2.1",
+      "type": "threat-actor"
     },
     {
-      "type": "report",
-      "spec_version": "2.1",
-      "id": "report--0fee6c6f-e494-5b8c-bbfd-8dfe7a748434",
-      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
-      "created": "2025-06-09T13:50:52.365487Z",
-      "modified": "2025-06-09T13:50:52.365487Z",
-      "name": "Lorem ipsum",
-      "description": "Lorem ipsum",
-      "report_types": [
-        "spotrep"
-      ],
-      "published": "2023-11-14T22:13:20.001Z",
-      "object_refs": [
-        "threat-actor--6f18e374-7f3b-53c2-89c2-4584c62773de",
-        "threat-actor--771cb531-1676-596f-8e3a-533952a34615"
-      ],
-      "labels": [
-        "Intel 471 - GIR 1.1.1 - Lorem"
-      ],
       "confidence": 0,
+      "content": "",
+      "created": "2025-11-06T14:44:03.739759Z",
+      "created_by_ref": "identity--ba6a107e-4a66-5fd3-833c-43318ba163fd",
+      "description": "Lorem ipsum",
       "external_references": [
         {
           "source_name": "Titan URL",
@@ -79,11 +63,27 @@
           "url": "https://dummy"
         }
       ],
+      "id": "report--0fee6c6f-e494-5b8c-bbfd-8dfe7a748434",
+      "labels": [
+        "Intel 471 - GIR 1.1.1 - Lorem"
+      ],
+      "modified": "2025-11-06T14:44:03.739759Z",
+      "name": "Lorem ipsum",
       "object_marking_refs": [
         "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
       ],
-      "content": "",
+      "object_refs": [
+        "threat-actor--6f18e374-7f3b-53c2-89c2-4584c62773de",
+        "threat-actor--771cb531-1676-596f-8e3a-533952a34615"
+      ],
+      "published": "2023-11-14T22:13:20.001Z",
+      "report_types": [
+        "spotrep"
+      ],
+      "spec_version": "2.1",
+      "type": "report",
       "x_intel471_com_uid": "11111111111111111111111111111111"
     }
-  ]
+  ],
+  "type": "bundle"
 }

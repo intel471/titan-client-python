@@ -2,10 +2,11 @@ import datetime
 
 from pytz import UTC
 import pycti
-from stix2 import Indicator, Bundle, Relationship, TLP_AMBER
+from stix2 import Indicator, Bundle, Relationship
 from .common import StixMapper, BaseMapper
 from .. import author_identity, StixObjects
 from ..sdo import map_malware
+from ..constants import MARKING
 
 
 @StixMapper.register("yara", lambda x: "yaraTotalCount" in x)
@@ -30,7 +31,7 @@ class YaraMapper(BaseMapper):
                 indicator_types=["malicious-activity"],
                 valid_from=valid_from,
                 created_by_ref=author_identity,
-                object_marking_refs=[TLP_AMBER],
+                object_marking_refs=[MARKING],
                 labels=labels,
                 confidence=confidence,
             )
@@ -42,6 +43,7 @@ class YaraMapper(BaseMapper):
                 source_ref=indicator,
                 relationship_type="indicates",
                 target_ref=malware,
+                object_marking_refs=[MARKING],
                 created_by_ref=author_identity
             )
             for stix_object in [
@@ -49,7 +51,7 @@ class YaraMapper(BaseMapper):
                 indicator,
                 relationship,
                 author_identity,
-                TLP_AMBER,
+                MARKING,
             ]:
                 container.add(stix_object)
         if container:

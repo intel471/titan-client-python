@@ -2,13 +2,14 @@ import datetime
 
 from pytz import UTC
 import pycti
-from stix2 import Indicator, Bundle, Relationship, KillChainPhase, TLP_AMBER
+from stix2 import Indicator, Bundle, Relationship, KillChainPhase
 
 from .. import author_identity, StixObjects
 from .common import StixMapper, BaseMapper, MappingConfig
 from ..patterning import create_url_pattern, create_ipv4_pattern, create_file_pattern
 from ..sco import map_url, map_ipv4, map_file
 from ..sdo import map_malware
+from ..constants import MARKING
 
 
 @StixMapper.register("indicators", lambda x: "indicatorTotalCount" in x)
@@ -84,7 +85,7 @@ class IndicatorsMapper(BaseMapper):
                 valid_from=valid_from,
                 valid_until=valid_until,
                 created_by_ref=author_identity,
-                object_marking_refs=[TLP_AMBER],
+                object_marking_refs=[MARKING],
                 name=name,
                 description=description,
                 labels=labels,
@@ -102,6 +103,7 @@ class IndicatorsMapper(BaseMapper):
                 source_ref=indicator,
                 relationship_type="indicates",
                 target_ref=malware,
+                object_marking_refs=[MARKING],
                 created_by_ref=author_identity
             )
             r2 = Relationship(
@@ -112,6 +114,7 @@ class IndicatorsMapper(BaseMapper):
                 source_ref=indicator,
                 relationship_type="based-on",
                 target_ref=observable,
+                object_marking_refs=[MARKING],
                 created_by_ref=author_identity
             )
             for stix_object in [
@@ -121,7 +124,7 @@ class IndicatorsMapper(BaseMapper):
                 r1,
                 r2,
                 author_identity,
-                TLP_AMBER,
+                MARKING,
             ]:
                 container.add(stix_object)
         if container:

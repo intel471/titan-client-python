@@ -77,6 +77,7 @@ class CveMapper(BaseMapper):
                 source_ref=software,
                 relationship_type= "has",
                 target_ref=vulnerability,
+                object_marking_refs=[MARKING],
                 created_by_ref=author_identity)
             container.extend([vulnerability, software, rel, author_identity, MARKING])
         if container:
