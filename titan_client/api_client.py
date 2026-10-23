@@ -25,6 +25,7 @@ import six
 from six.moves.urllib.parse import quote
 
 from titan_client.configuration import Configuration
+from titan_client.discontinuation import warn_discontinuation
 import titan_client.models
 from titan_client import rest
 from titan_client.exceptions import ApiValueError, ApiException
@@ -78,7 +79,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/1.20.0.15/python'
+        self.user_agent = 'OpenAPI-Generator/1.20.0.16/python'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):
@@ -370,6 +371,7 @@ class ApiClient(object):
             If parameter async_req is False or missing,
             then the method will return the response directly.
         """
+        warn_discontinuation()
         if not async_req:
             return self.__call_api(resource_path, method,
                                    path_params, query_params, header_params,

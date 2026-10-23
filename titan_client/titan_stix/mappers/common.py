@@ -15,6 +15,7 @@ from stix2 import Bundle
 
 from .. import INTEL_471, STIXMapperSettings
 from ..exceptions import EmptyBundle, StixMapperNotFound
+from ...discontinuation import warn_discontinuation
 
 log = logging.getLogger(__name__)
 
@@ -56,6 +57,7 @@ class StixMapper:
         return inner_wrapper
 
     def map(self, source: dict, stix_version: str = "2.1") -> Bundle:
+        warn_discontinuation()
         log.info(f"Initializing converter. STIX version {stix_version}.")
         for name, (condition, mapper_class) in self.mappers.items():
             if condition(source):
