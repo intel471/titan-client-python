@@ -34,7 +34,7 @@ def map_ipv6(value: str, *args, **kwargs) -> IPv6Address:
 
 def map_domain(value: str, *args, **kwargs) -> DomainName:
     if value.startswith("http"):
-        raise InvalidValueError(DomainName, "value", f"'{value}' is not valid domain name")
+        raise InvalidValueError(DomainName, "value", f"'{value}' is not a valid domain name")
     return DomainName(
         value=value,
         object_marking_refs=[MARKING],
